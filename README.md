@@ -151,12 +151,14 @@ Data relationshipts:
 ### 4. Skeleton
 
 **Wireframing:**
+- **Home Page**
+![Home Page](documentation/wireframes/wireframe-homepage.jpg)
 
-![Home Page](documentation/images/wireframes/wireframe-homepage.jpg)
+- **Journal Page**
+![Journal Page](documentation/wireframes/wireframe-journal.jpg)
 
-![Journal Page](documentation/images/wireframes/wireframe-journal.jpg)
-
-![Plants Page](documentation/images/wireframes/wireframe-plants.jpg)
+- **Plants Page**
+![Plants Page](documentation/wireframes/wireframe-plants.jpg)
 
 ### 5. Surface
 
