@@ -62,6 +62,9 @@ outlines my  testing strategy, pre-development, development, deployment and post
 
 - **Modal Registration form** \- The link to register will be accessable from the modal login form, and once users are registered, they wil have access to main application of the site. 
 
+# What is best here?: 
+## Need to work on how to display the events on journal page. 
+
 - **Display page for the calendar and events** \- The page displaying the year events will display the current month, and other months accessable though clicking on tabs. One tab per month. Events will be displayed in date order, and clicking on the event name will open the event details in a modal, where it can be read, updated, or deleted. 
 
 - **Tabs for the months in the journal** \- Current month will be the active tab, with other months available to view by clicking on them. The tabs will be scrollable when they are wiser than the screen. 
@@ -96,9 +99,21 @@ Unregistered unsers are limited to viewing the homepage, withh an option to regi
 
 **Information Architecture** Site information arranged as follows.
    There will be 3 pages for the site, with only the Homepage being accessable to users that are not registered or logged in. 
+   
+- **Visible to all users**
    - ***Homepage***
+	   - Home page navigation will link to the contact form at the bottom of the page, also the login/ registration form. 
+	   - There will be a slider with images relating to the four seasons.
+	   - A collection of images to inspire interest in gardening. 
+	   - 
+- **Additional pages visable to registered and logged in users** 
    - ***Journal page***
+	   - Will display the the events for the users garden.
+	   - Buttons to open a form to add, update or delete an event will open a modal window to perform the action. 
+	   - Event name along with the plant name will be links that will open the corresponding entry to be viewed, updated or deleted.  
    - ***Plants Page***
+	   - Will display a list of the  plants entered by the user.
+	   - The plant name in the list will be a link that opens the plant profile in a modal window to be viewed, updated, or deleted.
    
 Each page will have links to open various option, to login, register, add new plant, add new event, to edit or update plants or events. All this will be in a modal, that when closed will return the user to the page they were viewing. 
 -   ***Contact Form*** will be linked in the navbar, but always accessable at the bottom of the homepage. 
@@ -108,42 +123,37 @@ Each page will have links to open various option, to login, register, add new pl
 -   **Planning** 
 We are using mongoDB as database for the application. 
 
-Data relationshipts:
-	- **One to one:**
-	- **One to many**
-	- **Many to many**
+***Data relationshipts:***
+	I've decided to make separate collections for users, event categories, and plants. the fourth collection will be the garden events, which will contain the information about the event. Within the garden event entry, I will record the plant id, the user id, and catefgoy, to make it easy to filter the data base for the information. 
 	
 **MongoDB**
-- ***users***  (many to many)
-- ***plants*** (one to many)
-- ***categories*** (one to many)
-- ***garden_event*** (one to one)
-	- _id	   (objectId)
-	- event_creator {
-	    - user_id
-	    - user_name
-	    - user_password
-	       }
-	 - date
-	 - category {
-	     -  sow
-	     -  plant
-	     -  harvest
-	      - fertilise
-	      - spray
-	      - prune
-	      }
-	  - plant {
-		  - plant_type
-		  - plant_name
-		  - plant_images
-		  }
-	- note
+- ***users***  (many to many) {
+	-   user_id
+	-   user_name
+	-   user_password  
+        }
+- ***plants*** (one to many) {
+    -   plant_type
+    -   plant_name
+    -   plant_images  
+        }
+- ***categories*** (one to many) {
+     -  sow
+     -  plant
+     -  harvest
+      - fertilise
+      - spray
+      - prune
+	        }
+- ***garden_event*** (one to one) {
+	- _id	   (objectId) 
+	- event_date
+	- event_category
+	- event_note
 	- repeats
-
-
-**Website pages**
-	
+	-  plant_id
+	- user_Id
+	}
 
 -   **Layout** 
     
@@ -151,18 +161,25 @@ Data relationshipts:
 ### 4. Skeleton
 
 **Wireframing:**
-- **Home Page**
-![Home Page](documentation/wireframes/wireframe-homepage.jpg)
+The wireframes were compelted in Adobe XD, and I kept them simple, to display the layout of the required complonents. 
+#### Home page wireframes
+![Home Page](documentation/images/wireframes/wireframes.png)
 
-- **Journal Page**
-![Journal Page](documentation/wireframes/wireframe-journal.jpg)
+#### Journal page wireframes
+![Journal Page](documentation/images/wireframes/wireframes.png)
 
-- **Plants Page**
-![Plants Page](documentation/wireframes/wireframe-plants.jpg)
+#### Plants page wireframes
+![Plants Page](documentation/images/wireframes/wireframes.png)
+
 
 ### 5. Surface
 
 **Visual Design:**
+I selected four stock images, one to represent each season, to display in a carousel slider directly under the navigation. The image carousel is set to automatically change images every 10 seconds, so it isn't rushed, and eash the user has time to view each image. This feature will be visable on all pages, along with the navbar. 
+
+I habe included the contact form at the bottom of the page so the users can easily contact me, and there is a link in the navbar that scrolls the page to the cotnact form. 
+
+I inlcuded images of fruit and vegetables to inspire users to make use of the application. Event names and plant names open the corresponding events and plant profiles, which can be easily viewed, updated or deleted. That happens in a modal that when closed returns the user to the same page. The navigation bar is fixed so it's easily accessible and always visible. The site is simple and the styling and functions consistant accross pages. 
 
 ## TECHNOLOGIES USED
 
@@ -173,32 +190,39 @@ Data relationshipts:
 3.  SCSS
 4.  JavaScript
 5.  jQuery
-7.  Python
-11.  Markdown
+6.  Python
+7.  Jinja
+8.  Markdown
     
 
 **Frameworks, Libraries, Programs used**
 
 1. [Material Design Framework](https://materializecss.com/getting-started.html)
 	Responsive framework of choice for this project.
-2. [Flask Framework](https://flask.palletsprojects.com/en/2.0.x/)
-3. [Heroku](https://www.heroku.com/home)
+2. [Flask Framework](https://flask.palletsprojects.com/en/2.0.x/) 
+     Used to display data from the mongoDB in the front end templates.
+4. [Heroku](https://www.heroku.com/home)
 	Hosting the project.
-4. [mongoDB](https://www.mongodb.com/)
+5. [mongoDB](https://www.mongodb.com/)
 	noSQL database used to store non-relational data of the website.
-5. [Font Awesome](https://fontawesome.com/)
+6. [Font Awesome](https://fontawesome.com/)
 	Icons used in the website.
-6. [GitHub](https://github.com/)
+7. [GitHub](https://github.com/)
 	Used to host project repository and to deploy the project live via 	GitHub Pages
-7. [Git Version Control](https://git-scm.com/)
+8. [Git Version Control](https://git-scm.com/)
 	I used it to commit blocks of work to the GitHub repository and create branches to work on specific changes or testing.
-8. [Gitpod](https://gitpod.io/workspaces)
+9. [Gitpod](https://gitpod.io/workspaces)
 	Editor used to work on project.
-10. [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjwgtWDBhDZARIsADEKwgNq0GvC2yRLIRMqtOQmJMttVQwRQwncxUgML3HMPxy17ZF6--foTYkaArnQEALw_wcB)
+10. [Adobe XD](https://www.adobe.com/products/xd.html) 
 	Used to create wireframes
-11. [Squoosh](https://squoosh.app/)
+11. [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
+Used to edit images for the site.
+12. [Squoosh](https://squoosh.app/)
 	I used it to compress images to optimize load performance.
-12. 
+13. [Quire](https://quire.io/)
+Free project and task planning application used for adding and planning tasks for the project.
+14. [Depositphotos](https://depositphotos.com/?gclsrc=aw.ds&&utm_source=google&utm_medium=cpc&utm_campaign=DP_EU_EN_Brand_Search&utm_term=depositphotos&gclid=CjwKCAjwuvmHBhAxEiwAWAYj-EVeHDBPdjs594mAT_HDLeFGM_g2IVcGn78NSArH7vXIYqfoO1BuhBoCv_kQAvD_BwE)
+My source of choice for stock images.
 
 
 ----------
@@ -227,6 +251,8 @@ Link to research info and details.
 ### Feedback
 
 ### Credits
+***Theme inspiration*** 
+I came across some [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes), and used them as the inspiration to develop my own theme template. I had to update the markup a little for the latest  version of marterializecss, and customised the theme to my own needs. But anylising these thems helped me to get a grasp of the structure and function of materializecss elements. 
 
 ## Notes
 
