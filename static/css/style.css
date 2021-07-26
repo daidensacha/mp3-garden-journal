@@ -1,0 +1,150 @@
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #ee6e73;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+.icon-block {
+  padding: 0 15px;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+
+
+/* Style parallax images */
+ .parallax img 
+ {
+ 	 background-repeat: no-repeat;
+ 	 background-size: cover;
+ }
+ .parallax-container
+ {
+ 	color: black;
+ }
+ @media only screen and (max-width : 600px) {
+  .parallax-container
+ {
+ 	color: white;
+ }
+}
+ nav a.button-collapse
+ {
+ 	color:black;
+ }
+ .purple.lighten-1 {
+  background-color: #CC0066 !important;
+}
+.teal-text.text-lighten-2 {
+  color: #CC0066 !important;
+}
+.share-buttons{
+	list-style: none;
+}
+
+.share-buttons li{
+	display: inline;
+}
+nav
+{
+	overflow: visible;
+}
+nav li a {
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+
+
+/* 
+Social Icon styling */
+.social-icon {
+  margin-right: 10px;
+}
+.social-icon:hover {
+  color: rgb(228, 90, 22);
+  
+}
+
+/* customer text color */
+
+.px-dark-red {
+  color: #602c25
+}
+
+.text-shadow {
+  text-shadow: 1px 2px #000000;
+}
+
+.sidenav-trigger i {
+  color: #000000;
+}
+
+.brand-logo {
+    margin-left: 20px;
+}
+
+/* 
+=========================   Media Queries ========================= */
+
+/* Small Screens */
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+      top: 0;
+    }
+  }
+
+/* Medium Screens */
+@media only screen and (min-width : 600px) {
+
+}
+
+/*  Large Screens */
+@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+      position: absolute;
+      /* top: 40%; */
+    }
+    #index-banner .section {
+      top: 10%;
+    }
+  }
+  
+/* Extra Large Screens */
+@media only screen and (min-width : 1200px) {
+    
+}
+  
+ 
+    
+/* This is not needed if I don't use tabs */
+/* materializecss tabs fix */
+@media (max-width: 1900px) {
+
+    .tabs {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  }
+  /* tabs fix for auto height when adding content that exceeds 400px, as the tabs are styled by carousel css */
+  .tabs-content.carousel .carousel-item .tab { height:auto; }

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <title>Garden Journel</title>
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <div id="navbar" class="navbar-fixed scrollspy">
+        <nav class="white">
+            <div class="nav-wrapper">
+
+                <a href="#!" class="brand-logo">Garden Journal</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+
+                    <li><a class="head-link" href="/index.html">Home</a></li>
+                    <li><a class="head-link" href="/journal.html">Journal</a></li>
+                    <li><a class="head-link" href="/plants.html">Plants</a></li>
+                    <li><a class="head-link" href="#projects">Projects</a></li>
+                    <li><a class="head-link" href="#aboutus">About</a></li>
+                    <li><a class="head-link" href="#contactus">Contact</a></li>
+                    <li><a class="head-link" href="#">Login/Register</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a class="head-link" href="/index.html">Home</a></li>
+        <li><a class="head-link" href="/journal.html">Journal</a></li>
+        <li><a class="head-link" href="/plants.html">Plants</a></li>
+        <li><a class="head-link" href="#projects">Projects</a></li>
+        <li><a class="head-link" href="#aboutus">About Us</a></li>
+        <li><a class="head-link" href="#contactus">Contact</a></li>
+        <li><a class="head-link" href="#">Login/Register</a></li>
+    </ul>
+
+    <!-- slider -->
+    <div class="slider">
+        <ul class="slides">
+            <li>
+                <!-- <img src="/static/images/summer_1240x528_b.jpg"> -->
+                <img src="{{url_for('static', filename='/images/summer_1240x528_b.jpg')}}">
+                <div class="caption center-align">
+                    <h3 class="text-shadow">Spring</h3>
+                    <h5 class="light grey-text text-lighten-3 text-shadow">Action! Plant, nourish, enjoy!</h5>
+                </div>
+            </li>
+            <li>
+                <!-- <img src="static/images/flowers_1240x528_b.jpg"> -->
+                <img src="{{url_for('static', filename='/images/flowers_1240x528_b.jpg')}}">
+                <div class="caption center-align">
+                    <h3 class="text-shadow">Summer</h3>
+                    <h5 class="light grey-text text-lighten-3 text-shadow">Tend to the gardens needs.</h5>
+                </div>
+            </li>
+            <li>
+                <!-- <img src="static/images/autumn_1240x528_b.jpg"> -->
+                <img src="{{url_for('static', filename='/images/autumn_1240x528_b.jpg')}}">
+                <div class="caption center-align">
+                    <h3 class="text-shadow">Autumn</h3>
+                    <h5 class="light grey-text text-lighten-3 text-shadow">Prepare for the dormant season.</h5>
+                </div>
+            </li>
+            <li>
+                <!-- <img src="static/images/winter_1240x528_b.jpg"> -->
+                <img src="{{url_for('static', filename='/images/winter_1240x528_b.jpg')}}">
+                <div class="caption center-align">
+                    <h3 class="text-shadow">Winter</h3>
+                    <h5 class="light grey-text text-lighten-3 text-shadow">Plan for the next seasons bounty. </h5>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+<!-- end slider -->
+
+{% block content %}
+
+{% endblock %}
+
+<!-- contact form section -->
+    <div class="container section scrollspy" id="contactus">
+        <div class="section">
+            <br>
+            <br>
+            <h2>Contact Us</h2>
+
+            <div class="row">
+
+                <form class="col s8">
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="name" type="text" class="validate">
+                            <label for="name">Your Name</label>
+                        </div>
+
+
+                        <div class="input-field col s6">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Your Email</label>
+                        </div>
+                    </div>
+                    <!--row-->
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="message-sub" type="email" class="validate">
+                            <label for="message-sub">Message Subject</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="text_area" class="materialize-textarea"></textarea>
+                            <label for="text_area">Your Message</label>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <a class="waves-effect waves-light btn purple lighten-1">Send Message<i
+                                class="mdi-content-send right"></i></a>
+                    </div>
+                </form>
+
+                <div class="col s12 m4">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam
+                    </p>
+                    <ul class="share-buttons">
+                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" title="GitHub"
+                                class="social-icon"><i class="fab fa-github fa-2x"></i></a></li>
+                        <li><a href="https://twitter.com/intent/tweet?source=&text=:%20" target="_blank"
+                                title="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in fa-2x"></i></a></li>
+                        <li><a href="https://plus.google.com/share?url=" target="_blank" title="Email"
+                                class="social-icon"><i class="fas fa-envelope fa-2x"></i></a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer section -->
+    <footer class="page-footer purple lighten-1">
+
+        <div class="footer-copyright">
+            <div class="container">
+                <p>Copyright © Your website name</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>

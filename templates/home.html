@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!-- features section -->
+<div class="container">
+    <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center" style="color:#333"><i class="fas fa-leaf"></i></h2>
+                    <h5 class="center">Feature one</h5>
+
+                    <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center" style="color:#333"><i class="fas fa-seedling"></i></h2>
+                    <h5 class="center">Feature two</h5>
+
+                    <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center" style="color:#333"><i class="fas fa-globe"></i></h2>
+                    <h5 class="center">Feature three</h5>
+                    <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- parallax 1 -->
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 white-text">Vertically centered text</h5>
+                <p class="white-text">Year to year, there are cycles in the garden. They repeat, last frost, bud
+                    burst, flowering, pests and the
+                    individual treatments for plants.
+                </p>
+                <p class="white-text">Year to year, there are cycles in the garden. They repeat, last frost, bud
+                    burst, flowering, pests and the
+                    individual treatments for plants.
+                </p>
+                <p class="white-text">Year to year, there are cycles in the garden. They repeat, last frost, bud
+                    burst, flowering, pests and the
+                    individual treatments for plants.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="parallax"><img src="{{url_for('static', filename='/images/parallax_img_1b.jpg')}}" alt="img"></div>
+</div>
+
+
+<div class="container section scrollspy" id="projects">
+    <div class="section">
+
+        <br>
+        <br>
+      <h4 class="center">Our Work</h4>
+      <br>
+      <div class="row">
+          <div class="col s6">
+          <img class="materialboxed responsive-img" data-caption="Description about the work or project"  src="{{url_for('static', filename='/images/blur-flowers-nature-471-827x550.jpg')}}">
+          </div> 
+          <div class="col s6">
+          <img class="materialboxed responsive-img" data-caption="Description about the work or project"  src="{{url_for('static', filename='/images/1415117217bc45x.jpg')}}">
+          </div> 
+      </div><!--row-->
+      
+       <div class="row">
+          <div class="col s6">
+          <img class="materialboxed responsive-img" data-caption="Description about the work or project" src="{{url_for('static', filename='/images/1397154567yttyy.jpg')}}">
+          </div> 
+          <div class="col s6">
+          <img class="materialboxed responsive-img" data-caption="Description about the work or project" src="{{url_for('static', filename='/images/1399827845b0i1k.jpg')}}">
+          </div> 
+      </div><!--row-->
+      
+      <div class="center">
+          <a class="waves-effect waves-light btn purple lighten-1">View more</a>
+      </div>
+
+
+    </div>
+</div>
+
+<!-- parralax 2 -->
+<div class="parallax-container valign-wrapper section scrollspy" id="aboutus">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="center row col s3">
+
+                <h3 class="white-text">About Us</h3>
+            </div>
+            <div class="left row col s12 white-text">
+                <p>Before the onset of consumerism and supermarkets, the garden provided fresh fruit and vegetables
+                    for the family. My
+                    forbears were farmers, and when I grew up, we always had chutney, pickles, jams, and sauces;
+                    produced from the
+                    bounty from the garden.
+                </p>
+                <p>Record recurring events and tasks for your garden. Never forget the plants' needs,
+                    and each year you will improve your bounty based on experiences from previous years.
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <div class="parallax"><img src="{{url_for('static', filename='/images/parallax_img_2b.jpg')}}" alt="img"></div>
+</div>
+
+
+{% endblock %}
