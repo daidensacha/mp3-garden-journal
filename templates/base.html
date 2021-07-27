@@ -61,7 +61,7 @@
                 <!-- <img src="/static/images/summer_1240x528_b.jpg"> -->
                 <img src="{{url_for('static', filename='images/summer_1240x528_b.jpg')}}">
                 <div class="caption center-align">
-                    <h3 class="text-shadow">Spring</h3>
+                    <h1 class="text-shadow">Spring</h1>
                     <h5 class="light grey-text text-lighten-3 text-shadow">Action! Plant, nourish, enjoy!</h5>
                 </div>
             </li>
@@ -75,7 +75,7 @@
             </li>
             <li>
                 <!-- <img src="static/images/autumn_1240x528_b.jpg"> -->
-                <img src="{{url_for('static', filename='/images/autumn_1240x528_b.jpg')}}">
+                <img src="{{url_for('static', filename='images/autumn_1240x528_b.jpg')}}">
                 <div class="caption center-align">
                     <h3 class="text-shadow">Autumn</h3>
                     <h5 class="light grey-text text-lighten-3 text-shadow">Prepare for the dormant season.</h5>
@@ -83,7 +83,7 @@
             </li>
             <li>
                 <!-- <img src="static/images/winter_1240x528_b.jpg"> -->
-                <img src="{{url_for('static', filename='/images/winter_1240x528_b.jpg')}}">
+                <img src="{{url_for('static', filename='images/winter_1240x528_b.jpg')}}">
                 <div class="caption center-align">
                     <h3 class="text-shadow">Winter</h3>
                     <h5 class="light grey-text text-lighten-3 text-shadow">Plan for the next seasons bounty. </h5>
@@ -107,33 +107,31 @@
 
             <div class="row">
 
-                <form class="col s8">
+                <form class="col s12 m8">
 
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="name" type="text" class="validate">
-                            <label for="name">Your Name</label>
+                            <input id="fname" name="fname" type="text" class="validate">
+                            <label for="fname">First Name</label>
                         </div>
-
-
                         <div class="input-field col s6">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Your Email</label>
+                            <input id="lname" name="lname" type="text" class="validate">
+                            <label for="lname">Last Name</label>
                         </div>
                     </div>
                     <!--row-->
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="message-sub" type="email" class="validate">
-                            <label for="message-sub">Message Subject</label>
+                            <input id="email" name="email" type="email" class="validate">
+                            <label for="email">Your Email</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea id="text_area" class="materialize-textarea"></textarea>
-                            <label for="text_area">Your Message</label>
+                            <textarea id="message" name="message" class="materialize-textarea"></textarea>
+                            <label for="message">Your Message</label>
                         </div>
                     </div>
 
@@ -177,7 +175,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% block scripts %}
     {% endblock%}
 </body>
