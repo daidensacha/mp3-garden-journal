@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {% for garden_event in garden_events %}
+<div class="container">
+    <section>
+
+        <h2>My Garden Events</h2>
+
+        {% for garden_event in garden_events %}
         {{ garden_event.event_date }} <br>
         {{ garden_event.event_category }} <br>
         {{ garden_event.event_name }} <br>
@@ -9,6 +14,8 @@
         {{ garden_event.event_repeats }} <br>
         {{ garden_event.plant_id }} <br>
         {{ garden_event.user_id }}
-    {% endfor %}
+        {% endfor %}
+    </section>
 
-    {% endblock %}
+</div>
+{% endblock %}

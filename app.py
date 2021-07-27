@@ -20,13 +20,20 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
-    title = ''
-    return render_template('home.html', title=title)
+ 
+    return render_template('home.html')
+   
 
-# @app.route("/get_garden_events")
-# def get_garden_events():
-#     garden_events = mongo.db.garden_events.find()
-#     return render_template("journal.html", garden_events=garden_events)
+@app.route("/get_garden_events")
+def get_garden_events():
+    garden_events = mongo.db.garden_events.find()
+    return render_template("journal.html", garden_events=garden_events)
+
+
+@app.route("/get_user_plants")
+def get_user_plants():
+    user_plants = mongo.db.user_plants.find().sort("plant_type")
+    return render_template("plants.html", user_plants=user_plants)
 
 
 if __name__ == "__main__":

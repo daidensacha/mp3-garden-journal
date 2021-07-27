@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <section>
+
+        <h2>My Garden Plants</h2>
+
+        <div class="collection">
+            
+       
+
+        {% for user_plant in user_plants %}
+        <h6 class="collection-item">{{ user_plant.plant_type.capitalize() }}: {{ user_plant.plant_name.title() }}</h6>
+            <!-- <a href="#!" class="collection-item">Plant Type: {{ user_plant.plant_type.capitalize() }}</a> -->
+            <a href="#!" class="collection-item m-bot-10">Notes: {{ user_plant.plant_notes.capitalize() }}</a>
+        <!-- {{ user_plant.plant_name.title() }} <br>
+        {{ user_plant.plant_type.capitalize() }} <br>
+        {{ user_plant.plant_notes.capitalize() }} <br>
+        {{ user_plant.plant_owner }} <br><br> -->
+        {% endfor %}
+        </div>
+    </section>
+
+</div>
+{% endblock %}
