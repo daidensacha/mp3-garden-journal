@@ -104,6 +104,72 @@ Social Icon styling */
 }
 
 /* 
+========================= Material Alerts ========================= */
+
+
+.materialert{
+  position: relative;
+  min-width: 150px;
+  padding: 15px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.1s linear;
+  webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.materialert .material-icons{
+  margin-right: 10px;
+}
+.materialert .close-alert{
+  -webkit-appearance: none;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+  background: 0 0;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .7);
+  filter: alpha(opacity=40);
+  margin-bottom: -5px;
+  position: absolute;
+  top: 14px;
+  right: 5px;
+}
+.materialert.info{
+  background-color: rgba(3,155,229,0.8);
+  color: #fff;
+}
+.materialert.success{
+  background-color: rgba(67,160,71,0.8);
+  color: #fff;
+}
+.materialert.error{
+  background-color: rgba(198, 40, 40,0.8);
+  color: #fff;
+}
+.materialert.danger{
+  background-color: rgba(198, 40, 40,0.8);
+  color: #fff;
+}
+.materialert.warning{
+  background-color: rgba(251,192,45,0.8);
+  color: #fff;
+}
+
+
+
+/* 
 =========================   Media Queries ========================= */
 
 /* Small Screens */
@@ -148,3 +214,8 @@ Social Icon styling */
   }
   /* tabs fix for auto height when adding content that exceeds 400px, as the tabs are styled by carousel css */
   .tabs-content.carousel .carousel-item .tab { height:auto; }
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
