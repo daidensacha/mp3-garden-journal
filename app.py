@@ -33,7 +33,7 @@ def get_garden_events():
 
 @app.route("/get_user_plants")
 def get_user_plants():
-    user_plants = mongo.db.user_plants.find().sort("plant_type")
+    user_plants = list(mongo.db.user_plants.find().sort("plant_type"))
     return render_template("plants.html", user_plants=user_plants)
 
 
