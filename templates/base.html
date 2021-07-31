@@ -32,10 +32,12 @@
                         <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
                         <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
                         <li><a class="head-link" href="{{ url_for('get_user_plants') }}">Plants</a></li>
-                        <li><a class="head-link" href="#projects">Projects</a></li>
-                        <li><a class="head-link" href="#aboutus">About</a></li>
+                        <!-- <li><a class="head-link" href="#projects">Projects</a></li>
+                        <li><a class="head-link" href="#aboutus">About</a></li> -->
                         <li><a class="head-link" href="#contactus">Contact</a></li>
-                        <li><a class="head-link" href="#">Login/Register</a></li>
+                        <li><a class="head-link" href="#">Login</a></li>
+                        <li><a class="head-link" href="#">Logout</a></li>
+                        <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
                     </ul>
                 </div>
             </nav>
@@ -46,10 +48,12 @@
             <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
             <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
             <li><a class="head-link" href="{{ url_for('get_user_plants') }}">Plants</a></li>
-            <li><a class="head-link" href="#projects">Projects</a></li>
-            <li><a class="head-link" href="#aboutus">About Us</a></li>
+            <!-- <li><a class="head-link" href="#projects">Projects</a></li>
+            <li><a class="head-link" href="#aboutus">About Us</a></li> -->
             <li><a class="head-link" href="#contactus">Contact</a></li>
-            <li><a class="head-link" href="#">Login/Register</a></li>
+            <li><a class="head-link" href="#">Login</a></li>
+            <li><a class="head-link" href="#">Logout</a></li>
+            <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
         </ul>
 
     </header>
@@ -94,9 +98,27 @@
     </div>
 <!-- end slider -->
 
-{% block content %}
 
-{% endblock %}
+<section>
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="row flashes">
+                    <div class="col s12 m10 offset-m1">
+                        <h4 class="materialert {{category}} center-align">{{ message }}</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+</section>
+
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
 
 <!-- contact form section -->
     <div class="container section scrollspy" id="contactus">

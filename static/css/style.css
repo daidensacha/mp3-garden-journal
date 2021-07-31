@@ -111,8 +111,9 @@ Social Icon styling */
   position: relative;
   min-width: 150px;
   padding: 15px;
-  margin-bottom: 20px;
-  margin-top: 15px;
+  margin: 20px auto 15px;
+  /* margin-bottom: 20px;
+  margin-top: 15px; */
   border: 1px solid transparent;
   border-radius: 4px;
   transition: all 0.1s linear;
@@ -126,6 +127,7 @@ Social Icon styling */
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  justify-content: center;
 }
 .materialert .material-icons{
   margin-right: 10px;
@@ -177,6 +179,13 @@ Social Icon styling */
     #index-banner .section {
       top: 0;
     }
+    /* fix for logo width issue */
+    nav .brand-logo {
+      left: calc(50% - 20px);
+      transform: translateX(-50%);
+      font-size: 1.8em;
+    }
+    
   }
 
 /* Medium Screens */

@@ -89,4 +89,8 @@ $(document).ready(function(){
       } // End if
     });
   });
+
+$(".materialert > .close-alert").click(function (){
+    $(this).parent().hide('fade-out');
+});
   

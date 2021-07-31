@@ -7,33 +7,31 @@
         <h2>My Garden Plants</h2>
 
         <div class="collection">
-            
-       
 
-        {% for user_plant in user_plants %}
-        <!-- <h6 class="collection-item">Type: {{ user_plant.plant_type.capitalize() }}</h6> -->
-            <a href="#plant_id_{{ loop.index }}" class="collection-item m-bot-10 waves-effect waves-light modal-trigger">{{ loop.index}}: {{ user_plant.plant_type.capitalize() }} {{ user_plant.plant_name.title() }}</a>
-            <!-- <a href="#!" class="collection-item m-bot-10">Notes: {{ user_plant.plant_notes.capitalize() }}</a> -->
+            {% for user_plant in user_plants %}
+            <a href="#plant_id_{{ loop.index }}"
+                class="collection-item m-bot-10 waves-effect waves-light modal-trigger">{{ loop.index}}:
+                {{ user_plant.plant_type.capitalize() }} {{ user_plant.plant_name.title() }}</a>
 
             <div id="plant_id_{{ loop.index }}" class="modal">
                 <div class="modal-content">
-                    <h5><i class="fas fa-spa"></i> {{ user_plant.plant_type.capitalize() }} <i class="fas fa-grip-lines-vertical"></i> {{ user_plant.plant_name.title() }}</h5>
-                  <ul>
-                    <li><i class="fas fa-seedling"></i> {{ user_plant.plant_description.capitalize() }}</li>
-                    <li><i class="far fa-edit"></i> {{ user_plant.plant_notes.capitalize() }}</li>
-                  </ul>
-              
+                    <h5><i class="fas fa-spa"></i> {{ user_plant.plant_type.capitalize() }} <i
+                            class="fas fa-grip-lines-vertical"></i> {{ user_plant.plant_name.title() }}</h5>
+                    <ul>
+                        <li><i class="fas fa-seedling"></i> {{ user_plant.plant_description.capitalize() }}</li>
+                        <li><i class="far fa-edit"></i> {{ user_plant.plant_notes.capitalize() }}</li>
+                    </ul>
+
                 </div>
-              
+
                 <div class="modal-footer">
-                  <a href="#" class="waves-effect waves-green btn-flat">Edit</a>
-                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                    <a href="#" class="waves-effect waves-green btn-flat">Edit</a>
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
                 </div>
-              </div>
-       
-        {% endfor %}
-     
-        
+            </div>
+
+            {% endfor %}
+
         </div>
     </section>
 
