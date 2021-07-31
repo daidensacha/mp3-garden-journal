@@ -30,15 +30,20 @@
                     <ul class="right hide-on-med-and-down">
 
                         <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
-                        <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
-                        <li><a class="head-link" href="{{ url_for('get_user_plants') }}">Plants</a></li>
-                        <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                         <!-- <li><a class="head-link" href="#projects">Projects</a></li> -->
                         <!-- <li><a class="head-link" href="#aboutus">About</a></li> -->
+                        {% if session.user %}
+                            <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
+                            <li><a class="head-link" href="{{ url_for('get_user_plants') }}">Plants</a></li>
+                            <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                            <!-- <li><a class="head-link" href="#">Add Plants</a></li> -->
+                            <!-- <li><a class="head-link" href="#">Add Categories</a></li> -->
+                            <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
+                        {% else %}
+                            <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
+                            <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
+                        {% endif %}
                         <li><a class="head-link" href="#contactus">Contact</a></li>
-                        <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
-                        <li><a class="head-link" href="#">Log Out</a></li>
-                        <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
                     </ul>
                 </div>
             </nav>
@@ -47,15 +52,20 @@
         <!-- mobile offcanvas nav -->
         <ul class="sidenav" id="mobile-demo">
             <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
-            <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
-            <li><a class="head-link" href="{{ url_for('get_user_plants') }}">Plants</a></li>
-            <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-            <!-- <li><a class="head-link" href="#projects">Projects</a></li>
-            <li><a class="head-link" href="#aboutus">About Us</a></li> -->
+            <!-- <li><a class="head-link" href="#projects">Projects</a></li> -->
+            <!-- <li><a class="head-link" href="#aboutus">About</a></li> -->
+            {% if session.user %}
+                <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
+                <li><a class="head-link" href="{{ url_for('get_user_plants') }}">Plants</a></li>
+                <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                <!-- <li><a class="head-link" href="#">Add Plants</a></li> -->
+                <!-- <li><a class="head-link" href="#">Add Categories</a></li> -->
+                <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
+            {% else %}
+                <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
+                <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
             <li><a class="head-link" href="#contactus">Contact</a></li>
-            <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
-            <li><a class="head-link" href="#">Log Out</a></li>
-            <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
         </ul>
 
     </header>
@@ -64,7 +74,6 @@
     <div class="slider">
         <ul class="slides">
             <li>
-                <!-- <img src="/static/images/summer_1240x528_b.jpg"> -->
                 <img src="{{url_for('static', filename='images/summer_1240x528_b.jpg')}}">
                 <div class="caption center-align">
                     <h1 class="text-shadow">Spring</h1>
@@ -72,7 +81,6 @@
                 </div>
             </li>
             <li>
-                <!-- <img src="static/images/flowers_1240x528_b.jpg"> -->
                 <img src="{{url_for('static', filename='images/flowers_1240x528_b.jpg')}}">
                 <div class="caption center-align">
                     <h3 class="text-shadow">Summer</h3>
@@ -80,7 +88,6 @@
                 </div>
             </li>
             <li>
-                <!-- <img src="static/images/autumn_1240x528_b.jpg"> -->
                 <img src="{{url_for('static', filename='images/autumn_1240x528_b.jpg')}}">
                 <div class="caption center-align">
                     <h3 class="text-shadow">Autumn</h3>
@@ -88,7 +95,6 @@
                 </div>
             </li>
             <li>
-                <!-- <img src="static/images/winter_1240x528_b.jpg"> -->
                 <img src="{{url_for('static', filename='images/winter_1240x528_b.jpg')}}">
                 <div class="caption center-align">
                     <h3 class="text-shadow">Winter</h3>
