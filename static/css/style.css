@@ -112,6 +112,7 @@ Social Icon styling */
   min-width: 150px;
   padding: 15px;
   margin: 20px auto 15px;
+  font-size: 22px;
   /* margin-bottom: 20px;
   margin-top: 15px; */
   border: 1px solid transparent;
@@ -129,12 +130,12 @@ Social Icon styling */
   align-items: center;
   justify-content: center;
 }
-.materialert .material-icons{
+.materialert .icons{
   margin-right: 10px;
 }
 .materialert .close-alert{
   -webkit-appearance: none;
-  border: 0;
+  border: 0; 
   cursor: pointer;
   color: inherit;
   background: 0 0;
@@ -148,6 +149,8 @@ Social Icon styling */
   top: 14px;
   right: 5px;
 }
+
+/* alert message coloring */
 .materialert.info{
   background-color: rgba(3,155,229,0.8);
   color: #fff;
@@ -156,6 +159,7 @@ Social Icon styling */
   background-color: rgba(67,160,71,0.8);
   color: #fff;
 }
+
 .materialert.error{
   background-color: rgba(198, 40, 40,0.8);
   color: #fff;
@@ -167,6 +171,24 @@ Social Icon styling */
 .materialert.warning{
   background-color: rgba(251,192,45,0.8);
   color: #fff;
+}
+
+/* alert icons */
+.materialert.success:before {
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f058";
+  margin-right: 10px;
+}
+.materialert.error:before {
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f06a";
+  margin-right: 10px;
+}
+.materialert.warning:before {
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f06a";
+  margin-right: 10px;
+}
+.materialert.danger:before {
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f06a";
+  margin-right: 10px;
 }
 
 
@@ -227,4 +249,9 @@ Social Icon styling */
   .modal-title {
     font-size: 18px;
     font-weight: 700;
+  }
+
+  /* margin classes */
+  .mt-90 {
+    margin-top: 90px;
   }

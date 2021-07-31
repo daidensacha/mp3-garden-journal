@@ -3,26 +3,25 @@
 
   <div class="row mt-90">
 
-      <div class="card-panel col s12 z-depth-2">
-        <h4 class="center">Register</h4>
+      <div class="card-panel z-depth-2">
+        <h4 class="center">Log in</h4>
         <div class="row">
 
-
-          <form class="col s12 m12" method="POST" action="{{ url_for('register') }}">
+          <form class="col s12 m12" method="POST" action="{{ url_for('login') }}">
             <div class="row">
               <div class="input-field col s12 m12">
-                <i class="fas fa-user-plus prefix"></i>
+                <i class="fas fa-user-cog prefix"></i>
                 <input id="username" name="username" type="text" minlength="5" maxlength="15"
                   pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                 <label for="username">Username</label>
               </div>
 
-              <div class="input-field col s12 m12">
+              <!-- <div class="input-field col s12 m12">
                 <i class="fa fa-envelope prefix"></i>
                 <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   class="validate" required>
                 <label for="email">Your Email</label>
-              </div>
+              </div> -->
 
               <div class="input-field col s12 m12">
                 <i class="fa fa-unlock-alt prefix"></i>
@@ -33,7 +32,7 @@
 
 
             </div>
-            <button class="btn waves-effect waves-light center col s12 m12" type="submit" name="action">Register
+            <button class="btn waves-effect waves-light center col s12 m12" type="submit" name="action">Log in
               <i class="fa fa-sign-in-alt right"></i>
             </button>
           </form>
@@ -44,16 +43,18 @@
       </div>
       <!--card-->
 
+
   </div>
   <!--row-->
   <div class="row">
     <div class="col s12">
       <p class="center-align">
-        Already registered?
-        <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">Log in</a>
+        New Here?
+        <a href="{{ url_for('register') }}" class="light-blue-text text-darken-4">Register Account</a>
       </p>
     </div>
   </div>
+
     	
 
     <!-- <h3 class="center-align">Register</h3>

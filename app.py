@@ -48,6 +48,33 @@ def register():
     return render_template("register.html")
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # check if username exists in db
+        existing_user = mongo.db.users.find_one(
+            {"user_name": request.form.get("username").lower()})
+
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(
+                    existing_user["user_password"], request.form.get(
+                        "password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")), "info")
+            else:
+                # invalid password match
+                flash("Incorrect Username and/or Password", "error")
+                return redirect(url_for("login"))
+
+        else:
+            # username doesn't exist
+            flash("Incorrect Username and/or Password", "error")
+
+    return render_template("login.html")
+
+
 @app.route("/get_garden_events")
 def get_garden_events():
     garden_events = list(mongo.db.garden_events.find())

@@ -35,8 +35,8 @@
                         <!-- <li><a class="head-link" href="#projects">Projects</a></li>
                         <li><a class="head-link" href="#aboutus">About</a></li> -->
                         <li><a class="head-link" href="#contactus">Contact</a></li>
-                        <li><a class="head-link" href="#">Login</a></li>
-                        <li><a class="head-link" href="#">Logout</a></li>
+                        <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
+                        <li><a class="head-link" href="#">Log Out</a></li>
                         <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
                     </ul>
                 </div>
@@ -51,8 +51,8 @@
             <!-- <li><a class="head-link" href="#projects">Projects</a></li>
             <li><a class="head-link" href="#aboutus">About Us</a></li> -->
             <li><a class="head-link" href="#contactus">Contact</a></li>
-            <li><a class="head-link" href="#">Login</a></li>
-            <li><a class="head-link" href="#">Logout</a></li>
+            <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
+            <li><a class="head-link" href="#">Log Out</a></li>
             <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
         </ul>
 
@@ -100,13 +100,15 @@
 
 
 <section>
-    <!-- flash messages -->
+    <!-- flash messages - includes alert category-->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div class="row flashes">
-                    <div class="col s12 m10 offset-m1">
-                        <h4 class="materialert {{category}} center-align">{{ message }}</h4>
+                <div class="container">
+                    <div class="row flashes">
+                        <div class="col s12 m12">
+                            <span class="materialert {{category}} center-align icon">{{ message }}</span>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
