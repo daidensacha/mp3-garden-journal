@@ -38,13 +38,15 @@ def register():
         register = {
             "user_name": request.form.get("username").lower(),
             "user_email": request.form.get("email"),
-            "user_password": generate_password_hash(request.form.get("password"))
+            "user_password": generate_password_hash(
+                request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!", "success")
+        return redirect(url_for("profile", username=session["user"]))
     return render_template("register.html")
 
 
@@ -63,6 +65,7 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
                     request.form.get("username")), "info")
+                return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password", "error")
@@ -73,6 +76,14 @@ def login():
             flash("Incorrect Username and/or Password", "error")
 
     return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # get session users username from db
+    username = mongo.db.users.find_one(
+        {"user_name": session["user"]})["user_name"]
+    return render_template("profile.html", username=username)
 
 
 @app.route("/get_garden_events")

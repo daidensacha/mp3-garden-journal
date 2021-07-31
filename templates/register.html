@@ -3,13 +3,13 @@
 
   <div class="row mt-90">
 
-      <div class="card-panel col s12 z-depth-2">
+      <div class="card-panel z-depth-2">
         <h4 class="center">Register</h4>
         <div class="row">
 
 
-          <form class="col s12 m12" method="POST" action="{{ url_for('register') }}">
-            <div class="row">
+          <form class="" method="POST" action="{{ url_for('register') }}">
+            <!-- <div class="row"> -->
               <div class="input-field col s12 m12">
                 <i class="fas fa-user-plus prefix"></i>
                 <input id="username" name="username" type="text" minlength="5" maxlength="15"
@@ -32,7 +32,7 @@
               </div>
 
 
-            </div>
+            <!-- </div> -->
             <button class="btn waves-effect waves-light center col s12 m12" type="submit" name="action">Register
               <i class="fa fa-sign-in-alt right"></i>
             </button>

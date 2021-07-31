@@ -7,8 +7,9 @@
         <h4 class="center">Log in</h4>
         <div class="row">
 
-          <form class="col s12 m12" method="POST" action="{{ url_for('login') }}">
-            <div class="row">
+          <!-- <form class="col s12 m12" method="POST" action="{{ url_for('login') }}"> -->
+          <form class="" method="POST" action="{{ url_for('login') }}">
+            <!-- <div class="row"> -->
               <div class="input-field col s12 m12">
                 <i class="fas fa-user-cog prefix"></i>
                 <input id="username" name="username" type="text" minlength="5" maxlength="15"
@@ -31,7 +32,7 @@
               </div>
 
 
-            </div>
+            <!-- </div> -->
             <button class="btn waves-effect waves-light center col s12 m12" type="submit" name="action">Log in
               <i class="fa fa-sign-in-alt right"></i>
             </button>

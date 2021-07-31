@@ -32,8 +32,9 @@
                         <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
                         <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
                         <li><a class="head-link" href="{{ url_for('get_user_plants') }}">Plants</a></li>
-                        <!-- <li><a class="head-link" href="#projects">Projects</a></li>
-                        <li><a class="head-link" href="#aboutus">About</a></li> -->
+                        <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                        <!-- <li><a class="head-link" href="#projects">Projects</a></li> -->
+                        <!-- <li><a class="head-link" href="#aboutus">About</a></li> -->
                         <li><a class="head-link" href="#contactus">Contact</a></li>
                         <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
                         <li><a class="head-link" href="#">Log Out</a></li>
@@ -48,6 +49,7 @@
             <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
             <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
             <li><a class="head-link" href="{{ url_for('get_user_plants') }}">Plants</a></li>
+            <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
             <!-- <li><a class="head-link" href="#projects">Projects</a></li>
             <li><a class="head-link" href="#aboutus">About Us</a></li> -->
             <li><a class="head-link" href="#contactus">Contact</a></li>
@@ -106,9 +108,9 @@
             {% for category, message in messages %}
                 <div class="container">
                     <div class="row flashes">
-                        <div class="col s12 m12">
+                        <!-- <div class="col s12 m12"> -->
                             <span class="materialert {{category}} center-align icon">{{ message }}</span>
-                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             {% endfor %}
