@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container">
+
+        <h3 class="teal-text text-darken-2 center-align">Add Event</h3>
+
+        <div class="row">
+            <form class="col s12" method="POST" action="">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
+                        <select id="event_category" name="event_category" class="validate" required>
+                            <option value="" disabled selected>Choose Category</option>
+                            <option value="1">Sowing Seeds</option>
+                            <option value="2">Planting Seedlings</option>
+                            <option value="3">Pest Control</option>
+                            <option value="3">Pruning</option>
+                            <option value="3">Harvest</option>
+                        </select>
+                        <label for="event_category">Event Category</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <input id="plant_name" name="plant_name"  minlength="5" maxlength="30" 
+                          type="text" class="validate" required>
+                        <label for="plant_name">Plant Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
+                        <input id="event_name" name="event_name"  minlength="5" maxlength="40" 
+                          type="text" class="validate" required>
+                        <label for="event_name">Event Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 ">
+                        <i class="far fa-clock prefix teal-text text-darken-2"></i>
+                        <input id="event_repeats" name="event_repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  type="text" class="validate">
+                        <label for="event_repeats">Event Repeats</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="event_date" name="event_date" type="text" class="datepicker validate" required>
+                        <label for="event_date">Event Date</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!-- <i class="far fa-edit prefix teal-text text-darken-2"></i> -->
+                        <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
+                      <textarea id="event_notes" name="event_notes" minlength="5" 
+                      maxlength="200" class="materialize-textarea validate" required></textarea>
+                      <label for="event_notes">Event Notes</label>
+                    </div>
+                  </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

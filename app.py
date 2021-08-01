@@ -87,6 +87,11 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/add_event")
+def add_event():
+    return render_template("add_event.html")
+
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # get session users username from db
@@ -101,7 +106,7 @@ def profile(username):
 
 @app.route("/get_garden_events")
 def get_garden_events():
-    garden_events = list(mongo.db.garden_events.find())
+    garden_events = list(mongo.db.garden_events.find().sort("event_date"))
     plants = list(mongo.db.plants.find())
     return render_template("journal.html", garden_events=garden_events,
                            plants=plants)
