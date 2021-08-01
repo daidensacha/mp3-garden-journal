@@ -175,19 +175,19 @@ Social Icon styling */
 
 /* alert icons */
 .materialert.success:before {
-  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f058";
+  font-family: "Material Icons"; font-weight: 900; content: "\e92d";
   margin-right: 10px;
 }
 .materialert.error:before {
-  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f06a";
+  font-family: "Material Icons"; font-weight: 900; content: "\e001";
   margin-right: 10px;
 }
 .materialert.warning:before {
-  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f06a";
+  font-family: "Material Icons"; font-weight: 900; content: "\e001";
   margin-right: 10px;
 }
 .materialert.danger:before {
-  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f06a";
+  font-family: "Material Icons"; font-weight: 900; content: "\e001";
   margin-right: 10px;
 }
 
@@ -255,3 +255,39 @@ Social Icon styling */
   .mt-90 {
     margin-top: 90px;
   }
+
+  /* text style clases */
+  .emph-red {
+    color:rgba(198, 40, 40,0.8);
+  }
+  .emph-green {
+    color: #689f38 ;
+  }
+  .emph-dark-teal {
+    color: #00695c;
+    font-style: italic;
+  }
+
+  /* material icon sizes  */
+.material-icons.md-12 { font-size: 12px; }
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.flower:before {
+  font-family: "Material Icons";
+  content: "\e3e3";
+}
+.error:before {
+  font-family: "Material Icons";
+  content: "\e001";
+}
+
+.list:before {
+  font-family: "Material Icons";
+  content: "\e896";
+  /* font-size: 18px; */
+  /* margin-bottom: 5px; */
+  /* vertical-align: middle; */
+}

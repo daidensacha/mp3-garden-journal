@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
+<div class="container">
   <section>
 
     <h2>My Garden Events</h2>
@@ -16,25 +16,31 @@
         href="#event_id_{{ loop.index }}">Event:
         {{ garden_event.event_name.title() }}</a>
 
-      <!-- Loop through user_plants and get plant data -->
-      {% for user_plant in user_plants %}
+      <!-- Loop through plants and get plant data -->
+      {% for plant in plants %}
 
       <!-- If comparitor to match event and plant info -->
-        {% if garden_event.plant_id == user_plant.plant_id %}
+        {% if garden_event.plant_name == plant.plant_name %}
 
         <!-- Plant title, and plant modal trigger link. Use loop.index to create unique id for the modal trigger href  -->
-        <a href="#plant_id_{{ loop.index}}" class="collection-item modal-trigger">
-          {{ user_plant.plant_type.title() }}:
-          {{ user_plant.plant_name.title() }}</a>
+        <a href="#created_by_{{ loop.index}}" class="collection-item modal-trigger">
+          {{ plant.plant_type.title() }}:
+          {{ plant.plant_name.title() }}</a>
         {% endif %}
 
       <!-- Plant information modal -->
-      <div id="plant_id_{{ loop.index }}" class="modal">
+      <div id="created_by_{{ loop.index }}" class="modal">
         <div class="modal-content">
-          <h5><i class="fas fa-spa"></i> {{ user_plant.plant_type.capitalize() }} <i class="fas fa-grip-lines-vertical"></i> {{ user_plant.plant_name.title() }}</h5>
-          <ul>
-            <li><i class="far fa-edit"></i> {{ user_plant.plant_notes.capitalize() }}</li>
-          </ul>
+          <h5><i class="fas fa-spa"></i> {{ plant.plant_type.capitalize() }} <i class="fas fa-grip-lines-vertical"></i> {{ plant.plant_name.title() }}</h5>
+          
+          <div class="row">
+            {% for note in plant.plant_notes %}
+                <ul>
+                    <li><strong class="emph-dark-teal">Note created:</strong> {{ note.note_date.strftime("%Y, %B %d") }}</li>
+                    <li><strong class="emph-dark-teal">Note:</strong> {{ note.plant_note }}</li>
+                </ul>
+            {% endfor %}
+        </div>
         </div>
         <div class="modal-footer">
           <a href="#" class="waves-effect waves-green btn-flat">Edit</a>
@@ -49,17 +55,17 @@
           <h5><i class="far fa-calendar-alt"></i> 
             {{ garden_event.event_date.strftime("%B %d") }} <i class="fas fa-grip-lines-vertical"></i>
             {{ garden_event.event_name.title() }}</h5>
-          <!-- Loop through user_plants and get plant data -->
-          {% for user_plant in user_plants %}
+          <!-- Loop through plants and get plant data -->
+          {% for plant in plants %}
 
           <!-- If comparitor to match event and plant info -->
-            {% if garden_event.plant_id == user_plant.plant_id %}
+            {% if garden_event.plant_name == plant.plant_name %}
 
-            <span class="modal-title">{{ user_plant.plant_name.title() }}</span>
+            <span class="modal-title">{{ plant.plant_name.title() }}</span>
             <ul>
-              <li><i class="fas fa-list-ul"></i> {{ garden_event.event_category.capitalize() }}</li>
-              <li><i class="far fa-clock"></i> {{ garden_event.event_repeats.capitalize() }}</li>
-              <li><i class="far fa-edit"></i> {{ garden_event.event_notes.capitalize() }}</li>
+              <li><i class="fas fa-list-ul"></i> The event category is <span class="emph-green">{{ garden_event.event_category.capitalize() }}</span>.</li>
+              <li><i class="far fa-clock"></i> The event repeats <span class="emph-green">{{ garden_event.event_repeats.capitalize() }}</span>. </li>
+              <li><i class="far fa-edit"></i> <strong class="emph-dark-teal">Event notes:</strong> {{ garden_event.event_notes.capitalize() }}</li>
               
             </ul>
             {% endif %}
@@ -74,5 +80,5 @@
       {% endfor %}
     </div>
   </section>
-
+</div>
 {% endblock %}

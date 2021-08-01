@@ -64,7 +64,7 @@ def login():
                         "password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
-                    request.form.get("username")), "info")
+                    request.form.get("username")))
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
@@ -102,15 +102,15 @@ def profile(username):
 @app.route("/get_garden_events")
 def get_garden_events():
     garden_events = list(mongo.db.garden_events.find())
-    user_plants = list(mongo.db.user_plants.find())
+    plants = list(mongo.db.plants.find())
     return render_template("journal.html", garden_events=garden_events,
-                           user_plants=user_plants)
-
-
-@app.route("/get_user_plants")
-def get_user_plants():
-    user_plants = list(mongo.db.user_plants.find().sort("plant_type"))
-    return render_template("plants.html", user_plants=user_plants)
+                           plants=plants)
+                           
+                           
+@app.route("/get_plants")
+def get_plants():
+    plants = list(mongo.db.plants.find().sort("plant_type"))
+    return render_template("plants.html", plants=plants)
 
 
 if __name__ == "__main__":
