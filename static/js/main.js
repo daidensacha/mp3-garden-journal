@@ -1,15 +1,18 @@
 // (function($){
 $(function () {
-
+  $(".dropdown-trigger").dropdown({
+    hover: true,
+  });
   $('.sidenav').sidenav();
   $('.parallax').parallax();
   $('.slider').slider({
+    indicators: false,
     full_width: false,
     interval: 10000,
     transition: 800,
   });
   $('.datepicker').datepicker({
-    // format: "mmmm dd, yyyy",
+    format: "mmmm dd, yyyy",
     yearRange: 3,
     showClearBtn: true,
     i18n: {

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container">
+
+        <h3 class="teal-text text-darken-2 center-align">Add Plant</h3>
+
+        <div class="row">
+            <form class="col s12" method="POST" action="{{ url_for('add_plant') }}">
+                <!-- add plant type -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <input id="plant_type" name="plant_type"  minlength="5" maxlength="30" 
+                          type="text" class="validate" required>
+                        <label for="plant_type">Plant Type</label>
+                    </div>
+                </div>
+                <!-- add plant name -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <input id="plant_name" name="plant_name"  minlength="5" maxlength="30" 
+                          type="text" class="validate" required>
+                        <label for="plant_name">Plant Name</label>
+                    </div>
+                </div>
+                <!--  sowing time / planting time -->
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="plant_sowing" name="plant_sowing" type="text" class="datepicker validate" required>
+                        <label for="plant_sowing">Sowing Time</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="plant_planting" name="plant_planting" type="text" class="datepicker validate" required>
+                        <label for="plant_planting">Planting Time</label>
+                    </div>
+                </div>
+                <!-- harvest time -->
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="date_from" name="date_from" type="text" class="datepicker validate" required>
+                        <label for="date_from">Harvest From</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="date_to" name="date_to" type="text" class="datepicker validate" required>
+                        <label for="date_to">Harvest To</label>
+                    </div>
+                </div>
+                <!-- fertilising -->
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <input id="fertilise_frequency" name="fertilise_frequency"  minlength="5" maxlength="30" 
+                          type="text" class="validate">
+                        <label for="fertilise_frequency">Fertilise Frequency</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <input id="fertiliser_type" name="fertiliser_type"  minlength="5" maxlength="30" 
+                          type="text" class="validate">
+                        <label for="fertiliser_type">Fertiliser Type</label>
+                    </div>
+                </div>
+                <!-- add plant note -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
+                      <textarea id="plant_note" name="plant_note" minlength="5" 
+                      maxlength="200" class="materialize-textarea validate" ></textarea>
+                      <label for="plant_note">Plant Notes</label>
+                    </div>
+                </div>
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large teal-text text-lighten-5">
+                            Add Plant <i class="fas fa-plus-square right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -20,15 +20,28 @@
                         <label for="event_category">Event Category</label>
                     </div>
                 </div>
-                <!-- add plant name -->
+                <!-- plant select -->
                 <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <select id="plant_name" name="plant_name" class="validate" required>
+                            <option value="" disabled selected>Choose Plant</option>
+                            {% for plant in plants %}
+                            <option value="{{ plant.plant_name }}">{{ plant.plant_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="plant_name">Plant Name</label>
+                    </div>
+                </div>
+                <!-- add plant name -->
+                <!-- <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
                         <input id="plant_name" name="plant_name"  minlength="5" maxlength="30" 
                           type="text" class="validate" required>
                         <label for="plant_name">Plant Name</label>
                     </div>
-                </div>
+                </div> -->
                 <!-- add event name -->
                 <div class="row">
                     <div class="input-field col s12">

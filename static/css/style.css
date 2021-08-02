@@ -291,3 +291,8 @@ Social Icon styling */
   /* margin-bottom: 5px; */
   /* vertical-align: middle; */
 }
+
+/* navbar dropdown border fix */
+li a.dropdown-trigger:focus {
+  outline: none;
+}

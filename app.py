@@ -93,10 +93,11 @@ def add_event():
     if request.method == "POST":
         date_string = request.form.get("event_date")
         date_object = datetime.strptime(date_string, "%B %d, %Y")
+        plant_name = request.form.get("plant_name")
 
         event = {
             "event_category": request.form.get("event_category"),
-            "plant_name": request.form.get("plant_name"),
+            "plant_name": plant_name,
             "event_name": request.form.get("event_name"),
             "event_repeats": request.form.get("event_repeats"),
             "event_date": date_object,
@@ -104,11 +105,48 @@ def add_event():
             "created_by": session["user"]
         }
         mongo.db.garden_events.insert_one(event)
-        flash("Task Successfully Added", "success")
+        flash("Event Successfully Added", "success")
+
+        # mongo.db.plants.update_one(
+        #     {"plant_name": plant_name},
+        #     {'$set': {plant}}, upsert=True)
+     
         return redirect(url_for("get_garden_events"))
 
     categories = mongo.db.categories.find().sort("event_category", 1)
-    return render_template("add_event.html", categories=categories)
+    plants = list(mongo.db.plants.find().sort("plant_name"))
+    return render_template(
+        "add_event.html", categories=categories, plants=plants)
+
+
+@app.route("/add_plant", methods=["GET", "POST"])
+def add_plant():
+    if request.method == "POST":
+        sowing_date_string = request.form.get("plant_sowing")
+        planting_date_string = request.form.get("plant_planting")
+        date_from_string = request.form.get("date_from")
+        date_to_string = request.form.get("date_to")
+        sowing_date_object = datetime.strptime(sowing_date_string, "%B %d, %Y")
+        planting_date_object = datetime.strptime(planting_date_string, "%B %d, %Y")
+        date_from_object = datetime.strptime(date_from_string, "%B %d, %Y")
+        date_to_object = datetime.strptime(date_to_string, "%B %d, %Y")
+
+        plant = {
+            "plant_type": request.form.get("plant_type").lower(),
+            "plant_name": request.form.get("plant_name").lower(),
+            "plant_sowing": sowing_date_object,
+            "plant_planting": planting_date_object,
+            "date_from": date_from_object,
+            "date_to": date_to_object,
+            "fertilise_frequency": request.form.get("fertilise_frequency").lower(),
+            "fertiliser_type": request.form.get("fertiliser_type").lower(),
+            "plant_note": request.form.get("plant_note").lower(),
+            "created_by": session["user"]
+        }
+        mongo.db.plants.insert_one(plant)
+        flash("Plant Successfully Added", "success")
+
+    return render_template("add_plant.html")
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
