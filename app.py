@@ -124,20 +124,20 @@ def add_plant():
     if request.method == "POST":
         sowing_date_string = request.form.get("plant_sowing")
         planting_date_string = request.form.get("plant_planting")
-        date_from_string = request.form.get("date_from")
-        date_to_string = request.form.get("date_to")
+        harvest_from_string = request.form.get("harvest_from")
+        harvest_to_string = request.form.get("harvest_to")
         sowing_date_object = datetime.strptime(sowing_date_string, "%B %d, %Y")
         planting_date_object = datetime.strptime(planting_date_string, "%B %d, %Y")
-        date_from_object = datetime.strptime(date_from_string, "%B %d, %Y")
-        date_to_object = datetime.strptime(date_to_string, "%B %d, %Y")
+        harvest_from_object = datetime.strptime(harvest_from_string, "%B %d, %Y")
+        harvest_to_object = datetime.strptime(harvest_to_string, "%B %d, %Y")
 
         plant = {
             "plant_type": request.form.get("plant_type").lower(),
             "plant_name": request.form.get("plant_name").lower(),
             "plant_sowing": sowing_date_object,
             "plant_planting": planting_date_object,
-            "date_from": date_from_object,
-            "date_to": date_to_object,
+            "harvest_from": harvest_from_object,
+            "harvest_to": harvest_to_object,
             "fertilise_frequency": request.form.get("fertilise_frequency").lower(),
             "fertiliser_type": request.form.get("fertiliser_type").lower(),
             "plant_note": request.form.get("plant_note").lower(),

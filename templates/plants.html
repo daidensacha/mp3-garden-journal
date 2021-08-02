@@ -19,8 +19,8 @@
                     <ul>
                         <li><span class="material-icons flower md-12"></span> <span class="emph-red">Sow</span> seeds <span class="emph-green">{{ plant.plant_sowing.strftime("%B %d") }}</span> so they are ready for planting time.</li>
                         <li><span class="material-icons flower md-12"></span> <span class="emph-red">Plant</span> <span class="emph-green">{{ plant.plant_planting.strftime("%B %d") }}</span> at earliest.</li>
-                        <li><span class="material-icons flower md-12"></span> <span class="emph-red">Harvesting</span> season is from <span class="emph-green">{{ plant.date_from.strftime("%B %d") }}</span> 
-                        to <span class="emph-green">{{ plant.date_to.strftime("%B %d") }}</span></li>
+                        <li><span class="material-icons flower md-12"></span> <span class="emph-red">Harvesting</span> season is from <span class="emph-green">{{ plant.harvest_from.strftime("%B %d") }}</span> 
+                        to <span class="emph-green">{{ plant.harvest_to.strftime("%B %d") }}</span></li>
                         <li><span class="material-icons flower md-12"></span> <span class="emph-red">Fertilise</span> <span class="emph-green">{{ plant.fertilise_frequency}}</span> with <span class="emph-green">{{ plant.fertiliser_type }}</span>. </li>
 
                     </ul>
