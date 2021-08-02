@@ -62,14 +62,16 @@
             {% if garden_event.plant_name == plant.plant_name %}
 
             <span class="modal-title">{{ plant.plant_name.title() }}</span>
+            
             <ul>
               <li><i class="fas fa-list-ul"></i> The event category is <span class="emph-green">{{ garden_event.event_category.capitalize() }}</span>.</li>
               <li><i class="far fa-clock"></i> The event repeats <span class="emph-green">{{ garden_event.event_repeats.capitalize() }}</span>. </li>
               <li><i class="far fa-edit"></i> <strong class="emph-dark-teal">Event notes:</strong> {{ garden_event.event_notes.capitalize() }}</li>
               
             </ul>
+            <!--  else add flash message that plant is not in the db, with link to add plant. or if plant isnt in db, add it to db. ?? -->
             {% endif %}
-          {%endfor%}
+          {% endfor %}
         </div>
         <div class="modal-footer">
           <a href="#" class="waves-effect waves-green btn-flat">Edit</a>

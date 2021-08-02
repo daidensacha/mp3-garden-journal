@@ -5,6 +5,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -87,9 +88,27 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_event")
+@app.route("/add_event", methods=["GET", "POST"])
 def add_event():
-    return render_template("add_event.html")
+    if request.method == "POST":
+        date_string = request.form.get("event_date")
+        date_object = datetime.strptime(date_string, "%B %d, %Y")
+
+        event = {
+            "event_category": request.form.get("event_category"),
+            "plant_name": request.form.get("plant_name"),
+            "event_name": request.form.get("event_name"),
+            "event_repeats": request.form.get("event_repeats"),
+            "event_date": date_object,
+            "event_notes": request.form.get("event_notes"),
+            "created_by": session["user"]
+        }
+        mongo.db.garden_events.insert_one(event)
+        flash("Task Successfully Added", "success")
+        return redirect(url_for("get_garden_events"))
+
+    categories = mongo.db.categories.find().sort("event_category", 1)
+    return render_template("add_event.html", categories=categories)
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])

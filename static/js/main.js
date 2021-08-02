@@ -9,7 +9,7 @@ $(function () {
     transition: 800,
   });
   $('.datepicker').datepicker({
-    format: "mmmm dd, yyyy",
+    // format: "mmmm dd, yyyy",
     yearRange: 3,
     showClearBtn: true,
     i18n: {
