@@ -90,10 +90,15 @@ Social Icon styling */
 }
 
 /*  Collapsible Styling */
+.collapsible {
+  border: 1px solid #7cb342;
+}
+
 .collapsible-header {
   color: rgb(245, 243, 243);
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.062);
-  background-color: #33691e;
+  background-color: #558b2f;
+  border: 1px solid #7cb342;
 }
 .collapsible .row {
   margin-bottom: 0;
