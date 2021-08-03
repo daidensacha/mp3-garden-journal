@@ -11,6 +11,9 @@ $(function () {
     interval: 10000,
     transition: 800,
   });
+  $('.collapsible').collapsible({
+    // accordion: false,
+  });
   $('.datepicker').datepicker({
     format: "mmmm dd, yyyy",
     yearRange: 3,

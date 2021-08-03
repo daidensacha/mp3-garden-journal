@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <section>
+
+    <h2>My Events</h2>
+    <!-- Materializecss list collection -->
+    <div class="collection">
+
+      <!-- For loop to display garden events -->
+      {% for garden_event in garden_events %}
+      <h6 class="collection-item">{{ garden_event.event_date.strftime("%B %d") }}</h6>
+
+      <!-- Event title and plant event modal trigger link -->
+      <a class="collection-item m-bot-10 waves-effect waves-light modal-trigger"
+        href="#event_id_{{ loop.index }}">Event:
+        {{ garden_event.event_name.title() }}</a>
+
+      <!-- Loop through plants and get plant data -->
+      {% for plant in plants %}
+
+      <!-- If comparitor to match event and plant info -->
+        {% if garden_event.plant_name == plant.plant_name %}
+
+        <!-- Plant title, and plant modal trigger link. Use loop.index to create unique id for the modal trigger href  -->
+        <a href="#created_by_{{ loop.index}}" class="collection-item modal-trigger">
+          {{ plant.plant_type.title() }}:
+          {{ plant.plant_name.title() }}</a>
+        {% endif %}
+
+      <!-- Plant information modal -->
+      <div id="created_by_{{ loop.index }}" class="modal">
+        <div class="modal-content">
+          <h5><i class="fas fa-spa"></i> {{ plant.plant_type.capitalize() }} <i class="fas fa-grip-lines-vertical"></i> {{ plant.plant_name.title() }}</h5>
+          
+          <div class="row">
+
+            <ul>
+              <li><span class="material-icons flower md-12"></span> <span class="emph-red">Sow</span> seeds <span
+                  class="emph-green">{{ plant.plant_sowing.strftime("%B %d") }}</span> so they are ready for planting
+                time.</li>
+              <li><span class="material-icons flower md-12"></span> <span class="emph-red">Plant</span> <span
+                  class="emph-green">{{ plant.plant_planting.strftime("%B %d") }}</span> at earliest.</li>
+              <li><span class="material-icons flower md-12"></span> <span class="emph-red">Harvesting</span> season is
+                from <span class="emph-green">{{ plant.harvest_from.strftime("%B %d") }}</span>
+                to <span class="emph-green">{{ plant.harvest_to.strftime("%B %d") }}</span></li>
+              <li><span class="material-icons flower md-12"></span> <span class="emph-red">Fertilise</span> <span
+                  class="emph-green">{{ plant.fertilise_frequency}}</span> with <span
+                  class="emph-green">{{ plant.fertiliser_type }}</span>. </li>
+
+            </ul>
+
+            <ul>
+              <li><strong class="emph-dark-teal">Note:</strong> {{ plant.plant_note.capitalize() }}</li>
+            </ul>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="waves-effect waves-green btn-flat">Edit</a>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- Garden event modal -->
+      <div id="event_id_{{ loop.index }}" class="modal">
+        <div class="modal-content">
+          <h5><i class="far fa-calendar-alt"></i> 
+            {{ garden_event.event_date.strftime("%B %d") }} <i class="fas fa-grip-lines-vertical"></i>
+            {{ garden_event.event_name.title() }}</h5>
+          <!-- Loop through plants and get plant data -->
+          {% for plant in plants %}
+
+          <!-- If comparitor to match event and plant info -->
+            {% if garden_event.plant_name == plant.plant_name %}
+
+            <span class="modal-title">{{ plant.plant_name.title() }}</span>
+            
+            <ul>
+              <li><i class="fas fa-list-ul"></i> The event category is <span class="emph-green">{{ garden_event.event_category.capitalize() }}</span>.</li>
+              <li><i class="far fa-clock"></i> The event repeats <span class="emph-green">{{ garden_event.event_repeats.capitalize() }}</span>. </li>
+              <li><i class="far fa-edit"></i> <strong class="emph-dark-teal">Event notes:</strong> {{ garden_event.event_notes.capitalize() }}</li>
+              
+            </ul>
+            
+            <!--  else add flash message that plant is not in the db, with link to add plant. or if plant isnt in db, add it to db. ?? -->
+            {% endif %}
+
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="waves-effect waves-green btn-flat">Edit</a>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

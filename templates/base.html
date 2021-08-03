@@ -53,7 +53,7 @@
                             <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
                             <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
                         {% endif %}
-                        <li><a class="head-link" href="#contactus">Contact</a></li>
+                        <li><a class="head-link modal-trigger" href="#footer-modal">Contact</a></li>
                     </ul>
                 </div>
             </nav>
@@ -136,12 +136,20 @@
 
 </section>
 
-<main>
+<main id="main-block">
     {% block content %}
     {% endblock %}
 </main>
 
-<!-- contact form section -->
+
+
+     <!-- Modal Trigger -->
+
+  <!-- Modal Structure -->
+  <div id="footer-modal" class="modal bottom-sheet">
+    <div class="modal-content">
+      
+        <!-- contact form section -->
     <div class="container section scrollspy" id="contactus">
         <div class="section">
             <br>
@@ -204,6 +212,12 @@
             </div>
         </div>
     </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
 
     <!-- footer section -->
     <footer class="page-footer purple lighten-1">
