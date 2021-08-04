@@ -1,5 +1,6 @@
 
 import os
+import pandas as pd
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -92,7 +93,7 @@ def logout():
 def add_event():
     if request.method == "POST":
         date_string = request.form.get("event_date")
-        date_object = datetime.strptime(date_string, "%B %d, %Y")
+        date_object = pd.to_datetime(date_string)
         plant_name = request.form.get("plant_name")
 
         event = {
@@ -106,11 +107,6 @@ def add_event():
         }
         mongo.db.garden_events.insert_one(event)
         flash("Event Successfully Added", "success")
-
-        # mongo.db.plants.update_one(
-        #     {"plant_name": plant_name},
-        #     {'$set': {plant}}, upsert=True)
-     
         return redirect(url_for("get_garden_events"))
 
     categories = mongo.db.categories.find().sort("event_category", 1)
@@ -126,10 +122,10 @@ def add_plant():
         planting_date_string = request.form.get("plant_planting")
         harvest_from_string = request.form.get("harvest_from")
         harvest_to_string = request.form.get("harvest_to")
-        sowing_date_object = datetime.strptime(sowing_date_string, "%B %d, %Y")
-        planting_date_object = datetime.strptime(planting_date_string, "%B %d, %Y")
-        harvest_from_object = datetime.strptime(harvest_from_string, "%B %d, %Y")
-        harvest_to_object = datetime.strptime(harvest_to_string, "%B %d, %Y")
+        sowing_date_object = pd.to_datetime(sowing_date_string)
+        planting_date_object = pd.to_datetime(planting_date_string)
+        harvest_from_object = pd.to_datetime(harvest_from_string)
+        harvest_to_object = pd.to_datetime(harvest_to_string)
 
         plant = {
             "plant_type": request.form.get("plant_type").lower(),
@@ -138,13 +134,15 @@ def add_plant():
             "plant_planting": planting_date_object,
             "harvest_from": harvest_from_object,
             "harvest_to": harvest_to_object,
-            "fertilise_frequency": request.form.get("fertilise_frequency").lower(),
+            "fertilise_frequency": request.form.get(
+                "fertilise_frequency").lower(),
             "fertiliser_type": request.form.get("fertiliser_type").lower(),
             "plant_note": request.form.get("plant_note").lower(),
             "created_by": session["user"]
         }
         mongo.db.plants.insert_one(plant)
         flash("Plant Successfully Added", "success")
+        return redirect(url_for("get_plants"))
 
     return render_template("add_plant.html")
 
@@ -167,8 +165,8 @@ def get_garden_events():
     plants = list(mongo.db.plants.find())
     return render_template("journal.html", garden_events=garden_events,
                            plants=plants)
-                           
-                           
+
+
 @app.route("/get_plants")
 def get_plants():
     plants = list(mongo.db.plants.find().sort("plant_type"))
