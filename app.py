@@ -115,6 +115,19 @@ def add_event():
         "add_event.html", categories=categories, plants=plants)
 
 
+@app.route("/edit_event/<event_id>", methods=["GET", "POST"])
+def edit_event(event_id):
+    garden_event = mongo.db.garden_events.find_one(
+        {"_id": ObjectId(event_id)})
+
+    garden_events = list(mongo.db.garden_events.find().sort("event_date"))
+    categories = mongo.db.categories.find().sort("event_category", 1)
+    plants = list(mongo.db.plants.find().sort("plant_type"))
+    return render_template(
+        "edit_event.html", plants=plants, garden_events=garden_events, 
+        garden_event=garden_event, categories=categories)
+
+
 @app.route("/add_plant", methods=["GET", "POST"])
 def add_plant():
     if request.method == "POST":
@@ -147,6 +160,39 @@ def add_plant():
     return render_template("add_plant.html")
 
 
+@app.route("/edit_plant/<plant_id>", methods=["GET", "POST"])
+def edit_plant(plant_id):
+    plant = mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
+
+    plants = list(mongo.db.plants.find().sort("plant_type"))
+    return render_template("edit_plant.html", plants=plants, plant=plant)
+
+
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    if request.method == "POST":
+        new_category = {
+            "event_category": request.form.get("event_category"),
+            "created_by": session["user"]
+        }
+        mongo.db.categories.insert_one(new_category)
+        flash("New Category Successfully Added", "success")
+        return redirect(url_for("add_category"))
+
+    categories = list(mongo.db.categories.find().sort("event_category"))
+    return render_template(
+        "add_category.html", categories=categories)
+
+
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+
+    categories = list(mongo.db.categories.find().sort("event_category"))
+    return render_template(
+        "edit_category.html", categories=categories, category=category)
+
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # get session users username from db
@@ -163,6 +209,7 @@ def profile(username):
 def get_garden_events():
     garden_events = list(mongo.db.garden_events.find().sort("event_date"))
     plants = list(mongo.db.plants.find())
+    # month = mongo.db.garden_events.find({'$expr': {'$eq': [{'$month': "$event_date"} ,9]}})
     return render_template("journal.html", garden_events=garden_events,
                            plants=plants)
 

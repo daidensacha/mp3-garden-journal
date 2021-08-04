@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container">
+
+        <h3 class="teal-text text-darken-2 center-align">Edit Plant</h3>
+
+        <div class="row">
+            <form class="col s12" method="POST" action="{{ url_for('edit_plant', plant_id=plant._id ) }}">
+                <!-- add plant type / plant name -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <input id="plant_type" name="plant_type"  minlength="4" maxlength="30" 
+                        value="{{ plant.plant_type}}" type="text" class="validate" required>
+                        <label for="plant_type">Plant Type</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <input id="plant_name" name="plant_name"  minlength="5" maxlength="30" 
+                        value="{{ plant.plant_name}}" type="text" class="validate" required>
+                        <label for="plant_name">Plant Name</label>
+                    </div>
+                </div>
+                <!--  sowing time / planting time -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="plant_sowing" name="plant_sowing" value="{{ plant.plant_sowing.strftime('%B %d, %Y') }}" 
+                            type="text" class="datepicker validate" required>
+                        <label for="plant_sowing">Sowing Time</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="plant_planting" name="plant_planting" value="{{ plant.plant_planting.strftime('%B %d, %Y') }}"
+                        type="text" class="datepicker validate" required>
+                        <label for="plant_planting">Planting Time</label>
+                    </div>
+                </div>
+                <!-- harvest from / harvest to -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="harvest_from" name="harvest_from" value="{{ plant.harvest_from.strftime('%B %d, %Y') }}"
+                        type="text" class="datepicker validate" required>
+                        <label for="harvest_from">Harvest From</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="harvest_to" name="harvest_to" value="{{ plant.harvest_to.strftime('%B %d, %Y') }}"
+                        type="text" class="datepicker validate" required>
+                        <label for="harvest_to">Harvest To</label>
+                    </div>
+                </div>
+                <!-- fertilise frequesncy / fertiliser type -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <input id="fertilise_frequency" name="fertilise_frequency"  minlength="5" maxlength="30" 
+                          value="{{ plant.fertilise_frequency}}" type="text" class="validate">
+                        <label for="fertilise_frequency">Fertilise Frequency</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <input id="fertiliser_type" name="fertiliser_type"  minlength="5" maxlength="30" 
+                        value="{{ plant.fertiliser_type}}" type="text" class="validate">
+                        <label for="fertiliser_type">Fertiliser Type</label>
+                    </div>
+                </div>
+                <!-- add plant note -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
+                      <textarea id="plant_note" name="plant_note" minlength="5" 
+                      maxlength="200" class="materialize-textarea validate" >
+                        {{- plant.plant_note -}}
+                    </textarea>
+                      <label for="plant_note">Plant Notes</label>
+                    </div>
+                </div>
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a href="{{ url_for('get_plants') }}" class="btn-large red lighten-2">
+                            Cancel <i class="fas fa-times-circle right"></i>
+                        </a>
+                        <button type="submit" class="btn-large teal-text text-lighten-5">
+                            Edit Plant <i class="fas fa-edit right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

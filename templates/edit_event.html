@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container">
+
+        <h3 class="teal-text text-darken-2 center-align">Edit Event</h3>
+
+        <div class="row">
+            <form class="col s12" method="POST" action="{{ url_for('edit_event', event_id=garden_event._id) }}">
+                <!-- select event category  -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
+                        <select id="event_category" name="event_category" class="validate" required>
+                            <option value="" disabled>Choose Category</option>
+                            {% for category in categories %}
+                                {% if category.event_category == garden_event.event_category %}
+                                <option value="{{ category.event_category }}" selected>{{ category.event_category }}</option>
+                                {% else %}
+                                <option value="{{ category.event_category }}">{{ category.event_category }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <label for="event_category">Event Category</label>
+                    </div>
+                    <!-- select plant name -->
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                        <select id="plant_name" name="plant_name" class="validate" required>
+                            <option value="" disabled>Choose Plant</option>
+                            {% for plant in plants %}
+                                {% if plant.plant_name == garden_event.plant_name %}
+                                <option value="{{ plant.plant_name }}" selected>{{ plant.plant_name }}</option>
+                                {% else %}
+                                <option value="{{ plant.plant_name }}">{{ plant.plant_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <label for="plant_name">Plant Name</label>
+                    </div>
+                </div>
+                <!-- event name -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
+                        <input id="event_name" name="event_name"  minlength="5" maxlength="40" 
+                          value="{{ garden_event.event_name }}" type="text" class="validate" required>
+                        <label for="event_name">Event Name</label>
+                    </div>
+                </div>
+                <!--  event date -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        <input id="event_date" name="event_date" type="text" value="{{ garden_event.event_date.strftime('%B %d, %Y') }}" class="datepicker validate" required>
+                        <label for="event_date">Event Date</label>
+                    </div>
+                    <!-- event repeat cycle -->
+                    <div class="input-field col s12 m6">
+                        <i class="far fa-clock prefix teal-text text-darken-2"></i>
+                        <input id="event_repeats" name="event_repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  
+                        value="{{ garden_event.event_repeats }}" type="text" class="validate">
+                        <label for="event_repeats">Event Repeats</label>
+                    </div>
+                </div>
+
+                <!-- event note -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
+                      <textarea id="event_notes" name="event_notes" minlength="5" 
+                        maxlength="200" class="materialize-textarea validate" required>
+                        {{- garden_event.event_notes -}}
+                    </textarea>
+                      <label for="event_notes">Event Notes</label>
+                    </div>
+                </div>
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a href="{{ url_for('get_garden_events') }}" class="btn-large red lighten-2">
+                            Cancel <i class="fas fa-times-circle right"></i>
+                        </a>
+                        <button type="submit" class="btn-large teal-text text-lighten-5">
+                            Edit Event <i class="fas fa-edit right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

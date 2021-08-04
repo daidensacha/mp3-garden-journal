@@ -1,155 +1,123 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-    <section>
+  <section>
 
-        <h3>My Events</h3>
+    <h3>My Events</h3>
 
-        <ul class="collapsible">
-          {% for garden_event in garden_events %}
-            <li>
-              <div class="collapsible-header"> 
-                <div class="row" style="width: 100%;">
+    <ul class="collapsible">
+      {% for garden_event in garden_events %}
+      <li>
+        <div class="collapsible-header">
+          <div class="row" style="width: 100%;">
 
-                <div class="col s12 m3" >
-                  <!-- <i class="fas fa-caret-down"></i> -->
-                  <span class="collapsible-heading">{{ garden_event.event_date.strftime("%B %d") }}</span>
-                </div>
-                <div class="col s12 m3">
-                  <span class="collapsible-heading">{{ garden_event.event_category.capitalize() }}</span>
-                </div>
-                <div class="col s12 m6">
-                  <span class="collapsible-heading">{{ garden_event.event_name.title() }}</span>
-                </div>
-              </div>
-                
-                  
-              </div>
-              <div class="collapsible-body">
-                <span>
+            <div class="col s12 m3">
+              <!-- <i class="fas fa-caret-down"></i> -->
+              <span class="collapsible-heading">{{ garden_event.event_date.strftime("%B %d") }}</span>
+            </div>
+            <div class="col s12 m3">
+              <span class="collapsible-heading">{{ garden_event.event_category.capitalize() }}</span>
+            </div>
+            <div class="col s12 m6">
+              <span class="collapsible-heading">{{ garden_event.event_name.title() }}</span>
+            </div>
+          </div>
 
-                <!-- start collapsible body -->
 
-                <!-- For loop to display garden events -->
-                    <div class="collection">
-                      <!-- Event title and plant event modal trigger link -->
-                      <h6>{{ garden_event.event_name.title() }}</h6>
+        </div>
+        <div class="collapsible-body">
+          <span>
 
-                        <ul>
-                          <li><i class="fas fa-list-ul"></i> The event category is 
-                            <span class="emph-green">{{ garden_event.event_category.capitalize()}}</span>.</li>
-                          <li><i class="far fa-clock"></i> The event repeats <span class="emph-green">{{
+            <!-- start collapsible body -->
+
+            <!-- For loop to display garden events -->
+            <div class="collection">
+              <!-- begin plant data section -->
+              <h6>{{ garden_event.event_name.title() }}</h6>
+
+              <ul>
+                <li><i class="fas fa-list-ul"></i> The event category is
+                  <span class="emph-green">{{ garden_event.event_category.capitalize()}}</span>.</li>
+                <li><i class="far fa-clock"></i> The event repeats <span class="emph-green">{{
                                       garden_event.event_repeats.capitalize() }}</span>. </li>
-                          <li><i class="far fa-edit"></i> <strong class="emph-dark-teal">Event
-                              notes:</strong> {{ garden_event.event_notes.capitalize() }}</li>
+                <li><i class="far fa-edit"></i> <strong class="emph-dark-teal">Event
+                    notes:</strong> {{ garden_event.event_notes.capitalize() }}</li>
 
-                      </ul>
-                      <div class="row right-align">
-                        <a href="#" class="waves-effect waves-green btn-flat">Edit</a>
-                        <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Delete</a> -->
-                    </div>
-                      <br>
+              </ul>
+              <div class="row right-align">
+                <a href="{{ url_for('edit_event', event_id=garden_event._id) }}"
+                  class="waves-effect waves-green btn-flat">Edit</a>
+                <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Delete</a> -->
+              </div>
+              <br>
+              <!--  hr center of the accordion content info -->
+              <hr>
+              <br>
+              <!-- begin plant data section -->
+              <!-- Loop through plants and get plant data -->
+              {% for plant in plants %}
 
-                      <hr>
-                      <br>
-                      <!-- Loop through plants and get plant data -->
-                      {% for plant in plants %}
+              <!-- If comparitor to match event and plant info -->
+              {% if garden_event.plant_name == plant.plant_name %}
 
-                      <!-- If comparitor to match event and plant info -->
-                      {% if garden_event.plant_name == plant.plant_name %}
+              <!-- Plant title, and plant modal trigger link. Use loop.index to create unique id for the modal trigger href  -->
+              <h6>{{ plant.plant_type.title() }}:
+                {{ plant.plant_name.title() }}</h6>
 
-                      <!-- Plant title, and plant modal trigger link. Use loop.index to create unique id for the modal trigger href  -->
-                      <h6>{{ plant.plant_type.title() }}:
-                        {{ plant.plant_name.title() }}</h6>
-                      
 
-                      <div class="row">
+              <div class="row">
 
-                        <ul>
-                            <li><span class="material-icons flower md-12"></span> <span
-                                    class="emph-red">Sow</span> seeds <span class="emph-green">{{
+                <ul>
+                  <li><span class="material-icons flower md-12"></span> <span class="emph-red">Sow</span> seeds <span
+                      class="emph-green">{{
                                     plant.plant_sowing.strftime("%B %d") }}</span> so they are ready for
-                                planting
-                                time.</li>
-                            <li><span class="material-icons flower md-12"></span> <span
-                                    class="emph-red">Plant</span> <span class="emph-green">{{
+                    planting
+                    time.</li>
+                  <li><span class="material-icons flower md-12"></span> <span class="emph-red">Plant</span> <span
+                      class="emph-green">{{
                                     plant.plant_planting.strftime("%B %d") }}</span> at earliest.</li>
-                            <li><span class="material-icons flower md-12"></span> <span
-                                    class="emph-red">Harvesting</span> season is
-                                from <span class="emph-green">{{ plant.harvest_from.strftime("%B %d")
+                  <li><span class="material-icons flower md-12"></span> <span class="emph-red">Harvesting</span> season
+                    is
+                    from <span class="emph-green">{{ plant.harvest_from.strftime("%B %d")
                                     }}</span>
-                                to <span class="emph-green">{{ plant.harvest_to.strftime("%B %d")
+                    to <span class="emph-green">{{ plant.harvest_to.strftime("%B %d")
                                     }}</span></li>
-                            <li><span class="material-icons flower md-12"></span> <span
-                                    class="emph-red">Fertilise</span> <span class="emph-green">{{
+                  <li><span class="material-icons flower md-12"></span> <span class="emph-red">Fertilise</span> <span
+                      class="emph-green">{{
                                     plant.fertilise_frequency}}</span> with <span class="emph-green">{{
                                     plant.fertiliser_type }}</span>. </li>
 
-                        </ul>
+                </ul>
 
-                        <ul>
-                            <li><strong class="emph-dark-teal">Note:</strong> {{
+                <ul>
+                  <li><strong class="emph-dark-teal">Note:</strong> {{
                                 plant.plant_note.capitalize() }}</li>
-                        </ul>
+                </ul>
 
-                        <div class="row right-align">
-                          <a href="#" class="waves-effect waves-green btn-flat">Edit</a>
-                          <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Delete</a> -->
-                      </div>
+                <div class="row right-align">
+                  <a href="{{ url_for('edit_plant', plant_id=plant._id) }}"
+                    class="waves-effect waves-green btn-flat">Edit</a>
+                  <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Delete</a> -->
+                </div>
 
-                    </div>
-                    {% endif %}
-                        
-                      
-
-                      {% endfor %}
-
-                      
-                        <!-- Garden event modal -->
-                        <div id="event_id_{{ loop.index }}" class="modal">
-                          <div class="modal-content">
-                            <h5><i class="far fa-calendar-alt"></i>
-                              {{ garden_event.event_date.strftime("%B %d") }} <i class="fas fa-grip-lines-vertical"></i>
-                              {{ garden_event.event_name.title() }}</h5>
-                            <!-- Loop through plants and get plant data -->
-                            {% for plant in plants %}
-
-                                <!-- If comparitor to match event and plant info -->
-                                {% if garden_event.plant_name == plant.plant_name %}
-
-                                <span class="modal-title">{{ plant.plant_name.title() }}</span>
-
-                                  <ul>
-                                      <li><i class="fas fa-list-ul"></i> The event category is 
-                                        <span class="emph-green">{{ garden_event.event_category.capitalize()}}</span>.</li>
-                                      <li><i class="far fa-clock"></i> The event repeats <span class="emph-green">{{
-                                                  garden_event.event_repeats.capitalize() }}</span>. </li>
-                                      <li><i class="far fa-edit"></i> <strong class="emph-dark-teal">Event
-                                          notes:</strong> {{ garden_event.event_notes.capitalize() }}</li>
-
-                                  </ul>
-
-                                {% endif %}
-
-                            {% endfor %}
-                          </div>
-                          <div class="modal-footer">
-                            <a href="#" class="waves-effect waves-green btn-flat">Edit</a>
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-                          </div>
-                        </div>
-
-                    </div>
-                <!-- end collapsible body -->
-                </span>
               </div>
-            </li>
-          {% endfor %}
-        </ul>
+              {% endif %}
 
-        
+              {% endfor %}
+
+            </div>
+            <!-- end collapsible body -->
+          </span>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <ul>
+
+    </ul>
 
 
-    </section>
+  </section>
 </div>
 {% endblock %}

@@ -14,6 +14,7 @@ $(function () {
   $('.collapsible').collapsible({
     // accordion: false,
   });
+  $('.tooltipped').tooltip();
   $('.datepicker').datepicker({
     format: "mmmm dd, yyyy",
     yearRange: 3,

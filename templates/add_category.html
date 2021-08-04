@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container">
+
+        <h3 class="teal-text text-darken-2 center-align">New Category</h3>
+
+        <div class="row">
+            <form class="col s12" method="POST" action="{{ url_for('add_category') }}">
+                <!-- add new category -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
+                        <input id="event_category" name="event_category"  minlength="3" maxlength="30" 
+                          type="text" class="validate" required>
+                        <label for="event_category">New Event Category</label>
+                    </div>
+                </div>
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large teal-text text-lighten-5">
+                            Add Category <i class="fas fa-plus-square right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <section>
+
+            <h3>Event Categories</h3>
+    
+            <div class="collection">
+    
+                {% for category in categories %}
+                
+                <a href="{{ url_for('edit_category', category_id=category._id) }}"
+                    class="collection-item m-bot-10 waves-effect waves-light">{{ loop.index}}:
+                    {{ category.event_category.capitalize() }}</a>
+                    
+                {% endfor %}
+    
+            </div>
+        </section>
+    </div>
+{% endblock %}
