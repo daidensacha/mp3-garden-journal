@@ -2,9 +2,8 @@
   min-height: 45vh;
 }
 
-nav ul a,
-nav .brand-logo {
-  color: #444;
+div.wrapper {
+  min-height: calc(100vh - 100px);
 }
 
 p {
@@ -15,25 +14,22 @@ p {
   color: #ee6e73;
 }
 
+/*
+================================================================================
+========================== Materialize Parallax Styling ========================
+================================================================================
+*/
+
 .parallax-container {
-  min-height: 380px;
+  min-height: 200px;
+  max-height:auto;
   line-height: 0;
   height: auto;
-  color: rgba(255,255,255,.9);
+  background-color: rgba(0, 0, 0, 0.4);
 }
   .parallax-container .section {
     width: 100%;
   }
-
-.icon-block {
-  padding: 0 15px;
-}
-
-footer.page-footer {
-  margin: 0;
-}
-
-
 
 /* Style parallax images */
  .parallax img 
@@ -41,55 +37,78 @@ footer.page-footer {
  	 background-repeat: no-repeat;
  	 background-size: cover;
  }
+
  .parallax-container
  {
  	color: black;
  }
- @media only screen and (max-width : 600px) {
-  .parallax-container
- {
- 	color: white;
- }
-}
- nav a.button-collapse
- {
+
+/*
+================================================================================
+=========================== Materialize Navbar Styling =========================
+================================================================================
+*/
+
+ nav a.button-collapse {
  	color:black;
  }
+
  .purple.lighten-1 {
   background-color: #CC0066 !important;
 }
+
 .teal-text.text-lighten-2 {
   color: #CC0066 !important;
 }
-.share-buttons{
+
+.share-buttons {
 	list-style: none;
 }
 
-.share-buttons li{
+.share-buttons li {
 	display: inline;
 }
-nav
-{
+nav {
 	overflow: visible;
 }
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
 nav li a {
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
 }
 
+/***************************** Social Icon styling ****************************/
 
-/* 
-Social Icon styling */
+.icon-block {
+  padding: 0 15px;
+}
+
 .social-icon {
   margin-right: 10px;
 }
+
 .social-icon:hover {
   color: rgb(228, 90, 22);
-  
 }
 
-/*  Collapsible Styling */
+/******************************* Footer Styling *******************************/
+
+footer.page-footer {
+  margin: 0;
+}
+
+/*
+================================================================================
+======================= Materialize Collapsible  Styling =======================
+================================================================================
+*/
+
 .collapsible {
   border: 1px solid #c1ad0f;
 }
@@ -99,17 +118,47 @@ Social Icon styling */
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.062);
   background-color: #aa8d30;
   border: 1px solid #c1ad0f;
+  line-height: 1.2rem;
 }
+
 .collapsible .row {
   margin-bottom: 0;
 }
+
 .collapsible-heading {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 400;
   vertical-align: middle;;
 }
 
-/*  collection style */
+/************************* Collapsible Rotating Caret  ************************/
+
+li .collapsible-header {
+  justify-content: space-between;
+}
+
+li .collapsible-header .caret {
+  color: #fff;
+  margin-right: 0;
+  transition: transform 0.2s ease;
+}
+
+/* li.active .collapsible-header {
+  background-color: lightcoral;
+  color: white;
+} */
+
+li.active .collapsible-header .caret {
+  color: #ffab91;
+  transform: rotate(-180deg);
+  transform-origin: 0.6em 0.5em;
+}
+
+/*
+================================================================================
+========================= Materialize Collection Styling =======================
+================================================================================
+*/
 
 .collection a.collection-item {
   display: block;
@@ -130,7 +179,18 @@ Social Icon styling */
   background-color: #ecf0c4;
 }
 
-/* customer text color */
+.collection .collection-item {
+  display: block;
+  -webkit-transition: .25s;
+  transition: .25s;
+  color: #051a12;
+}
+
+.collection li:hover {
+  background-color: #ecf0c4;
+}
+
+/********************************** Font Styling ******************************/
 
 .px-dark-red {
   color: #602c25
@@ -149,8 +209,10 @@ Social Icon styling */
 }
 
 /* 
-========================= Material Alerts ========================= */
-
+================================================================================
+================================ Material Alerts ===============================
+================================================================================ 
+*/
 
 .materialert{
   position: relative;
@@ -175,9 +237,11 @@ Social Icon styling */
   align-items: center;
   justify-content: center;
 }
+
 .materialert .icons{
   margin-right: 10px;
 }
+
 .materialert .close-alert{
   -webkit-appearance: none;
   border: 0; 
@@ -195,7 +259,8 @@ Social Icon styling */
   right: 5px;
 }
 
-/* alert message coloring */
+/**************************** Custom Alert Messages ***************************/
+
 .materialert.info{
   background-color: rgba(3,155,229,0.8);
   color: #fff;
@@ -204,7 +269,6 @@ Social Icon styling */
   background-color: rgba(67,160,71,0.8);
   color: #fff;
 }
-
 .materialert.error{
   background-color: rgba(198, 40, 40,0.8);
   color: #fff;
@@ -218,7 +282,8 @@ Social Icon styling */
   color: #fff;
 }
 
-/* alert icons */
+/****************************** Custom  Alert Icons ***************************/
+
 .materialert.success:before {
   font-family: "Material Icons"; font-weight: 900; content: "\e92d";
   margin-right: 10px;
@@ -236,61 +301,12 @@ Social Icon styling */
   margin-right: 10px;
 }
 
-
-
-/* 
-=========================   Media Queries ========================= */
-
-/* Small Screens */
-@media only screen and (max-width : 600px) {
-    #index-banner .section {
-      top: 0;
-    }
-    /* fix for logo width issue */
-    nav .brand-logo {
-      left: calc(50% - 20px);
-      transform: translateX(-50%);
-      font-size: 1.8em;
-    }
-    
-  }
-
-/* Medium Screens */
-@media only screen and (min-width : 600px) {
-
-}
-
-/*  Large Screens */
-@media only screen and (max-width : 992px) {
-    .parallax-container .section {
-      position: absolute;
-      /* top: 40%; */
-    }
-    #index-banner .section {
-      top: 10%;
-    }
-  }
-  
-/* Extra Large Screens */
-@media only screen and (min-width : 1200px) {
-    
-}
-  
- 
-    
-/* This is not needed if I don't use tabs */
-/* materializecss tabs fix */
-@media (max-width: 1900px) {
-
-    .tabs {
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-    }
-  }
-  /* tabs fix for auto height when adding content that exceeds 400px, as the tabs are styled by carousel css */
+  /* tabs fix for auto height when adding content that 
+  exceeds 400px, as the tabs are styled by carousel css */
   .tabs-content.carousel .carousel-item .tab { height:auto; }
 
+
+  /***************************** Custom Modal Syling **************************/
   .modal-title {
     font-size: 18px;
     font-weight: 700;
@@ -300,28 +316,47 @@ Social Icon styling */
     max-height: 100% !important;
   }
 
-  /* margin classes */
+  /*************************** Custom Margin Classes **************************/
+  .mt-5 {
+    margin-top: 5px;
+  }
+
+  .mt-10 {
+    margin-top: 10px;
+  }
+
   .mt-90 {
     margin-top: 90px;
+  }
+
+  .mb-1em {
+    margin-bottom: 1em;
   }
 
   .pr-10 {
     padding-right: 10px;
   }
 
+  /*********************** Emphasis class custom styles ***********************/
+  .emph-ital {
+    font-style: italic;
+  }
+
   /* text style clases */
   .emph-red {
     color:rgba(198, 40, 40,0.8);
   }
+
   .emph-green {
     color: #689f38 ;
   }
+
   .emph-dark-teal {
     color: #00695c;
     font-style: italic;
   }
 
-  /* material icon sizes  */
+  /**************************** MATERIAL ICON SIZES ***************************/
 .material-icons.md-12 { font-size: 12px; }
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
@@ -340,12 +375,87 @@ Social Icon styling */
 .list:before {
   font-family: "Material Icons";
   content: "\e896";
-  /* font-size: 18px; */
-  /* margin-bottom: 5px; */
-  /* vertical-align: middle; */
 }
 
-/* navbar dropdown border fix */
+/************** NAVBAR DROPDOWN FIX FOR BORDER ISSUE IN CHROME ****************/
 li a.dropdown-trigger:focus {
   outline: none;
+}
+
+
+/* 
+================================== Media Queries =============================== 
+*/
+
+/* Small Screens */
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+  /* fix for logo width issue */
+  nav .brand-logo {
+    left: calc(50% - 20px);
+    transform: translateX(-50%);
+    font-size: 1.8em;
+  }
+  .caption .slider-heading {
+    display: block;
+    font-size: 3.2em;
+  }
+  .caption .slider-subheading {
+    display: block;
+    font-size: 1.2em;
+  }
+  .parallax-container {
+    color: white;
+  }
+}
+
+/* Medium Screens */
+@media only screen and (min-width : 600px) {
+  .caption .slider-heading {
+    display: block;
+    /* font-size: 2.8em; */
+  }
+  .caption .slider-subheading {
+    display: block;
+    font-size: 1.8em;
+  }
+}
+
+/*  Large Screens */
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    height: auto;
+    /* position: absolute; */
+    /* top: 40%; */
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+  #main-block {
+    min-height: calc(100vh - 593px);
+}
+}
+
+/* Extra Large Screens */
+@media only screen and (min-width : 1200px) {
+  .caption .slider-heading {
+    display: block;
+    font-size: 4.2em;
+  }
+  .caption .slider-subheading {
+    display: block;
+    font-size: 2.4em;
+  }
+}
+
+/* This is not needed if I don't use tabs */
+/* materializecss tabs fix */
+@media (max-width: 1900px) {
+  .tabs {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }

@@ -6,14 +6,13 @@
     <h3>My Events</h3>
 
     <ul class="collapsible">
-      {% for garden_event in garden_events %}
+      {% for garden_event in user_garden_events %}
+      
       <li>
         <div class="collapsible-header">
           <div class="row" style="width: 100%;">
-
             <div class="col s12 m3">
-              <!-- <i class="fas fa-caret-down"></i> -->
-              <span class="collapsible-heading">{{ garden_event.event_date.strftime("%B %d") }}</span>
+              <span class="collapsible-heading"><i class="caret fas fa-caret-down"></i> {{ garden_event.event_date.strftime("%B %d") }}</span>
             </div>
             <div class="col s12 m3">
               <span class="collapsible-heading">{{ garden_event.event_category.capitalize() }}</span>
@@ -40,13 +39,21 @@
                   <span class="emph-green">{{ garden_event.event_category.capitalize()}}</span>.</li>
                 <li><i class="far fa-clock"></i> The event repeats <span class="emph-green">{{
                                       garden_event.event_repeats.capitalize() }}</span>. </li>
-                <li><i class="far fa-edit"></i> <strong class="emph-dark-teal">Event
+                <li class="mt-5"><i class="far fa-edit"></i> <strong class="emph-dark-teal">Event
                     notes:</strong> {{ garden_event.event_notes.capitalize() }}</li>
 
               </ul>
+              <div class="row">
+                <ul>
+                  <li class="mt-10"><strong class="emph-dark-teal">Created by:</strong> <span class="emph-ital">{{garden_event.created_by }}</span></li>
+                </ul>
+              </div>
+              
               <div class="row right-align">
                 <a href="{{ url_for('edit_event', event_id=garden_event._id) }}"
-                  class="waves-effect waves-green btn-flat">Edit</a>
+                  class="waves-effect waves-green btn-small blue darken-2">
+                  Edit Event <i class="fas fa-edit right"></i>
+                </a>
                 <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Delete</a> -->
               </div>
               <br>
@@ -55,7 +62,7 @@
               <br>
               <!-- begin plant data section -->
               <!-- Loop through plants and get plant data -->
-              {% for plant in plants %}
+              {% for plant in user_plants %}
 
               <!-- If comparitor to match event and plant info -->
               {% if garden_event.plant_name == plant.plant_name %}
@@ -66,37 +73,42 @@
 
 
               <div class="row">
-
-                <ul>
-                  <li><span class="material-icons flower md-12"></span> <span class="emph-red">Sow</span> seeds <span
-                      class="emph-green">{{
-                                    plant.plant_sowing.strftime("%B %d") }}</span> so they are ready for
-                    planting
-                    time.</li>
-                  <li><span class="material-icons flower md-12"></span> <span class="emph-red">Plant</span> <span
-                      class="emph-green">{{
-                                    plant.plant_planting.strftime("%B %d") }}</span> at earliest.</li>
-                  <li><span class="material-icons flower md-12"></span> <span class="emph-red">Harvesting</span> season
-                    is
-                    from <span class="emph-green">{{ plant.harvest_from.strftime("%B %d")
-                                    }}</span>
-                    to <span class="emph-green">{{ plant.harvest_to.strftime("%B %d")
-                                    }}</span></li>
-                  <li><span class="material-icons flower md-12"></span> <span class="emph-red">Fertilise</span> <span
-                      class="emph-green">{{
-                                    plant.fertilise_frequency}}</span> with <span class="emph-green">{{
-                                    plant.fertiliser_type }}</span>. </li>
-
-                </ul>
-
-                <ul>
-                  <li><strong class="emph-dark-teal">Note:</strong> {{
-                                plant.plant_note.capitalize() }}</li>
-                </ul>
-
+                <div class="row">
+                  <ul>
+                    <li><span class="material-icons flower md-12"></span> <span class="emph-red">Sow</span> seeds <span
+                        class="emph-green">{{
+                                      plant.plant_sowing.strftime("%B %d") }}</span> so they are ready for
+                      planting
+                      time.</li>
+                    <li><span class="material-icons flower md-12"></span> <span class="emph-red">Plant</span> <span
+                        class="emph-green">{{
+                                      plant.plant_planting.strftime("%B %d") }}</span> at earliest.</li>
+                    <li><span class="material-icons flower md-12"></span> <span class="emph-red">Harvesting</span> season
+                      is
+                      from <span class="emph-green">{{ plant.harvest_from.strftime("%B %d")
+                                      }}</span>
+                      to <span class="emph-green">{{ plant.harvest_to.strftime("%B %d")
+                                      }}</span></li>
+                    <li><span class="material-icons flower md-12"></span> <span class="emph-red">Fertilise</span> <span
+                        class="emph-green">{{
+                                      plant.fertilise_frequency}}</span> with <span class="emph-green">{{
+                                      plant.fertiliser_type }}</span>. </li>
+                  </ul>
+                  <ul>
+                    <li class="mt-5"><strong class="emph-dark-teal">Note:</strong> {{
+                                  plant.plant_note.capitalize() }}</li>
+                  </ul>
+                </div>
+                <div class="row">
+                  <ul>
+                    <li class="mt-10"><strong class="emph-dark-teal">Created by:</strong><span class="emph-ital">{{plant.created_by }}</span></li>
+                  </ul>
+                </div>
                 <div class="row right-align">
                   <a href="{{ url_for('edit_plant', plant_id=plant._id) }}"
-                    class="waves-effect waves-green btn-flat">Edit</a>
+                    class="waves-effect waves-green btn-small blue darken-2">
+                    Edit Plant <i class="fas fa-edit right"></i>
+                  </a>
                   <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Delete</a> -->
                 </div>
 

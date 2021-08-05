@@ -117,6 +117,23 @@ def add_event():
 
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
 def edit_event(event_id):
+    if request.method == "POST":
+        date_string = request.form.get("event_date")
+        date_object = pd.to_datetime(date_string)
+        plant_name = request.form.get("plant_name")
+
+        submit = {
+            "event_category": request.form.get("event_category"),
+            "plant_name": plant_name,
+            "event_name": request.form.get("event_name"),
+            "event_repeats": request.form.get("event_repeats"),
+            "event_date": date_object,
+            "event_notes": request.form.get("event_notes"),
+            "created_by": session["user"]
+        }
+        mongo.db.garden_events.update({"_id": ObjectId(event_id)}, submit)
+        flash("Event Successfully Updated", "success")
+
     garden_event = mongo.db.garden_events.find_one(
         {"_id": ObjectId(event_id)})
 
@@ -141,16 +158,16 @@ def add_plant():
         harvest_to_object = pd.to_datetime(harvest_to_string)
 
         plant = {
-            "plant_type": request.form.get("plant_type").lower(),
-            "plant_name": request.form.get("plant_name").lower(),
+            "plant_type": request.form.get("plant_type"),
+            "plant_name": request.form.get("plant_name"),
             "plant_sowing": sowing_date_object,
             "plant_planting": planting_date_object,
             "harvest_from": harvest_from_object,
             "harvest_to": harvest_to_object,
             "fertilise_frequency": request.form.get(
-                "fertilise_frequency").lower(),
-            "fertiliser_type": request.form.get("fertiliser_type").lower(),
-            "plant_note": request.form.get("plant_note").lower(),
+                "fertilise_frequency"),
+            "fertiliser_type": request.form.get("fertiliser_type"),
+            "plant_note": request.form.get("plant_note"),
             "created_by": session["user"]
         }
         mongo.db.plants.insert_one(plant)
@@ -162,6 +179,33 @@ def add_plant():
 
 @app.route("/edit_plant/<plant_id>", methods=["GET", "POST"])
 def edit_plant(plant_id):
+
+    if request.method == "POST":
+        sowing_date_string = request.form.get("plant_sowing")
+        planting_date_string = request.form.get("plant_planting")
+        harvest_from_string = request.form.get("harvest_from")
+        harvest_to_string = request.form.get("harvest_to")
+        sowing_date_object = pd.to_datetime(sowing_date_string)
+        planting_date_object = pd.to_datetime(planting_date_string)
+        harvest_from_object = pd.to_datetime(harvest_from_string)
+        harvest_to_object = pd.to_datetime(harvest_to_string)
+
+        submit = {
+            "plant_type": request.form.get("plant_type"),
+            "plant_name": request.form.get("plant_name"),
+            "plant_sowing": sowing_date_object,
+            "plant_planting": planting_date_object,
+            "harvest_from": harvest_from_object,
+            "harvest_to": harvest_to_object,
+            "fertilise_frequency": request.form.get(
+                "fertilise_frequency"),
+            "fertiliser_type": request.form.get("fertiliser_type"),
+            "plant_note": request.form.get("plant_note"),
+            "created_by": session["user"]
+        }
+        mongo.db.plants.update({"_id": ObjectId(plant_id)}, submit)
+        flash("Plant Successfully Updated", "success")
+
     plant = mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
 
     plants = list(mongo.db.plants.find().sort("plant_type"))
@@ -186,6 +230,14 @@ def add_category():
 
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
+    if request.method == "POST":
+        submit = {
+            "event_category": request.form.get("event_category"),
+            "created_by": session["user"]
+        }
+        mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
+        flash("New Category Successfully Added", "success")
+
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
 
     categories = list(mongo.db.categories.find().sort("event_category"))
@@ -209,15 +261,32 @@ def profile(username):
 def get_garden_events():
     garden_events = list(mongo.db.garden_events.find().sort("event_date"))
     plants = list(mongo.db.plants.find())
+
+    user_garden_events = []
+    for garden_event in garden_events:
+        if garden_event["created_by"] == session["user"] or session["user"] == "admin":
+            user_garden_events.append(garden_event)
+
+    user_plants = []
+    for plant in plants:
+        if plant["created_by"] == session["user"] or session["user"] == "admin":
+            user_plants.append(plant)
+
     # month = mongo.db.garden_events.find({'$expr': {'$eq': [{'$month': "$event_date"} ,9]}})
-    return render_template("journal.html", garden_events=garden_events,
-                           plants=plants)
+    return render_template("journal.html", user_plants=user_plants,
+                           user_garden_events=user_garden_events)
 
 
 @app.route("/get_plants")
 def get_plants():
     plants = list(mongo.db.plants.find().sort("plant_type"))
-    return render_template("plants.html", plants=plants)
+
+    user_plants = []
+    for plant in plants:
+        if plant["created_by"] == session["user"] or session["user"] == "admin":
+            user_plants.append(plant)
+
+    return render_template("plants.html", user_plants=user_plants)
 
 
 if __name__ == "__main__":

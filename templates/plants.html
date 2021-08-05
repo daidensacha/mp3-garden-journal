@@ -7,7 +7,7 @@
 
         <div class="collection">
 
-            {% for plant in plants %}
+            {% for plant in user_plants %}
             <a href="#plant_id_{{ loop.index }}"
                 class="collection-item m-bot-10 waves-effect waves-light modal-trigger">{{ loop.index}}:
                 {{ plant.plant_type.capitalize() }} {{ plant.plant_name.title() }}</a>
@@ -26,18 +26,26 @@
                     </ul>
                     
                     <div class="row">
-                        
-                            <ul>
-                                <li><strong class="emph-dark-teal">Note:</strong> {{ plant.plant_note }}</li>
-                            </ul>
+                        <ul>
+                            <li><strong class="emph-dark-teal">Note:</strong> {{ plant.plant_note }}</li>
+                        </ul>
+                    </div>
+                    <div class="row ">
+                        <ul>
+                            <li><strong class="emph-dark-teal">Created by:</strong> <span class="emph-ital">{{ plant.created_by }}</span></li>
+                        </ul>
                     </div>
                     
 
                 </div>
 
                 <div class="modal-footer">
-                    <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="waves-effect waves-green btn-flat">Edit</a>
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                    <a href="{{ url_for('edit_plant', plant_id=plant._id) }}" class="waves-effect waves-green btn-small blue darken-2">
+                        Edit Plant <i class="fas fa-edit right"></i>
+                    </a>
+                    <a href="#!" class="modal-close waves-effect waves-green btn-small red darken-4">
+                        Close <i class="fas fa-times-circle right"></i>
+                    </a>
                 </div>
             </div>
 
