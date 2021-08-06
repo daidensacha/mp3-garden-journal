@@ -26,14 +26,24 @@
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                        {% if plant.plant_sowing == "" %}
+                        <input id="plant_sowing" name="plant_sowing" value=""
+                            type="text" class="datepicker validate" >
+                        {% else %}
                         <input id="plant_sowing" name="plant_sowing" value="{{ plant.plant_sowing.strftime('%B %d, %Y') }}" 
-                            type="text" class="datepicker validate" required>
+                            type="text" class="datepicker validate" >
+                        {% endif %}
                         <label for="plant_sowing">Sowing Time</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
-                        <input id="plant_planting" name="plant_planting" value="{{ plant.plant_planting.strftime('%B %d, %Y') }}"
-                        type="text" class="datepicker validate" required>
+                        {% if plant.plant_planting == "" %}
+                            <input id="plant_planting" name="plant_planting" value=""
+                                type="text" class="datepicker validate" >
+                        {% else %}
+                            <input id="plant_planting" name="plant_planting" value="{{ plant.plant_planting.strftime('%B %d, %Y') }}"
+                                type="text" class="datepicker validate" >
+                        {% endif %}
                         <label for="plant_planting">Planting Time</label>
                     </div>
                 </div>

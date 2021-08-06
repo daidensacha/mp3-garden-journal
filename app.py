@@ -17,6 +17,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
 mongo = PyMongo(app)
 
@@ -129,7 +130,6 @@ def edit_event(event_id):
             "event_repeats": request.form.get("event_repeats"),
             "event_date": date_object,
             "event_notes": request.form.get("event_notes"),
-            "created_by": session["user"]
         }
         mongo.db.garden_events.update({"_id": ObjectId(event_id)}, submit)
         flash("Event Successfully Updated", "success")
@@ -145,6 +145,13 @@ def edit_event(event_id):
         garden_event=garden_event, categories=categories)
 
 
+@app.route("/delete_event/<event_id>")
+def delete_event(event_id):
+    mongo.db.garden_events.remove({"_id": ObjectId(event_id)})
+    flash("Event Successfuly Deleted", "success")
+    return redirect(url_for("get_garden_events"))
+
+
 @app.route("/add_plant", methods=["GET", "POST"])
 def add_plant():
     if request.method == "POST":
@@ -152,8 +159,14 @@ def add_plant():
         planting_date_string = request.form.get("plant_planting")
         harvest_from_string = request.form.get("harvest_from")
         harvest_to_string = request.form.get("harvest_to")
-        sowing_date_object = pd.to_datetime(sowing_date_string)
-        planting_date_object = pd.to_datetime(planting_date_string)
+        if sowing_date_string == "":
+            sowing_date_object = sowing_date_string
+        else:
+            sowing_date_object = pd.to_datetime(sowing_date_string)
+        if planting_date_string == "":
+            planting_date_object = planting_date_string
+        else:
+            planting_date_object = pd.to_datetime(planting_date_string)
         harvest_from_object = pd.to_datetime(harvest_from_string)
         harvest_to_object = pd.to_datetime(harvest_to_string)
 
@@ -185,8 +198,14 @@ def edit_plant(plant_id):
         planting_date_string = request.form.get("plant_planting")
         harvest_from_string = request.form.get("harvest_from")
         harvest_to_string = request.form.get("harvest_to")
-        sowing_date_object = pd.to_datetime(sowing_date_string)
-        planting_date_object = pd.to_datetime(planting_date_string)
+        if sowing_date_string == "":
+            sowing_date_object = sowing_date_string
+        else:
+            sowing_date_object = pd.to_datetime(sowing_date_string)
+        if planting_date_string == "":
+            planting_date_object = planting_date_string
+        else:
+            planting_date_object = pd.to_datetime(planting_date_string)
         harvest_from_object = pd.to_datetime(harvest_from_string)
         harvest_to_object = pd.to_datetime(harvest_to_string)
 
@@ -210,6 +229,13 @@ def edit_plant(plant_id):
 
     plants = list(mongo.db.plants.find().sort("plant_type"))
     return render_template("edit_plant.html", plants=plants, plant=plant)
+
+
+@app.route("/delete_plant/<plant_id>")
+def delete_plant(plant_id):
+    mongo.db.plants.remove({"_id": ObjectId(plant_id)})
+    flash("Plant Successfuly Deleted", "success")
+    return redirect(url_for("get_plants"))
 
 
 @app.route("/add_category", methods=["GET", "POST"])
@@ -243,6 +269,13 @@ def edit_category(category_id):
     categories = list(mongo.db.categories.find().sort("event_category"))
     return render_template(
         "edit_category.html", categories=categories, category=category)
+
+
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    mongo.db.categories.remove({"_id": ObjectId(category_id)})
+    flash("Category Successfuly Deleted", "success")
+    return redirect(url_for("add_category"))
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])

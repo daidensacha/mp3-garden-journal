@@ -34,7 +34,7 @@
                 </ul>
                 <div class="nav-wrapper">
 
-                    <a href="{{ url_for('home') }}" class="brand-logo">{% if session.user %}My Garden{% else %}Your Garden{% endif %}</a>
+                    <a href="{{ url_for('home') }}" class="brand-logo">{% if session.user %}My Garden Almanac{% else %}Your Garden Almanac{% endif %}</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                     <ul class="right hide-on-med-and-down">
 
@@ -88,29 +88,37 @@
             <li>
                 <img src="{{url_for('static', filename='images/summer_1240x528_b.jpg')}}">
                 <div class="caption center-align">
-                    <span class="slider-heading text-shadow">Spring</span>
-                    <span class="slider-subheading light grey-text text-lighten-3 text-shadow">Action! Plant, nourish, enjoy!</span>
+                    <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
+                    <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
+                    <!-- <span class="slider-heading text-shadow">Spring</span> -->
+                    <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">Spring: Action! Plant, nourish, enjoy!</h4>
                 </div>
             </li>
             <li>
                 <img src="{{url_for('static', filename='images/flowers_1240x528_b.jpg')}}">
-                <div class="caption center-align">
-                    <span class="slider-heading text-shadow">Summer</span>
-                    <span class="slider-subheading light grey-text text-lighten-3 text-shadow">Tend to the gardens needs.</span>
+                <div class="caption center-align text-shadow">
+                    <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
+                    <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
+                    <!-- <span class="slider-heading text-shadow">Summer</span> -->
+                    <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">Summer: Tend to the gardens needs.</h4>
                 </div>
             </li>
             <li>
                 <img src="{{url_for('static', filename='images/autumn_1240x528_b.jpg')}}">
                 <div class="caption center-align">
-                    <span class="slider-heading text-shadow">Autumn</span>
-                    <span class="slider-subheading light grey-text text-lighten-3 text-shadow">Prepare for the dormant season.</span>
+                    <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
+                    <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
+                    <!-- <span class="slider-heading text-shadow">Autumn</span> -->
+                    <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">Autumn: Prepare for the dormant season.</h4>
                 </div>
             </li>
             <li>
                 <img src="{{url_for('static', filename='images/winter_1240x528_b.jpg')}}">
                 <div class="caption center-align">
-                    <span class="slider-heading text-shadow">Winter</span>
-                    <span class="slider-subheading light grey-text text-lighten-3 text-shadow">Plan for the next seasons bounty. </span>
+                    <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
+                    <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
+                    <!-- <span class="slider-heading text-shadow">Winter</span> -->
+                    <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">Winter: Plan for the next seasons bounty. </h4>
                 </div>
             </li>
         </ul>
@@ -195,18 +203,19 @@
                 </form>
 
                 <div class="col s12 m4">
+                    <h4>Garden Almanac</h4>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam
+                        This is a personal project as part of my studies in full stack development. 
                     </p>
-                    <ul class="share-buttons">
-                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" title="GitHub"
-                                class="social-icon"><i class="fab fa-github fa-2x"></i></a></li>
-                        <li><a href="https://twitter.com/intent/tweet?source=&text=:%20" target="_blank"
-                                title="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in fa-2x"></i></a></li>
-                        <li><a href="https://plus.google.com/share?url=" target="_blank" title="Email"
-                                class="social-icon"><i class="fas fa-envelope fa-2x"></i></a></li>
-                    </ul>
+                    <p>
+                        It is by no means a finished product, and is a work in progress. Due to 
+                        time constraints I am limited in scope for now as to the features that I can 
+                        include.
+                    </p>
+                    <p>
+                        I'm open to collaboration if your a developer with an iterest in 
+                        contributing to improving it. Feel free to drop me a line.
+                    </p>
                 </div>
 
 
@@ -221,12 +230,20 @@
   </div>
 </div>
     <!-- footer section -->
-    <footer class="page-footer purple lighten-1">
+    <footer class="page-footer">
 
         <div class="footer-copyright">
             <div class="container">
-                <p>Copyright © Your website name</p>
+                <p>Copyright © mygardenalmanac.com</p>
             </div>
+            <ul class="share-buttons">
+                <li><a href="https://github.com/daidensacha" target="_blank" title="GitHub"
+                        class="social-icon"><i class="fab fa-github fa-2x"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/daiden-sacha-8852b41a6/" target="_blank"
+                        title="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in fa-2x"></i></a></li>
+                <li><a href="#footer-modal" title="Email"
+                        class="social-icon modal-trigger"><i class="fas fa-envelope fa-2x"></i></a></li>
+            </ul>
         </div>
     </footer>
 

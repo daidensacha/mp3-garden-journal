@@ -45,16 +45,21 @@
               </ul>
               <div class="row">
                 <ul>
-                  <li class="mt-10"><strong class="emph-dark-teal">Created by:</strong> <span class="emph-ital">{{garden_event.created_by }}</span></li>
+                  <li class="mt-10"><strong class="emph-dark-teal">Created by:</strong> 
+                    <span class="emph-ital">{{garden_event.created_by }}</span></li>
                 </ul>
               </div>
               
               <div class="row right-align">
                 <a href="{{ url_for('edit_event', event_id=garden_event._id) }}"
-                  class="waves-effect waves-green btn-small blue darken-2">
+                  class="waves-effect waves-green btn-small blue darken-2 btn-edit">
                   Edit Event <i class="fas fa-edit right"></i>
                 </a>
-                <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Delete</a> -->
+                <a href="{{ url_for('delete_event', event_id=garden_event._id) }}" 
+                    class="modal-close waves-effect waves-green btn-small red darken-4 btn-delete">
+                    Delete Event <i class="fas fa-times-circle right"></i>
+                </a>
+                    
               </div>
               <br>
               <!--  hr center of the accordion content info -->
@@ -80,6 +85,7 @@
                                       plant.plant_sowing.strftime("%B %d") }}</span> so they are ready for
                       planting
                       time.</li>
+                      
                     <li><span class="material-icons flower md-12"></span> <span class="emph-red">Plant</span> <span
                         class="emph-green">{{
                                       plant.plant_planting.strftime("%B %d") }}</span> at earliest.</li>
@@ -101,15 +107,18 @@
                 </div>
                 <div class="row">
                   <ul>
-                    <li class="mt-10"><strong class="emph-dark-teal">Created by:</strong><span class="emph-ital">{{plant.created_by }}</span></li>
+                    <li class="mt-10"><strong class="emph-dark-teal">Created by: </strong><span class="emph-ital">{{ plant.created_by }}</span></li>
                   </ul>
                 </div>
                 <div class="row right-align">
                   <a href="{{ url_for('edit_plant', plant_id=plant._id) }}"
-                    class="waves-effect waves-green btn-small blue darken-2">
+                    class="waves-effect waves-green btn-small blue darken-2 btn-edit">
                     Edit Plant <i class="fas fa-edit right"></i>
                   </a>
-                  <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Delete</a> -->
+                  <a href="{{ url_for('delete_plant', plant_id=plant._id) }}" 
+                  class="modal-close waves-effect waves-green btn-small red darken-4 btn-delete">
+                  Delete Plant <i class="fas fa-times-circle right"></i>
+                </a>
                 </div>
 
               </div>
@@ -122,6 +131,7 @@
           </span>
         </div>
       </li>
+      
       {% endfor %}
     </ul>
 
@@ -129,7 +139,10 @@
 
     </ul>
 
-
+    <div>
+      <p>{{event_refs}}</p>
+      <p>{{plant_events}}</p>
+    </div>
   </section>
 </div>
 {% endblock %}

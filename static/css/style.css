@@ -3,16 +3,36 @@
 }
 
 div.wrapper {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 80px);
 }
 
 p {
   line-height: 2rem;
+  text-align: justify;
 }
+
+/*
+================================================================================
+========================== Materialize Buttons Styling =========================
+================================================================================
+*/
 
 .button-collapse {
   color: #ee6e73;
 }
+
+.btn-close:hover {
+  background-color: #78909c!important;
+}
+
+.btn-edit:hover {
+  background-color: #1e88e5!important;
+}
+
+.btn-delete:hover {
+  background-color: #c62828!important;
+}
+
 
 /*
 ================================================================================
@@ -75,6 +95,7 @@ nav {
 nav ul a,
 nav .brand-logo {
   color: #444;
+  font-size: 1.1em;
 }
 
 nav li a {
@@ -90,17 +111,37 @@ nav li a {
 }
 
 .social-icon {
+  color: #ffab91;
+  text-shadow: 1px 2px 5px rgba(.76,.74,.74,.64);
   margin-right: 10px;
 }
 
 .social-icon:hover {
-  color: rgb(228, 90, 22);
+  color: #ffecb3;
 }
 
 /******************************* Footer Styling *******************************/
 
 footer.page-footer {
+  padding-top: 0;
   margin: 0;
+  background-color: #ef5350;
+  /* background-color: #ee6e73; */
+}
+
+.page-footer .footer-copyright {
+  overflow: hidden;
+  min-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+  color: rgba(255,255,255,0.8);
+  background-color: rgba(51,51,51,0.08);
+}
+
+ul.share-buttons {
+  margin-right: 20px;
+  color: #efefef
 }
 
 /*
@@ -187,6 +228,8 @@ li.active .collapsible-header .caret {
 }
 
 .collection li:hover {
+  -webkit-transition: .25s;
+  transition: .25s;
   background-color: #ecf0c4;
 }
 
@@ -395,8 +438,9 @@ li a.dropdown-trigger:focus {
   /* fix for logo width issue */
   nav .brand-logo {
     left: calc(50% - 20px);
+    /* left: calc(25%); */
     transform: translateX(-50%);
-    font-size: 1.8em;
+    font-size: 1em;
   }
   .caption .slider-heading {
     display: block;
@@ -415,11 +459,11 @@ li a.dropdown-trigger:focus {
 @media only screen and (min-width : 600px) {
   .caption .slider-heading {
     display: block;
-    /* font-size: 2.8em; */
+    font-size: 3.2em;
   }
   .caption .slider-subheading {
     display: block;
-    font-size: 1.8em;
+    font-size: 2.4em;
   }
 }
 
