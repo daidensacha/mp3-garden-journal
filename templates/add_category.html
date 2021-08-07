@@ -19,7 +19,7 @@
                 <!-- submit button -->
                 <div class="row">
                     <div class="col s12 center-align">
-                        <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5">
+                        <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
                             Add Category <i class="fas fa-plus-square right"></i>
                         </button>
                     </div>
@@ -36,7 +36,7 @@
                         <div>{{ loop.index}}:
                         {{ category.event_category.capitalize() }}
                             <a href="{{ url_for('edit_category', category_id=category._id) }}" 
-                                class="secondary-content">Edit <i class="fas fa-edit"></i>
+                                class="secondary-content indigo-text darken-4-text edit-link">Edit <i class="fas fa-edit"></i>
                             </a>
                             <span class="secondary-content mr-20"><strong class="emph-dark-teal">
                                 Created by:</strong> <span class="emph-ital emph-black">

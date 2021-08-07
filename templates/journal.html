@@ -4,43 +4,70 @@
   <section>
 
     <h3>My Events</h3>
-    <form action="">
     <div class="row">
-      <div class="col s12 m4">
-        <div class="input-field col s12">
-          <select id="filter_category" name="filter_category" multiple>
-            <option value="" disabled selected>Category</option>
-            {% for category in user_categories %}
-            <option value="{{ category.event_category }}">{{ category.event_category }}</option>
-            {% endfor %}
-          </select>
-          <label for="filter_category">Filter Events By Category</label>
-        </div>
-      </div>
-      <div class="col s12 m4">
-        <div class="input-field col s12">
-          <select id="filter_month" name="filter_month" multiple>
-            <option value="" disabled selected>Month</option>
-            {% for month in event_months %}
-            <option value="{{ month.event_month }}">{{ month.event_month }}</option>
-            {% endfor %}
-          </select>
-          <label for="filter_month">Filter Events By Month</label>
-        </div>
-      </div>
-      <div class="col s12 m4">
-        <div class="input-field col s12">
-          <select id="filter_plant" name="filter_plant"  multiple>
-            <option value="" disabled selected>Plant</option>
-            {% for plant in user_plants %}
-            <option value="{{plant.plant_name}}">{{plant.plant_name}}</option>
-            {% endfor %}
-          </select>
-          <label for="filter_plant">Filter Events By Plant</label>
-        </div>
+      <div class="col s12">
+        <form action="">
+          <div class="row">
+            <div class="col s12 m4">
+              <div class="input-field col s12">
+                <select id="filter_category" name="filter_category" multiple>
+                  <option value="" disabled selected></option>
+                  {% for category in user_categories %}
+                  <option value="{{ category.event_category }}">{{ category.event_category }}</option>
+                  {% endfor %}
+                </select>
+                <label for="filter_category">Filter Events By Category</label>
+              </div>
+            </div>
+            <div class="col s12 m4">
+              <div class="input-field col s12">
+                <select id="filter_month" name="filter_month" multiple>
+                  <option value="" disabled selected></option>
+                  {% for month in event_months %}
+                  <option value="{{ month.event_month }}">{{ month.event_month }}</option>
+                  {% endfor %}
+                </select>
+                <label for="filter_month">Filter Events By Month</label>
+              </div>
+            </div>
+            <div class="col s12 m4">
+              <div class="input-field col s12">
+                <select id="filter_plant" name="filter_plant"  multiple>
+                  <option value="" disabled selected></option>
+                  {% for plant in user_plants %}
+                  <option value="{{plant.plant_name}}">{{plant.plant_name}}</option>
+                  {% endfor %}
+                </select>
+                <label for="filter_plant">Filter Events By Plant</label>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-  </form>
+
+    <div class="row">
+      <div class="col s12">
+        <form action="{{ url_for('search') }}" method="post" class="col s12">
+          <div class="row valign-wrapper center-align">
+              <div class="input-field col s12 m8">
+                  <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+                  <input type="text" name="query" id="query" minlength="3" class="validate" required>
+                  <label for="query">Search Events</label>
+              </div>
+              <div class="col s12 m4">
+                  <a href="{{ url_for('get_garden_events') }}" class="btn-small red darken-4 modal-trigger btn-delete">Reset</a>
+                  <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
+                      <i class="fas fa-search left"></i> Search
+                  </button>
+              </div>
+          </div>
+      </form>
+      </div>
+    </div>
+    
+
+
 
     <ul class="collapsible">
       {% for garden_event in user_garden_events %}

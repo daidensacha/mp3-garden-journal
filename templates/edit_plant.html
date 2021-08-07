@@ -18,7 +18,7 @@
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
                         <input id="plant_name" name="plant_name"  minlength="5" maxlength="30" 
-                        value="{{ plant.plant_name}}" type="text" class="validate" required>
+                        value="{{ plant.plant_name }}" type="text" class="validate" required>
                         <label for="plant_name">Plant Name</label>
                     </div>
                 </div>
@@ -93,14 +93,14 @@
                     
                     <div class="col s12 center-align">
                         {% if session["user"] == plant.created_by %}
-                            <a href="#delete-plant-modal" class="btn-small red darken-4 modal-trigger">
+                            <a href="#delete-plant-modal" class="btn-small red darken-4 modal-trigger btn-delete">
                                 Delete <i class="fas fa-times-circle right"></i>
                             </a>
                         {% endif %}
-                        <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5">
+                        <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
                             Save Changes <i class="fas fa-edit right"></i>
                         </button>
-                        <a href="{{ url_for('get_plants') }}" class="btn-small red darken-4">
+                        <a href="{{ url_for('get_plants') }}" class="btn-small blue-grey btn-close">
                             Cancel <i class="fas fa-times-circle right"></i>
                         </a>
                     </div>
@@ -116,7 +116,7 @@
                                 class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
                                 Confirm Delete <i class="fas fa-times-circle right"></i>
                             </a>
-                            <a href="{{ url_for('get_plants') }}" class="btn-small blue-grey">
+                            <a href="{{ url_for('get_plants') }}" class="btn-small blue-grey btn-close">
                                 Cancel <i class="fas fa-times-circle right"></i>
                             </a>
                         </div>

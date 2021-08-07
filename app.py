@@ -27,6 +27,71 @@ def home():
     return render_template('home.html')
 
 
+@app.route("/get_garden_events")
+def get_garden_events():
+    garden_events = list(mongo.db.garden_events.find().sort("event_date"))
+    plants = list(mongo.db.plants.find())
+    categories = list(mongo.db.categories.find().sort("event_category", 1))
+    events_months = list(mongo.db.garden_events.find().sort("event_months"))
+
+    user_garden_events = []
+    for garden_event in garden_events:
+        if (garden_event["created_by"] == session["user"] or
+                session["user"] == "admin"):
+            user_garden_events.append(garden_event)
+
+    user_plants = []
+    for plant in plants:
+        if (plant["created_by"] == session["user"] or
+                session["user"] == "admin"):
+            user_plants.append(plant)
+
+    user_categories = []
+    for category in categories:
+        if (category["created_by"] == session["user"] or
+                session["user"] == "admin"):
+            user_categories.append(category)
+
+    event_months = []
+    for event_month in events_months:
+        if (event_month["created_by"] == session["user"] or
+                session["user"] == "admin"):
+            event_months.append(event_month)
+
+    return render_template("journal.html", user_plants=user_plants,
+                           user_garden_events=user_garden_events,
+                           user_categories=user_categories,
+                           event_months=event_months)
+
+
+@app.route("/get_plants")
+def get_plants():
+    plants = list(mongo.db.plants.find().sort("plant_type"))
+
+    user_plants = []
+    for plant in plants:
+        if (plant["created_by"] == session["user"] or
+                session["user"] == "admin"):
+            user_plants.append(plant)
+
+    return render_template("plants.html", user_plants=user_plants)
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    user_categories = list(mongo.db.categories.find(
+        {"$text": {"$search": query}}))
+    user_plants = list(mongo.db.plants.find(
+        {"$text": {"$search": query}}))
+    user_garden_events = list(mongo.db.garden_events.find(
+        {"$text": {"$search": query}}))
+    return render_template("journal.html",
+                           user_garden_events=user_garden_events,
+                           user_categories=user_categories,
+                           user_plants=user_plants)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -80,6 +145,18 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # get session users username from db
+    username = mongo.db.users.find_one(
+        {"user_name": session["user"]})["user_name"]
+
+    if session["user"]:
+        return render_template("profile.html", username=username)
+
+    return redirect(url_for("login"))
 
 
 @app.route("/logout")
@@ -200,7 +277,6 @@ def add_plant():
 
 @app.route("/edit_plant/<plant_id>", methods=["GET", "POST"])
 def edit_plant(plant_id):
-
     if request.method == "POST":
         sowing_date_string = request.form.get("plant_sowing")
         planting_date_string = request.form.get("plant_planting")
@@ -284,64 +360,6 @@ def delete_category(category_id):
     mongo.db.categories.remove({"_id": ObjectId(category_id)})
     flash("Category Successfuly Deleted", "success")
     return redirect(url_for("add_category"))
-
-
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-    # get session users username from db
-    username = mongo.db.users.find_one(
-        {"user_name": session["user"]})["user_name"]
-
-    if session["user"]:
-        return render_template("profile.html", username=username)
-
-    return redirect(url_for("login"))
-
-
-@app.route("/get_garden_events")
-def get_garden_events():
-    garden_events = list(mongo.db.garden_events.find().sort("event_date"))
-    plants = list(mongo.db.plants.find())
-    categories = list(mongo.db.categories.find().sort("event_category", 1))
-    events_months = list(mongo.db.garden_events.find().sort("event_months"))
-
-    user_garden_events = []
-    for garden_event in garden_events:
-        if garden_event["created_by"] == session["user"] or session["user"] == "admin":
-            user_garden_events.append(garden_event)
-
-    user_plants = []
-    for plant in plants:
-        if plant["created_by"] == session["user"] or session["user"] == "admin":
-            user_plants.append(plant)
-
-    user_categories = []
-    for category in categories:
-        if category["created_by"] == session["user"] or session["user"] == "admin":
-            user_categories.append(category)
-
-    event_months = []
-    for event_month in events_months:
-        if event_month["created_by"] == session["user"] or session["user"] == "admin":
-            event_months.append(event_month)  
-  
-    # month = mongo.db.garden_events.find({'$expr': {'$eq': [{'$month': "$event_date"} ,9]}})
-    return render_template("journal.html", user_plants=user_plants,
-                           user_garden_events=user_garden_events,
-                           user_categories=user_categories,
-                           event_months=event_months)
-
-
-@app.route("/get_plants")
-def get_plants():
-    plants = list(mongo.db.plants.find().sort("plant_type"))
-
-    user_plants = []
-    for plant in plants:
-        if plant["created_by"] == session["user"] or session["user"] == "admin":
-            user_plants.append(plant)
-
-    return render_template("plants.html", user_plants=user_plants)
 
 
 if __name__ == "__main__":

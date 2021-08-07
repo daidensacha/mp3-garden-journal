@@ -28,7 +28,7 @@
                             class="waves-effect waves-light btn btn-small red darken-4 btn-delete modal-trigger">
                             Delete <i class="fas fa-times-circle right"></i>
                         </a>
-                        <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5">
+                        <button type="submit" class="btn-small blue darken-2 btn-edit">
                             Save Changes <i class="fas fa-edit right"></i>
                         </button>
                         
@@ -53,7 +53,7 @@
                             class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
                             Confirm Delete <i class="fas fa-times-circle right"></i>
                         </a>
-                        <a href="{{ url_for('add_category') }}" class="btn-small blue-grey">
+                        <a href="{{ url_for('add_category') }}" class="btn-small blue-grey btn-close">
                             Cancel <i class="fas fa-times-circle right"></i>
                         </a>
                     </div>
@@ -70,7 +70,7 @@
                     <li class="collection-item">
                         <div>{{ loop.index}}: {{ category.event_category.capitalize() }} 
                             <a href="{{ url_for('edit_category', category_id=category._id) }}" 
-                                class="secondary-content">Edit <i class="fas fa-edit"></i>
+                                class="secondary-content indigo-text darken-4-text edit-link">Edit <i class="fas fa-edit"></i>
                             </a>
                             <span class="secondary-content mr-20"><strong class="emph-dark-teal">
                                 Created by:</strong> <span class="emph-ital emph-black">

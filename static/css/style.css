@@ -33,6 +33,9 @@ p {
   background-color: #c62828!important;
 }
 
+.edit-link:hover {
+  color: #3d5afe!important;
+}
 
 /*
 ================================================================================

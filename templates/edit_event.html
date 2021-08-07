@@ -80,14 +80,14 @@
                 <div class="row">
                     <div class="col s12 center-align">
                         {% if session["user"] == garden_event.created_by %}
-                            <a href="#delete-event-modal" class="btn-small red darken-4 modal-trigger">
+                            <a href="#delete-event-modal" class="btn-small red darken-4 modal-trigger btn-delete">
                                 Delete <i class="fas fa-times-circle right"></i>
                             </a>                   
-                            <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5">
+                            <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
                                 Save Changes <i class="fas fa-edit right"></i>
                             </button>
                         {% endif %}
-                        <a href="{{ url_for('get_garden_events') }}" class="btn-small red darken-4">
+                        <a href="{{ url_for('get_garden_events') }}" class="btn-small blue-grey btn-close">
                             Cancel <i class="fas fa-times-circle right"></i>
                         </a>
                     </div>
@@ -102,7 +102,7 @@
                                 class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
                                 Confirm Delete <i class="fas fa-times-circle right"></i>
                             </a>
-                            <a href="{{ url_for('get_garden_events') }}" class="btn-small blue-grey">
+                            <a href="{{ url_for('get_garden_events') }}" class="btn-small blue-grey btn-close">
                                 Cancel <i class="fas fa-times-circle right"></i>
                             </a>
                         </div>
