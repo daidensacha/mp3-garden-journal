@@ -4,6 +4,43 @@
   <section>
 
     <h3>My Events</h3>
+    <form action="">
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="input-field col s12">
+          <select id="filter_category" name="filter_category" multiple>
+            <option value="" disabled selected>Category</option>
+            {% for category in user_categories %}
+            <option value="{{ category.event_category }}">{{ category.event_category }}</option>
+            {% endfor %}
+          </select>
+          <label for="filter_category">Filter Events By Category</label>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="input-field col s12">
+          <select id="filter_month" name="filter_month" multiple>
+            <option value="" disabled selected>Month</option>
+            {% for month in event_months %}
+            <option value="{{ month.event_month }}">{{ month.event_month }}</option>
+            {% endfor %}
+          </select>
+          <label for="filter_month">Filter Events By Month</label>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="input-field col s12">
+          <select id="filter_plant" name="filter_plant"  multiple>
+            <option value="" disabled selected>Plant</option>
+            {% for plant in user_plants %}
+            <option value="{{plant.plant_name}}">{{plant.plant_name}}</option>
+            {% endfor %}
+          </select>
+          <label for="filter_plant">Filter Events By Plant</label>
+        </div>
+      </div>
+    </div>
+  </form>
 
     <ul class="collapsible">
       {% for garden_event in user_garden_events %}
@@ -35,12 +72,19 @@
               <h6>{{ garden_event.event_name.title() }}</h6>
 
               <ul>
-                <li><i class="fas fa-list-ul"></i> The event category is
-                  <span class="emph-green">{{ garden_event.event_category.capitalize()}}</span>.</li>
-                <li><i class="far fa-clock"></i> The event repeats <span class="emph-green">{{
-                                      garden_event.event_repeats.capitalize() }}</span>. </li>
-                <li class="mt-5"><i class="far fa-edit"></i> <strong class="emph-dark-teal">Event
-                    notes:</strong> {{ garden_event.event_notes.capitalize() }}</li>
+                <li>
+                  <i class="fas fa-list-ul"></i> The event category is
+                    <span class="emph-green">
+                    {{ garden_event.event_category.capitalize()}}</span>.
+                </li>
+                <li>
+                  <i class="far fa-clock"></i> 
+                  The event repeats <span class="emph-green">
+                    {{garden_event.event_repeats.capitalize() }}</span>. 
+                </li>
+                <li class="mt-5"><i class="far fa-edit"></i> 
+                  <strong class="emph-dark-teal">Event notes:</strong> 
+                  {{ garden_event.event_notes.capitalize() }}</li>
 
               </ul>
               <div class="row">
@@ -51,15 +95,12 @@
               </div>
               
               <div class="row right-align">
+                {% if session["user"] == garden_event.created_by %}
                 <a href="{{ url_for('edit_event', event_id=garden_event._id) }}"
                   class="waves-effect waves-green btn-small blue darken-2 btn-edit">
                   Edit Event <i class="fas fa-edit right"></i>
                 </a>
-                <a href="{{ url_for('delete_event', event_id=garden_event._id) }}" 
-                    class="modal-close waves-effect waves-green btn-small red darken-4 btn-delete">
-                    Delete Event <i class="fas fa-times-circle right"></i>
-                </a>
-                    
+                {% endif %}  
               </div>
               <br>
               <!--  hr center of the accordion content info -->
@@ -70,55 +111,79 @@
               {% for plant in user_plants %}
 
               <!-- If comparitor to match event and plant info -->
-              {% if garden_event.plant_name == plant.plant_name %}
+              {% if garden_event.plant_name == plant._id %}
 
               <!-- Plant title, and plant modal trigger link. Use loop.index to create unique id for the modal trigger href  -->
               <h6>{{ plant.plant_type.title() }}:
-                {{ plant.plant_name.title() }}</h6>
+                {{ plant.plant_name.title() }}
+              </h6>
 
 
               <div class="row">
                 <div class="row">
                   <ul>
-                    <li><span class="material-icons flower md-12"></span> <span class="emph-red">Sow</span> seeds <span
-                        class="emph-green">{{
-                                      plant.plant_sowing.strftime("%B %d") }}</span> so they are ready for
-                      planting
-                      time.</li>
-                      
-                    <li><span class="material-icons flower md-12"></span> <span class="emph-red">Plant</span> <span
-                        class="emph-green">{{
-                                      plant.plant_planting.strftime("%B %d") }}</span> at earliest.</li>
-                    <li><span class="material-icons flower md-12"></span> <span class="emph-red">Harvesting</span> season
-                      is
-                      from <span class="emph-green">{{ plant.harvest_from.strftime("%B %d")
-                                      }}</span>
-                      to <span class="emph-green">{{ plant.harvest_to.strftime("%B %d")
-                                      }}</span></li>
-                    <li><span class="material-icons flower md-12"></span> <span class="emph-red">Fertilise</span> <span
-                        class="emph-green">{{
-                                      plant.fertilise_frequency}}</span> with <span class="emph-green">{{
-                                      plant.fertiliser_type }}</span>. </li>
+                    {% if plant.plant_sowing == "" %}
+                    <li></li>
+                        <!-- <li><span class="material-icons flower md-12"></span> <span class="emph-red">No sowing date</span> available for this plant at this time.</li> -->
+                    {% else %}
+                    <li><span class="material-icons flower md-12"></span> 
+                      <span class="emph-red">Sow</span> seeds 
+                      <span class="emph-green">
+                        {{ plant.plant_sowing.strftime("%B %d") }}
+                      </span> so they are ready for planting time.
+                    </li>
+                    {% endif %}
+                    {% if plant.plant_planting == "" %}
+                    <li></li>
+                        <!-- <li><span class="material-icons flower md-12"></span> <span class="emph-red">No sowing date</span> available for this plant at this time.</li> -->
+                    {% else %}
+                    <li>
+                      <span class="material-icons flower md-12"></span> 
+                      <span class="emph-red">Plant</span> 
+                      <span class="emph-green">
+                        {{ plant.plant_planting.strftime("%B %d") }}
+                      </span> at earliest.
+                    </li>
+                    {% endif%}
+                    <li>
+                      <span class="material-icons flower md-12"></span> 
+                      <span class="emph-red">Harvesting</span> season is from 
+                      <span class="emph-green">
+                        {{ plant.harvest_from.strftime("%B %d") }}</span> to 
+                      <span class="emph-green">
+                        {{ plant.harvest_to.strftime("%B %d") }}</span>
+                    </li>
+                    <li>
+                      <span class="material-icons flower md-12"></span> 
+                      <span class="emph-red">Fertilise</span> 
+                      <span class="emph-green">
+                        {{ plant.fertilise_frequency}}</span> with 
+                      <span class="emph-green"> {{ plant.fertiliser_type }}
+                      </span>. 
+                    </li>
                   </ul>
                   <ul>
-                    <li class="mt-5"><strong class="emph-dark-teal">Note:</strong> {{
-                                  plant.plant_note.capitalize() }}</li>
+                    <li class="mt-5"><strong class="emph-dark-teal">
+                      Note:</strong> {{ plant.plant_note.capitalize() }}
+                    </li>
                   </ul>
                 </div>
                 <div class="row">
                   <ul>
-                    <li class="mt-10"><strong class="emph-dark-teal">Created by: </strong><span class="emph-ital">{{ plant.created_by }}</span></li>
+                    <li class="mt-10"><strong class="emph-dark-teal">
+                      Created by: </strong><span class="emph-ital">
+                        {{ plant.created_by }}</span>
+                    </li>
                   </ul>
                 </div>
+
                 <div class="row right-align">
-                  <a href="{{ url_for('edit_plant', plant_id=plant._id) }}"
-                    class="waves-effect waves-green btn-small blue darken-2 btn-edit">
-                    Edit Plant <i class="fas fa-edit right"></i>
-                  </a>
-                  <a href="{{ url_for('delete_plant', plant_id=plant._id) }}" 
-                  class="modal-close waves-effect waves-green btn-small red darken-4 btn-delete">
-                  Delete Plant <i class="fas fa-times-circle right"></i>
-                </a>
+                  {% if session["user"] == plant.created_by %}
+                    <a href="{{ url_for('edit_plant', plant_id=plant._id) }}"
+                      class="waves-effect waves-green btn-small blue darken-2 btn-edit">
+                      Edit Plant <i class="fas fa-edit right"></i>
+                    </a>
+                  {% endif %}
                 </div>
 
               </div>
@@ -140,8 +205,6 @@
     </ul>
 
     <div>
-      <p>{{event_refs}}</p>
-      <p>{{plant_events}}</p>
     </div>
   </section>
 </div>

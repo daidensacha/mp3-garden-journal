@@ -96,13 +96,15 @@ def add_event():
         date_string = request.form.get("event_date")
         date_object = pd.to_datetime(date_string)
         plant_name = request.form.get("plant_name")
+        event_month = date_object.strftime("%B")
 
         event = {
             "event_category": request.form.get("event_category"),
-            "plant_name": plant_name,
+            "plant_name": ObjectId(plant_name),
             "event_name": request.form.get("event_name"),
             "event_repeats": request.form.get("event_repeats"),
             "event_date": date_object,
+            "event_month": event_month,
             "event_notes": request.form.get("event_notes"),
             "created_by": session["user"]
         }
@@ -121,15 +123,21 @@ def edit_event(event_id):
     if request.method == "POST":
         date_string = request.form.get("event_date")
         date_object = pd.to_datetime(date_string)
+        event_month = date_object.strftime("%B")
+        # change plant name variable to plant_id in events collection
+        # Also change in edit_events.html and add_events.html
         plant_name = request.form.get("plant_name")
 
         submit = {
             "event_category": request.form.get("event_category"),
-            "plant_name": plant_name,
+            # Creates an object from the string to send to collection
+            "plant_name": ObjectId(plant_name),
             "event_name": request.form.get("event_name"),
             "event_repeats": request.form.get("event_repeats"),
             "event_date": date_object,
+            "event_month": event_month,
             "event_notes": request.form.get("event_notes"),
+            "created_by": session["user"]
         }
         mongo.db.garden_events.update({"_id": ObjectId(event_id)}, submit)
         flash("Event Successfully Updated", "success")
@@ -141,7 +149,7 @@ def edit_event(event_id):
     categories = mongo.db.categories.find().sort("event_category", 1)
     plants = list(mongo.db.plants.find().sort("plant_type"))
     return render_template(
-        "edit_event.html", plants=plants, garden_events=garden_events, 
+        "edit_event.html", plants=plants, garden_events=garden_events,
         garden_event=garden_event, categories=categories)
 
 
@@ -294,6 +302,8 @@ def profile(username):
 def get_garden_events():
     garden_events = list(mongo.db.garden_events.find().sort("event_date"))
     plants = list(mongo.db.plants.find())
+    categories = list(mongo.db.categories.find().sort("event_category", 1))
+    events_months = list(mongo.db.garden_events.find().sort("event_months"))
 
     user_garden_events = []
     for garden_event in garden_events:
@@ -305,9 +315,21 @@ def get_garden_events():
         if plant["created_by"] == session["user"] or session["user"] == "admin":
             user_plants.append(plant)
 
+    user_categories = []
+    for category in categories:
+        if category["created_by"] == session["user"] or session["user"] == "admin":
+            user_categories.append(category)
+
+    event_months = []
+    for event_month in events_months:
+        if event_month["created_by"] == session["user"] or session["user"] == "admin":
+            event_months.append(event_month)  
+  
     # month = mongo.db.garden_events.find({'$expr': {'$eq': [{'$month': "$event_date"} ,9]}})
     return render_template("journal.html", user_plants=user_plants,
-                           user_garden_events=user_garden_events)
+                           user_garden_events=user_garden_events,
+                           user_categories=user_categories,
+                           event_months=event_months)
 
 
 @app.route("/get_plants")

@@ -5,8 +5,46 @@
       <div class="card-panel z-depth-2">
         <div class="row">
           <div class="">
-            <h4 class="center">{{ username }}'s Profile</h4>
-          </div>
+            <h3 class="center">{{ username }}'s Profile</h3>
+
+            <h4 class="center">Update Information</h4>
+            <div class="row">
+    
+              <!-- <form class="col s12 m12" method="POST" action="{{ url_for('login') }}"> -->
+              <form class="" method="POST" action="{{ url_for('login') }}">
+                <!-- <div class="row"> -->
+                  <div class="input-field col s12 m12">
+                    <i class="fas fa-user-cog prefix"></i>
+                    <input id="username" name="username" type="text" minlength="5" maxlength="15"
+                      pattern="^[a-zA-Z0-9]{5,15}$" class="validate" disabled>
+                    <label for="username">Username</label>
+                  </div>
+    
+                  <div class="input-field col s12 m12">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                      class="validate" >
+                    <label for="email">Your Email</label>
+                  </div>
+    
+                  <div class="input-field col s12 m12">
+                    <i class="fa fa-unlock-alt prefix"></i>
+                    <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                      pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                    <label for="password">Password</label>
+                  </div>
+    
+    
+                <!-- </div> -->
+                <button class="btn waves-effect waves-light center col s12 m12" type="submit" name="action">Update Info
+                  <i class="fa fa-sign-in-alt right"></i>
+                </button>
+              </form>
+    
+            </div>
+            <!--row-->
+
+          </div> <!-- end classless div-->
         </div>
       </div>
     </div>

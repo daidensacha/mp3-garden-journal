@@ -113,7 +113,7 @@ nav li a {
 .social-icon {
   color: #ffab91;
   text-shadow: 1px 2px 5px rgba(.76,.74,.74,.64);
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 .social-icon:hover {
@@ -376,6 +376,10 @@ li.active .collapsible-header .caret {
     margin-bottom: 1em;
   }
 
+  .mr-20 {
+    margin-right: 20px;
+  }
+
   .pr-10 {
     padding-right: 10px;
   }
@@ -392,6 +396,10 @@ li.active .collapsible-header .caret {
 
   .emph-green {
     color: #689f38 ;
+  }
+
+  .emph-black {
+    color: #000000 ;
   }
 
   .emph-dark-teal {
@@ -452,6 +460,16 @@ li a.dropdown-trigger:focus {
   }
   .parallax-container {
     color: white;
+  }
+  ul.share-buttons {
+    margin-right: 5px;
+  }
+  .social-icon {
+    font-size: 10px;
+    margin-right: 2px;
+  }
+  div.footer-copyright .container {
+    width: auto;
   }
 }
 

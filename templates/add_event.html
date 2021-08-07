@@ -25,7 +25,8 @@
                         <select id="plant_name" name="plant_name" class="validate" required>
                             <option value="" disabled selected>Choose Plant</option>
                             {% for plant in plants %}
-                            <option value="{{ plant.plant_name }}">{{ plant.plant_name }}</option>
+                            <!-- Here the plant ObjectId is used in value as sudo foreign key -->
+                            <option value="{{ plant._id }}">{{ plant.plant_name }}</option>
                             {% endfor %}
                         </select>
                         <label for="plant_name">Plant Name</label>

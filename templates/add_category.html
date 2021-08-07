@@ -32,10 +32,17 @@
 
             <ul class="collection">
                 {% for category in categories %}
-                    <li class="collection-item"><div>{{ loop.index}}:
+                    <li class="collection-item">
+                        <div>{{ loop.index}}:
                         {{ category.event_category.capitalize() }}
-                        <a href="{{ url_for('edit_category', category_id=category._id) }}" 
-                        class="secondary-content">Edit <i class="fas fa-edit"></i></a></div></li>
+                            <a href="{{ url_for('edit_category', category_id=category._id) }}" 
+                                class="secondary-content">Edit <i class="fas fa-edit"></i>
+                            </a>
+                            <span class="secondary-content mr-20"><strong class="emph-dark-teal">
+                                Created by:</strong> <span class="emph-ital emph-black">
+                                    {{ category.created_by }}</span></span>
+                        </div>
+                    </li>
                 {% endfor %}
               </ul>
     
