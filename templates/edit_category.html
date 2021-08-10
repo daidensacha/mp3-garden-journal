@@ -29,7 +29,7 @@
                             Delete <i class="fas fa-times-circle right"></i>
                         </a>
                         <button type="submit" class="btn-small blue darken-2 btn-edit">
-                            Save Changes <i class="fas fa-edit right"></i>
+                            Save <i class="fas fa-edit right"></i>
                         </button>
                         
                         {% endif %}
@@ -41,17 +41,16 @@
                 <!-- should I move form to section tags to after the model ??? -->
                 <!-- Modal Structure -->
                 <div id="delete-category-modal" class="modal">
+                    <div class="modal-header">
+                        <p class="materialert danger">Deleting category data is irreversable.</p>
+                    </div>
                     <div class="modal-content">
-                                                 
-                        <p class="materialert danger flow-text">Deleting the "<strong>{{ category.event_category | lower}}</strong>" category is irreversable.</p>
-                        <p class="flow-text">Any associated events will will no longer grouped by  "<strong class="emph-green">{{ category.event_category | lower}}</strong>".</p>
-                        <p class="flow-text">Are you sure you want to delete the category?</p>
-                   
+                        <p>Are you sure you want to delete "<strong class="emph-green">{{ category.event_category | lower}}</strong>"?</p>
                     </div>
                     <div class="modal-footer">
                         <a href="{{ url_for('delete_category', category_id=category._id) }}" 
                             class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
-                            Confirm Delete <i class="fas fa-times-circle right"></i>
+                            Delete <i class="fas fa-times-circle right"></i>
                         </a>
                         <a href="{{ url_for('add_category') }}" class="btn-small blue-grey btn-close">
                             Cancel <i class="fas fa-times-circle right"></i>

@@ -22,14 +22,14 @@
                     <!-- select plant name -->
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-                        <select id="plant_name" name="plant_name" class="validate" required>
+                        <select id="event_plant_id" name="event_plant_id" class="validate" required>
                             <option value="" disabled selected>Choose Plant</option>
                             {% for plant in plants %}
                             <!-- Here the plant ObjectId is used in value as sudo foreign key -->
                             <option value="{{ plant._id }}">{{ plant.plant_name }}</option>
                             {% endfor %}
                         </select>
-                        <label for="plant_name">Plant Name</label>
+                        <label for="event_plant_id">Plant Name</label>
                     </div>
                 </div>
                 <!-- event name -->

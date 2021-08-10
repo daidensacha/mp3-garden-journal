@@ -4,14 +4,14 @@
   <section>
 
     <h3>My Events</h3>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col s12">
-        <form action="">
+        <form action="{{ url_for('filter') }}" method="post">
           <div class="row">
             <div class="col s12 m4">
               <div class="input-field col s12">
                 <select id="filter_category" name="filter_category" multiple>
-                  <option value="" disabled selected></option>
+                  <option value="" disabled ></option>
                   {% for category in user_categories %}
                   <option value="{{ category.event_category }}">{{ category.event_category }}</option>
                   {% endfor %}
@@ -22,10 +22,19 @@
             <div class="col s12 m4">
               <div class="input-field col s12">
                 <select id="filter_month" name="filter_month" multiple>
-                  <option value="" disabled selected></option>
-                  {% for month in event_months %}
-                  <option value="{{ month.event_month }}">{{ month.event_month }}</option>
-                  {% endfor %}
+                  <option value="" disabled ></option>
+                  <option value="January">January</option>
+                  <option value="Febuary">Febuary</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
                 </select>
                 <label for="filter_month">Filter Events By Month</label>
               </div>
@@ -33,7 +42,7 @@
             <div class="col s12 m4">
               <div class="input-field col s12">
                 <select id="filter_plant" name="filter_plant"  multiple>
-                  <option value="" disabled selected></option>
+                  <option value="" disabled ></option>
                   {% for plant in user_plants %}
                   <option value="{{plant.plant_name}}">{{plant.plant_name}}</option>
                   {% endfor %}
@@ -41,32 +50,41 @@
                 <label for="filter_plant">Filter Events By Plant</label>
               </div>
             </div>
+            <a href="{{ url_for('get_garden_events') }}"
+              class="btn-small red darken-4 btn-delete">Reset</a>
+            <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
+              <i class="fas fa-search left"></i> Filter
+            </button>
+            
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
 
     <div class="row">
-      <div class="col s12">
-        <form action="{{ url_for('search') }}" method="post" class="col s12">
-          <div class="row valign-wrapper center-align">
-              <div class="input-field col s12 m8">
-                  <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
-                  <input type="text" name="query" id="query" minlength="3" class="validate" required>
-                  <label for="query">Search Events</label>
-              </div>
-              <div class="col s12 m4">
-                  <a href="{{ url_for('get_garden_events') }}" class="btn-small red darken-4 modal-trigger btn-delete">Reset</a>
-                  <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
-                      <i class="fas fa-search left"></i> Search
-                  </button>
-              </div>
+      <form action="{{ url_for('search') }}" method="post" class="col s12">
+        <div class="row valign-wrapper center-align">
+          <div class="input-field col s12 m7 l8">
+            <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+            <input type="text" name="query" id="query" minlength="3" class="validate" required>
+            <label for="query">Search Events</label>
           </div>
+          <div class="col s12 m5 l4">
+            <a href="{{ url_for('get_garden_events') }}"
+              class="btn-small red darken-4 btn-delete">Reset</a>
+            <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
+              <i class="fas fa-search left"></i> Search
+            </button>
+          </div>
+        </div>
       </form>
-      </div>
     </div>
     
-
+<!-- <h4>FILTER RESULTS</h4>
+<p><strong class="emph-red">Months (Month fliter):</strong>  {{ user_event_months }}</p>
+<p><strong class="emph-red">Plants (Plant filter):</strong>  {{ user_plants }}</p>
+<p><strong class="emph-red">Events (Category filter):</strong>  {{ user_garden_events }}</p> 
+<p>String of the options from selected options:</p> -->
 
 
     <ul class="collapsible">
@@ -99,6 +117,7 @@
               <h6>{{ garden_event.event_name.title() }}</h6>
 
               <ul>
+                
                 <li>
                   <i class="fas fa-list-ul"></i> The event category is
                     <span class="emph-green">
@@ -130,15 +149,15 @@
                 {% endif %}  
               </div>
               <br>
-              <!--  hr center of the accordion content info -->
+<!--  hr center of the accordion content info -->
               <hr>
               <br>
-              <!-- begin plant data section -->
+<!-- begin plant data section -->
               <!-- Loop through plants and get plant data -->
               {% for plant in user_plants %}
 
               <!-- If comparitor to match event and plant info -->
-              {% if garden_event.plant_name == plant._id %}
+              {% if garden_event.event_plant_id == plant._id %}
 
               <!-- Plant title, and plant modal trigger link. Use loop.index to create unique id for the modal trigger href  -->
               <h6>{{ plant.plant_type.title() }}:

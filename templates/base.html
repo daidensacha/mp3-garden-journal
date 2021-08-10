@@ -132,13 +132,13 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div class="container">
+                <!-- <div class=""> -->
                     <div class="row flashes">
                         <!-- <div class="col s12 m12"> -->
                             <span class="materialert {{category}} center-align icon">{{ message }}</span>
                         <!-- </div> -->
                     </div>
-                </div>
+                <!-- </div> -->
             {% endfor %}
         {% endif %}
     {% endwith %}
@@ -235,7 +235,7 @@
 
         <div class="footer-copyright">
             <div class="container">
-                <p>Copyright © mygardenalmanac.com</p>
+                <p>Copyright © oodaiden.com</p>
             </div>
             <ul class="share-buttons">
                 <li><a href="https://github.com/daidensacha" target="_blank" title="GitHub"

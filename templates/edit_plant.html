@@ -98,7 +98,7 @@
                             </a>
                         {% endif %}
                         <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
-                            Save Changes <i class="fas fa-edit right"></i>
+                            Save <i class="fas fa-edit right"></i>
                         </button>
                         <a href="{{ url_for('get_plants') }}" class="btn-small blue-grey btn-close">
                             Cancel <i class="fas fa-times-circle right"></i>
@@ -106,15 +106,16 @@
                     </div>
                     <!-- Modal Structure -->
                     <div id="delete-plant-modal" class="modal">
+                        <div class="modal-header">
+                            <p class="materialert danger">Deleting event data is irreversable.</p>
+                        </div>
                         <div class="modal-content">
-                            <p class="materialert danger flow-text">Deleting "<strong> {{ plant.plant_name | lower }} </strong>" is irreversable.</p>
-                            <p class="flow-text">Information for "<strong class="emph-green">{{ plant.plant_name | lower }}</strong>" will no longer be available for associated events.</p>
-                            <p class="flow-text">Are you sure you want to delete  "<strong class="emph-green">{{ plant.plant_name | lower }}</strong>"?</p>
+                            <p>Are you sure you want to delete  "<strong class="emph-green">{{ plant.plant_name | lower }}</strong>"?</p>
                         </div>
                         <div class="modal-footer">
                             <a href="{{ url_for('delete_plant', plant_id=plant._id) }}" 
                                 class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
-                                Confirm Delete <i class="fas fa-times-circle right"></i>
+                                Delete <i class="fas fa-times-circle right"></i>
                             </a>
                             <a href="{{ url_for('get_plants') }}" class="btn-small blue-grey btn-close">
                                 Cancel <i class="fas fa-times-circle right"></i>

@@ -52,16 +52,16 @@ def get_garden_events():
                 session["user"] == "admin"):
             user_categories.append(category)
 
-    event_months = []
+    user_event_months = []
     for event_month in events_months:
         if (event_month["created_by"] == session["user"] or
                 session["user"] == "admin"):
-            event_months.append(event_month)
+            user_event_months.append(event_month)
 
     return render_template("journal.html", user_plants=user_plants,
                            user_garden_events=user_garden_events,
                            user_categories=user_categories,
-                           event_months=event_months)
+                           user_event_months=user_event_months)
 
 
 @app.route("/get_plants")
@@ -91,6 +91,79 @@ def search():
                            user_categories=user_categories,
                            user_plants=user_plants)
 
+
+@app.route("/filter", methods=["GET", "POST"])
+def filter():
+
+    filter_plant = request.form.getlist("filter_plant")
+    filter_month = request.form.getlist("filter_month")
+    filter_category = request.form.getlist("filter_category")
+
+    print(filter_plant)
+    print(filter_month)
+
+    plants = []
+    months = []
+    events = []
+
+    if filter_plant != []:
+        plants = list(mongo.db.plants.find({"$or": [{"plant_name": x} for x in filter_plant]}))
+    else:
+        plants = list(mongo.db.plants.find().sort("plant_type"))
+        # pass
+
+    if filter_category != []:
+        events = list(mongo.db.garden_events.find({"$or": [{"event_category": x} for x in filter_category]}))
+    else:
+        events = list(mongo.db.garden_events.find().sort("event_date"))
+
+    if filter_month != []:
+        months = list(mongo.db.garden_events.find({"$or": [{"event_month": x} for x in filter_month]}))
+    else:
+        months = list(mongo.db.garden_events.find().sort("event_month"))
+
+    print("\n PLANTS: \n", plants, "\n MONTHS: \n", months, "\n EVENTS: \n", events)
+
+    user_event_months = []
+    user_garden_events = []
+    user_plants = []
+    # plants = list(plants)
+
+    for plant in plants:
+        if (plant["created_by"] == session["user"] or
+                session["user"] == "admin"):
+            user_plants.append(plant)
+
+    # event_months = list(event_months)
+
+    for month in months:
+        user_event_months.append(month)
+
+    # garden_events = list(garden_events)
+
+    for garden_event in events:
+        if (garden_event["created_by"] == session["user"] or
+                session["user"] == "admin"):
+            user_garden_events.append(garden_event)
+
+#  this i s printing the selected and filter results to the page to display, but not working in the jija tempalte for some reason.
+    print("\n USER_PLANTS: \n", plants, "\n USER_EVENT_MONTHS: \n", months, "\n USER_GARDEN_EVENTS: \n", events)
+
+    # for item in user_event_months:
+    #     user_garden_events.append(item)
+    #     for item in user_plants:
+    #         user_garden_events.append(item)
+
+    # print("\n CONCATENATED LIST:", user_garden_events)
+
+    return render_template("journal.html",
+                        #    user_garden_events=[],
+                        #    user_event_months=[],
+                        #    user_plants=[])
+                           user_garden_events=user_garden_events,
+                           user_event_months=user_event_months,
+                           user_plants=user_plants)
+                        
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -172,12 +245,12 @@ def add_event():
     if request.method == "POST":
         date_string = request.form.get("event_date")
         date_object = pd.to_datetime(date_string)
-        plant_name = request.form.get("plant_name")
+        event_plant_id = request.form.get("event_plant_id")
         event_month = date_object.strftime("%B")
 
         event = {
             "event_category": request.form.get("event_category"),
-            "plant_name": ObjectId(plant_name),
+            "event_plant_id": ObjectId(event_plant_id),
             "event_name": request.form.get("event_name"),
             "event_repeats": request.form.get("event_repeats"),
             "event_date": date_object,
@@ -203,12 +276,12 @@ def edit_event(event_id):
         event_month = date_object.strftime("%B")
         # change plant name variable to plant_id in events collection
         # Also change in edit_events.html and add_events.html
-        plant_name = request.form.get("plant_name")
+        event_plant_id = request.form.get("event_plant_id")
 
         submit = {
             "event_category": request.form.get("event_category"),
             # Creates an object from the string to send to collection
-            "plant_name": ObjectId(plant_name),
+            "event_plant_id": ObjectId(event_plant_id),
             "event_name": request.form.get("event_name"),
             "event_repeats": request.form.get("event_repeats"),
             "event_date": date_object,
@@ -362,7 +435,20 @@ def delete_category(category_id):
     return redirect(url_for("add_category"))
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+    flash("Error, the page was not found.", "danger")
+    return render_template("404.html"), 404
+
+
+@app.errorhandler(500)
+def server_error(error):
+    flash("Server Error", "danger")
+    return render_template("500.html"), 500
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
+    
