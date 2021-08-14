@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row mt-90">
+
+    <h3 class="center">Admin Message Inbox</h3>
+
+    <ul class="collapsible popout">
+      {% for message in messages %}
+      <li>
+        <div class="collapsible-header"> 
+          <div class="col s12 m3"><span class="collapsible-heading"><i class="caret fas fa-caret-down"></i> {{ message.date_time.strftime("%B %d") }}</span></div>
+          <div class="col s12 m3"><span class="collapsible-heading ">Message From: {{ message.first_name }} {{ message.last_name }}</span></div>
+          <div class="col s12 m6"><span class="collapsible-heading"><a class="emph-yellow" href="mailto:{{ message.email }}">Email: &#60;{{ message.email }}&#62;</a></span> 
+            <a href="#message_{{ loop.index }}" id="btn-msg-delete" class="btn-small modal-trigger btn-delete right"> Delete
+             <i class="fas fa-times-circle right"></i>
+          </a>
+          </div>
+        </div>
+        <div class="collapsible-body"><span>{{ message.message }}</span></div>
+        <!-- <a href="#delete-message-modal" class="btn-small red darken-4 modal-trigger btn-delete">
+          Delete <i class="fas fa-times-circle right"></i>
+      </a> -->
+      </li>
+      <!-- Modal Structure -->
+<div id="message_{{ loop.index }}" class="modal">
+  <div class="modal-header">
+    <p class="materialert danger">Deleting messages is irreversable.</p>
+  </div>
+  <div class="modal-content">
+    <p>Are you sure you want to delete the "<strong class="emph-green">message</strong>"?</p>
+  </div>
+  <div class="modal-footer">
+    <a href="{{ url_for('delete_message', message_id=message._id) }}"
+      class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
+      Delete <i class="fas fa-times-circle right"></i>
+    </a>
+    <a href="{{ url_for('messages') }}" class="btn-small blue-grey btn-close">
+      Cancel <i class="fas fa-times-circle right"></i>
+    </a>
+  </div>
+</div>
+<!-- end modal -->
+      {% endfor %}
+    </ul>
+    
+  </div>
+
+</div>
+
+
+
+{% endblock %}

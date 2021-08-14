@@ -4,62 +4,7 @@
   <section>
 
     <h3>My Events</h3>
-    <!-- <div class="row">
-      <div class="col s12">
-        <form action="{{ url_for('filter') }}" method="post">
-          <div class="row">
-            <div class="col s12 m4">
-              <div class="input-field col s12">
-                <select id="filter_category" name="filter_category" multiple>
-                  <option value="" disabled ></option>
-                  {% for category in user_categories %}
-                  <option value="{{ category.event_category }}">{{ category.event_category }}</option>
-                  {% endfor %}
-                </select>
-                <label for="filter_category">Filter Events By Category</label>
-              </div>
-            </div>
-            <div class="col s12 m4">
-              <div class="input-field col s12">
-                <select id="filter_month" name="filter_month" multiple>
-                  <option value="" disabled ></option>
-                  <option value="January">January</option>
-                  <option value="Febuary">Febuary</option>
-                  <option value="March">March</option>
-                  <option value="April">April</option>
-                  <option value="May">May</option>
-                  <option value="June">June</option>
-                  <option value="July">July</option>
-                  <option value="August">August</option>
-                  <option value="September">September</option>
-                  <option value="October">October</option>
-                  <option value="November">November</option>
-                  <option value="December">December</option>
-                </select>
-                <label for="filter_month">Filter Events By Month</label>
-              </div>
-            </div>
-            <div class="col s12 m4">
-              <div class="input-field col s12">
-                <select id="filter_plant" name="filter_plant"  multiple>
-                  <option value="" disabled ></option>
-                  {% for plant in user_plants %}
-                  <option value="{{plant.plant_name}}">{{plant.plant_name}}</option>
-                  {% endfor %}
-                </select>
-                <label for="filter_plant">Filter Events By Plant</label>
-              </div>
-            </div>
-            <a href="{{ url_for('get_garden_events') }}"
-              class="btn-small red darken-4 btn-delete">Reset</a>
-            <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
-              <i class="fas fa-search left"></i> Filter
-            </button>
-            
-          </div>
-        </form>
-      </div>
-    </div> -->
+   
 
     <div class="row">
       <form action="{{ url_for('search') }}" method="post" class="col s12">
@@ -80,13 +25,6 @@
       </form>
     </div>
     
-<!-- <h4>FILTER RESULTS</h4>
-<p><strong class="emph-red">Months (Month fliter):</strong>  {{ user_event_months }}</p>
-<p><strong class="emph-red">Plants (Plant filter):</strong>  {{ user_plants }}</p>
-<p><strong class="emph-red">Events (Category filter):</strong>  {{ user_garden_events }}</p> 
-<p>String of the options from selected options:</p> -->
-
-
     <ul class="collapsible">
       {% for garden_event in user_garden_events %}
       
@@ -252,6 +190,7 @@
 
     <div>
     </div>
+    
   </section>
 </div>
 {% endblock %}

@@ -8,16 +8,18 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from forms import ContactForm
 if os.path.exists("env.py"):
     import env
 
 
 app = Flask(__name__)
+# app.config.from_object('config.Config')
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-app.jinja_env.add_extension('jinja2.ext.loopcontrols')
+
 
 mongo = PyMongo(app)
 
@@ -25,6 +27,50 @@ mongo = PyMongo(app)
 @app.route("/")
 def home():
     return render_template('home.html')
+
+
+@app.route('/contact', methods=["GET", "POST"])
+def contact():
+    form = ContactForm()
+
+    if request.method == "POST":
+        if not form.validate_on_submit():
+            flash("Failed validation", "error")
+            return render_template('contact.html', form=form)
+        if form.validate_on_submit():
+            first_name = form.first_name.data
+            last_name = form.last_name.data
+            email = form.email.data
+            message = form.message.data
+            
+            form_message = {
+                "first_name": first_name,
+                "last_name": last_name,
+                "email": email,
+                "message": message,
+                "date_time": datetime.now()
+            }
+            mongo.db.messages.insert_one(form_message)
+            flash("Message has been sent.", "success")
+            # return first_name + "<br /> " + last_name + "<br /> " + email + "<br /> " + message
+            return redirect(url_for("contact"))
+
+    return render_template('contact.html', form=form)
+
+
+@app.route("/messages")
+def messages():
+    messages = list(mongo.db.messages.find().sort("date_time"))
+
+    return render_template('messages.html', messages=messages)
+
+
+@app.route("/delete_message/<message_id>")
+def delete_message(message_id):
+    messages = list(mongo.db.messages.find().sort("date_time"))
+    mongo.db.messages.remove({"_id": ObjectId(message_id)})
+    flash("Message Successfuly Deleted", "success")
+    return redirect(url_for("messages", messages=messages))
 
 
 @app.route("/get_garden_events")
@@ -86,84 +132,12 @@ def search():
         {"$text": {"$search": query}}))
     user_garden_events = list(mongo.db.garden_events.find(
         {"$text": {"$search": query}}))
+
     return render_template("journal.html",
                            user_garden_events=user_garden_events,
                            user_categories=user_categories,
                            user_plants=user_plants)
-
-
-@app.route("/filter", methods=["GET", "POST"])
-def filter():
-
-    filter_plant = request.form.getlist("filter_plant")
-    filter_month = request.form.getlist("filter_month")
-    filter_category = request.form.getlist("filter_category")
-
-    print(filter_plant)
-    print(filter_month)
-
-    plants = []
-    months = []
-    events = []
-
-    if filter_plant != []:
-        plants = list(mongo.db.plants.find({"$or": [{"plant_name": x} for x in filter_plant]}))
-    else:
-        plants = list(mongo.db.plants.find().sort("plant_type"))
-        # pass
-
-    if filter_category != []:
-        events = list(mongo.db.garden_events.find({"$or": [{"event_category": x} for x in filter_category]}))
-    else:
-        events = list(mongo.db.garden_events.find().sort("event_date"))
-
-    if filter_month != []:
-        months = list(mongo.db.garden_events.find({"$or": [{"event_month": x} for x in filter_month]}))
-    else:
-        months = list(mongo.db.garden_events.find().sort("event_month"))
-
-    print("\n PLANTS: \n", plants, "\n MONTHS: \n", months, "\n EVENTS: \n", events)
-
-    user_event_months = []
-    user_garden_events = []
-    user_plants = []
-    # plants = list(plants)
-
-    for plant in plants:
-        if (plant["created_by"] == session["user"] or
-                session["user"] == "admin"):
-            user_plants.append(plant)
-
-    # event_months = list(event_months)
-
-    for month in months:
-        user_event_months.append(month)
-
-    # garden_events = list(garden_events)
-
-    for garden_event in events:
-        if (garden_event["created_by"] == session["user"] or
-                session["user"] == "admin"):
-            user_garden_events.append(garden_event)
-
-#  this i s printing the selected and filter results to the page to display, but not working in the jija tempalte for some reason.
-    print("\n USER_PLANTS: \n", plants, "\n USER_EVENT_MONTHS: \n", months, "\n USER_GARDEN_EVENTS: \n", events)
-
-    # for item in user_event_months:
-    #     user_garden_events.append(item)
-    #     for item in user_plants:
-    #         user_garden_events.append(item)
-
-    # print("\n CONCATENATED LIST:", user_garden_events)
-
-    return render_template("journal.html",
-                        #    user_garden_events=[],
-                        #    user_event_months=[],
-                        #    user_plants=[])
-                           user_garden_events=user_garden_events,
-                           user_event_months=user_event_months,
-                           user_plants=user_plants)
-                        
+                 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -177,8 +151,11 @@ def register():
             return redirect(url_for("register"))
 
         register = {
-            "user_name": request.form.get("username").lower(),
+            "user_name": request.form.get("username"),
+            "user_firstname": request.form.get("firstname"),
+            "user_lastname": request.form.get("lastname"),
             "user_email": request.form.get("email"),
+            "user_joined": datetime.now(),
             "user_password": generate_password_hash(
                 request.form.get("password"))
         }
@@ -222,14 +199,52 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+
+    users = list(mongo.db.users.find().sort("user_name"))
+    user_profile = []
+    for user in users:
+        if (user["user_name"] == session["user"]):
+            user_profile.append(user)
     # get session users username from db
     username = mongo.db.users.find_one(
         {"user_name": session["user"]})["user_name"]
-
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("profile.html", username=username,
+                               user_profile=user_profile)
 
-    return redirect(url_for("login"))
+    return redirect(url_for("login", ))
+
+
+@app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
+def edit_profile(user_id):
+
+    existing_user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+
+    if request.method == "POST":
+
+        if existing_user:
+            if check_password_hash(
+                        existing_user["user_password"], request.form.get(
+                            "old_password")):
+                # flash("Password validation passed", "success")
+
+                user_email = request.form.get("email")
+                if user_email is not None:
+                    update = {
+                        "user_email": request.form.get("email"),
+                        "user_firstname": request.form.get("firstname"),
+                        "user_lastname": request.form.get("lastname"),
+                    }
+                    mongo.db.users.update_one({"_id": ObjectId(user_id)}, {"$set": update})
+                    flash("The information has been updated successfully.", "success")
+                    return redirect(url_for("profile", username=session["user"]))
+
+            else:
+                flash("Please confirm the correct password.", "error")
+                return redirect(url_for("edit_profile", user_id=user_id))
+     
+    return render_template(
+        "edit_profile.html", existing_user=existing_user)
 
 
 @app.route("/logout")
@@ -441,6 +456,12 @@ def page_not_found(error):
     return render_template("404.html"), 404
 
 
+@app.errorhandler(405)
+def method_not_allowed(error):
+    flash("Method Not Allowed.", "danger")
+    return render_template("405.html"), 405
+
+
 @app.errorhandler(500)
 def server_error(error):
     flash("Server Error", "danger")
@@ -451,4 +472,3 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
-    

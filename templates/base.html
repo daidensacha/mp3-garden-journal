@@ -54,7 +54,11 @@
                             <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
                             <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
                         {% endif %}
-                        <li><a class="head-link modal-trigger" href="#footer-modal">Contact</a></li>
+                        {% if session.user == "admin" %}
+                            <li><a class="head-link" href="{{ url_for('messages') }}">Messages</a></li>
+                        {% endif %}
+                        <li><a class="head-link" href="{{ url_for('contact') }}">Contact</a></li>
+                        <!-- <li><a class="head-link modal-trigger" href="#footer-modal">Contact</a></li> -->
                     </ul>
                 </div>
             </nav>
@@ -77,7 +81,11 @@
                 <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
                 <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
-            <li><a class="head-link modal-trigger" href="#footer-modal">Contact</a></li>
+            {% if session.user == "admin" %}
+                <li><a class="head-link" href="{{ url_for('messages') }}">Messages</a></li>
+            {% endif %}
+
+            <li><a class="head-link" href="{{ url_for('contact') }}">Contact</a></li>
         </ul>
 
     </header>
@@ -135,7 +143,7 @@
                 <!-- <div class=""> -->
                     <div class="row flashes">
                         <!-- <div class="col s12 m12"> -->
-                            <span class="materialert {{category}} center-align icon">{{ message }}</span>
+                            <span id="messageDiv" class="materialert {{category}} center-align icon">{{ message }}</span>
                         <!-- </div> -->
                     </div>
                 <!-- </div> -->
@@ -161,49 +169,20 @@
         <!-- contact form section -->
     <div class="container section scrollspy" id="contactus">
         <div class="section">
-            <br>
-            <br>
-            <h2>Contact Us</h2>
+       
 
             <div class="row">
 
-                <form class="col s12 m8">
-
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input id="fname" name="fname" type="text" class="validate">
-                            <label for="fname">First Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="lname" name="lname" type="text" class="validate">
-                            <label for="lname">Last Name</label>
-                        </div>
-                    </div>
-                    <!--row-->
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="email" name="email" type="email" class="validate">
-                            <label for="email">Your Email</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="message" name="message" class="materialize-textarea"></textarea>
-                            <label for="message">Your Message</label>
-                        </div>
-                    </div>
-
-
-                    <div>
-                        <a class="waves-effect waves-light btn purple lighten-1">Send Message<i
-                                class="mdi-content-send right"></i></a>
-                    </div>
-                </form>
-
                 <div class="col s12 m4">
-                    <h4>Garden Almanac</h4>
+                    <h4 class="center">Plants/ Categories</h4>
+                </div>
+                <div class="col s12 m4">
+                    <h4 class="center">Events</h4>
+
+                </div>
+
+                <div class="col s12 m4 flow-text">
+                    <h4>Your Almanac</h4>
                     <p>
                         A personal project as part of my studies in full stack development,
                         arrising out of an unfullfilled need for such an application. 
@@ -226,7 +205,7 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a> -->
     </div>
   </div>
 </div>
@@ -236,14 +215,15 @@
         <div class="footer-copyright">
             <div class="container">
                 <p>Copyright © oodaiden.com</p>
-            </div>
+            </div><span><a href="#footer-modal" title="FAQ"
+                class="faq-icon social-icon modal-trigger" style="font-size: 2em;margin-right: 10px;">FAQ<i class="fas fa-info-circle"></i></a></span>
             <ul class="share-buttons">
                 <li><a href="https://github.com/daidensacha" target="_blank" title="GitHub"
                         class="social-icon"><i class="fab fa-github fa-2x"></i></a></li>
                 <li><a href="https://www.linkedin.com/in/daiden-sacha-8852b41a6/" target="_blank"
                         title="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in fa-2x"></i></a></li>
-                <li><a href="#footer-modal" title="Email"
-                        class="social-icon modal-trigger"><i class="fas fa-envelope fa-2x"></i></a></li>
+                <li><a href="{{ url_for('contact') }}" title="Email"
+                    class="social-icon"><i class="fas fa-envelope fa-2x"></i></a></li>
             </ul>
         </div>
     </footer>

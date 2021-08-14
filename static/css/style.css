@@ -37,6 +37,21 @@ p {
   color: #3d5afe!important;
 }
 
+.btn-small {
+  margin: 2px 0px;
+}
+
+input#submit.waves-button-input {
+  color: #f1f8e9;
+}
+
+#btn-msg-delete {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
 /*
 ================================================================================
 ========================== Materialize Parallax Styling ========================
@@ -204,6 +219,14 @@ li.active .collapsible-header .caret {
 ================================================================================
 */
 
+.collection {
+  margin: .5rem 0 1rem 0;
+  border: 1px solid #e0e0e087;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
 .collection a.collection-item {
   display: block;
   -webkit-transition: .25s;
@@ -212,23 +235,23 @@ li.active .collapsible-header .caret {
 }
 
 .collection .collection-item {
-  background-color: #f0deb9;;
+  background-color: #f9fbe736;
   line-height: 1.5rem;
   padding: 10px 20px;
   margin: 0;
-  border-bottom: 1px solid #63a715;
+  border-bottom: 1px solid #d4e1578f;
 }
 
 .collection a.collection-item:not(.active):hover {
-  background-color: #ecf0c4;
+  background-color: #ecf0c48a;
 }
 
-.collection .collection-item {
+/* .collection .collection-item {
   display: block;
   -webkit-transition: .25s;
   transition: .25s;
   color: #051a12;
-}
+} */
 
 .collection li:hover {
   -webkit-transition: .25s;
@@ -264,7 +287,7 @@ li.active .collapsible-header .caret {
   position: relative;
   min-width: 150px;
   padding: 15px;
-  margin: 0px auto 15px;
+  margin: 0px auto 0px;
   font-size: 22px;
   /* margin-bottom: 20px;
   margin-top: 15px; */
@@ -327,6 +350,18 @@ li.active .collapsible-header .caret {
   background-color: rgba(251,192,45,0.8);
   color: #fff;
 }
+.form-error{
+  /* background-color: rgba(198, 40, 40,0.8); */
+  color: rgba(198, 40, 40,0.8);
+}
+ul.form-error {
+  margin-top: 0;
+  padding-top: 0;
+}
+.form-error li {
+  margin-top: 0;
+  padding-top: 0;
+}
 
 /****************************** Custom  Alert Icons ***************************/
 
@@ -351,7 +386,9 @@ li.active .collapsible-header .caret {
   exceeds 400px, as the tabs are styled by carousel css */
   .tabs-content.carousel .carousel-item .tab { height:auto; }
 
-
+.row.flashes {
+  margin: 0;
+}
   /***************************** Custom Modal Syling **************************/
   .modal-title {
     font-size: 18px;
@@ -408,6 +445,10 @@ li.active .collapsible-header .caret {
   .emph-dark-teal {
     color: #00695c;
     font-style: italic;
+  }
+
+  .emph-yellow {
+    color: #fffde7;
   }
 
   /**************************** MATERIAL ICON SIZES ***************************/

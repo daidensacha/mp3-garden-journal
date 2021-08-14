@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+
+    <div class="container">
+        <h2>Contact</h2>
+
+        <div class="row">
+        <form action="{{ url_for('contact') }}" method="POST">
+            {{form.hidden_tag()}}
+            <div class="input-field col s12 m6">
+                {{ form.first_name.label }}
+                {{ form.first_name(class="materialize validate") }}
+                {% if form.first_name.errors %}
+
+                    <ul class="form-error">
+                        {% for error in form.first_name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="input-field col s12 m6">
+                {{ form.last_name.label }}
+                {{ form.last_name(class="materialize validate") }}
+                {% if form.last_name.errors %}
+                    <ul class="form-error">
+                        {% for error in form.last_name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="input-field col s12">
+                {{ form.email.label }}
+                {{ form.email(class="materialize validate") }}
+                {% if form.email.errors %}
+                    <ul class="form-error">
+                        {% for error in form.email.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="input-field col s12">
+                {{ form.message.label }}
+                {{ form.message(class="materialize-textarea validate")}}
+                {% if form.message.errors %}
+                    <ul class="form-error">
+                        {% for error in form.message.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            {{ form.submit(class="btn waves-effect waves-light light-green-text text-lighten-5") }}
+            
+
+        </form>
+    </div>
+    </div>
+  
+{% endblock %}
