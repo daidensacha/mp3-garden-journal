@@ -451,6 +451,41 @@ ul.form-error {
     color: #fffde7;
   }
 
+  /**************************** DIVIDER ARROW DOWN* ***************************/
+
+
+.custom-divider {
+	position: relative;
+	margin: 40px 0;
+	height: 1px;
+}
+
+.div-gradient:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 25%;
+	right: 25%;
+	width: 50%;
+	height: 1px;
+	background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+}
+
+.div-arrow-down:after {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	top: -7px;
+	left: calc(50% - 7px);
+	width: 14px;
+	height: 14px;
+	transform: rotate(45deg);
+	background-color: white;
+	border-bottom: 1px solid rgb(48,49,51);
+	border-right: 1px solid rgb(48,49,51);
+}
+
+
   /**************************** MATERIAL ICON SIZES ***************************/
 .material-icons.md-12 { font-size: 12px; }
 .material-icons.md-18 { font-size: 18px; }
