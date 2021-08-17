@@ -48,7 +48,7 @@
                             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Create<i class="material-icons right">arrow_drop_down</i></a></li>
                             <!-- <li><a class="head-link" href="#">Add Plants</a></li> -->
                             <!-- <li><a class="head-link" href="#">Add Categories</a></li> -->
-                            <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                            <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">{{ user["user_firstname"] }}'s Profile</a></li>
                             <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
                         {% else %}
                             <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
@@ -134,7 +134,6 @@
     </div>
 <!-- end slider -->
 
-
 <section>
     <!-- flash messages - includes alert category-->
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -176,7 +175,7 @@
                 <div class="col s12 m4">
                     <div class="card-panel teal white-text">
                         <h4 class="center">Plants/ Categories</h4>
-                    <div class="divider div-gradient div-rhombus"></div>
+                    <div class="custom-divider div-gradient div-rhombus"></div>
                     <p>Start by entering some categories, types of recuring 
                         events, for example, sowing, planging, fertilising. 
                         Whatever types of garden events your interested in.</p>
@@ -192,7 +191,7 @@
                 <div class="col s12 m4" >
                     <div class="card-panel teal white-text">
                     <h4 class="center">Events</h4>
-                    <div class="divider div-gradient div-rhombus"></div>
+                    <div class="custom-divider div-gradient div-rhombus"></div>
                     <p>Events in the garden are cyclic in nature, which means 
                         that you can be sure what happens today, will more than 
                         likely happen again in the future. </p>
@@ -208,7 +207,7 @@
                 <div class="col s12 m4">
                     <div class="card-panel teal white-text">
                     <h4 class="center">Your Almanac</h4>
-                    <div class="divider div-gradient div-rhombus"></div>
+                    <div class="custom-divider div-gradient div-rhombus"></div>
                     <p>Did you know, the Old Farmer’s Almanac, has been 
                         continuously published in the United States since 1792.  
                     </p>

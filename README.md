@@ -1,109 +1,156 @@
 
+
+
 # Welcome
 
 ## Code Institute: Milestone Project 3
 
-### Garden Journal - Daiden Sacha - Full Stack Web Developer
+### Garden Almanac - Daiden Sacha - Full Stack Web Developer
 
-----------
+View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 
-In my garden, I find myself often trying to remember what I did in the last year, when i planted, when i fertilised and how much, and what the result was. It is cyclical, and this app is born out of the need to be able to record such events, so I can improve on them each year. I want the garden to thrive, and to produce, so in order to do that I need to know how, what and when to do what is needed. 
-
-Link to Site
-
-Link to testing.md 
-outlines my  testing strategy, pre-development, development, deployment and post deployment.
+[Testing.md](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/testing.md) outlines my  testing strategy, development, deployment and post deployment.
 
 ## UX DESIGN
 
 ### 1. Strategy
+**User Stories:**
 
-##### User Stories:
 
-1. As a hobby gardener:
+1. **As a hobby gardener:**
 
-	- I want to record yearly changes of individual plants.
-	- I want to set up reminders for yearly maintenance tasks (like pruning, pest control etc.)
-	- I'm interested in recording the time of year when plants flower
-	- I would like to add my plants to a list of plants, containing information relevant to that plant. 
-	- I would like to be able to add images of the plants. 
+	- As a hobby gardener, I want to record yearly changes of individual plants.
+	- As a hobby gardener I want to set up reminders for yearly maintenance tasks (like pruning, pest control etc.)
+	- As a hobby gardener, I'm interested in recording the time of year when plants flower
+	- As a hobby gardener, I would like to add my plants to a list of plants, containing information relevant to that plant. 
+	- As a hobby gardener, I would like to be able to add images of the plants. 
+	- As a hobby gardener, I want to edit plants and event when information so I can improve the records over time.
 
-2. As a vegetable gardener:
+2. **As a vegetable gardener:**
 
-	- I would like to set a reminder when the last frost is, so I know when it is safe to plant outside.
-	- I want to set reminders for when to plant particular seeds, so they are ready to plant out after the last frost.
-	- I want to record regular or yearly maintenance tasks, so I don't forget them.
-	- I want to know when my fruit and vegetable crops are ready to pick.
+	- As a vegetable gardener, I would like to set a reminder when the last frost is, so I know when it is safe to plant outside.
+	- As a vegetable gardener, I want to set reminders for when to plant particular seeds, so they are ready to plant out after the last frost.
+	- As a vegetable gardener, I want to record regular or yearly maintenance tasks, so I don't forget them.
+	- As a vegetable gardener, I want to know when my fruit and vegetable crops are ready to pick.
+	-  As a vegetable gardener, I want to edit plants and event when information so I can improve the records over time.
 
-1.  As the owner:
+1.  **As the owner:**
 	- I want to engage gardening enthusiasts with the goal to build up a user base of registered users.
+	- I want to build a base of registered users with a view towards developing a social network of users with the similar interest in gardening.
 	- I envisage that I will be able to add pages to market a raised garden bed that I designed for growing vegetables.
 	- I want users to register and log in to access the journal with garden reminders and tasks.
 
 ### 2. Scope
 
 **Required Features**
-- **Nav bar with offcanvas nav**
-	- **ALL USERS** , not logged in will have access to links  
-		- ***Login/Register link*** will open a modal with a login form for users to log in. For unregistered users there will be a link with a message inviting users to register.  
-		- ***Contact link*** will scroll the page to the contact form at the bottom of the home page.
-		- ***About link*** will scroll the home page to information about the website application.
-	- **REGISTERED USERS** once logged in, will have access to additional navbar links.
-		- ***Journal link*** will open a page with tabs for each month, showing logged events for each month, and allowing the user to create, read , update or delete entries. Clinking on the event name will open  the event with notes in a modal, and the possibilty to read, update or delete the entry. The user can also select an occuring event option, so the event duplicates for the next year. 
-		-  ***Plants link*** will open a page of plants added by the user. The user can create, read , update or delete entries by clicking on the plant name, then read, update or delete the entrie. 
-		- ***Profile link*** will open the users profile, allowing them to read, update or delete their profile. 
-	- **ADMIN USERS** will have access to all the above links, as well as an admistration page to administer the user list. Admin users will be able to create, read, update or delete users and plants. 
+- **All Users:**
+	- **Home page** The landing page will be light and fresh, with images of nature and plants.
+		- **Search Filter** A search input above the collapsible on the almanac page searches the event, catefores, months, plants. 
+		- **Image slider** will be the main eye-catching feature of the landing page, visible as soon as users arrive at the landing page. 
+		- **Material Box** Material Design implementation of the Lightbox plugin to display images. Used to display images of nature, to inspire and connect with users. 
+		- **Navbar**
+			- **Contact Form Link** will link users to the contact form.
+			- **Log in link** will open the login form for users to log in. 
+			- **Register link** will open the register form for users to register. 
+		- **Footer** Will hold the social links and contact icon link. 
+			- **Social Icons** in the footer so users can open my GitHub and LinkedIn profiles. 
+	- **Contact page** Will display the contact form. 
+		- **Contact form** for users to send messages to site admin.
+	- **Login Page** with the login form. 
+		- **Login Form** for users to log in. 
+	- **Register Page** with the register form.
+		- **Register Form** for users to register.
 
-- **Home page/ landing page** \- An engaging page with a mix of images, content and a contact form. Enough to inform users abotu the site, and to entice users to register and discover the benefits of using the garden journal. 
 
-- **Homepage Slider** \- The slider will have 4 images, one each for "Summer, Spring, Autumn, Winder. Each image will have a label refering to the tasks for the season. The slide will revolve automatically, a subtle reference to the cyclic nature of the seasons. 
+- **Registered Users:**
+	- **Navbar** - The Navbar for registered users who log in will display additional links to the journal page, plants page, add garden event page, add plants page, and add categories page. 
+	- **Journal page** - To display the session user's garden events in the Material Design Collapsible.
+		-	**Materializecss Collapsible** - For viewing Garden Events. The header will display the event date in month/ day format. It will show the event name
+		 - **Edit button** - So user scan open the edit garden event and edit plant forms.
+	- **Plants page** - To display the session user's plants in the Material Design styles collection (list)
+	- **Profile page** - To display the session user's profile in the disabled form inputs.
+	- **Materializecss Collection** - A Material Design style list for displaying the plants. 
+		 - **Edit button**, so user scan open the edit garden event and edit plant forms.
 
-- **Modal Login form** \- The modal form will open when the navbar link is clicked, and when users are logged in, will allow access to the main application. Login success or failure will be displayed with a flash message on the home page.
+	- **Forms**
+		- **Create plant** -  So users can create and add their plants
+		- **Create Garden Event** - So users can add garden events
+		- **Create Category** - So users can create event categories.
+		- **Update plant** - So users can edit and update plant information.
+		- **Update Garden Event** - So users can edit and update garden event information. 
+		- **Update Category** - So users can edit and update garden event categories.  
+		- **User Profile Form** (disabled for viewing only) - To display the user profile. 
+		- **Update Profile Form** - So users can update select profile information.
 
-- **Modal Registration form** \- The link to register will be accessable from the modal login form, and once users are registered, they wil have access to main application of the site. 
+	- **Modals**
+		- **View Plant Modal** - Will open when the user clicks on the plant in the list. I will display the plant information, and have an edit button. 
+			- **Edit button** - When the user clicks the button, they will be redirected to the edit plant page, displaying the plant information in the update plant form.
+		- **Delete Plant Modal** - The modal will open when the user has clicked to delete a plant. It will display a danger alert, informing the user that the action is irreversible. 
+			- **Delete Button** By clicking this button, the user confirms they want to delete the plant data. When clicked, the plant data will be deleted, and the user will be redirected to the plants page. 
+			- **Cancel Button** When the user clicks this button to cancel their intention to delete the plant, the modal will close, and the user will be redirected to the plant's page. 
+		- **Delete Garden Event Modal** - The modal will open when the user has clicked to delete a garden event. The modal will display a danger alert, informing the user that deleting data is irreversible.  
+			- **Delete Button** By clicking this button, the user confirms they want to delete the garden event data. When clicked, the event data will be deleted, and the user will be redirected to the journal page. 
+			- **Cancel Button** When the user clicks this button to cancel their intention to delete the garden event, the modal will close, and the user will be redirected to the journal page. 
+		- **Delete Category Modal** - The modal will open when the user has clicked to delete an event category. The modal will display a danger alert, informing the user that deleting data is irreversible.  
+			- **Delete Button** By clicking this button, the user confirms they want to delete the event category. When clicked, the category will be deleted, and the user will be redirected to the add category page. 
+			- **Cancel Button** When the user clicks this button to cancel their intention to delete the event category, the modal will close, and the user will be redirected to the add category page. 
 
-# What is best here?: 
-## Need to work on how to display the events on journal page. 
+- **Admin Users**
+	- **Navbar** The Navbar for admin will display an additional link to the messages page.  
+		- **Messages page** to display the session user messages.
+			- **Materialize Collapsible** for viewing messages, The header of the collapsible with have a delete button, that will open the confirm delete modal when clicked.
+				- **Delete button** - So admin can delete the user messages.
+			- **Delete Message Modal** - The modal will open when the user has clicked to delete a message. The modal will display a danger alert, informing the user that deleting the message is irreversible.  
+				- **Delete button** - So admin can confirm deletion of the user message.
+				- **Send Email button** - To reply to the user in the default email app of the computer. 
 
-- **Display page for the calendar and events** \- The page displaying the year events will display the current month, and other months accessable though clicking on tabs. One tab per month. Events will be displayed in date order, and clicking on the event name will open the event details in a modal, where it can be read, updated, or deleted. 
+**Functional Requirements**
+- **Image slider** It will have 4 images, and will automatically scroll at intervals of around 10 seconds, enough time for the image to be viewed by the user. The transition of the images, each representing a season, relates to the cyclical nature of existence and events. The images will give the impression of looking through a window.
+- **Material Box** Images in the Lightbox plugin will expand when clicked, and revert to their initial display when the screen is clicked again. The images are to illustrate the beauty of nature. 
+- **Navbar** The Navbar for non session users will display links to the login page, register page, and contact page.
+- **Contact Form** The form inputs will have multiple levels of validation. 
+	- **Browser side validation** will utilize the Material Design class `validate`. When the fields are clicked without filling them in, a red line will appear under the input. If the user has not filled in the input, a tooltip message will appear asking the user to fill in the input. 
+	- **Server Side Validation** is handled by Flask-WTForms, and defined in the form class. Inputs that fail validation will display a red message under the input, informing the user what needed for the input to pass validation. An error alert will appear, informing the user validation has failed. When the form validates, the information is sent, a success alert appears with a message informing the user the message has been sent. 
+- **Login Page** The user will be required to enter their username and password to log in. If they enter correctly, they will be redirected to the profile page, and the additional functionality will be available for the user. If they enter incorrect information, an error alert appears, informing the user the details were incorrect. 
+- **Registration Page** The user registers by completing all the fields in the registraion form. The fields are valididated by the browser, and a tooltip appear with a validation message if a field fails validation. If the form passes validation, the user is looged in and redirected to the profile page.
+-	**Materializecss Collapsible** The collapsible is closed by default, and the user can click on the header to open the accordion. The header displays the "Month/ Day", event category, and event name. When opened, the event and plant information is displayed for the event. An edit button for the plant, and one for the event, link to the respective edit pages. 
+- **Search Filter** The use can fliter events by events name, category, month to easliy find required events.  
 
-- **Tabs for the months in the journal** \- Current month will be the active tab, with other months available to view by clicking on them. The tabs will be scrollable when they are wiser than the screen. 
-
-- **Add event form** \- A button/ link in each months journal page will allow the user to add events Clicking on the button/ link will open a form with fields for entering information about the event. 
-
-- **Edit and delete buttons for the events** \- Buttons for editing, or deleting the events will be available when clicking on the event name and opening the modal with the event information. 
-
-**Required Forms**
-- ***Contact Form:*** The user will be able to easily contact me.
-- ***Login Form:*** For registered users to login  and have access to the application.
-- ***Registration Form:*** Accessible from the login form, it is for new user to register to be able to use the application.
-
+**Content Requirements**
+The garden almanac revolves arount creating a record of recurring events in the garden. The goal is to develop and improve knowledge based on historical experience recorded in the events, plants, and categories of the application. The data is broght together to display a yearly event calendar so the user can manage and get teh most our of teh garden. SOme fields in the forms for entering the data is required so the events and plants can be displayed.Other fields are optional, so the user can enter this content if it suits them. 
 
 ### 3. Structure
-
 **Interaction Design**
 **ALL USERS:** The site is one page with a contact form in the bottom of the page, with a link to it in the Navbar. 
 Unregistered unsers are limited to viewing the homepage, withh an option to register via the link in the Navbar. They can also send a message via the contact form. 
+- ***Contact Page:*** Users will be able to contact me to give feeedback, or to ask for support, or feature requests. Contact easliy accessibel from main Navbar, or a link in the footer. 
 
 **REGISTERED USERS:** Registered users can login, and this enables additional links in the Navbar, to a Journal page, and Plants page. 
 - ***Journal page:*** 
-	- In this page the events for each month will be displayed. Each event will show the date, plant name, and event name. Plant name and the event name will be links to open a model showing information about them. The model will have an edit button, delete, and close button, so the user can edit or delete the entry, with ease. A close button will close the model.
-	- A button on the Journal page will open a modal form, with inputs allowing the user to easily enter new events. 
+	- A search filter will be positioned above the accordion on the page, so the user can enter month, plant name, event category to easily filter the events. This will improve UX as the list of events grows. 
+	- An accordion will display the events, and all list items in the accordion will be closed by default, and ordered by date. Being an almanac, items will be ordered by month and day, to reflect the cyclical nature of events. User can click on an event and the accordion item will open, displaying the event and related plant, with edit buttons to be able to directly open and edit either item. 
 	
 - ***Plant Page:*** 
-	- The plant page displays a list of plants entered by the user, with the plant name being a link trigger for the modal that displays information about the plant. In the model, edit and delete buttons will allow the user to edit or delete the entry. 
-	- On the plant page, a button will allow the user to add plants to the list. These plants will be displayed in a select input when so the user can choose the plant when creating an event. 
-	- 
+	- The plant page displays a list of the users plants. 
+	- The user can click on a plant, which will open a modal displaying the users plant information. 
+	- The modal will have an edit button that will link to an update plant page, where the user can update or delete the plant information.
+	
 - ***Profile Page:*** 
-	- This allows the possibility to create a social network around the users shared interest in gardening. Initially users will be able to edit and update name, email, password, or to delete the profile. 
+	- A disabled form on the page will display the registered users information. There will be an edit button that will open an edit profile page, with some fields editable so the user can udpate their information.*
 
-**Information Architecture** Site information arranged as follows.
-   There will be 3 pages for the site, with only the Homepage being accessable to users that are not registered or logged in. 
+**Information Architecture** 
+ There will be 3 pages for the site, with only the Homepage being accessable to users that are not registered or logged in. 
+ 
+ **CRUD Update forms** 
+ - ***Forms:*** Information for each user will be displayed in pages, and will contain edit links that will redirect to the update/edit page where the the forms will automatically display the item to be edited. Some fields in the related forms will be required, other optional, but clearly labelled. The user will be able to change and update the information easily, and will be redirected back to the related item group. The update forms will have a save, delete, or cancel button for the user. 
+
+**CRUD Delete structure** 
+- ***Forms and delete process*** The user can click the delete button on the update item page, which will open a modal with a danger alert, informing the user that deleting the data is irreversable. They can choose from the delete, or cancel buttons, to delete, or cancel and return to the related items group page. 
    
 - **Visible to all users**
    - ***Homepage***
 	   - Home page navigation will link to the contact form at the bottom of the page, also the login/ registration form. 
-	   - There will be a slider with images relating to the four seasons.
+	   - There will be a slider with images relating to the four seasons. These images are a feature, and I kept them in the base template so they are viewable on all pages. 
 	   - A collection of images to inspire interest in gardening. 
 	   - 
 - **Additional pages visable to registered and logged in users** 
@@ -114,77 +161,108 @@ Unregistered unsers are limited to viewing the homepage, withh an option to regi
    - ***Plants Page***
 	   - Will display a list of the  plants entered by the user.
 	   - The plant name in the list will be a link that opens the plant profile in a modal window to be viewed, updated, or deleted.
-   
-Each page will have links to open various option, to login, register, add new plant, add new event, to edit or update plants or events. All this will be in a modal, that when closed will return the user to the page they were viewing. 
--   ***Contact Form*** will be linked in the navbar, but always accessable at the bottom of the homepage. 
-    
--   ***Social Links*** placed beside the contact form will allow the users to open the linked URL in a new browser tab. 
-    
--   **Planning** 
-We are using mongoDB as database for the application. 
+	   
+### MongoDB  
 
-***Data relationshipts:***
-	I've decided to make separate collections for users, event categories, and plants. the fourth collection will be the garden events, which will contain the information about the event. Within the garden event entry, I will record the plant id, the user id, and catefgoy, to make it easy to filter the data base for the information. 
-	
-**MongoDB**
-- ***users***  (many to many) {
-	-   user_id
-	-   user_name
-	-   user_password  
-        }
-- ***plants*** (one to many) {
-    -   plant_type
-    -   plant_name
-    -   plant_images  
-        }
-- ***categories*** (one to many) {
-     -  sow
-     -  plant
-     -  harvest
-      - fertilise
-      - spray
-      - prune
-	        }
-- ***garden_event*** (one to one) {
-	- _id	   (objectId) 
-	- event_date
-	- event_category
-	- event_note
-	- repeats
-	-  plant_id
-	- user_Id
-	}
+I decided to create separate collections for users, event categories, and plants. the fourth collection will be the garden events, which will contain the information about the event. Within the garden event entry, I will record the plant id, the user id, and categoy, to make it easy to filter the data base for the information. During development, I had the idea to create a message feature for the admin, and display sent messages in the back end. To this end, I created one more collection for messages. 
 
--   **Layout** 
-    
+**MongoDB Schema**
+
+I decided on the following schema, using collections to group separate groups of data, users, plants, categories (event), garden_events, and messages. 
+
+***Users***
+The whole site revoles around the users, so the user name is what links the plants, events and categores, where I use the `user_name`and insert it as in the related entry `created_by` key. I am able to use this as the sudo foreign key to identify the users entries. 
+```  
+	users  {
+			_id: <ObjectId>
+			user_name: <string>
+			user_email: <string>
+			user_joined: <date>
+			user_firstname: <string>
+			user_lastname: <string>
+			user_password: <string> 
+       }
+```  
+***Plants***
+I used a combination of fields to so the user can record information, and update it each year based on the past years experience. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
+```   
+	plants  {
+			_id: <ObjectId>
+		    plant_type: <string>
+		    plant_name: <string>
+		    plant_sowing: <date>
+		    plant_planting: <date>
+		    harvest_from: <date>
+		    harvest_to: <date>
+		    fertilise_frequency: <string>
+		    fertiliser_type: <string>
+		    plant_note: <string>
+		    created_by: <string>  
+     }
+```   
+***Categories***
+The user has total discretion to group the types of events how they prefer, which will suit their needs and desire to search or filter infomtation. 
+```  
+	categories  {
+		     _id: <ObjectId>
+		     event_category: <string>
+		     created_by: <string>
+	 }
+```
+***Garden Events***
+The pivot of the whole concept, depends on and requires category and plants to create an event. Initially I used the plant ObjectId as the sudo foreign key, as it is unique to the plant, and immutable. Like the events, some fields are required, and other optional. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
+``` 
+	garden_events {
+			 _id: <ObjectId>
+			 event_category: <string>
+			 event_plant_id: <ObjectId>
+			 event_name: <string>
+			 event_repeats: <string>
+			 event_date: <date>
+			 event_month: <string>
+			 event_notes: <string>
+			 created_by: <string>
+	 }
+```
+***Messages***
+This was not in my initial plan, but was inpired when I was working out what to do with my contact form data. For the sake of the learnign process, I resisted using JS to handle the form and send it via a third party. I used `flask-wtf` forms to build the form and validation. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created a Admin Message Inbox to display the messages. 
+```  
+	messages  {
+		     _id: <ObjectId>
+		     first_name: <string>
+		     last_name: <string>
+		     email: <string>
+		     message: <string>
+		     date_time: <date>
+	 }
+```
 
 ### 4. Skeleton
 
 **Wireframing:**
-The wireframes were compelted in Adobe XD, and I kept them simple, to display the layout of the required complonents. 
+The wireframes were compelted in Adobe XD, and I kept them simple, to display the layout of the required complonents. I have used Materializecss as the framework, and based my work around a simple free template I found at [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes). 
 #### Home page wireframes
-![Home Page](documentation/images/wireframes/wireframes.png)
+![Home Page](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/images/wireframes/wireframes-homepage.png)
 
 #### Journal page wireframes
-![Journal Page](documentation/images/wireframes/wireframes.png)
+![Journal Page](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/images/wireframes/wireframes-journal.png)
 
 #### Plants page wireframes
-![Plants Page](documentation/images/wireframes/wireframes.png)
+![Plants Page](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/images/wireframes/wireframes-plants.png)
 
 
 ### 5. Surface
 
 **Visual Design:**
-I selected four stock images, one to represent each season, to display in a carousel slider directly under the navigation. The image carousel is set to automatically change images every 10 seconds, so it isn't rushed, and eash the user has time to view each image. This feature will be visable on all pages, along with the navbar. 
+I selected four stock images, one to represent each season, to display in a carousel slider directly under the navigation. The image carousel is set to automatically change images every 10 seconds, so the user has time to view each image. This feature will be visable on all pages, along with the navbar. 
 
-I habe included the contact form at the bottom of the page so the users can easily contact me, and there is a link in the navbar that scrolls the page to the cotnact form. 
+I have included the contact form at the bottom of the page so the users can easily contact me, and there is a link in the navbar that scrolls the page to the cotnact form. 
 
 I inlcuded images of fruit and vegetables to inspire users to make use of the application. Event names and plant names open the corresponding events and plant profiles, which can be easily viewed, updated or deleted. That happens in a modal that when closed returns the user to the same page. The navigation bar is fixed so it's easily accessible and always visible. The site is simple and the styling and functions consistant accross pages. 
 
 ## TECHNOLOGIES USED
 
 **Languages Used**
-
 1.  HTML
 2.  CSS3
 3.  SCSS
@@ -193,7 +271,6 @@ I inlcuded images of fruit and vegetables to inspire users to make use of the ap
 6.  Python
 7.  Jinja
 8.  Markdown
-    
 
 **Frameworks, Libraries, Programs used**
 
@@ -201,64 +278,76 @@ I inlcuded images of fruit and vegetables to inspire users to make use of the ap
 	Responsive framework of choice for this project.
 2. [Flask Framework](https://flask.palletsprojects.com/en/2.0.x/) 
      Used to display data from the mongoDB in the front end templates.
-4. [Heroku](https://www.heroku.com/home)
+3. [Heroku](https://www.heroku.com/home)
 	Hosting the project.
-5. [mongoDB](https://www.mongodb.com/)
-	noSQL database used to store non-relational data of the website.
-6. [Font Awesome](https://fontawesome.com/)
+4. [mongoDB](https://www.mongodb.com/)
+5. noSQL database used to store non-relational data of the website.
+6. [Flask-WTForms](https://flask-wtf.readthedocs.io/en/0.15.x/) 
+    A simple integration of Flask and WTForms, offering validation and implementation using Jinja. 
+7. [Font Awesome](https://fontawesome.com/)
 	Icons used in the website.
-7. [GitHub](https://github.com/)
+8. [GitHub](https://github.com/)
 	Used to host project repository and to deploy the project live via 	GitHub Pages
-8. [Git Version Control](https://git-scm.com/)
+9. [Git Version Control](https://git-scm.com/)
 	I used it to commit blocks of work to the GitHub repository and create branches to work on specific changes or testing.
-9. [Gitpod](https://gitpod.io/workspaces)
+10. [Gitpod](https://gitpod.io/workspaces)
 	Editor used to work on project.
-10. [Adobe XD](https://www.adobe.com/products/xd.html) 
+11. [Adobe XD](https://www.adobe.com/products/xd.html) 
 	Used to create wireframes
-11. [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
-Used to edit images for the site.
-12. [Squoosh](https://squoosh.app/)
+12. [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
+	Used to edit images for the site.
+13. [Adobe Illustrator](https://www.adobe.com/de/creativecloud.html?mv=search&mv=search&sdid=MQH8S7GK&ef_id=Cj0KCQjwgtWDBhDZARIsADEKwgPZA7lnHvCbzk4T9-Q7HVENkRXnk1GxIseaWipJrYnWF0LQvFTw21MaAlQ6EALw_wcB:G:s&s_kwcid=AL!3085!3!392740825380!b!!g!!%2badobe!1419110055!55481570853&gclid=Cj0KCQjwgtWDBhDZARIsADEKwgPZA7lnHvCbzk4T9-Q7HVENkRXnk1GxIseaWipJrYnWF0LQvFTw21MaAlQ6EALw_wcB)
+	Used to create my 404, 405 and 500 error images to display if users encounted missing or broken page links.
+14. [Squoosh](https://squoosh.app/)
 	I used it to compress images to optimize load performance.
-13. [Quire](https://quire.io/)
+15. [Quire](https://quire.io/)
 Free project and task planning application used for adding and planning tasks for the project.
-14. [Depositphotos](https://depositphotos.com/?gclsrc=aw.ds&&utm_source=google&utm_medium=cpc&utm_campaign=DP_EU_EN_Brand_Search&utm_term=depositphotos&gclid=CjwKCAjwuvmHBhAxEiwAWAYj-EVeHDBPdjs594mAT_HDLeFGM_g2IVcGn78NSArH7vXIYqfoO1BuhBoCv_kQAvD_BwE)
+16. [Depositphotos](https://depositphotos.com/?gclsrc=aw.ds&&utm_source=google&utm_medium=cpc&utm_campaign=DP_EU_EN_Brand_Search&utm_term=depositphotos&gclid=CjwKCAjwuvmHBhAxEiwAWAYj-EVeHDBPdjs594mAT_HDLeFGM_g2IVcGn78NSArH7vXIYqfoO1BuhBoCv_kQAvD_BwE)
 My source of choice for stock images.
+17. [StackEdit](https://stackedit.io/)
+	It's a free, online note-taking and markdown application. I used it to create the README file for GitHub.
+18. [Webmaker App](https://webmaker.app/app/) It is a free application similar to codepen, used to create and save the work locally. I use it to implement and experiment with using components of different frameowrks that I am using, so I am familiar with how to use them when I come to implementing them in my work. 
 
-
-----------
-
-## Testing
-Links to testing file, and plan outline
-
-### Research
-
-Link to research info and details.
-
-----------
-
-**1. What's available?** **2. How does it work?** **3. What can I expect?**
-
-
-
-### Development
-
-----------
-
+## TESTING
+Link to testing file.
+[To Testing.md](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/testing.md)
 ### Deployment
 
-----------
-
+**Deploy to Heroku**
+1. Setup pages required by Heroku to run app.
+	- In the console  I run `pip3 freeze --local > requirements.txt` . It creates the file `requirements.txt` and lists all the dependencies needed to run the application. 
+	- I create the Procfile by typing `echo web: python app.py > Procfile` in terminal. 
+	- I remove the black line at the bottom of the Procfile, which can cause problems running the app on Heroku.
+2. I go to heroku.com, 
+	-  I log in, and in the user dashboard click "create new app". 
+	- I create a unique app name, using lower case, dashes and or underscores. 
+	- I select the region closest to me (Frankfurt), and click "create app",
+3. Setup automatic deployment from my GitHub repository.
+	- With my GitHub usename displayed, I enter the repository name, and click search.
+	- It finds my repo and I click "connect to this app".
+4. Add evironment variables that are in a hidden file env.py that is not commited with the app.
+	- I click on the "Settings" tab for my app, and then click on "Reveal Config Vars".
+	- I enter the key-value pairs, minus quotes.
+	- I leave the MONGO_URI value empty as i don't have that yet.
+	- Before deploying, i commit and push my 2 new files to the repository. 
+	- I complete the git command, `git status`, `git add `. `git commit -m "add requirements.txt and Procfile"`, then `git push`. 
+5. Back in Heroku, I click "deploy branch"
+6. After about short wait, Heroku has received the code from GitHub, built the app, and a message says, "Your app has been successfully deployed".
+7. To confirm, I click "View" to launch the app.
+8. 
 ### Feedback
 
 ### Credits
+***Flask App*** 
+Without the Code Institute code along [Task Manager project](https://github.com/Code-Institute-Solutions/TaskManagerAuth) as a reference, I feel this project would have been far more difficult. Time and time again I referred back to examples in the Task Manager project to grasp a concept, or to find my way through a situation.  
 ***Theme inspiration*** 
 I came across some [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes), and used them as the inspiration to develop my own theme template. I had to update the markup a little for the latest  version of marterializecss, and customised the theme to my own needs. But anylising these thems helped me to get a grasp of the structure and function of materializecss elements. 
 
-## Notes
+## NOTES
 
-----------
 
 ## IMPROVEMENTS
 
-**Bugs**
+
+## BUGS
 

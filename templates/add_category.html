@@ -31,7 +31,7 @@
             <h3>Event Categories</h3>
 
             <ul class="collection">
-                {% for category in categories %}
+                {% for category in user_categories %}
                     {% if session["user"] == category.created_by %}
                         <li class="collection-item">
                             <div>{{ loop.index}}:

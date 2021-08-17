@@ -13,23 +13,25 @@
                         <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
                         <select id="event_category" name="event_category" class="validate" required>
                             <option value="" disabled selected>Choose Category</option>
-                            {% for category in categories %}
+                            {% for category in user_categories %}
                             <option value="{{ category.event_category }}">{{ category.event_category }}</option>
                             {% endfor %}
                         </select>
                         <label for="event_category">Event Category</label>
+                        <span class="helper-text">Required field</span>
                     </div>
                     <!-- select plant name -->
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
                         <select id="event_plant_id" name="event_plant_id" class="validate" required>
                             <option value="" disabled selected>Choose Plant</option>
-                            {% for plant in plants %}
+                            {% for plant in user_plants %}
                             <!-- Here the plant ObjectId is used in value as sudo foreign key -->
                             <option value="{{ plant._id }}">{{ plant.plant_name }}</option>
                             {% endfor %}
                         </select>
                         <label for="event_plant_id">Plant Name</label>
+                        <span class="helper-text">Required field</span>
                     </div>
                 </div>
                 <!-- event name -->
@@ -39,6 +41,7 @@
                         <input id="event_name" name="event_name"  minlength="5" maxlength="40" 
                           type="text" class="validate" required>
                         <label for="event_name">Event Name</label>
+                        <span class="helper-text">Required field</span>
                     </div>
                 </div>
                 <!--  event date -->
@@ -47,12 +50,14 @@
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
                         <input id="event_date" name="event_date" type="text" class="datepicker validate" required>
                         <label for="event_date">Event Date</label>
+                        <span class="helper-text">Required field</span>
                     </div>
                     <!-- event repeat cycle -->
                     <div class="input-field col s12 m6">
                         <i class="far fa-clock prefix teal-text text-darken-2"></i>
                         <input id="event_repeats" name="event_repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  type="text" class="validate">
                         <label for="event_repeats">Event Repeats</label>
+                        <span class="helper-text">Optional</span>
                     </div>
                 </div>
 
@@ -61,8 +66,9 @@
                     <div class="input-field col s12">
                         <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
                       <textarea id="event_notes" name="event_notes" minlength="5" 
-                      maxlength="200" class="materialize-textarea validate" required></textarea>
+                      maxlength="200" class="materialize-textarea validate" ></textarea>
                       <label for="event_notes">Event Notes</label>
+                      <span class="helper-text">Optional</span>
                     </div>
                 </div>
                 <!-- submit button -->
