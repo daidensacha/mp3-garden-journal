@@ -9,7 +9,7 @@
 
 View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 
-[Testing.md](documentation/TESTING.md) outlines my  testing strategy, development, deployment and post deployment.
+[Testing.md](/documentation/TESTING.md) outlines my  testing strategy, development, deployment and post deployment.
 
 ## UX DESIGN
 
@@ -245,7 +245,7 @@ The wireframes were compelted in Adobe XD, and I kept them simple, to display th
 ![Home Page](documentation/images/wireframes/wireframe-homepage.jpg)
 
 #### Journal page wireframes
-![Journal Page](documentation/images/wireframes/wireframes-journal.png)
+![Journal Page](documentation/images/wireframes/wireframes-journal.jng)
 
 #### Plants page wireframes
 ![Plants Page](documentation/images/wireframes/wireframes-plants.png)
