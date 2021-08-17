@@ -245,10 +245,10 @@ The wireframes were compelted in Adobe XD, and I kept them simple, to display th
 ![Home Page](documentation/images/wireframes/wireframe-homepage.jpg)
 
 #### Journal page wireframes
-![Journal Page](documentation/images/wireframes/wireframes-journal.jpg)
+![Journal Page](documentation/images/wireframes/wireframe-journal.jpg)
 
 #### Plants page wireframes
-![Plants Page](documentation/images/wireframes/wireframes-plants.jpg)
+![Plants Page](documentation/images/wireframes/wireframe-plants.jpg)
 
 
 ### 5. Surface
