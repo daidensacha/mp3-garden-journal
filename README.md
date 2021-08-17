@@ -9,7 +9,7 @@
 
 View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 
-[Testing.md](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/testing.md) outlines my  testing strategy, development, deployment and post deployment.
+[Testing.md](documentation/TESTING.md) outlines my  testing strategy, development, deployment and post deployment.
 
 ## UX DESIGN
 
@@ -242,13 +242,13 @@ This was not in my initial plan, but was inpired when I was working out what to 
 **Wireframing:**
 The wireframes were compelted in Adobe XD, and I kept them simple, to display the layout of the required complonents. I have used Materializecss as the framework, and based my work around a simple free template I found at [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes). 
 #### Home page wireframes
-![Home Page](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/images/wireframes/wireframes-homepage.png)
+![Home Page](documentation/images/wireframes/wireframe-homepage.jpg)
 
 #### Journal page wireframes
-![Journal Page](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/images/wireframes/wireframes-journal.png)
+![Journal Page](documentation/images/wireframes/wireframes-journal.png)
 
 #### Plants page wireframes
-![Plants Page](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/images/wireframes/wireframes-plants.png)
+![Plants Page](documentation/images/wireframes/wireframes-plants.png)
 
 
 ### 5. Surface
