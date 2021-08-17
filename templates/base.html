@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-    <title>Garden Journel</title>
+    <title>Garden Almanac</title>
 
     <!-- CSS  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -42,7 +42,7 @@
                         <!-- <li><a class="head-link" href="#projects">Projects</a></li> -->
                         <!-- <li><a class="head-link" href="#aboutus">About</a></li> -->
                         {% if session.user %}
-                            <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
+                            <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Almanac</a></li>
                             <li><a class="head-link" href="{{ url_for('get_plants') }}">Plants</a></li>
                             <!-- <li><a class="head-link" href="{{ url_for('add_event') }}">Add Event</a></li> -->
                             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Create<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -70,7 +70,7 @@
             <!-- <li><a class="head-link" href="#projects">Projects</a></li> -->
             <!-- <li><a class="head-link" href="#aboutus">About</a></li> -->
             {% if session.user %}
-                <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Journal</a></li>
+                <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Almanac</a></li>
                 <li><a class="head-link" href="{{ url_for('get_plants') }}">Plants</a></li>
                 <li><a class="head-link" href="{{ url_for('add_event') }}">New Event</a></li>
                 <li><a class="head-link" href="{{ url_for('add_plant') }}">New Plant</a></li>
@@ -174,28 +174,52 @@
             <div class="row">
 
                 <div class="col s12 m4">
-                    <h4 class="center">Plants/ Categories</h4>
+                    <div class="card-panel teal white-text">
+                        <h4 class="center">Plants/ Categories</h4>
+                    <div class="divider div-gradient div-rhombus"></div>
+                    <p>Start by entering some categories, types of recuring 
+                        events, for example, sowing, planging, fertilising. 
+                        Whatever types of garden events your interested in.</p>
+                    <p>Enter plants, along with information about them. The 
+                        type of information that interests and is important to 
+                    you.</p>
+                    <p>Its you place to record and review the management of 
+                        your garden and plants. 
+                    </p>
+                    </div>
+                    
                 </div>
-                <div class="col s12 m4">
+                <div class="col s12 m4" >
+                    <div class="card-panel teal white-text">
                     <h4 class="center">Events</h4>
-
+                    <div class="divider div-gradient div-rhombus"></div>
+                    <p>Events in the garden are cyclic in nature, which means 
+                        that you can be sure what happens today, will more than 
+                        likely happen again in the future. </p>
+                    <p>By recording the events, it will give you a snapshot to 
+                        reference when the time comes around again. 
+                    </p>
+                    <p>The events reference event categories, and plants, so 
+                        you can enter your own, what interests you, and you 
+                    can update the data when new information comes to light.</p>
+                </div>
                 </div>
 
-                <div class="col s12 m4 flow-text">
-                    <h4>Your Almanac</h4>
-                    <p>
-                        A personal project as part of my studies in full stack development,
-                        arrising out of an unfullfilled need for such an application. 
+                <div class="col s12 m4">
+                    <div class="card-panel teal white-text">
+                    <h4 class="center">Your Almanac</h4>
+                    <div class="divider div-gradient div-rhombus"></div>
+                    <p>Did you know, the Old Farmer’s Almanac, has been 
+                        continuously published in the United States since 1792.  
                     </p>
-                    <p>
-                        It is by no means a finished product, but a work in progress. Due to 
-                        time constraints, I am limited in scope as to the features I can 
-                        include now.
+                    <p>The historical data is priceless for farmers, and 
+                        anyone interested in growing and living from the land. 
                     </p>
-                    <p>
-                        I'm open to collaboration if your a developer with an interest in 
-                        helping to improveit. Feel free to drop me a line.
+                    <p>It's a process, that starts with the first step, and 
+                        never ends. You can record events, your plants, 
+                        what works, and what doesn't.
                     </p>
+                    </div>
                 </div>
 
 
@@ -205,7 +229,7 @@
 
     </div>
     <div class="modal-footer">
-        <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a> -->
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close <i class="far fa-times-circle right"></i></a>
     </div>
   </div>
 </div>
