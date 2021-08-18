@@ -93,44 +93,65 @@ def delete_message(message_id):
 @app.route("/get_garden_events")
 def get_garden_events():
     if "user" in session:
-        garden_events = list(mongo.db.garden_events.find().sort("event_date"))
-        plants = list(mongo.db.plants.find())
-        categories = list(mongo.db.categories.find().sort("event_category", 1))
-        events_months = list(mongo.db.garden_events.find().sort("event_months"))
+        # define the empty list first
+        garden_events = []
+        plants = []
+        categories = []
+        events_months = []
+        # distinguish if admin or normal user
+        if session["user"] == "admin":
+            garden_events = list(mongo.db.garden_events.find().sort("event_date"))
+            plants = list(mongo.db.plants.find())
+            categories = list(mongo.db.categories.find().sort("event_category", 1))
+            events_months = list(mongo.db.garden_events.find().sort("event_months"))
+        else:
+            garden_events = list(mongo.db.garden_events.find({"created_by": session["user"]}).sort("event_date"))
+            plants = list(mongo.db.plants.find({"created_by": session["user"]}))
+            categories = list(mongo.db.categories.find({"created_by": session["user"]}).sort("event_category"))
+            events_months = list(mongo.db.garden_events.find({"created_by": session["user"]}).sort("event_months"))
 
-        user_garden_events = []
-        for garden_event in garden_events:
-            if (garden_event["created_by"] == session["user"] or
-                    session["user"] == "admin"):
-                user_garden_events.append(garden_event)
+        # garden_events = list(mongo.db.garden_events.find().sort("event_date"))
+        # plants = list(mongo.db.plants.find())
+        # categories = list(mongo.db.categories.find().sort("event_category", 1))
+        # events_months = list(mongo.db.garden_events.find().sort("event_months"))
 
-        user_plants = []
-        for plant in plants:
-            if (plant["created_by"] == session["user"] or
-                    session["user"] == "admin"):
-                user_plants.append(plant)
+        # user_garden_events = []
+        # for garden_event in garden_events:
+        #     if (garden_event["created_by"] == session["user"] or
+        #             session["user"] == "admin"):
+        #         user_garden_events.append(garden_event)
 
-        user_categories = []
-        for category in categories:
-            if (category["created_by"] == session["user"] or
-                    session["user"] == "admin"):
-                user_categories.append(category)
+        # user_plants = []
+        # for plant in plants:
+        #     if (plant["created_by"] == session["user"] or
+        #             session["user"] == "admin"):
+        #         user_plants.append(plant)
 
-        user_event_months = []
-        for event_month in events_months:
-            if (event_month["created_by"] == session["user"] or
-                    session["user"] == "admin"):
-                user_event_months.append(event_month)
+        # user_categories = []
+        # for category in categories:
+        #     if (category["created_by"] == session["user"] or
+        #             session["user"] == "admin"):
+        #         user_categories.append(category)
 
-        if not user_garden_events:
+        # user_event_months = []
+        # for event_month in events_months:
+        #     if (event_month["created_by"] == session["user"] or
+        #             session["user"] == "admin"):
+        #         user_event_months.append(event_month)
+
+        if not garden_events:
             flash(
                 "Create events and event categories to populate this page.",
                 "info")
 
-        return render_template("journal.html", user_plants=user_plants,
-                               user_garden_events=user_garden_events,
-                               user_categories=user_categories,
-                               user_event_months=user_event_months)
+        # return render_template("journal.html", user_plants=user_plants,
+        #                        user_garden_events=user_garden_events,
+        #                        user_categories=user_categories,
+        #                        user_event_months=user_event_months)
+        return render_template("journal.html", plants=plants,
+                               garden_events=garden_events,
+                               categories=categories,
+                               events_months=events_months)
     else:
         flash("Please log in to view page.", "error")
         return redirect(url_for("login"))
@@ -498,20 +519,22 @@ def add_category():
             flash("New Category Successfully Added", "success")
             return redirect(url_for("add_category"))
 
-        # Get list of all categories
-        categories = list(mongo.db.categories.find().sort("event_category"))
-        # Filter list to display only session user categories
-        user_categories = []
-        for category in categories:
-            if (category["created_by"] == session["user"] or
-                    session["user"] == "admin"):
-                user_categories.append(category)
-        if not user_categories:
+        # Define the empty list first
+        categories = []
+        # Distinguish if admin or normal user and filter list accordingly
+        if session["user"] == "admin":
+            categories = list(mongo.db.categories.find().sort(
+                              "event_category"))
+        else:
+            categories = list(mongo.db.categories.find(
+                              {"created_by": session["user"]}).sort(
+                                  "event_category"))
+
+        if not categories:
             flash("Create event categories to populate this list.", "info")
 
         return render_template(
-            "add_category.html", categories=categories, category=category,
-            user_categories=user_categories)
+            "add_category.html", categories=categories)
     else:
         flash("Please log in to view page", "error")
         return redirect(url_for("login"))
@@ -525,25 +548,17 @@ def edit_category(category_id):
             "created_by": session["user"]
         }
         mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
-        flash("New Category Successfully Added", "success")
+        flash("Category Successfully Updated", "success")
+        return redirect(url_for("add_category"))
 
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
 
-    # Get list of all categories
-    categories = list(mongo.db.categories.find().sort("event_category"))
-    # for category in categories:
-    #     if category["created_by"] != session["user"]:
-    #         categories.remove(category)
-    # Filter list of all categories to the session user categories
-    # user_categories = []
-    # for category in categories:
-    #     if (category["created_by"] == session["user"] or
-    #             session["user"] == "admin"):
-    #         user_categories.append(category)
+    # Get list of all categories filtered by session user
+    categories = list(mongo.db.categories.find({"created_by": session["user"]}).sort("event_category"))
 
     return render_template(
         "edit_category.html", categories=categories, category=category)
-        
+
 
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):

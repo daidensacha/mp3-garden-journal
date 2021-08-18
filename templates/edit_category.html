@@ -21,7 +21,7 @@
                 <!-- submit button -->
                 <div class="row">
                     <div class="col s12 center-align">
-
+                    
                         {% if session["user"] == category.created_by %}
                         
                         <a href="#delete-category-modal" 
@@ -33,6 +33,7 @@
                         </button>
                         
                         {% endif %}
+                  
                         <a href="{{ url_for('add_category') }}" class="btn-small blue-grey btn-close">
                             Cancel <i class="fas fa-times-circle right"></i>
                         </a>
@@ -69,7 +70,7 @@
                 {% for category in categories %}
                     {% if category.created_by == session["user"] %}
                     <li class="collection-item">
-                        <div>{{ category.event_category.capitalize() }} 
+                        <div>{{ loop.index}}: {{ category.event_category.capitalize() }} 
                             <a href="{{ url_for('edit_category', category_id=category._id) }}" 
                                 class="secondary-content indigo-text darken-4-text edit-link">Edit <i class="fas fa-edit"></i>
                             </a>
