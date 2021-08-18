@@ -100,54 +100,31 @@ def get_garden_events():
         events_months = []
         # distinguish if admin or normal user
         if session["user"] == "admin":
-            garden_events = list(mongo.db.garden_events.find().sort("event_date"))
+            garden_events = list(
+                mongo.db.garden_events.find().sort("event_month"))
             plants = list(mongo.db.plants.find())
-            categories = list(mongo.db.categories.find().sort("event_category", 1))
-            events_months = list(mongo.db.garden_events.find().sort("event_months"))
+            categories = list(
+                mongo.db.categories.find().sort("event_category", 1))
+            events_months = list(
+                mongo.db.garden_events.find().sort("event_months"))
         else:
-            garden_events = list(mongo.db.garden_events.find({"created_by": session["user"]}).sort("event_date"))
-            plants = list(mongo.db.plants.find({"created_by": session["user"]}))
-            categories = list(mongo.db.categories.find({"created_by": session["user"]}).sort("event_category"))
-            events_months = list(mongo.db.garden_events.find({"created_by": session["user"]}).sort("event_months"))
-
-        # garden_events = list(mongo.db.garden_events.find().sort("event_date"))
-        # plants = list(mongo.db.plants.find())
-        # categories = list(mongo.db.categories.find().sort("event_category", 1))
-        # events_months = list(mongo.db.garden_events.find().sort("event_months"))
-
-        # user_garden_events = []
-        # for garden_event in garden_events:
-        #     if (garden_event["created_by"] == session["user"] or
-        #             session["user"] == "admin"):
-        #         user_garden_events.append(garden_event)
-
-        # user_plants = []
-        # for plant in plants:
-        #     if (plant["created_by"] == session["user"] or
-        #             session["user"] == "admin"):
-        #         user_plants.append(plant)
-
-        # user_categories = []
-        # for category in categories:
-        #     if (category["created_by"] == session["user"] or
-        #             session["user"] == "admin"):
-        #         user_categories.append(category)
-
-        # user_event_months = []
-        # for event_month in events_months:
-        #     if (event_month["created_by"] == session["user"] or
-        #             session["user"] == "admin"):
-        #         user_event_months.append(event_month)
+            garden_events = list(
+                mongo.db.garden_events.find(
+                    {"created_by": session["user"]}).sort("event_date"))
+            plants = list(mongo.db.plants.find(
+                {"created_by": session["user"]}))
+            categories = list(
+                mongo.db.categories.find(
+                    {"created_by": session["user"]}).sort("event_category"))
+            events_months = list(
+                mongo.db.garden_events.find(
+                    {"created_by": session["user"]}).sort("event_month"))
 
         if not garden_events:
             flash(
                 "Create events and event categories to populate this page.",
                 "info")
 
-        # return render_template("journal.html", user_plants=user_plants,
-        #                        user_garden_events=user_garden_events,
-        #                        user_categories=user_categories,
-        #                        user_event_months=user_event_months)
         return render_template("journal.html", plants=plants,
                                garden_events=garden_events,
                                categories=categories,
@@ -160,16 +137,18 @@ def get_garden_events():
 @app.route("/get_plants")
 def get_plants():
     if "user" in session:
-        plants = list(mongo.db.plants.find().sort("plant_type"))
-        user_plants = []
-        for plant in plants:
-            if (plant["created_by"] == session["user"] or
-                    session["user"] == "admin"):
-                user_plants.append(plant)
-        if not user_plants:
+        plants = []
+        # distinguish if admin or normal user
+        if session["user"] == "admin":
+            plants = list(mongo.db.plants.find().sort("plant_type"))
+        else:
+            plants = list(mongo.db.plants.find(
+                {"created_by": session["user"]}).sort("plant_type"))
+ 
+        if not plants:
             flash("Create plants to populate this page.", "info")
 
-        return render_template("plants.html", user_plants=user_plants)
+        return render_template("plants.html", plants=plants)
     else:
         flash("Please log in to view page.", "error")
         return redirect(url_for("login"))
@@ -178,17 +157,17 @@ def get_plants():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    user_categories = list(mongo.db.categories.find(
+    categories = list(mongo.db.categories.find(
         {"$text": {"$search": query}}))
-    user_plants = list(mongo.db.plants.find(
+    plants = list(mongo.db.plants.find(
         {"$text": {"$search": query}}))
-    user_garden_events = list(mongo.db.garden_events.find(
-        {"$text": {"$search": query}}))
+    garden_events = list(mongo.db.garden_events.find(
+        {"$text": {"$search": query}}).sort("event_date"))
 
     return render_template("journal.html",
-                           user_garden_events=user_garden_events,
-                           user_categories=user_categories,
-                           user_plants=user_plants)
+                           garden_events=garden_events,
+                           categories=categories,
+                           plants=plants)
                  
 
 @app.route("/register", methods=["GET", "POST"])
@@ -332,26 +311,20 @@ def add_event():
             flash("Event Successfully Added", "success")
             return redirect(url_for("get_garden_events"))
 
-        # Get list of all categories
-        categories = mongo.db.categories.find().sort("event_category", 1)
-        # Filter list of categories to session user
-        user_categories = []
-        for category in categories:
-            if (category["created_by"] == session["user"] or
-                    session["user"] == "admin"):
-                user_categories.append(category)
-
-        # Get list of all plants
-        plants = list(mongo.db.plants.find().sort("plant_name"))
-        # Filter list of plants to session user
-        user_plants = []
-        for plant in plants:
-            if (plant["created_by"] == session["user"] or
-                    session["user"] == "admin"):
-                user_plants.append(plant)
+        plants = []
+        categories = []
+        # distinguish if admin or normal user
+        if session["user"] == "admin":
+            plants = list(mongo.db.plants.find().sort("plant_type"))
+            categories = mongo.db.categories.find().sort("event_category", 1)
+        else:
+            plants = list(mongo.db.plants.find(
+                {"created_by": session["user"]}).sort("plant_type"))
+            categories = list(mongo.db.categories.find(
+                {"created_by": session["user"]}).sort("event_category"))
 
         return render_template(
-            "add_event.html", user_categories=user_categories, user_plants=user_plants)
+            "add_event.html", categories=categories, plants=plants)
     else:
         flash("Please log in to view page", "error")
         return redirect(url_for("login"))
@@ -387,27 +360,24 @@ def edit_event(event_id):
 
     garden_events = list(mongo.db.garden_events.find().sort("event_date"))
 
-    # Get list of all categories
-    categories = mongo.db.categories.find().sort("event_category", 1)
-    # Filter list of categories to session user
-    user_categories = []
-    for category in categories:
-        if (category["created_by"] == session["user"] or
-                session["user"] == "admin"):
-            user_categories.append(category)
+    plants = []
+    categories = []
+    # distinguish if admin or normal user to populate list accordingly
+    if session["user"] == "admin":
+        plants = list(mongo.db.plants.find().sort("plant_type"))
+        categories = mongo.db.categories.find().sort("event_category", 1)
+    else:
+        plants = list(mongo.db.plants.find(
+            {"created_by": session["user"]}).sort("plant_type"))
+        categories = list(mongo.db.categories.find(
+            {"created_by": session["user"]}).sort("event_category"))
 
-    # Get list of all plants
-    plants = list(mongo.db.plants.find().sort("plant_name"))
-    # Filter list of plants to session user
-    user_plants = []
-    for plant in plants:
-        if (plant["created_by"] == session["user"] or
-                session["user"] == "admin"):
-            user_plants.append(plant)
+    if not plants:
+        flash("Create plants to populate this page.", "info")
 
     return render_template(
-        "edit_event.html", user_plants=user_plants, garden_events=garden_events,
-        garden_event=garden_event, user_categories=user_categories)
+        "edit_event.html", plants=plants, garden_events=garden_events,
+        garden_event=garden_event, categories=categories)
 
 
 @app.route("/delete_event/<event_id>")

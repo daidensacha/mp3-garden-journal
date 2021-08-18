@@ -26,7 +26,7 @@
     </div>
     
     <ul class="collapsible">
-      {% for garden_event in user_garden_events %}
+      {% for garden_event in garden_events %}
       
       <li>
         <div class="collapsible-header">
@@ -92,7 +92,7 @@
               <br>
 <!-- begin plant data section -->
               <!-- Loop through plants and get plant data -->
-              {% for plant in user_plants %}
+              {% for plant in plants %}
 
               <!-- If comparitor to match event and plant info -->
               {% if garden_event.event_plant_id == plant._id %}

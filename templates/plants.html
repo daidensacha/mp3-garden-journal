@@ -6,7 +6,7 @@
         <h3>My Plants</h3>
 
         <div class="collection">
-            {% for plant in user_plants %}
+            {% for plant in plants %}
             <a href="#plant_id_{{ loop.index }}"
                 class="collection-item m-bot-10 waves-effect waves-light modal-trigger">{{ loop.index}}:
                 {{ plant.plant_type.capitalize() }} 

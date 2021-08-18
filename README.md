@@ -170,70 +170,71 @@ I decided to create separate collections for users, event categories, and plants
 
 I decided on the following schema, using collections to group separate groups of data, users, plants, categories (event), garden_events, and messages. 
 
+
 ***Users***
 The whole site revoles around the users, so the user name is what links the plants, events and categores, where I use the `user_name`and insert it as in the related entry `created_by` key. I am able to use this as the sudo foreign key to identify the users entries. 
 ```  
 	users  {
-			_id: <ObjectId>
-			user_name: <string>
-			user_email: <string>
-			user_joined: <date>
-			user_firstname: <string>
-			user_lastname: <string>
-			user_password: <string> 
+			_id: 					<ObjectId>
+			user_name: 				<string>
+			user_email: 			<string>
+			user_joined: 			<date>
+			user_firstname: 		<string>
+			user_lastname: 			<string>
+			user_password: 			<string> 
        }
 ```  
 ***Plants***
 I used a combination of fields to so the user can record information, and update it each year based on the past years experience. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
 ```   
 	plants  {
-			_id: <ObjectId>
-		    plant_type: <string>
-		    plant_name: <string>
-		    plant_sowing: <date>
-		    plant_planting: <date>
-		    harvest_from: <date>
-		    harvest_to: <date>
-		    fertilise_frequency: <string>
-		    fertiliser_type: <string>
-		    plant_note: <string>
-		    created_by: <string>  
+			_id: 					<ObjectId>
+		    plant_type: 			<string>
+		    plant_name: 			<string>
+		    plant_sowing: 			<date>
+		    plant_planting: 		<date>
+		    harvest_from: 			<date>
+		    harvest_to: 			<date>
+		    fertilise_frequency: 	<string>
+		    fertiliser_type: 		<string>
+		    plant_note: 			<string>
+		    created_by: 			<string>  
      }
 ```   
 ***Categories***
 The user has total discretion to group the types of events how they prefer, which will suit their needs and desire to search or filter infomtation. 
 ```  
 	categories  {
-		     _id: <ObjectId>
-		     event_category: <string>
-		     created_by: <string>
+		     _id: 					<ObjectId>
+		     event_category: 		<string>
+		     created_by: 			<string>
 	 }
 ```
 ***Garden Events***
 The pivot of the whole concept, depends on and requires category and plants to create an event. Initially I used the plant ObjectId as the sudo foreign key, as it is unique to the plant, and immutable. Like the events, some fields are required, and other optional. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
 ``` 
 	garden_events {
-			 _id: <ObjectId>
-			 event_category: <string>
-			 event_plant_id: <ObjectId>
-			 event_name: <string>
-			 event_repeats: <string>
-			 event_date: <date>
-			 event_month: <string>
-			 event_notes: <string>
-			 created_by: <string>
+			 _id: 					<ObjectId>
+			 event_category: 		<string>
+			 event_plant_id: 		<ObjectId>
+			 event_name: 			<string>
+			 event_repeats: 		<string>
+			 event_date: 			<date>
+			 event_month: 			<string>
+			 event_notes: 			<string>
+			 created_by: 			<string>
 	 }
 ```
 ***Messages***
 This was not in my initial plan, but was inpired when I was working out what to do with my contact form data. For the sake of the learnign process, I resisted using JS to handle the form and send it via a third party. I used `flask-wtf` forms to build the form and validation. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created a Admin Message Inbox to display the messages. 
 ```  
 	messages  {
-		     _id: <ObjectId>
-		     first_name: <string>
-		     last_name: <string>
-		     email: <string>
-		     message: <string>
-		     date_time: <date>
+		     _id: 					<ObjectId>
+		     first_name: 			<string>
+		     last_name: 			<string>
+		     email: 				<string>
+		     message: 				<string>
+		     date_time: 			<date>
 	 }
 ```
 
