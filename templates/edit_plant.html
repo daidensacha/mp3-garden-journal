@@ -103,14 +103,14 @@
                     <div class="col s12 center-align">
                         {% if session["user"] == plant.created_by %}
                             <a href="#delete-plant-modal" class="btn-small red darken-4 modal-trigger btn-delete">
-                                Delete <i class="fas fa-times-circle right"></i>
+                                Delete <i class="fas fa-times-circle right hide-on-small-only"></i>
                             </a>
                         {% endif %}
                         <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
-                            Save <i class="fas fa-edit right"></i>
+                            Save <i class="fas fa-edit right hide-on-small-only"></i>
                         </button>
                         <a href="{{ url_for('get_plants') }}" class="btn-small blue-grey btn-close">
-                            Cancel <i class="fas fa-times-circle right"></i>
+                            Cancel <i class="fas fa-times-circle right hide-on-small-only"></i>
                         </a>
                     </div>
                     <!-- Modal Structure -->

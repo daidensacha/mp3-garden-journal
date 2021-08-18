@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Fondamento&family=Georama&display=swap');
+
 #main-block {
   min-height: 45vh;
 }
@@ -9,6 +11,10 @@ div.wrapper {
 p {
   line-height: 2rem;
   text-align: justify;
+}
+
+div.faq-info p {
+  font-family: 'Georama', sans-serif;
 }
 
 /*
@@ -38,18 +44,34 @@ p {
 }
 
 .btn-small {
-  margin: 2px 0px;
+  margin: 2px 2px;
+  /* min-width: 50px; */
+}
+
+.email-send {
+  color: #006064;
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.btn-email-send:hover {
+  color: #037b80!important;
 }
 
 input#submit.waves-button-input {
   color: #f1f8e9;
 }
 
-#btn-msg-delete {
-  background-color: transparent;
+.email-delete {
+  color: rgb(136, 5, 5);
   border: none;
   box-shadow: none;
   -webkit-box-shadow: none;
+}
+
+.email-delete:hover {
+  color: #a8063d!important;
 }
 
 /*
@@ -187,7 +209,7 @@ ul.share-buttons {
 .collapsible-heading {
   font-size: 1.2em;
   font-weight: 400;
-  vertical-align: middle;;
+  vertical-align: middle;
 }
 
 /************************* Collapsible Rotating Caret  ************************/
@@ -423,6 +445,9 @@ ul.form-error {
   .pr-10 {
     padding-right: 10px;
   }
+  /* .mt-10 {
+    margin-top: 10px;
+  } */
 
   /*********************** Emphasis class custom styles ***********************/
   .emph-ital {
@@ -555,7 +580,19 @@ li a.dropdown-trigger:focus {
   }
   .modal .modal-content {
     padding: 10px 20px;
-}
+  }
+  .email-send {
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+  .email-delete {
+    padding: 0 10px;
+    margin-top: 10px;
+    /* text-align: center ; */
+  }
+  .smt-10 {
+    margin-top:10px;
+  }
 }
 
 /* Medium Screens */

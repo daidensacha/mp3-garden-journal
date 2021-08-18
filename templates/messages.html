@@ -9,13 +9,27 @@
       {% for message in messages %}
       <li>
         <div class="collapsible-header"> 
-          <div class="col s12 m3"><span class="collapsible-heading"><i class="caret fas fa-caret-down"></i> {{ message.date_time.strftime("%B %d") }}</span></div>
-          <div class="col s12 m3"><span class="collapsible-heading ">Message From: {{ message.first_name }} {{ message.last_name }}</span></div>
-          <div class="col s12 m6"><span class="collapsible-heading"><a class="emph-yellow" href="mailto:{{ message.email }}">Email: &#60;{{ message.email }}&#62;</a></span> 
-            <a href="#message_{{ loop.index }}" id="btn-msg-delete" class="btn-small modal-trigger btn-delete right"> Delete
-             <i class="fas fa-times-circle right"></i>
-          </a>
+          <div class="row" style="width: 100%;">
+            <div class="col s12 m3"><span class="collapsible-heading"><i class="caret fas fa-caret-down"></i> {{ message.date_time.strftime("%b %d") }}</span></div>
+            <div class="col s12 m6 smt-10"><span class="collapsible-heading ">Message From: {{ message.first_name }} {{ message.last_name }}</span></div>
+            <div class="col s12 m3 center smt-10"><span class="collapsible-heading">
+              <div class="row">
+                <!-- <div class="col s6 m6"> -->
+                  <a class="email-send" href="mailto:{{ message.email }}"><span class=""></span>
+                    <i class="far fa-envelope"></i>
+                  </a></span>
+                <!-- </div> -->
+                 
+                <!-- <div class="col s6 m6"> -->
+                  <a href="#message_{{ loop.index }}"  class="modal-trigger email-delete"><span class=""></span>
+                    <i class="fas fa-times-circle "></i>
+                  </a>
+                <!-- </div> -->
+
+                
+            </div>
           </div>
+        </div>
         </div>
         <div class="collapsible-body"><span>{{ message.message }}</span></div>
         <!-- <a href="#delete-message-modal" class="btn-small red darken-4 modal-trigger btn-delete">

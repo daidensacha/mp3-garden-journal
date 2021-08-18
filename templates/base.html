@@ -48,7 +48,14 @@
                             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Create<i class="material-icons right">arrow_drop_down</i></a></li>
                             <!-- <li><a class="head-link" href="#">Add Plants</a></li> -->
                             <!-- <li><a class="head-link" href="#">Add Categories</a></li> -->
-                            <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">{{ user["user_firstname"] }}'s Profile</a></li>
+                            <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">
+                                {% if username == "admin" %}
+                                    Admin Profile
+                                {% else %}
+                                    {{ user["user_firstname"] }}'s Profile
+                                {% endif %}
+                            
+                            </a></li>
                             <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
                         {% else %}
                             <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
@@ -162,57 +169,26 @@
      <!-- Modal Trigger -->
 
   <!-- Modal Structure -->
-  <div id="footer-modal" class="modal bottom-sheet">
+  <div id="footer-modal" class="modal bottom-sheet blue-grey darken-4">
     <div class="modal-content">
       
         <!-- contact form section -->
-    <div class="container section scrollspy" id="contactus">
+    <div class=" section scrollspy" id="contactus">
         <div class="section">
        
 
             <div class="row">
 
                 <div class="col s12 m4">
-                    <div class="card-panel teal white-text">
-                        <h4 class="center">Plants/ Categories</h4>
-                    <div class="custom-divider div-gradient div-rhombus"></div>
-                    <p>Start by entering some categories, types of recuring 
-                        events, for example, sowing, planging, fertilising. 
-                        Whatever types of garden events your interested in.</p>
-                    <p>Enter plants, along with information about them. The 
-                        type of information that interests and is important to 
-                    you.</p>
-                    <p>Its you place to record and review the management of 
-                        your garden and plants. 
-                    </p>
-                    </div>
-                    
-                </div>
-                <div class="col s12 m4" >
-                    <div class="card-panel teal white-text">
-                    <h4 class="center">Events</h4>
-                    <div class="custom-divider div-gradient div-rhombus"></div>
-                    <p>Events in the garden are cyclic in nature, which means 
-                        that you can be sure what happens today, will more than 
-                        likely happen again in the future. </p>
-                    <p>By recording the events, it will give you a snapshot to 
-                        reference when the time comes around again. 
-                    </p>
-                    <p>The events reference event categories, and plants, so 
-                        you can enter your own, what interests you, and you 
-                    can update the data when new information comes to light.</p>
-                </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="card-panel teal white-text">
+                    <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info">
                     <h4 class="center">Your Almanac</h4>
                     <div class="custom-divider div-gradient div-rhombus"></div>
                     <p>Did you know, the Old Farmer’s Almanac, has been 
                         continuously published in the United States since 1792.  
                     </p>
-                    <p>The historical data is priceless for farmers, and 
-                        anyone interested in growing and living from the land. 
+                    <p>The historical data, handed down for generations is 
+                        priceless for farmers, and hobby gardeners 
+                        interested in growing and living off the land. 
                     </p>
                     <p>It's a process, that starts with the first step, and 
                         never ends. You can record events, your plants, 
@@ -221,7 +197,42 @@
                     </div>
                 </div>
 
+                <div class="col s12 m4" >
+                    <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info">
+                    <h4 class="center">Events</h4>
+                    <div class="custom-divider div-gradient div-rhombus"></div>
+                    <p>Garden events are cyclic in nature, which means that
+                         you can be sure what happens today, will more than 
+                        likely happen again in the future.</p>
+                    <p>Recording events is your historical record, a foundation
+                         of experience, a reference to what worked and what you 
+                         could do different.
+                    </p>
+                    <p>Knowing when events are likely to occur helps you to 
+                        prepare, to be ready and to make the most of the seasonal
+                        changes. 
+                    </p>
+                </div>
+                </div>
 
+                <div class="col s12 m4">
+                    <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info">
+                        <h4 class="center">Plants</h4>
+                    <div class="custom-divider div-gradient div-rhombus"></div>
+                    <p>Preparing, nourishing and enjoying the fruits of your 
+                        labour is easy when you know how. 
+                    Knowing what, and when to feed your plants, and how to care for 
+                    them in different conditions comes from experience.</p>
+                    <p>Build a data base of information for future to reference. 
+                        Little by little, edit your notes, on how to care 
+                    for your garden.</p>
+                    <p>Farmers relied on this type of information for 
+                        generations, the wisdom is tried and true.
+                    </p>
+                    </div>
+                    
+                </div>
+                
             </div>
         </div>
     </div>
@@ -239,7 +250,7 @@
             <div class="container">
                 <p>Copyright © oodaiden.com</p>
             </div><span><a href="#footer-modal" title="FAQ"
-                class="faq-icon social-icon modal-trigger" style="font-size: 2em;margin-right: 10px;">FAQ<i class="fas fa-info-circle"></i></a></span>
+                class="faq-icon social-icon modal-trigger" style="font-size: 2em;margin-right: 10px;">FAQ<i class="fas fa-info-circle hide-on-small-only"></i></a></span>
             <ul class="share-buttons">
                 <li><a href="https://github.com/daidensacha" target="_blank" title="GitHub"
                         class="social-icon"><i class="fab fa-github fa-2x"></i></a></li>
