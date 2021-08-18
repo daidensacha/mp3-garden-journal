@@ -13,7 +13,7 @@
                         <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
                         <select id="event_category" name="event_category" class="validate" required>
                             <option value="" disabled selected>Choose Category</option>
-                            {% for category in user_categories %}
+                            {% for category in categories %}
                             <option value="{{ category.event_category }}">{{ category.event_category }}</option>
                             {% endfor %}
                         </select>
@@ -25,7 +25,7 @@
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
                         <select id="event_plant_id" name="event_plant_id" class="validate" required>
                             <option value="" disabled selected>Choose Plant</option>
-                            {% for plant in user_plants %}
+                            {% for plant in plants %}
                             <!-- Here the plant ObjectId is used in value as sudo foreign key -->
                             <option value="{{ plant._id }}">{{ plant.plant_name }}</option>
                             {% endfor %}
