@@ -34,34 +34,34 @@
 
  1. **Check unregistered users**
 	- Access to restricted pages
-		- In the Navbar, there are links to Home, Log In, Register, and Contact. 
-		- If I type a non-existing URL, I see a custom 404 Error message, with a link to the homepage. 
-		- If I type in an @app.route, i.e. https://mp3-garden-journal.herokuapp.com/get_plants, I am directed to the login page, and an alert message asks me to log in to access the page. 
+		- [x] In the Navbar, there are links to Home, Log In, Register, and Contact. 
+		- [x] If I type a non-existing URL, I see a custom 404 Error message, with a link to the homepage. 
+		- [x] If I type in an @app.route, i.e. https://mp3-garden-journal.herokuapp.com/get_plants, I am directed to the login page, and an alert message asks me to log in to access the page. 
 	- Contact form
-		- I click the contact link in the Navbar, and I am directed to the contact page. 
-		- I fill in the form, click send, and a success alert appears telling me the message has been sent. **NOTE:** *For more detailed information on the form testing, see:* **(add link to form testing)**
+		- [x] I click the contact link in the Navbar, and I am directed to the contact page. 
+		- [x] I fill in the form, click send, and a success alert appears telling me the message has been sent. **NOTE:** *For more detailed information on the form testing, see:* **(add link to form testing)**
 	-  Registration process
-		- Enter details in the user registration form, press submit. 
-		- I am redirected to the login page, where a success alert message informs me  registration was successful. 
-		- I check in the user collection in MongoDB, and a new entry  was created in and is displaying  correct user information. (add Screenshot)
-		- I enter user login details in the login form, and login is successful. 
-		-  When logged in, I am redirected to the user profile page. 
+		- [x] Enter details in the user registration form, press submit. 
+		- [x] I am redirected to the login page, where a success alert message informs me  registration was successful. 
+		- [x] I check in the user collection in MongoDB, and a new entry  was created in and is displaying  correct user information. (add Screenshot)
+		- [x] I enter user login details in the login form, and login is successful. 
+		- [x] When logged in, I am redirected to the user profile page. 
 
  2. **Check new users** 
-    -	I log in with new user details, login is successful. 
-    -	I am redirected to the user profile, an alert message is showing saying "Welcome, dannyboone". A disabled form is displayed showing my registered details, with a "EDIT PROFILE" button.
-    -	I click the edit profile button, a page with the same inputs and information, not disabled, appears. I change the email, enter my password, and click update information. 
-    -	I am redirected to the user profile page, a success alert message informs me the details have been updated. This is confirmed in the new details showing in the disabled form. 
-    -	I check the collection in the MongoDB, where the details have also been updated. 
-    -	I click on the Navbar Journal link, it redirects to an empty page, with an info alert message informing me to create events and event categories to populate the page. 
-    -	I click on the Navbar Plants link, it redirects to an empty page, with an info alert message informing me to create plants to populate the page. 
-    -	I click on the Navbar create category link, it opens an empty page, with an info alert message informing me to create categories to populate the list. 
-    - I enter a category, click add category, and one item appears in the list with a tag "Created by: dannyboone". A success alert informs me the category was successfully added. 
-    - I click the Navbar "Create Plant" link, am redirected to the add plant page, where a form with inputs is showing. 
-    - I enter plant details, click "Add Plant", it instantly redirects me to the plants page, where a success alert informs me the plant was successfully added, and the plant is in the list. 
-    - I move my mouse cursor over the plant, a pointer appear, I click on the plant and a modal opens showing me the plant details. 
-    - I click on the Navbar "Create Event" link and it opens the "Add Event" page.
-    - I enter event details, click "Add Event", and I am redirected to the Events page, where a success alert message informs me the event was successfully added. There is now one event in the list. I open the accordion, and it shows me the plant and event information. 
+    - [x] I log in with new user details, login is successful. 
+    - [x] I am redirected to the user profile, an alert message is showing saying "Welcome, dannyboone". A disabled form is displayed showing my registered details, with a "EDIT PROFILE" button.
+    - [x] I click the edit profile button, a page with the same inputs and information, not disabled, appears. I change the email, enter my password, and click update information. 
+    - [x] I am redirected to the user profile page, a success alert message informs me the details have been updated. This is confirmed in the new details showing in the disabled form. 
+    - [x] I check the collection in the MongoDB, where the details have also been updated. 
+    - [x] I click on the Navbar Journal link, it redirects to an empty page, with an info alert message informing me to create events and event categories to populate the page. 
+    - [x] I click on the Navbar Plants link, it redirects to an empty page, with an info alert message informing me to create plants to populate the page. 
+    - [x] I click on the Navbar create category link, it opens an empty page, with an info alert message informing me to create categories to populate the list. 
+    - [x] I enter a category, click add category, and one item appears in the list with a tag "Created by: dannyboone". A success alert informs me the category was successfully added. 
+    - [x] I click the Navbar "Create Plant" link, am redirected to the add plant page, where a form with inputs is showing. 
+    - [x] I enter plant details, click "Add Plant", it instantly redirects me to the plants page, where a success alert informs me the plant was successfully added, and the plant is in the list. 
+    - [x] I move my mouse cursor over the plant, a pointer appear, I click on the plant and a modal opens showing me the plant details. 
+    - [x] I click on the Navbar "Create Event" link and it opens the "Add Event" page.
+    - [x] I enter event details, click "Add Event", and I am redirected to the Events page, where a success alert message informs me the event was successfully added. There is now one event in the list. I open the accordion, and it shows me the plant and event information. 
 **NOTE:** More extensive notes for testing of crud functionality for all users in section **CRUD Testing**
 
  3.  Check for all users
@@ -71,7 +71,7 @@
 1.  **CREATE**
 
 	 - **Add Category**
-	  - [x] I click the add category with an empty input, a red line appears under the input, and a message appears asking to fill in the field. 
+	 - [x] I click the add category with an empty input, a red line appears under the input, and a message appears asking to fill in the field. 
 	 - [x] I type a category name in the field, the line under the field turns green.
 	 - [x] I click the add category button, a success alert appears informing me "New Category Successfully Added". 
 	 - [x] The added category appears instantly in the list of categories under the input. 
@@ -83,7 +83,6 @@
 	 
 	 - **Add Garden Event**
 	 - [x] I click the create Navbar event event link, am redirected to the add event page, and I add events details into the form fields. 
-	 
 	 - [x] I click save, am redirected to the my events page, a success alert states the event was successfully added. The event is showing in the accordionl. I click on the event and the accordion opens, displaying the event, and related plant information.
 
 2.  **READ**

@@ -32,7 +32,7 @@ View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 	- As a vegetable gardener, I want to set reminders for when to plant particular seeds, so they are ready to plant out after the last frost.
 	- As a vegetable gardener, I want to record regular or yearly maintenance tasks, so I don't forget them.
 	- As a vegetable gardener, I want to know when my fruit and vegetable crops are ready to pick.
-	-  As a vegetable gardener, I want to edit plants and event when information so I can improve the records over time.
+	- As a vegetable gardener, I want to edit plants and event when information so I can improve the records over time.
 
 1.  **As the owner:**
 	- I want to engage gardening enthusiasts with the goal to build up a user base of registered users.
@@ -347,8 +347,68 @@ I came across some [materializecss themes](http://swarnakishore.github.io/Materi
 ## NOTES
 
 
-## IMPROVEMENTS
+## IMPROVEMENTS/ FUTURE FEATURES
+**Admin**
+- **User Groups**
+With limited time to complete my project, I have had to exclude developing the admn panel to how I would like it. Its a learning process, but in working on limiting users accessability, having users with different permissions, its clear that planning for, and assigning user group permissions is a good idea. 
+	- **User Management** 
+	I would like to have a page in the admin profile, to list all users, and monitor their activity. It woudl also be good to be able to change the group permissions from the from this page. I plan on changing and adding this to the site. 
+- **Interest Groups** 
+I see potential to develop this into a social plattform, where users with similar interests can connect and share their events, plants and infomation. This would be invaluable as an almanac, as it depends on experience, and the broader the user base of experience being input and contributed, the more accurate and helpful the information will be. 
 
+## BUGS and ISSUES
+- **MongoDB Schema**
 
-## BUGS
+In the almanac page, I display the envents and plant information. I needed a way to identify the plant with the corresponding event. Initially I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, so I could identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when the plant name was changed, and then my code couldn't match tht plant with the stored plant name in the garden event collection. 
+I decided to use the plant ObjectId instead, as it's immutable, and unique. I had some issued then which took me a while to work out, like how to complare the ObjectId string with the ObjectId. In my add/ edit_event routes, i used the MaterialDesing select as follows.
+```
+<select  id="event_plant_id"  name="event_plant_id"  class="validate"  required>
+	<option  value=""  disabled  selected>Choose Plant</option>
+	{% for plant in user_plants %}
+		<!-- Here the plant ObjectId is used in value as sudo foreign key -->
+		<option  value="{{ plant._id }}">{{ plant.plant_name }}</option>
+	{% endfor %}
+</select>
+```
+I then called the ObjectId string value in my fucntion like so. 
+```
+event_plant_id = request.form.get("event_plant_id")
+```
+The ObjectId string is then converted back to teh ObjectId for sending to MongoDB to store in the ```garden_events```  collection. 
+ ```"event_plant_id": ObjectId(event_plant_id)```
+Once I was able to convert the string format to its ObjectId format, I was able to loop through the plants to find the matching ObjectId, and then display the related plant information in along side the garden event.
+
+- **Edit Categories**
+
+I clicked on the edit category, and was redirected to the edit category page. The category _id was showing in the browser URL, but the category name displaying in the input was incorrect, and always the same. 
+I created my cursor in the app.route for categories as follows.
+
+```
+categories = list(mongo.db.categories.find().sort("event_category"))
+```
+I then filtered that list to item for the session user or admin,
+```
+user_categories = []
+for category in categories:
+	if (category["created_by"] == session["user"] or session["user"] == "admin"):
+		user_categories.append(category)
+```
+It worked on the plants, and amanac pages, but for some reason was playing up here. 
+The above code was repeated and I changed it to onlz get the ```session["user"]``` items.
+
+```
+categories = []
+# Distinguish if admin or normal user and filter list accordingly
+if session["user"] == "admin":
+	categories = list(mongo.db.categories.find().sort("event_category"))
+else:
+	categories = list(
+			mongo.db.categories.find(
+				  {"created_by": session["user"]}).sort("event_category"))
+if  not categories:
+flash("Create event categories to populate this list.", "info")
+```
+This has simplifies my coding, as i use the same list name now for ```categories```, instaed of creating a new list ```user_categories``` and then using that also in my template.  
+The bug dissapeared, and my code was simpler. I repeated these changes in the app.py for plants and events. 
+
 
