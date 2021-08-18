@@ -54,7 +54,6 @@
                                 {% else %}
                                     {{ user["user_firstname"] }}'s Profile
                                 {% endif %}
-                            
                             </a></li>
                             <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
                         {% else %}
@@ -173,14 +172,14 @@
     <div class="modal-content">
       
         <!-- contact form section -->
-    <div class=" section scrollspy" id="contactus">
+    <div class=" section scrollspy">
         <div class="section">
        
 
-            <div class="row">
+            <div class="row flexbox">
 
                 <div class="col s12 m4">
-                    <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info">
+                    <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info footer-card">
                     <h4 class="center">Your Almanac</h4>
                     <div class="custom-divider div-gradient div-rhombus"></div>
                     <p>Did you know, the Old Farmer’s Almanac, has been 
@@ -194,11 +193,12 @@
                         never ends. You can record events, your plants, 
                         what works, and what doesn't.
                     </p>
+                    <div class="flex-grow"></div>
                     </div>
                 </div>
 
                 <div class="col s12 m4" >
-                    <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info">
+                    <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info footer-card">
                     <h4 class="center">Events</h4>
                     <div class="custom-divider div-gradient div-rhombus"></div>
                     <p>Garden events are cyclic in nature, which means that
@@ -212,11 +212,12 @@
                         prepare, to be ready and to make the most of the seasonal
                         changes. 
                     </p>
+                    <div class="flex-grow"></div>
                 </div>
                 </div>
 
                 <div class="col s12 m4">
-                    <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info">
+                    <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info footer-card">
                         <h4 class="center">Plants</h4>
                     <div class="custom-divider div-gradient div-rhombus"></div>
                     <p>Preparing, nourishing and enjoying the fruits of your 
@@ -226,9 +227,10 @@
                     <p>Build a data base of information for future to reference. 
                         Little by little, edit your notes, on how to care 
                     for your garden.</p>
-                    <p>Farmers relied on this type of information for 
-                        generations, the wisdom is tried and true.
+                    <p>Farmers relied on this for generations, the wisdom is 
+                        tried and true.
                     </p>
+                    <div class="flex-grow"></div>
                     </div>
                     
                 </div>

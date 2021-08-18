@@ -55,7 +55,7 @@ div.faq-info p {
   -webkit-box-shadow: none;
 }
 
-.btn-email-send:hover {
+.email-send:hover {
   color: #037b80!important;
 }
 
@@ -184,6 +184,24 @@ ul.share-buttons {
   color: #efefef
 }
 
+.footer-card{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* .flexbox {
+  display: flex;
+  overflow: hidden;
+}
+.flexbox .col .card-panel {
+  flex: 1;
+  /* background: red; */
+  margin: 10px;
+  padding: 20px;
+} */
+
 /*
 ================================================================================
 ======================= Materialize Collapsible  Styling =======================
@@ -234,6 +252,8 @@ li.active .collapsible-header .caret {
   transform: rotate(-180deg);
   transform-origin: 0.6em 0.5em;
 }
+
+
 
 /*
 ================================================================================
@@ -582,11 +602,11 @@ li a.dropdown-trigger:focus {
     padding: 10px 20px;
   }
   .email-send {
-    padding: 0 10px;
+    padding: 0 5px;
     margin-top: 10px;
   }
   .email-delete {
-    padding: 0 10px;
+    padding: 0 5px;
     margin-top: 10px;
     /* text-align: center ; */
   }

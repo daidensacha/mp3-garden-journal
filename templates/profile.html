@@ -7,8 +7,12 @@
           <div class="">
             <!-- from here -->
           {% for user in user_profile %}
-            <h3 class="center">{{ user["user_firstname"] }}'s Profile</h3>
-
+            <h3 class="center">
+              {% if username == "admin" %}
+                Admin Profile
+              {% else %}
+                {{ user["user_firstname"] }}'s Profile</h3>
+              {% endif %}
             <div class="row">
     
               <form class="" method="POST" action="{{ url_for('edit_profile', user_id=user._id) }}">
