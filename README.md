@@ -1,6 +1,3 @@
-
-
-
 # Welcome
 
 ## Code Institute: Milestone Project 3
@@ -9,7 +6,7 @@
 
 View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 
-[Testing.md](/documentation/TESTING.md) outlines my  testing strategy, development, deployment and post deployment.
+[Testing.md](/documentation/TESTING.md) outlines my testing strategy, development, deployment and post deployment.
 
 ## UX DESIGN
 
@@ -152,7 +149,7 @@ Unregistered unsers are limited to viewing the homepage, withh an option to regi
 	   - Home page navigation will link to the contact form at the bottom of the page, also the login/ registration form. 
 	   - There will be a slider with images relating to the four seasons. These images are a feature, and I kept them in the base template so they are viewable on all pages. 
 	   - A collection of images to inspire interest in gardening. 
-	   - 
+	   
 - **Additional pages visable to registered and logged in users** 
    - ***Journal page***
 	   - Will display the the events for the users garden.
@@ -168,73 +165,98 @@ I decided to create separate collections for users, event categories, and plants
 
 **MongoDB Schema**
 
+![enter image description here](documentation/images/almanac_schema.jpg)  
+
+**Crucial considerations in designing the above schema**
+
+1. ***Users will create events, related to plants.***
+The user is required to select a plant from the list of their created plants, in order to create an event. The plant ObjectId is then saved in the ```garden_event``` collection as the 			```event_plant_id```. This was important, because the ObjectId is immutable, whereas if I used the plant name, the user could update and change that, then it would be more complex the maintain the connection between the event and plant. 
+
+2. ***Users will be able to group types of events by category.***
+Events are many, but they can be grouped into few categories. THose categores often relate to seasons, so by filtering by category, it is easy to see the types of approaching events. For this reason, I've created the category collection so users can create, and edit or delete categories and when creating an event, the categories can be chosen from a select input. 
+
+3. ***Plants, events, and categories will be associated with the creator of them.***
+Once registered, the user name cannot be changed, and all plants, categories, and events created by the user will contain the field ```created_by```. In this way I am easily able to filter the collections for items created by the user.
+
+4. ***Plants, events, and categories will only viewable by that user.***
+I have used the user name as the session cookie to identify the user, and filter out the items that are displayed for that user. I felt this was important, as the list of events will grow expedentially. The user experience would be diminished if the list of plants, events and categories is full of other users items. 
+
+5. ***Admin can view messages sent from the sites contact form.***
+For the sake of the learning experience, and in step with the learning objectives of the project, I specificlly chose not to use JavaScript to process and send the contact form messages. I wanted to use Python, and this solution acutally came to me after I created the Flask-WTForms form. I realised how easy it would be to create a MongoDB collection, and to POST the message data to the database. From there it's a simple task of creating the HTML template to display the messages. 
+6. ***Dates are stored in MongoDB in ISODate format.***
+I'll be honest, and say this was a dive into learning something very new for me. The Material Design datepicker enables the date to be chosen, its responsive, and works well. I serves the date in string format however, which I discovered when posting form date to the database collections. I chose to convert the date to ISODate format to store in the database, and its pretty straight forward to get and display any part of the datetime. 
+
+
 I decided on the following schema, using collections to group separate groups of data, users, plants, categories (event), garden_events, and messages. 
+
 
 
 ***Users***
 The whole site revoles around the users, so the user name is what links the plants, events and categores, where I use the `user_name`and insert it as in the related entry `created_by` key. I am able to use this as the sudo foreign key to identify the users entries. 
 ```  
 	users  {
-			_id: 					<ObjectId>
-			user_name: 				<string>
-			user_email: 			<string>
-			user_joined: 			<date>
-			user_firstname: 		<string>
-			user_lastname: 			<string>
-			user_password: 			<string> 
+			_id: 			<ObjectId>
+			username: 		<string>
+			email: 			<string>
+			registered: 	<date>
+			firstname: 		<string>
+			lastname: 		<string>
+			password: 		<string>
        }
-```  
+```
+
+
 ***Plants***
 I used a combination of fields to so the user can record information, and update it each year based on the past years experience. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
 ```   
 	plants  {
-			_id: 					<ObjectId>
-		    plant_type: 			<string>
-		    plant_name: 			<string>
-		    plant_sowing: 			<date>
-		    plant_planting: 		<date>
-		    harvest_from: 			<date>
-		    harvest_to: 			<date>
-		    fertilise_frequency: 	<string>
-		    fertiliser_type: 		<string>
-		    plant_note: 			<string>
-		    created_by: 			<string>  
+			_id: 				<ObjectId>
+		    type: 				<string>
+		    name: 				<string>
+		    sow_at: 			<date>
+		    plant_at: 			<date>
+		    harvest_from: 		<date>
+		    harvest_to: 		<date>
+		    fertilise: 			<string>
+		    fertiliser: 		<string>
+		    notes: 				<string>
+		    created_by: 		<string>  
      }
 ```   
 ***Categories***
 The user has total discretion to group the types of events how they prefer, which will suit their needs and desire to search or filter infomtation. 
 ```  
 	categories  {
-		     _id: 					<ObjectId>
-		     event_category: 		<string>
-		     created_by: 			<string>
+		     _id: 				<ObjectId>
+		     category: 			<string>
+		     created_by: 		<string>
 	 }
 ```
 ***Garden Events***
 The pivot of the whole concept, depends on and requires category and plants to create an event. Initially I used the plant ObjectId as the sudo foreign key, as it is unique to the plant, and immutable. Like the events, some fields are required, and other optional. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
 ``` 
 	garden_events {
-			 _id: 					<ObjectId>
-			 event_category: 		<string>
-			 event_plant_id: 		<ObjectId>
-			 event_name: 			<string>
-			 event_repeats: 		<string>
-			 event_date: 			<date>
-			 event_month: 			<string>
-			 event_notes: 			<string>
-			 created_by: 			<string>
+			 _id: 				<ObjectId>
+			 category: 			<string>
+			 event_plant_id: 	<ObjectId>
+			 name: 				<string>
+			 repeats: 			<string>
+			 occurs_at: 		<date>
+			 month: 			<string>
+			 notes: 			<string>
+			 created_by: 		<string>
 	 }
 ```
 ***Messages***
 This was not in my initial plan, but was inpired when I was working out what to do with my contact form data. For the sake of the learnign process, I resisted using JS to handle the form and send it via a third party. I used `flask-wtf` forms to build the form and validation. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created a Admin Message Inbox to display the messages. 
-```  
+``` 
 	messages  {
-		     _id: 					<ObjectId>
-		     first_name: 			<string>
-		     last_name: 			<string>
-		     email: 				<string>
-		     message: 				<string>
-		     date_time: 			<date>
+		     _id: 				<ObjectId>
+		     firstname: 		<string>
+		     lastname: 			<string>
+		     email: 			<string>
+		     message: 			<string>
+		     created_at: 		<date>
 	 }
 ```
 
@@ -242,15 +264,15 @@ This was not in my initial plan, but was inpired when I was working out what to 
 
 **Wireframing:**
 The wireframes were compelted in Adobe XD, and I kept them simple, to display the layout of the required complonents. I have used Materializecss as the framework, and based my work around a simple free template I found at [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes). 
-#### Home page wireframes
+
+#### Home page wireframes  
 ![Home Page](documentation/images/wireframes/wireframe-homepage.jpg)
 
-#### Journal page wireframes
+#### Journal page wireframes  
 ![Journal Page](documentation/images/wireframes/wireframe-journal.jpg)
 
-#### Plants page wireframes
+#### Plants page wireframes  
 ![Plants Page](documentation/images/wireframes/wireframe-plants.jpg)
-
 
 ### 5. Surface
 
@@ -310,19 +332,20 @@ My source of choice for stock images.
 18. [Webmaker App](https://webmaker.app/app/) It is a free application similar to codepen, used to create and save the work locally. I use it to implement and experiment with using components of different frameowrks that I am using, so I am familiar with how to use them when I come to implementing them in my work. 
 
 ## TESTING
-Link to testing file.
-[To Testing.md](https://github.com/daidensacha/mp3-garden-journal/blob/master/documentation/testing.md)
+
+See: [Testing.md](/documentation/testing.md)
+
 ### Deployment
 
 **Deploy to Heroku**
 1. Setup pages required by Heroku to run app.
 	- In the console  I run `pip3 freeze --local > requirements.txt` . It creates the file `requirements.txt` and lists all the dependencies needed to run the application. 
-	- I create the Procfile by typing `echo web: python app.py > Procfile` in terminal. 
+	- in terminal I create the Procfile by typing `echo web: python app.py > Procfile`. Heroku looks for this to know what file is needed to run the app and how to run it.
 	- I remove the black line at the bottom of the Procfile, which can cause problems running the app on Heroku.
 2. I go to heroku.com, 
 	-  I log in, and in the user dashboard click "create new app". 
 	- I create a unique app name, using lower case, dashes and or underscores. 
-	- I select the region closest to me (Frankfurt), and click "create app",
+	- I select the region closest to me (Europe), and click "create app",
 3. Setup automatic deployment from my GitHub repository.
 	- With my GitHub usename displayed, I enter the repository name, and click search.
 	- It finds my repo and I click "connect to this app".
@@ -331,11 +354,11 @@ Link to testing file.
 	- I enter the key-value pairs, minus quotes.
 	- I leave the MONGO_URI value empty as i don't have that yet.
 	- Before deploying, i commit and push my 2 new files to the repository. 
-	- I complete the git command, `git status`, `git add `. `git commit -m "add requirements.txt and Procfile"`, then `git push`. 
+	- I complete the git command, `git status`, `git add .`, `git commit -m "add requirements.txt and Procfile"`, then `git push`. 
 5. Back in Heroku, I click "deploy branch"
 6. After about short wait, Heroku has received the code from GitHub, built the app, and a message says, "Your app has been successfully deployed".
 7. To confirm, I click "View" to launch the app.
-8. 
+
 ### Feedback
 
 ### Credits
@@ -362,11 +385,11 @@ I see potential to develop this into a social plattform, where users with simila
 In the almanac page, I display the envents and plant information. I needed a way to identify the plant with the corresponding event. Initially I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, so I could identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when the plant name was changed, and then my code couldn't match tht plant with the stored plant name in the garden event collection. 
 I decided to use the plant ObjectId instead, as it's immutable, and unique. I had some issued then which took me a while to work out, like how to complare the ObjectId string with the ObjectId. In my add/ edit_event routes, i used the MaterialDesing select as follows.
 ```
-<select  id="event_plant_id"  name="event_plant_id"  class="validate"  required>
-	<option  value=""  disabled  selected>Choose Plant</option>
+<select id="event_plant_id" name="event_plant_id" class="validate" required>
+	<option value="" disabled selected>Choose Plant</option>
 	{% for plant in user_plants %}
-		<!-- Here the plant ObjectId is used in value as sudo foreign key -->
-		<option  value="{{ plant._id }}">{{ plant.plant_name }}</option>
+	<!-- Here the plant ObjectId is used in value as sudo foreign key -->
+	<option value="{{ plant._id }}">{{ plant.plant_name }}</option>
 	{% endfor %}
 </select>
 ```
@@ -410,5 +433,3 @@ flash("Create event categories to populate this list.", "info")
 ```
 This has simplifies my coding, as i use the same list name now for ```categories```, instaed of creating a new list ```user_categories``` and then using that also in my template.  
 The bug dissapeared, and my code was simpler. I repeated these changes in the app.py for plants and events. 
-
-

@@ -66,7 +66,6 @@ def contact():
             }
             mongo.db.messages.insert_one(form_message)
             flash("Message has been sent.", "success")
-            # return firstname + "<br /> " + lastname + "<br /> " + email + "<br /> " + message
             return redirect(url_for("contact"))
 
     return render_template('contact.html', form=form)
@@ -101,7 +100,7 @@ def get_garden_events():
         # distinguish if admin or normal user
         if session["user"] == "admin":
             garden_events = list(
-                mongo.db.garden_events.find().sort("month"))
+                mongo.db.garden_events.find().sort("occurs_at"))
             plants = list(mongo.db.plants.find())
             categories = list(
                 mongo.db.categories.find().sort("category", 1))
@@ -268,9 +267,12 @@ def edit_profile(user_id):
                         "firstname": request.form.get("firstname"),
                         "lastname": request.form.get("lastname"),
                     }
-                    mongo.db.users.update_one({"_id": ObjectId(user_id)}, {"$set": update})
-                    flash("The information has been updated successfully.", "success")
-                    return redirect(url_for("profile", username=session["user"]))
+                    mongo.db.users.update_one(
+                        {"_id": ObjectId(user_id)}, {"$set": update})
+                    flash("The information has been updated successfully.", 
+                            "success")
+                    return redirect(url_for(
+                        "profile", username=session["user"]))
 
             else:
                 flash("Please confirm the correct password.", "error")
@@ -524,7 +526,8 @@ def edit_category(category_id):
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
 
     # Get list of all categories filtered by session user
-    categories = list(mongo.db.categories.find({"created_by": session["user"]}).sort("category"))
+    categories = list(mongo.db.categories.find(
+                        {"created_by": session["user"]}).sort("category"))
 
     return render_template(
         "edit_category.html", categories=categories, category=category)
