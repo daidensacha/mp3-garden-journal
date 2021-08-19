@@ -22,7 +22,7 @@
                             {% endfor %}
                         </select>
                         <label for="category">Event Category</label>
-                        <span class="helper-text">Required field</span>
+                        <span class="helper-text">Required</span>
                     </div>
                     <!-- select plant name -->
                     <div class="input-field col s12 m6">
@@ -39,7 +39,7 @@
                             {% endfor %}
                         </select>
                         <label for="event_plant_id">Plant Name</label>
-                        <span class="helper-text">Required field</span>
+                        <span class="helper-text">Required</span>
                     </div>
                 </div>
                 <!-- event name -->
@@ -47,9 +47,9 @@
                     <div class="input-field col s12">
                         <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
                         <input id="name" name="name"  minlength="5" maxlength="40" 
-                          value="{{ garden_event.name }}" type="text" class="validate" required>
+                          value="{{ garden_event.name }}" type="text" class="count-text validate" data-length="40" required>
                         <label for="name">Event Name</label>
-                        <span class="helper-text">Required field</span>
+                        <span class="helper-text">Required</span>
                     </div>
                 </div>
                 <!--  event date -->
@@ -58,13 +58,13 @@
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
                         <input id="occurs_at" name="occurs_at" type="text" value="{{ garden_event.occurs_at.strftime('%B %d, %Y') }}" class="datepicker validate" required>
                         <label for="occurs_at">Event Date</label>
-                        <span class="helper-text">Required field</span>
+                        <span class="helper-text">Required</span>
                     </div>
                     <!-- event repeat cycle -->
                     <div class="input-field col s12 m6">
                         <i class="far fa-clock prefix teal-text text-darken-2"></i>
                         <input id="repeats" name="repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  
-                        value="{{ garden_event.repeats }}" type="text" class="validate">
+                        value="{{ garden_event.repeats }}" type="text" max-length="40" data-length="40" class="count-text validate">
                         <label for="repeats">Event Repeats</label>
                         <span class="helper-text">Optional</span>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="input-field col s12">
                         <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
                       <textarea id="notes" name="notes" minlength="5" 
-                        maxlength="200" class="materialize-textarea validate" data-length="120" >
+                        maxlength="200" class="materialize-textarea validate" data-length="200" >
                         {{- garden_event.notes -}}
                     </textarea>
                       <label for="notes">Event Notes</label>

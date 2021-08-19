@@ -12,16 +12,16 @@
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
                         <input id="type" name="type"  minlength="4" maxlength="30" 
-                        value="{{ plant.type}}" type="text" class="validate" required>
+                        value="{{ plant.type}}" type="text" class="count-text validate" data-length="30" required>
                         <label for="type">Plant Type</label>
-                        <span class="helper-text">Required Field</span>
+                        <span class="helper-text">Required</span>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
                         <input id="name" name="name"  minlength="5" maxlength="30" 
-                        value="{{ plant.name }}" type="text" class="validate" required>
+                        value="{{ plant.name }}" type="text" class="count-text validate" data-length="30" required>
                         <label for="name">Plant Name</label>
-                        <span class="helper-text">Required Field</span>
+                        <span class="helper-text">Required</span>
                     </div>
                 </div>
                 <!--  sowing time / planting time -->
@@ -36,7 +36,7 @@
                             type="text" class="datepicker validate" >
                         {% endif %}
                         <label for="sow_at">Sowing Time</label>
-                        <span class="helper-text">Required Field</span>
+                        <span class="helper-text">Optional</span>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
@@ -48,7 +48,7 @@
                                 type="text" class="datepicker validate" >
                         {% endif %}
                         <label for="plant_at">Planting Time</label>
-                        <span class="helper-text">Required Field</span>
+                        <span class="helper-text">Optional</span>
                     </div>
                 </div>
                 <!-- harvest from / harvest to -->
@@ -56,16 +56,16 @@
                     <div class="input-field col s12 m6">
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
                         <input id="harvest_from" name="harvest_from" value="{{ plant.harvest_from.strftime('%B %d, %Y') }}"
-                        type="text" class="datepicker validate" required>
+                        type="text" class="datepicker validate">
                         <label for="harvest_from">Harvest From</label>
-                        <span class="helper-text">Required field</span>
+                        <span class="helper-text">Optional</span>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
                         <input id="harvest_to" name="harvest_to" value="{{ plant.harvest_to.strftime('%B %d, %Y') }}"
-                        type="text" class="datepicker validate" required>
+                        type="text" class="datepicker validate">
                         <label for="harvest_to">Harvest To</label>
-                        <span class="helper-text">Required field</span>
+                        <span class="helper-text">Optional</span>
                     </div>
                 </div>
                 <!-- fertilise frequesncy / fertiliser type -->
@@ -73,14 +73,14 @@
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
                         <input id="fertilise" name="fertilise"  minlength="5" maxlength="30" 
-                          value="{{ plant.fertilise}}" type="text" class="validate">
+                          value="{{ plant.fertilise}}" type="text" class="count-text validate" data-length="30">
                         <label for="fertilise">Fertilise Frequency</label>
                         <span class="helper-text">Optional</span>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
                         <input id="fertiliser" name="fertiliser"  minlength="5" maxlength="30" 
-                        value="{{ plant.fertiliser}}" type="text" class="validate">
+                        value="{{ plant.fertiliser}}" type="text" class="count-text validate" data-length="30">
                         <label for="fertiliser">Fertiliser Type</label>
                         <span class="helper-text">Optional</span>
                     </div>
