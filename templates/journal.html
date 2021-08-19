@@ -33,14 +33,14 @@
         <div class="collapsible-header">
           <div class="row" style="width: 100%;">
             <div class="col s12 m3">
-              <span class="collapsible-heading hide-on-large-only"><i class="caret fas fa-caret-down"></i> {{ garden_event.event_date.strftime("%b %d") }}</span>
-              <span class="collapsible-heading hide-on-med-and-down"><i class="caret fas fa-caret-down"></i> {{ garden_event.event_date.strftime("%B %d") }}</span>
+              <span class="collapsible-heading hide-on-large-only"><i class="caret fas fa-caret-down"></i> {{ garden_event.occurs_at.strftime("%b %d") }}</span>
+              <span class="collapsible-heading hide-on-med-and-down"><i class="caret fas fa-caret-down"></i> {{ garden_event.occurs_at.strftime("%B %d") }}</span>
             </div>
             <div class="col s12 m3">
-              <span class="collapsible-heading">{{ garden_event.event_category.capitalize() }}</span>
+              <span class="collapsible-heading">{{ garden_event.category.capitalize() }}</span>
             </div>
             <div class="col s12 m6">
-              <span class="collapsible-heading">{{ garden_event.event_name.title() }}</span>
+              <span class="collapsible-heading">{{ garden_event.name.title() }}</span>
             </div>
           </div>
 
@@ -54,23 +54,23 @@
             <!-- For loop to display garden events -->
             <div class="collection">
               <!-- begin plant data section -->
-              <h6>{{ garden_event.event_name.title() }}</h6>
+              <h6>{{ garden_event.name.title() }}</h6>
 
               <ul>
                 
                 <li>
                   <i class="fas fa-list-ul"></i> The event category is
                     <span class="emph-green">
-                    {{ garden_event.event_category.capitalize()}}</span>.
+                    {{ garden_event.category.capitalize()}}</span>.
                 </li>
                 <li>
                   <i class="far fa-clock"></i> 
                   The event repeats <span class="emph-green">
-                    {{garden_event.event_repeats.capitalize() }}</span>. 
+                    {{garden_event.repeats.capitalize() }}</span>. 
                 </li>
                 <li class="mt-5"><i class="far fa-edit"></i> 
                   <strong class="emph-dark-teal">Event notes:</strong> 
-                  {{ garden_event.event_notes.capitalize() }}</li>
+                  {{ garden_event.notes.capitalize() }}</li>
 
               </ul>
               <div class="row">
@@ -100,26 +100,26 @@
               {% if garden_event.event_plant_id == plant._id %}
 
               <!-- Plant title, and plant modal trigger link. Use loop.index to create unique id for the modal trigger href  -->
-              <h6>{{ plant.plant_type.title() }}:
-                {{ plant.plant_name.title() }}
+              <h6>{{ plant.type.title() }}:
+                {{ plant.name.title() }}
               </h6>
 
 
               <div class="row">
                 <div class="row">
                   <ul>
-                    {% if plant.plant_sowing == "" %}
+                    {% if plant.sow_at == "" %}
                     <li></li>
                         <!-- <li><span class="material-icons flower md-12"></span> <span class="emph-red">No sowing date</span> available for this plant at this time.</li> -->
                     {% else %}
                     <li><span class="material-icons flower md-12"></span> 
                       <span class="emph-red">Sow</span> seeds 
                       <span class="emph-green">
-                        {{ plant.plant_sowing.strftime("%B %d") }}
+                        {{ plant.sow_at.strftime("%B %d") }}
                       </span> so they are ready for planting time.
                     </li>
                     {% endif %}
-                    {% if plant.plant_planting == "" %}
+                    {% if plant.plant_at == "" %}
                     <li></li>
                         <!-- <li><span class="material-icons flower md-12"></span> <span class="emph-red">No sowing date</span> available for this plant at this time.</li> -->
                     {% else %}
@@ -127,7 +127,7 @@
                       <span class="material-icons flower md-12"></span> 
                       <span class="emph-red">Plant</span> 
                       <span class="emph-green">
-                        {{ plant.plant_planting.strftime("%B %d") }}
+                        {{ plant.plant_at.strftime("%B %d") }}
                       </span> at earliest.
                     </li>
                     {% endif%}
@@ -143,14 +143,14 @@
                       <span class="material-icons flower md-12"></span> 
                       <span class="emph-red">Fertilise</span> 
                       <span class="emph-green">
-                        {{ plant.fertilise_frequency}}</span> with 
-                      <span class="emph-green"> {{ plant.fertiliser_type }}
+                        {{ plant.fertilise}}</span> with 
+                      <span class="emph-green"> {{ plant.fertiliser }}
                       </span>. 
                     </li>
                   </ul>
                   <ul>
                     <li class="mt-5"><strong class="emph-dark-teal">
-                      Note:</strong> {{ plant.plant_note.capitalize() }}
+                      Note:</strong> {{ plant.notes.capitalize() }}
                     </li>
                   </ul>
                 </div>

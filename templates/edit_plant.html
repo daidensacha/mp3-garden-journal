@@ -11,16 +11,16 @@
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-                        <input id="plant_type" name="plant_type"  minlength="4" maxlength="30" 
-                        value="{{ plant.plant_type}}" type="text" class="validate" required>
-                        <label for="plant_type">Plant Type</label>
+                        <input id="type" name="type"  minlength="4" maxlength="30" 
+                        value="{{ plant.type}}" type="text" class="validate" required>
+                        <label for="type">Plant Type</label>
                         <span class="helper-text">Required Field</span>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-                        <input id="plant_name" name="plant_name"  minlength="5" maxlength="30" 
-                        value="{{ plant.plant_name }}" type="text" class="validate" required>
-                        <label for="plant_name">Plant Name</label>
+                        <input id="name" name="name"  minlength="5" maxlength="30" 
+                        value="{{ plant.name }}" type="text" class="validate" required>
+                        <label for="name">Plant Name</label>
                         <span class="helper-text">Required Field</span>
                     </div>
                 </div>
@@ -28,26 +28,26 @@
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
-                        {% if plant.plant_sowing == "" %}
-                        <input id="plant_sowing" name="plant_sowing" value=""
+                        {% if plant.sow_at == "" %}
+                        <input id="sow_at" name="sow_at" value=""
                             type="text" class="datepicker validate" >
                         {% else %}
-                        <input id="plant_sowing" name="plant_sowing" value="{{ plant.plant_sowing.strftime('%B %d, %Y') }}" 
+                        <input id="sow_at" name="sow_at" value="{{ plant.sow_at.strftime('%B %d, %Y') }}" 
                             type="text" class="datepicker validate" >
                         {% endif %}
-                        <label for="plant_sowing">Sowing Time</label>
+                        <label for="sow_at">Sowing Time</label>
                         <span class="helper-text">Required Field</span>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
-                        {% if plant.plant_planting == "" %}
-                            <input id="plant_planting" name="plant_planting" value=""
+                        {% if plant.plant_at == "" %}
+                            <input id="plant_at" name="plant_at" value=""
                                 type="text" class="datepicker validate" >
                         {% else %}
-                            <input id="plant_planting" name="plant_planting" value="{{ plant.plant_planting.strftime('%B %d, %Y') }}"
+                            <input id="plant_at" name="plant_at" value="{{ plant.plant_at.strftime('%B %d, %Y') }}"
                                 type="text" class="datepicker validate" >
                         {% endif %}
-                        <label for="plant_planting">Planting Time</label>
+                        <label for="plant_at">Planting Time</label>
                         <span class="helper-text">Required Field</span>
                     </div>
                 </div>
@@ -72,16 +72,16 @@
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-                        <input id="fertilise_frequency" name="fertilise_frequency"  minlength="5" maxlength="30" 
-                          value="{{ plant.fertilise_frequency}}" type="text" class="validate">
-                        <label for="fertilise_frequency">Fertilise Frequency</label>
+                        <input id="fertilise" name="fertilise"  minlength="5" maxlength="30" 
+                          value="{{ plant.fertilise}}" type="text" class="validate">
+                        <label for="fertilise">Fertilise Frequency</label>
                         <span class="helper-text">Optional</span>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-                        <input id="fertiliser_type" name="fertiliser_type"  minlength="5" maxlength="30" 
-                        value="{{ plant.fertiliser_type}}" type="text" class="validate">
-                        <label for="fertiliser_type">Fertiliser Type</label>
+                        <input id="fertiliser" name="fertiliser"  minlength="5" maxlength="30" 
+                        value="{{ plant.fertiliser}}" type="text" class="validate">
+                        <label for="fertiliser">Fertiliser Type</label>
                         <span class="helper-text">Optional</span>
                     </div>
                 </div>
@@ -89,11 +89,11 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
-                      <textarea id="plant_note" name="plant_note" minlength="5" 
+                      <textarea id="notes" name="notes" minlength="5" 
                       maxlength="200" class="materialize-textarea validate" >
-                        {{- plant.plant_note -}}
+                        {{- plant.notes -}}
                     </textarea>
-                      <label for="plant_note">Plant Notes</label>
+                      <label for="notes">Plant Notes</label>
                       <span class="helper-text">Optional</span>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                             <p class="materialert danger">Deleting plant data is irreversable.</p>
                         </div>
                         <div class="modal-content">
-                            <p>Are you sure you want to delete  "<strong class="emph-green">{{ plant.plant_name }}</strong>"?</p>
+                            <p>Are you sure you want to delete  "<strong class="emph-green">{{ plant.name }}</strong>"?</p>
                         </div>
                         <div class="modal-footer">
                             <a href="{{ url_for('delete_plant', plant_id=plant._id) }}" 

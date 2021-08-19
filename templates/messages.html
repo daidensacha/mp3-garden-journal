@@ -12,7 +12,7 @@
 					<div class="row" style="width: 100%;">
 
 						<div class="col s6 m3"><span class="collapsible-heading"><i class="caret fas fa-caret-down"></i>
-								{{ message.date_time.strftime("%b %d") }}</span>
+								{{ message.created_at.strftime("%b %d") }}</span>
 						</div>
 
 						
@@ -36,8 +36,8 @@
 						</div>
 
 						<div class="col s12 m6 smt-10"><span class="collapsible-heading ">Message From:
-							{{ message.first_name }}
-							{{ message.last_name }}</span>
+							{{ message.firstname }}
+							{{ message.lastname }}</span>
 						</div>
 
 						
@@ -58,7 +58,7 @@
 					<p class="materialert danger">Deleting messages is irreversable.</p>
 				</div>
 				<div class="modal-content">
-					<p>Are you sure you want to delete "<strong class="emph-green">{{ message.first_name }}'s' message</strong>"?
+					<p>Are you sure you want to delete "<strong class="emph-green">{{ message.firstname }}'s' message</strong>"?
 					</p>
 				</div>
 				<div class="modal-footer">

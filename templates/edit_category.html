@@ -12,9 +12,9 @@
 
                         <div class="input-field col s12">
                             <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
-                            <input id="event_category" name="event_category"  minlength="3" maxlength="30" 
-                                value="{{ category.event_category }}" type="text" class="validate" required>
-                            <label for="event_category">New Event Category</label>
+                            <input id="category" name="category"  minlength="3" maxlength="30" 
+                                value="{{ category.category }}" type="text" class="validate" required>
+                            <label for="category">New Event Category</label>
                         </div>
 
                 </div>
@@ -47,7 +47,7 @@
                         <p class="materialert danger">Deleting category data is irreversable.</p>
                     </div>
                     <div class="modal-content">
-                        <p>Are you sure you want to delete "<strong class="emph-green">{{ category.event_category | lower}}</strong>"?</p>
+                        <p>Are you sure you want to delete "<strong class="emph-green">{{ category.category | lower}}</strong>"?</p>
                     </div>
                     <div class="modal-footer">
                         <a href="{{ url_for('delete_category', category_id=category._id) }}" 
@@ -70,7 +70,7 @@
                 {% for category in categories %}
                     {% if category.created_by == session["user"] %}
                     <li class="collection-item">
-                        <div>{{ loop.index}}: {{ category.event_category.capitalize() }} 
+                        <div>{{ loop.index}}: {{ category.category.capitalize() }} 
                             <a href="{{ url_for('edit_category', category_id=category._id) }}" 
                                 class="secondary-content indigo-text darken-4-text edit-link">Edit <i class="fas fa-edit"></i>
                             </a>

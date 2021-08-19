@@ -34,8 +34,8 @@ def inject_user():
     username = ""
     if 'user' in session:
         username = session["user"]
-        user = mongo.db.users.find_one({"user_name": session["user"]})
-        user.pop("user_password")
+        user = mongo.db.users.find_one({"username": session["user"]})
+        user.pop("password")
         return dict(username=username, user=user)
     else:
         username = ""
@@ -52,21 +52,21 @@ def contact():
             flash("Failed validation", "error")
             return render_template('contact.html', form=form)
         if form.validate_on_submit():
-            first_name = form.first_name.data
-            last_name = form.last_name.data
+            firstname = form.firstname.data
+            lastname = form.lastname.data
             email = form.email.data
             message = form.message.data
             
             form_message = {
-                "first_name": first_name,
-                "last_name": last_name,
+                "firstname": firstname,
+                "lastname": lastname,
                 "email": email,
                 "message": message,
-                "date_time": datetime.now()
+                "created_at": datetime.now()
             }
             mongo.db.messages.insert_one(form_message)
             flash("Message has been sent.", "success")
-            # return first_name + "<br /> " + last_name + "<br /> " + email + "<br /> " + message
+            # return firstname + "<br /> " + lastname + "<br /> " + email + "<br /> " + message
             return redirect(url_for("contact"))
 
     return render_template('contact.html', form=form)
@@ -75,7 +75,7 @@ def contact():
 @app.route("/messages")
 def messages():
     if "user" in session and session["user"] == "admin":
-        messages = list(mongo.db.messages.find().sort("date_time"))
+        messages = list(mongo.db.messages.find().sort("created_at"))
         return render_template('messages.html', messages=messages)
     else:
         flash("Please log in to view page.", "error")
@@ -84,7 +84,7 @@ def messages():
 
 @app.route("/delete_message/<message_id>")
 def delete_message(message_id):
-    messages = list(mongo.db.messages.find().sort("date_time"))
+    messages = list(mongo.db.messages.find().sort("created_at"))
     mongo.db.messages.remove({"_id": ObjectId(message_id)})
     flash("Message Successfuly Deleted", "success")
     return redirect(url_for("messages", messages=messages))
@@ -101,24 +101,24 @@ def get_garden_events():
         # distinguish if admin or normal user
         if session["user"] == "admin":
             garden_events = list(
-                mongo.db.garden_events.find().sort("event_month"))
+                mongo.db.garden_events.find().sort("month"))
             plants = list(mongo.db.plants.find())
             categories = list(
-                mongo.db.categories.find().sort("event_category", 1))
+                mongo.db.categories.find().sort("category", 1))
             events_months = list(
-                mongo.db.garden_events.find().sort("event_months"))
+                mongo.db.garden_events.find().sort("month"))
         else:
             garden_events = list(
                 mongo.db.garden_events.find(
-                    {"created_by": session["user"]}).sort("event_date"))
+                    {"created_by": session["user"]}).sort("occurs_at"))
             plants = list(mongo.db.plants.find(
                 {"created_by": session["user"]}))
             categories = list(
                 mongo.db.categories.find(
-                    {"created_by": session["user"]}).sort("event_category"))
+                    {"created_by": session["user"]}).sort("category"))
             events_months = list(
                 mongo.db.garden_events.find(
-                    {"created_by": session["user"]}).sort("event_month"))
+                    {"created_by": session["user"]}).sort("month"))
 
         if not garden_events:
             flash(
@@ -140,10 +140,10 @@ def get_plants():
         plants = []
         # distinguish if admin or normal user
         if session["user"] == "admin":
-            plants = list(mongo.db.plants.find().sort("plant_type"))
+            plants = list(mongo.db.plants.find().sort("type"))
         else:
             plants = list(mongo.db.plants.find(
-                {"created_by": session["user"]}).sort("plant_type"))
+                {"created_by": session["user"]}).sort("type"))
  
         if not plants:
             flash("Create plants to populate this page.", "info")
@@ -162,7 +162,7 @@ def search():
     plants = list(mongo.db.plants.find(
         {"$text": {"$search": query}}))
     garden_events = list(mongo.db.garden_events.find(
-        {"$text": {"$search": query}}).sort("event_date"))
+        {"$text": {"$search": query}}).sort("occurs_at"))
 
     return render_template("journal.html",
                            garden_events=garden_events,
@@ -175,19 +175,19 @@ def register():
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
-            {"user_name": request.form.get("username").lower()})
+            {"username": request.form.get("username").lower()})
 
         if existing_user:
             flash("Username already exists", "error")
             return redirect(url_for("register"))
 
         register = {
-            "user_name": request.form.get("username"),
-            "user_firstname": request.form.get("firstname"),
-            "user_lastname": request.form.get("lastname"),
-            "user_email": request.form.get("email"),
-            "user_joined": datetime.now(),
-            "user_password": generate_password_hash(
+            "username": request.form.get("username"),
+            "firstname": request.form.get("firstname"),
+            "lastname": request.form.get("lastname"),
+            "email": request.form.get("email"),
+            "registered": datetime.now(),
+            "password": generate_password_hash(
                 request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
@@ -204,12 +204,12 @@ def login():
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
-            {"user_name": request.form.get("username").lower()})
+            {"username": request.form.get("username").lower()})
 
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                    existing_user["user_password"], request.form.get(
+                    existing_user["password"], request.form.get(
                         "password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
@@ -231,15 +231,15 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     if "user" in session:
-        users = list(mongo.db.users.find().sort("user_name"))
+        users = list(mongo.db.users.find().sort("username"))
         user_profile = []
         for user in users:
             # check if user logged in, and matches user logged in. 
-            if "user" in session and (user["user_name"] == session["user"]):
+            if "user" in session and (user["username"] == session["user"]):
                 user_profile.append(user)
         # get session users username from db
         username = mongo.db.users.find_one(
-            {"user_name": session["user"]})["user_name"]
+            {"username": session["user"]})["username"]
         if session["user"]:
             return render_template("profile.html", username=username,
                                    user_profile=user_profile)
@@ -257,16 +257,16 @@ def edit_profile(user_id):
 
         if existing_user:
             if check_password_hash(
-                        existing_user["user_password"], request.form.get(
+                        existing_user["password"], request.form.get(
                             "old_password")):
                 # flash("Password validation passed", "success")
 
-                user_email = request.form.get("email")
-                if user_email is not None:
+                email = request.form.get("email")
+                if email is not None:
                     update = {
-                        "user_email": request.form.get("email"),
-                        "user_firstname": request.form.get("firstname"),
-                        "user_lastname": request.form.get("lastname"),
+                        "email": request.form.get("email"),
+                        "firstname": request.form.get("firstname"),
+                        "lastname": request.form.get("lastname"),
                     }
                     mongo.db.users.update_one({"_id": ObjectId(user_id)}, {"$set": update})
                     flash("The information has been updated successfully.", "success")
@@ -292,19 +292,19 @@ def logout():
 def add_event():
     if "user" in session:
         if request.method == "POST":
-            date_string = request.form.get("event_date")
+            date_string = request.form.get("occurs_at")
             date_object = pd.to_datetime(date_string)
             event_plant_id = request.form.get("event_plant_id")
-            event_month = date_object.strftime("%B")
+            month = date_object.strftime("%B")
 
             event = {
-                "event_category": request.form.get("event_category"),
+                "category": request.form.get("category"),
                 "event_plant_id": ObjectId(event_plant_id),
-                "event_name": request.form.get("event_name"),
-                "event_repeats": request.form.get("event_repeats"),
-                "event_date": date_object,
-                "event_month": event_month,
-                "event_notes": request.form.get("event_notes"),
+                "name": request.form.get("name"),
+                "repeats": request.form.get("repeats"),
+                "occurs_at": date_object,
+                "month": month,
+                "notes": request.form.get("notes"),
                 "created_by": session["user"]
             }
             mongo.db.garden_events.insert_one(event)
@@ -315,13 +315,13 @@ def add_event():
         categories = []
         # distinguish if admin or normal user
         if session["user"] == "admin":
-            plants = list(mongo.db.plants.find().sort("plant_type"))
-            categories = mongo.db.categories.find().sort("event_category", 1)
+            plants = list(mongo.db.plants.find().sort("type"))
+            categories = mongo.db.categories.find().sort("category", 1)
         else:
             plants = list(mongo.db.plants.find(
-                {"created_by": session["user"]}).sort("plant_type"))
+                {"created_by": session["user"]}).sort("type"))
             categories = list(mongo.db.categories.find(
-                {"created_by": session["user"]}).sort("event_category"))
+                {"created_by": session["user"]}).sort("category"))
 
         return render_template(
             "add_event.html", categories=categories, plants=plants)
@@ -333,22 +333,22 @@ def add_event():
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
 def edit_event(event_id):
     if request.method == "POST":
-        date_string = request.form.get("event_date")
+        date_string = request.form.get("occurs_at")
         date_object = pd.to_datetime(date_string)
-        event_month = date_object.strftime("%B")
+        month = date_object.strftime("%B")
         # change plant name variable to plant_id in events collection
         # Also change in edit_events.html and add_events.html
         event_plant_id = request.form.get("event_plant_id")
 
         submit = {
-            "event_category": request.form.get("event_category"),
+            "category": request.form.get("category"),
             # Creates an object from the string to send to collection
             "event_plant_id": ObjectId(event_plant_id),
-            "event_name": request.form.get("event_name"),
-            "event_repeats": request.form.get("event_repeats"),
-            "event_date": date_object,
-            "event_month": event_month,
-            "event_notes": request.form.get("event_notes"),
+            "name": request.form.get("name"),
+            "repeats": request.form.get("repeats"),
+            "occurs_at": date_object,
+            "month": month,
+            "notes": request.form.get("notes"),
             "created_by": session["user"]
         }
         mongo.db.garden_events.update({"_id": ObjectId(event_id)}, submit)
@@ -358,19 +358,19 @@ def edit_event(event_id):
     garden_event = mongo.db.garden_events.find_one(
         {"_id": ObjectId(event_id)})
 
-    garden_events = list(mongo.db.garden_events.find().sort("event_date"))
+    garden_events = list(mongo.db.garden_events.find().sort("occurs_at"))
 
     plants = []
     categories = []
     # distinguish if admin or normal user to populate list accordingly
     if session["user"] == "admin":
-        plants = list(mongo.db.plants.find().sort("plant_type"))
-        categories = mongo.db.categories.find().sort("event_category", 1)
+        plants = list(mongo.db.plants.find().sort("type"))
+        categories = mongo.db.categories.find().sort("category", 1)
     else:
         plants = list(mongo.db.plants.find(
-            {"created_by": session["user"]}).sort("plant_type"))
+            {"created_by": session["user"]}).sort("type"))
         categories = list(mongo.db.categories.find(
-            {"created_by": session["user"]}).sort("event_category"))
+            {"created_by": session["user"]}).sort("category"))
 
     if not plants:
         flash("Create plants to populate this page.", "info")
@@ -391,8 +391,8 @@ def delete_event(event_id):
 def add_plant():
     if "user" in session:
         if request.method == "POST":
-            sowing_date_string = request.form.get("plant_sowing")
-            planting_date_string = request.form.get("plant_planting")
+            sowing_date_string = request.form.get("sow_at")
+            planting_date_string = request.form.get("plant_at")
             harvest_from_string = request.form.get("harvest_from")
             harvest_to_string = request.form.get("harvest_to")
             if sowing_date_string == "":
@@ -407,16 +407,16 @@ def add_plant():
             harvest_to_object = pd.to_datetime(harvest_to_string)
 
             plant = {
-                "plant_type": request.form.get("plant_type"),
-                "plant_name": request.form.get("plant_name"),
-                "plant_sowing": sowing_date_object,
-                "plant_planting": planting_date_object,
+                "type": request.form.get("type"),
+                "name": request.form.get("name"),
+                "sow_at": sowing_date_object,
+                "plant_at": planting_date_object,
                 "harvest_from": harvest_from_object,
                 "harvest_to": harvest_to_object,
-                "fertilise_frequency": request.form.get(
-                    "fertilise_frequency"),
-                "fertiliser_type": request.form.get("fertiliser_type"),
-                "plant_note": request.form.get("plant_note"),
+                "fertilise": request.form.get(
+                    "fertilise"),
+                "fertiliser": request.form.get("fertiliser"),
+                "notes": request.form.get("notes"),
                 "created_by": session["user"]
             }
             mongo.db.plants.insert_one(plant)
@@ -432,8 +432,8 @@ def add_plant():
 @app.route("/edit_plant/<plant_id>", methods=["GET", "POST"])
 def edit_plant(plant_id):
     if request.method == "POST":
-        sowing_date_string = request.form.get("plant_sowing")
-        planting_date_string = request.form.get("plant_planting")
+        sowing_date_string = request.form.get("sow_at")
+        planting_date_string = request.form.get("plant_at")
         harvest_from_string = request.form.get("harvest_from")
         harvest_to_string = request.form.get("harvest_to")
         if sowing_date_string == "":
@@ -448,16 +448,16 @@ def edit_plant(plant_id):
         harvest_to_object = pd.to_datetime(harvest_to_string)
 
         submit = {
-            "plant_type": request.form.get("plant_type"),
-            "plant_name": request.form.get("plant_name"),
-            "plant_sowing": sowing_date_object,
-            "plant_planting": planting_date_object,
+            "type": request.form.get("type"),
+            "name": request.form.get("name"),
+            "sow_at": sowing_date_object,
+            "plant_at": planting_date_object,
             "harvest_from": harvest_from_object,
             "harvest_to": harvest_to_object,
-            "fertilise_frequency": request.form.get(
-                "fertilise_frequency"),
-            "fertiliser_type": request.form.get("fertiliser_type"),
-            "plant_note": request.form.get("plant_note"),
+            "fertilise": request.form.get(
+                "fertilise"),
+            "fertiliser": request.form.get("fertiliser"),
+            "notes": request.form.get("notes"),
             "created_by": session["user"]
         }
         mongo.db.plants.update({"_id": ObjectId(plant_id)}, submit)
@@ -466,7 +466,7 @@ def edit_plant(plant_id):
 
     plant = mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
 
-    plants = list(mongo.db.plants.find().sort("plant_type"))
+    plants = list(mongo.db.plants.find().sort("type"))
     return render_template("edit_plant.html", plants=plants, plant=plant)
 
 
@@ -482,7 +482,7 @@ def add_category():
     if "user" in session:
         if request.method == "POST":
             new_category = {
-                "event_category": request.form.get("event_category"),
+                "category": request.form.get("category"),
                 "created_by": session["user"]
             }
             mongo.db.categories.insert_one(new_category)
@@ -494,11 +494,11 @@ def add_category():
         # Distinguish if admin or normal user and filter list accordingly
         if session["user"] == "admin":
             categories = list(mongo.db.categories.find().sort(
-                              "event_category"))
+                              "category"))
         else:
             categories = list(mongo.db.categories.find(
                               {"created_by": session["user"]}).sort(
-                                  "event_category"))
+                                  "category"))
 
         if not categories:
             flash("Create event categories to populate this list.", "info")
@@ -514,7 +514,7 @@ def add_category():
 def edit_category(category_id):
     if request.method == "POST":
         submit = {
-            "event_category": request.form.get("event_category"),
+            "category": request.form.get("category"),
             "created_by": session["user"]
         }
         mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
@@ -524,7 +524,7 @@ def edit_category(category_id):
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
 
     # Get list of all categories filtered by session user
-    categories = list(mongo.db.categories.find({"created_by": session["user"]}).sort("event_category"))
+    categories = list(mongo.db.categories.find({"created_by": session["user"]}).sort("category"))
 
     return render_template(
         "edit_category.html", categories=categories, category=category)

@@ -11,17 +11,17 @@
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
-                        <select id="event_category" name="event_category" class="validate" required>
+                        <select id="category" name="category" class="validate" required>
                             <option value="" disabled>Choose Category</option>
                             {% for category in categories %}
-                                {% if category.event_category == garden_event.event_category %}
-                                <option value="{{ category.event_category }}" selected>{{ category.event_category }}</option>
+                                {% if category.category == garden_event.category %}
+                                <option value="{{ category.category }}" selected>{{ category.category }}</option>
                                 {% else %}
-                                <option value="{{ category.event_category }}">{{ category.event_category }}</option>
+                                <option value="{{ category.category }}">{{ category.category }}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <label for="event_category">Event Category</label>
+                        <label for="category">Event Category</label>
                         <span class="helper-text">Required field</span>
                     </div>
                     <!-- select plant name -->
@@ -32,9 +32,9 @@
                             {% for plant in plants %}
                                 {% if garden_event.event_plant_id == plant._id %}
                                 <!-- Here the plant ObjectId is used in value as sudo foreign key -->
-                                <option value="{{ plant._id }}" selected>{{ plant.plant_name }}</option>
+                                <option value="{{ plant._id }}" selected>{{ plant.name }}</option>
                                 {% else %}
-                                <option value="{{ plant._id }}">{{ plant.plant_name }}</option>
+                                <option value="{{ plant._id }}">{{ plant.name }}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>
@@ -46,9 +46,9 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
-                        <input id="event_name" name="event_name"  minlength="5" maxlength="40" 
-                          value="{{ garden_event.event_name }}" type="text" class="validate" required>
-                        <label for="event_name">Event Name</label>
+                        <input id="name" name="name"  minlength="5" maxlength="40" 
+                          value="{{ garden_event.name }}" type="text" class="validate" required>
+                        <label for="name">Event Name</label>
                         <span class="helper-text">Required field</span>
                     </div>
                 </div>
@@ -56,16 +56,16 @@
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
-                        <input id="event_date" name="event_date" type="text" value="{{ garden_event.event_date.strftime('%B %d, %Y') }}" class="datepicker validate" required>
-                        <label for="event_date">Event Date</label>
+                        <input id="occurs_at" name="occurs_at" type="text" value="{{ garden_event.occurs_at.strftime('%B %d, %Y') }}" class="datepicker validate" required>
+                        <label for="occurs_at">Event Date</label>
                         <span class="helper-text">Required field</span>
                     </div>
                     <!-- event repeat cycle -->
                     <div class="input-field col s12 m6">
                         <i class="far fa-clock prefix teal-text text-darken-2"></i>
-                        <input id="event_repeats" name="event_repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  
-                        value="{{ garden_event.event_repeats }}" type="text" class="validate">
-                        <label for="event_repeats">Event Repeats</label>
+                        <input id="repeats" name="repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  
+                        value="{{ garden_event.repeats }}" type="text" class="validate">
+                        <label for="repeats">Event Repeats</label>
                         <span class="helper-text">Optional</span>
                     </div>
                 </div>
@@ -74,11 +74,11 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
-                      <textarea id="event_notes" name="event_notes" minlength="5" 
+                      <textarea id="notes" name="notes" minlength="5" 
                         maxlength="200" class="materialize-textarea validate" required>
-                        {{- garden_event.event_notes -}}
+                        {{- garden_event.notes -}}
                     </textarea>
-                      <label for="event_notes">Event Notes</label>
+                      <label for="notes">Event Notes</label>
                       <span class="helper-text">Optional</span>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                             <p class="materialert danger">Deleting event data is irreversable.</p>
                         </div>
                         <div class="modal-content">
-                            <p>Are you sure you want to delete "<strong class="emph-green">{{ garden_event.event_name }}</strong>" ?</p>
+                            <p>Are you sure you want to delete "<strong class="emph-green">{{ garden_event.name }}</strong>" ?</p>
                         </div>
                         <div class="modal-footer">
                             <a href="{{ url_for('delete_event', event_id=garden_event._id) }}" 

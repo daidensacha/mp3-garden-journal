@@ -11,13 +11,13 @@
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
-                        <select id="event_category" name="event_category" class="validate" required>
+                        <select id="category" name="category" class="validate" required>
                             <option value="" disabled selected>Choose Category</option>
                             {% for category in categories %}
-                            <option value="{{ category.event_category }}">{{ category.event_category }}</option>
+                            <option value="{{ category.category }}">{{ category.category }}</option>
                             {% endfor %}
                         </select>
-                        <label for="event_category">Event Category</label>
+                        <label for="category">Event Category</label>
                         <span class="helper-text">Required field</span>
                     </div>
                     <!-- select plant name -->
@@ -27,7 +27,7 @@
                             <option value="" disabled selected>Choose Plant</option>
                             {% for plant in plants %}
                             <!-- Here the plant ObjectId is used in value as sudo foreign key -->
-                            <option value="{{ plant._id }}">{{ plant.plant_name }}</option>
+                            <option value="{{ plant._id }}">{{ plant.name }}</option>
                             {% endfor %}
                         </select>
                         <label for="event_plant_id">Plant Name</label>
@@ -38,9 +38,9 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
-                        <input id="event_name" name="event_name"  minlength="5" maxlength="40" 
+                        <input id="name" name="name"  minlength="5" maxlength="40" 
                           type="text" class="validate" required>
-                        <label for="event_name">Event Name</label>
+                        <label for="name">Event Name</label>
                         <span class="helper-text">Required field</span>
                     </div>
                 </div>
@@ -48,15 +48,15 @@
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
-                        <input id="event_date" name="event_date" type="text" class="datepicker validate" required>
-                        <label for="event_date">Event Date</label>
+                        <input id="occurs_at" name="occurs_at" type="text" class="datepicker validate" required>
+                        <label for="occurs_at">Event Date</label>
                         <span class="helper-text">Required field</span>
                     </div>
                     <!-- event repeat cycle -->
                     <div class="input-field col s12 m6">
                         <i class="far fa-clock prefix teal-text text-darken-2"></i>
-                        <input id="event_repeats" name="event_repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  type="text" class="validate">
-                        <label for="event_repeats">Event Repeats</label>
+                        <input id="repeats" name="repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  type="text" class="validate">
+                        <label for="repeats">Event Repeats</label>
                         <span class="helper-text">Optional</span>
                     </div>
                 </div>
@@ -65,9 +65,9 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
-                      <textarea id="event_notes" name="event_notes" minlength="5" 
+                      <textarea id="notes" name="notes" minlength="5" 
                       maxlength="200" class="materialize-textarea validate" ></textarea>
-                      <label for="event_notes">Event Notes</label>
+                      <label for="notes">Event Notes</label>
                       <span class="helper-text">Optional</span>
                     </div>
                 </div>

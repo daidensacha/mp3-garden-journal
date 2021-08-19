@@ -52,7 +52,7 @@
                                 {% if username == "admin" %}
                                     Admin Profile
                                 {% else %}
-                                    {{ user["user_firstname"] }}'s Profile
+                                    {{ user["firstname"] }}'s Profile
                                 {% endif %}
                             </a></li>
                             <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
