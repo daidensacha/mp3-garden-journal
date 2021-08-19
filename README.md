@@ -165,7 +165,7 @@ I decided to create separate collections for users, event categories, and plants
 
 **MongoDB Schema**
 
-![enter image description here](documentation/images/almanac_schema.jpg)  
+![enter image description here](documentation/images/almanac_schema-b.jpg)  
 
 **Crucial considerations in designing the above schema**
 

@@ -30,6 +30,7 @@ $(function () {
   });
   $('.modal').modal();
   $('select').formSelect();
+  $('input#input_text, textarea#textarea2').characterCounter();
 // Materializecss select validation code from code institute walk through project. 
 validateMaterializeSelect();
 function validateMaterializeSelect() {
