@@ -198,7 +198,7 @@ The whole site revoles around the users, so the user name is what links the plan
 			_id: 			<ObjectId>
 			username: 		<string>
 			email: 			<string>
-			registered: 	<date>
+			registered: 		<date>
 			firstname: 		<string>
 			lastname: 		<string>
 			password: 		<string>
@@ -210,16 +210,16 @@ The whole site revoles around the users, so the user name is what links the plan
 I used a combination of fields to so the user can record information, and update it each year based on the past years experience. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
 ```   
 	plants  {
-			_id: 				<ObjectId>
-		    type: 				<string>
-		    name: 				<string>
+			_id: 			<ObjectId>
+		    type: 			<string>
+		    name: 			<string>
 		    sow_at: 			<date>
 		    plant_at: 			<date>
 		    harvest_from: 		<date>
 		    harvest_to: 		<date>
 		    fertilise: 			<string>
 		    fertiliser: 		<string>
-		    notes: 				<string>
+		    notes: 			<string>
 		    created_by: 		<string>  
      }
 ```   
@@ -227,7 +227,7 @@ I used a combination of fields to so the user can record information, and update
 The user has total discretion to group the types of events how they prefer, which will suit their needs and desire to search or filter infomtation. 
 ```  
 	categories  {
-		     _id: 				<ObjectId>
+		     _id: 			<ObjectId>
 		     category: 			<string>
 		     created_by: 		<string>
 	 }
@@ -236,14 +236,14 @@ The user has total discretion to group the types of events how they prefer, whic
 The pivot of the whole concept, depends on and requires category and plants to create an event. Initially I used the plant ObjectId as the sudo foreign key, as it is unique to the plant, and immutable. Like the events, some fields are required, and other optional. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
 ``` 
 	garden_events {
-			 _id: 				<ObjectId>
-			 category: 			<string>
+			 _id: 			<ObjectId>
+			 category: 		<string>
 			 event_plant_id: 	<ObjectId>
-			 name: 				<string>
-			 repeats: 			<string>
+			 name: 			<string>
+			 repeats: 		<string>
 			 occurs_at: 		<date>
-			 month: 			<string>
-			 notes: 			<string>
+			 month: 		<string>
+			 notes: 		<string>
 			 created_by: 		<string>
 	 }
 ```
@@ -251,7 +251,7 @@ The pivot of the whole concept, depends on and requires category and plants to c
 This was not in my initial plan, but was inpired when I was working out what to do with my contact form data. For the sake of the learnign process, I resisted using JS to handle the form and send it via a third party. I used `flask-wtf` forms to build the form and validation. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created a Admin Message Inbox to display the messages. 
 ``` 
 	messages  {
-		     _id: 				<ObjectId>
+		     _id: 			<ObjectId>
 		     firstname: 		<string>
 		     lastname: 			<string>
 		     email: 			<string>
