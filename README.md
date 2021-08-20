@@ -369,7 +369,30 @@ My testing at experimentation is done locally using [Webmaker App](https://webma
 
 ### Development
 ---
-#### Git Version Control
+
+#### Create Mongo Data Base
+1. Navigate to mongodb.com, register and create an account. 
+2. Create a free shared cluster 
+3. Select a cloud service, I chose AWS.
+4. Select the closest region to you offering a free service , I chose Frankfurt.
+5. Choose the cluster tier, M0 Sandbox (free forever)
+6. Scroll down and select Cluster Name, and name your cluster.
+7. Click on the "Create Cluster" button.
+8. Click on Database Access in the menu on the left.
+9. CLick on "Add New Database User"
+10. Create  a user name and password using only a combination of letters and numbers.
+11. Set User Privileges to "Read and write to any database"
+12. Click Add User.
+13. Click on Network Access in the menu on the left hand side.
+14. Click Add IP Address, and here you can click "Add Current IP Address" to limit access to the data base, or click "Allow Access From Anywhere" if you want to access from different locations. 
+15. Click Clusters in the menu on the left, and click on "Collections".
+16. Click "Add My Own Data", and here you can create your data base, and you can add your first collection name. Click Create. It can take a few minutes. 
+17. Click on "Create Document" to create your first document of key-value pairs. (I created example values to start with) Also select the type of flield. 
+18. Once complete, click "Insert" to insert the document into the collection. 
+
+#### Create Project
+
+- **Create Project Repository** I used the Code Institute [gitpod-full-template](https://github.com/Code-Institute-Org/gitpod-full-template). I clicked on "Use this template", and created my project repository name "mp3-garden-journal". I then opened this in GitPod to start the project. 
 
 -   **Initialise Git**  To begin my project, I started with  `git init`  to initialise git within the project.
     
@@ -377,20 +400,23 @@ My testing at experimentation is done locally using [Webmaker App](https://webma
     
     `git echo "file_name" >> .gitignore`  is the terminal command I used to add files and directories to  **.gitignore**.
 
-	-	Implement template and materializecss components
+- **Implement Flask app and templates**
+ For this section, I won't go into explaining how to set up Flask, as there is pleanty of clear information online. Also, I can only give partial information, as some is confidential, and I think it would possibly lead to confusion. 
+At this point, I impletemented Flask, and created my base template with the Materialize Theme. I began the process of building the HTML templates using Jinja, and extending the templates from the base,html. 
+ 
+- **Connect with Mongo DB** I connected my mongoDB with the Flask app. 
 
-Implement Flask app and templates
+**Incremental Development and Simultaneious Testing**
+The development process was incremental, piece by piece, checking as I went for breaks or mistakes in the code, and fixing them along the way. With ```debug=True``` Jinja showed me the errors as I progeressed, so I was able to easily locate where the mistake was made, and it was then just a process of troubleshooting it. 
 
-Connect with Mongo DB
+In order to test features, I had created 3 accoutns, my own, an admin, and a third ficticious user. I created plants, categories, events by different users, updated them, deleted them, testing as many scenarios I could imagine to see what happens and if behaviour was expected or unexpected. 
+At one point, I created a custom 404 error page for when users might encouter a broken link, and I encoutered a 500 error. I then created a custom 500 error page, and threw in a customer 405 error page as well. At that point, I actually was trying to find ways, or scenarios that woudld show me where the code needed to be improved or made more secure. 
 
-Step by step, incremental commits, and testing. 
+I deployed my project to Heroku early, to be so I had a live version to check, and compare to what I was seeing in my local server. 
 
-Testing for bugs, my account, admin account, and third accoutn to check for expected or unexpected behaviour. 
+Testing was completed in Chome Dev Tools, and I checked the performce of the application in multiple browsers, operating systems, computers and devices. 
 
-Testing for 404 errors, discovering 405 and 500 errors. 
-
-
-
+See [Testing.md](/documentation/TESTING.md) for more detail.
 
 ### Deployment
 
