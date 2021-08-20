@@ -1,3 +1,6 @@
+
+
+
 # Welcome
 
 ## Code Institute: Milestone Project 3
@@ -165,7 +168,7 @@ I decided to create separate collections for users, event categories, and plants
 
 **MongoDB Schema**
 
-![enter image description here](documentation/images/almanac_schema-b.jpg)  
+![MongoDB Schema](documentation/images/almanac_schema-a2.jpg)  
 
 **Crucial considerations in designing the above schema**
 
@@ -184,7 +187,7 @@ I have used the user name as the session cookie to identify the user, and filter
 5. ***Admin can view messages sent from the sites contact form.***
 For the sake of the learning experience, and in step with the learning objectives of the project, I specificlly chose not to use JavaScript to process and send the contact form messages. I wanted to use Python, and this solution acutally came to me after I created the Flask-WTForms form. I realised how easy it would be to create a MongoDB collection, and to POST the message data to the database. From there it's a simple task of creating the HTML template to display the messages. 
 6. ***Dates are stored in MongoDB in ISODate format.***
-I'll be honest, and say this was a dive into learning something very new for me. The Material Design datepicker enables the date to be chosen, its responsive, and works well. I serves the date in string format however, which I discovered when posting form date to the database collections. I chose to convert the date to ISODate format to store in the database, and its pretty straight forward to get and display any part of the datetime. 
+I'll be honest, and say this was a dive into learning something very new for me. The Material Design datepicker enables the date to be chosen, its responsive, and works well. I serves the date in string format however, which I discovered when posting form date to the database collections. I chose to convert the date to ISODate format to store in the database, and its pretty straight forward once you get used to it. 
 
 
 I decided on the following schema, using collections to group separate groups of data, users, plants, categories (event), garden_events, and messages. 
@@ -192,7 +195,7 @@ I decided on the following schema, using collections to group separate groups of
 
 
 ***Users***
-The whole site revoles around the users, so the user name is what links the plants, events and categores, where I use the `user_name`and insert it as in the related entry `created_by` key. I am able to use this as the sudo foreign key to identify the users entries. 
+The whole site revoles around the users, and garden events.  The ```username``` is what links plants, events and categores. When teh user creates a new item for plants, events, or categories, the  `user_name` is inserted as a reference key `created_by` . I am able to match the session user with the ```username```  key in the collections to retrieve the users data from the database. 
 ```  
 	users  {
 			_id: 			<ObjectId>
@@ -207,7 +210,7 @@ The whole site revoles around the users, so the user name is what links the plan
 
 
 ***Plants***
-I used a combination of fields to so the user can record information, and update it each year based on the past years experience. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
+The ```created_by``` key is the ```usename``` of the user and what I use to link the plant entry to the user. The remaining combination of fields are for gathering relevant information to fullfill needs of the user. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user. Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
 ```   
 	plants  {
 			_id: 			<ObjectId>
@@ -224,7 +227,7 @@ I used a combination of fields to so the user can record information, and update
      }
 ```   
 ***Categories***
-The user has total discretion to group the types of events how they prefer, which will suit their needs and desire to search or filter infomtation. 
+The user has total discretion to group the types of events how they prefer, which will suit their needs and desire to search or filter infomtation. The user can add, edit and update, or delete  categories, which are displayed in a select input in the add or edit ```garden_event``` forms. The user is required to select a category when creating an event. 
 ```  
 	categories  {
 		     _id: 			<ObjectId>
@@ -233,7 +236,7 @@ The user has total discretion to group the types of events how they prefer, whic
 	 }
 ```
 ***Garden Events***
-The pivot of the whole concept, depends on and requires category and plants to create an event. Initially I used the plant ObjectId as the sudo foreign key, as it is unique to the plant, and immutable. Like the events, some fields are required, and other optional. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
+The pivot of the whole application concept hinges on relationships to categories and plants.  I used the plant ObjectId as the sudo foreign key to link events with the related plant. The ObjectId is unique to the plant, and immutable, which enables me to maintain the link without complications that would occur if I use a field that can be edited. Spme fields are required, and other optional, similar reasons for the same in the plants collection. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
 ``` 
 	garden_events {
 			 _id: 			<ObjectId>
@@ -259,6 +262,18 @@ This was not in my initial plan, but was inpired when I was working out what to 
 		     created_at: 		<date>
 	 }
 ```
+**Database Issues and Notes**
+1. ***Linking garden_events with plants*** As explained, I used the plant ```ObjectId``` and store it as an ```ObjectId``` in the ```garden_event``` collection under the key name ```event_plant_id```. I initially tried using the plant ```name``` field, but encounted complications. I was storing the plant ```name``` in the ```garden_event``` collection, and using it to link the two.  When the plant ```name``` was changed and updated, that method required coding in simultanious changes to the same field in ```garden_event```. It was my first lesson in why to use an immutable field for such linking, and I changed to using the plant ```ObjectId```. 
+It was a little complicated by the fact there is very little information written in simple terms for someone learning. I  used the string format of the ```ObjectId``` in the select option, retrieve that when the form is POST"ed, insert it in ```event_plant_id:ObjectId("string_format")``` and store it as the ```ObjectId``` in the ```garden_events``` collection. This way, it is easy to loop through and compare items from the two collections to find a match for the ```ObjectId```.
+2. ***Time format*** I'm absolutely certain every developer encounters this, and has to learn it.
+Materialize Design datepicker allows you to format the required date however you want to get it, however it creates a string of the date and if you (like me) chose date in the MongoDB field type, it overwrites that and stores a string in the db collection field. When your expecing a date format, and try to display it in your HTML template, you will encounter Jinja errors. 
+In the jQuery function for the datepicker, my chosen format to display the date was ```format: "mmmm dd, yyyy",``` i.e. February 10, 2021. My solution was as follows. 
+-	Step 1. Store string in variable. ```date_string = request.form.get("occurs_at")```
+-	Step 2. Convert string to ISODate ```date_object = pd.to_datetime(date_string)```
+	-	Note that I used Pandas here, for simplicity, as with datetime you need to specify the format of the date string being converted, i.e. ```date_object = datetime.strptime(date_string, '%B %d, %Y')``` . View [Documentation for strptime() Behavior](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)  along with a list of the Format codes.
+- Step 3. Upload the date to mongoDB. The date has been converted from ```"February 10, 2021"``` to ```2021-02-10T00:00:00.000+00:00``
+
+	As I worked through the project, I had to use the datetime format codes to display the date as I wanted it to be displayed, so I got used to it and came to enjoy that it is easy to display the date in whatever format you wish. All my dates are stored in ISODate format in the MongoDB, unless I wanted to store it as a string. I have stored the month name in garden_events collection for indexing, so users can search and filter by month name.
 
 ### 4. Skeleton
 
@@ -333,7 +348,49 @@ My source of choice for stock images.
 
 ## TESTING
 
-See: [Testing.md](/documentation/testing.md)
+See: [Testing.md](/documentation/testing.md)  
+
+### Research
+---
+Having decided to use Materializecss, I needed to become familiar with the framework, its syntax and the available components. I needed to see what is available to meet my needs so I can implement my design requirements how I need them to be.
+My testing at experimentation is done locally using [Webmaker App](https://webmaker.app/app/), as its free, works really well, and I am able to create codepen examples of what I want to implement with select components. I can save these to an HTML codument to share with clients to view the examples. 
+- ***Grid*** Its pretty straight forward and similar in many ways to bootstrap. Some class names are similar, i.e. ```.row``` and ```.col```. The grid class syntax is also pretty simple to grasp. 
+- ***Collapsible*** The Material Design name for what is better known as an accordion. I needed to reasearch how to implement the accordion, and decide teh best way to display the garden event information. 
+- ***Collection*** Material Design name for a list. I wanted to use it for displaying the list of plants, and also the list of categories. 
+- ***Tabs	(confict...)*** It was my initial plant to try to display the events by month in tabs, but Materializecss uses teh image carousel css in the tabs, and this created a confict with the image slider. The tabs automatically scrolled. Furthermore there were othe issues, nothing that couldn't be sorted in time, but my time was limited so I needed to go an easier route. I didn't use tabs in my project, and overall I'm happy I went the "Collapsilble" route.
+- ***Image slider*** I wanted to have this as teh main feature when the user lands on the homepage. One image relating to each season, Spring, Summer, Autumn, Winter. I found my images on Deposit photos, and created the slider images from the stock images.
+- ***Forms*** I needed to look at the form elements, see the implementation proceedure, to know in advance what I was going to implement before I came to it. 
+- ***Modal*** The plan was to use modals, to display plant information, and also for the contact form. I changed the form from HTML to Flask-WTForms in the end, to stay with Python so did away with the form modal. I used modals for the delete confirmation messages.
+
+- ***Material Design Template*** I wanted to use Material Desing framework, so I spent a little time looking at what was online with regard to templates. I came across [Materialize Themes](http://swarnakishore.github.io/MaterializeThemes/#themes), and really found inspiration in what I saw. The theme I chose was using an older version of materializecss, so I needed to go through it from top to bottom as there were some things that needed to be updated to work with the latest release. I customised it how I wanted it, kepts some things and had a starting point for my project. 
+- ***Stock images*** [Deposit Photos](https://depositphotos.com/?gclsrc=aw.ds&&utm_source=google&utm_medium=cpc&utm_campaign=DP_EU_EN_Brand_Search&utm_term=depositphotos&gclid=CjwKCAjwuvmHBhAxEiwAWAYj-EVeHDBPdjs594mAT_HDLeFGM_g2IVcGn78NSArH7vXIYqfoO1BuhBoCv_kQAvD_BwE), my first stop for stock images when I need them. I found the images I needed for the image slider, and also for the parallax. 
+
+- ***Mongo DB Schema design*** With zero experience designing or working with building any database, apart from the Code Institure code along project, I was totally overwhelmed. I read so much information, watched so many youtube videos, I had all the info but it was totally abstract without a reference point of experience to understand it in real terms. I heard it often, that the data base design pretty much depended on the needs of the applications, ... got it... but how to design it? I spent the first week reasearching just this, and in the end, decided to just jump in and learn. For the most part, the finished product is very close to what I planned, apart from a few changes I made to impove things, (to meet the needs of the application). 
+
+### Development
+---
+#### Git Version Control
+
+-   **Initialise Git**  To begin my project, I started with  `git init`  to initialise git within the project.
+    
+-   **Git Ignore**  I created a  **.gitignore**  file to add files and directories I didn't want to upload to GitHub.
+    
+    `git echo "file_name" >> .gitignore`  is the terminal command I used to add files and directories to  **.gitignore**.
+
+	-	Implement template and materializecss components
+
+Implement Flask app and templates
+
+Connect with Mongo DB
+
+Step by step, incremental commits, and testing. 
+
+Testing for bugs, my account, admin account, and third accoutn to check for expected or unexpected behaviour. 
+
+Testing for 404 errors, discovering 405 and 500 errors. 
+
+
+
 
 ### Deployment
 
@@ -360,6 +417,7 @@ See: [Testing.md](/documentation/testing.md)
 7. To confirm, I click "View" to launch the app.
 
 ### Feedback
+
 
 ### Credits
 ***Flask App*** 
