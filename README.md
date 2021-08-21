@@ -196,7 +196,7 @@ I decided on the following schema, using collections to group separate groups of
 
 ***Users***
 The whole site revoles around the users, and garden events.  The ```username``` is what links plants, events and categores. When teh user creates a new item for plants, events, or categories, the  `user_name` is inserted as a reference key `created_by` . I am able to match the session user with the ```username```  key in the collections to retrieve the users data from the database. 
-```json  
+```js  
 	users  {
 			_id: 			<ObjectId>
 			username: 		<string>
@@ -211,7 +211,7 @@ The whole site revoles around the users, and garden events.  The ```username``` 
 
 ***Plants***
 The ```created_by``` key is the ```usename``` of the user and what I use to link the plant entry to the user. The remaining combination of fields are for gathering relevant information to fullfill needs of the user. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user. Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
-```json   
+```js   
 	plants  {
 			_id: 			<ObjectId>
 		    type: 			<string>
@@ -228,7 +228,7 @@ The ```created_by``` key is the ```usename``` of the user and what I use to link
 ```   
 ***Categories***
 The user has total discretion to group the types of events how they prefer, which will suit their needs and desire to search or filter infomtation. The user can add, edit and update, or delete  categories, which are displayed in a select input in the add or edit ```garden_event``` forms. The user is required to select a category when creating an event. 
-```json  
+```js  
 	categories  {
 		     _id: 			<ObjectId>
 		     category: 			<string>
@@ -237,7 +237,7 @@ The user has total discretion to group the types of events how they prefer, whic
 ```
 ***Garden Events***
 The pivot of the whole application concept hinges on relationships to categories and plants.  I used the plant ObjectId as the sudo foreign key to link events with the related plant. The ObjectId is unique to the plant, and immutable, which enables me to maintain the link without complications that would occur if I use a field that can be edited. Spme fields are required, and other optional, similar reasons for the same in the plants collection. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
-```json 
+```js 
 	garden_events {
 			 _id: 			<ObjectId>
 			 category: 		<string>
@@ -252,7 +252,7 @@ The pivot of the whole application concept hinges on relationships to categories
 ```
 ***Messages***
 This was not in my initial plan, but was inpired when I was working out what to do with my contact form data. For the sake of the learnign process, I resisted using JS to handle the form and send it via a third party. I used `flask-wtf` forms to build the form and validation. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created a Admin Message Inbox to display the messages. 
-```json 
+```js 
 	messages  {
 		     _id: 			<ObjectId>
 		     firstname: 		<string>
