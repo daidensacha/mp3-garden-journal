@@ -213,7 +213,7 @@ The whole site revoles around the users, and garden events.  The ```username``` 
 The ```created_by``` key is the ```usename``` of the user and what I use to link the plant entry to the user. The remaining combination of fields are for gathering relevant information to fullfill needs of the user. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user. Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
 ```js   
 	plants  {
-			_id: 			<ObjectId>
+		_id: 				<ObjectId>
 		    type: 			<string>
 		    name: 			<string>
 		    sow_at: 			<date>
@@ -224,43 +224,43 @@ The ```created_by``` key is the ```usename``` of the user and what I use to link
 		    fertiliser: 		<string>
 		    notes: 			<string>
 		    created_by: 		<string>  
-     }
+    }
 ```   
 ***Categories***
 The user has total discretion to group the types of events how they prefer, which will suit their needs and desire to search or filter infomtation. The user can add, edit and update, or delete  categories, which are displayed in a select input in the add or edit ```garden_event``` forms. The user is required to select a category when creating an event. 
 ```js  
 	categories  {
-		     _id: 			<ObjectId>
-		     category: 			<string>
-		     created_by: 		<string>
-	 }
+		    _id: 			<ObjectId>
+		    category: 			<string>
+		    created_by: 		<string>
+	}
 ```
 ***Garden Events***
 The pivot of the whole application concept hinges on relationships to categories and plants.  I used the plant ObjectId as the sudo foreign key to link events with the related plant. The ObjectId is unique to the plant, and immutable, which enables me to maintain the link without complications that would occur if I use a field that can be edited. Spme fields are required, and other optional, similar reasons for the same in the plants collection. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
 ```js 
 	garden_events {
-			 _id: 			<ObjectId>
-			 category: 		<string>
-			 event_plant_id: 	<ObjectId>
-			 name: 			<string>
-			 repeats: 		<string>
-			 occurs_at: 		<date>
-			 month: 		<string>
-			 notes: 		<string>
-			 created_by: 		<string>
-	 }
+			_id: 			<ObjectId>
+			category: 		<string>
+			event_plant_id: 	<ObjectId>
+			name: 			<string>
+			repeats: 		<string>
+			occurs_at: 		<date>
+			month: 		<string>
+			notes: 		<string>
+			created_by: 		<string>
+	}
 ```
 ***Messages***
 This was not in my initial plan, but was inpired when I was working out what to do with my contact form data. For the sake of the learnign process, I resisted using JS to handle the form and send it via a third party. I used `flask-wtf` forms to build the form and validation. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created a Admin Message Inbox to display the messages. 
 ```js 
 	messages  {
-		     _id: 			<ObjectId>
-		     firstname: 		<string>
-		     lastname: 			<string>
-		     email: 			<string>
-		     message: 			<string>
-		     created_at: 		<date>
-	 }
+		    _id: 			<ObjectId>
+		    firstname: 		<string>
+		    lastname: 			<string>
+		    email: 			<string>
+		    message: 			<string>
+		    created_at: 		<date>
+	}
 ```
 #### Database Issues and Notes 
 1. ***Linking garden_events with plants*** As explained, I used the plant ```ObjectId``` and store it as an ```ObjectId``` in the ```garden_event``` collection under the key name ```event_plant_id```. I initially tried using the plant ```name``` field, but encounted complications. I was storing the plant ```name``` in the ```garden_event``` collection, and using it to link the two.  When the plant ```name``` was changed and updated, that method required coding in simultanious changes to the same field in ```garden_event```. It was my first lesson in why to use an immutable field for such linking, and I changed to using the plant ```ObjectId```. 
