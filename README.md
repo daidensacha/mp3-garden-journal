@@ -255,10 +255,10 @@ This was not in my initial plan, but was inpired when I was working out what to 
 ```js 
 	messages	{
 			_id: 			<ObjectId>
-			firstname: 			<string>
-			lastname: 			<string>
+			firstname: 		<string>
+			lastname: 		<string>
 			email: 			<string>
-			message: 			<string>
+			message: 		<string>
 			created_at: 		<date>
 	}
 ```
