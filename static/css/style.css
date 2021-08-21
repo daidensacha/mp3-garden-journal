@@ -371,7 +371,7 @@ li.active .collapsible-header .caret {
 }
 
 /**************************** Custom Alert Messages ***************************/
-.materialert.info{
+.materialert.default{
   background-color: rgba(3,155,229,0.8);
 }
 
