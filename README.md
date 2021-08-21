@@ -576,30 +576,96 @@ I customized it how I wanted it, kept some things, and had a starting point for 
 			 - I enter a new category, enter create. The function uploads the new category and the session `user_name` to identify the field with the session_user.
 
 
+
  - **Add Update Functionality**		
 	 - ***Create HTML template files***
 	 	```bash
-		 touch templates/edit_event.html 
-		 touch templates/edit_plant.html
-		 touch templates/edit_category.html 
+		 cp templates/add_event.html templates/edit_event.html 
+		 cp templates/add_plant.html templates/edit_plant.html
+		 cp templates/add_category.html templates/edit_category.html 
 		```
+	- ***Pages: garden_events, plants, categories***
+		- I copied the `add_event`, `add_plant`, `add_category` HTML templates with the required forms for updating the data in the database fields. The inputs for adding the data are the same inputs used to update the data.
+		- Created the app route functions for getting the form data and adding it to the database. 
+		- I added the app route path form action, i.e. ```action="{{ url_for('edit_plant', plant_id=plant._id ) }}"```
+		- I added the app route path to the Edit buttons displayed when viewing the data.
+		- In the `app.route` and function I added the item_id to get the item to edit.  The following example shows how the `plant_id` is added to the route, and to the function. That same `plant_id` is used in the `update({"_id": ObjectId(plant_id)}, submit)`
+			```python
+			@app.route("/edit_plant/<plant_id>", methods=["GET", "POST"])
+			def edit_plant(plant_id):
+				if request.method == "POST":
+				
+				# function code block removed
+				
+				mongo.db.plants.update({"_id": ObjectId(plant_id)}, submit)
+				flash("Plant Successfully Updated", "success")
+				return redirect(url_for("get_plants"))
+			plant = mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
+			plants = list(mongo.db.plants.find().sort("type"))
+			return render_template("edit_plant.html", plants=plants, plant=plant)
+			```
 	 - ***Collections:***
 		 - ***garden_events***
+			 - The route path and function include the event_id. `if request.method == "POST":` the application searches the collection for the event_id and updates the data. 
+			 - **NOTE** The `url_path` in the `edit_event` form.  See [edit_event HTML template](/templates/edit_event.html), line 9.
+			 
+				```html+jinja
+				{{ url_for('edit_event', event_id=garden_event._id) }}
+				```
+				Here is a good example. The function assigns the value of the event to the function event_id variable. The `event_id` is the variable used in the function, and the `garden_event._id` is the collection event id.
+			- When the update is complete, the app function redirects the user to the almanac page.
 		 - ***plants***
-		 - 
+			 - The route path and function include the plant_id. `if request.method == "POST":` the application searches the collection for the plant_id and updates the data. 
+			 - When the update is complete, the app function redirects the user to the `plants` page.
 		 - ***categories***
-		 
+			 - The route path and function include the category_id. `if request.method == "POST":` the application searches the collection for the category_id and updates the data. 
+			 - When the update is complete, the app function redirects the user to the `add_category` page.
  - **Add Delete Functionality**
-	 - ***Create HTML template files***
-	 	```bash
-		 touch templates/delete_event.html 
-		 touch templates/delete_plant.html
-		 touch templates/delete_category.html 
+	 - ***Add Delete buttons HTML template files***
+	 I created an app route and `delete_item` function. Example:
+		```python
+		@app.route("/delete_event/<event_id>")
+		def delete_event(event_id):
+			mongo.db.garden_events.remove({"_id": ObjectId(event_id)})
+			flash("Event Successfuly Deleted", "success")
+			return redirect(url_for("get_garden_events"))
 		```
+		
+		- For each of the collections, I added a delete button on the `edit_item` page. The button is a modal-trigger with `href="#delete-event-modal"` that opens a modal asking the user to confirm they want to delete the data.
+		- I added the modal with the id of the modal trigger button `href`,
+		I added the 'delete_item' route in the 'href' of the delete button in the modal.
+		```html+jinja
+		{{ url_for('delete_event', event_id=garden_event._id) }}
+		```
+		- When the user clicks delete on the update_item page, it opens the modal informing the user deleting the data is irreversible and asks if they are sure they want to delete the item. The user can choose to delete or cancel. In both cases, the app redirects them back to the main page for viewing the items. 
 	 - ***Collections:***
 		 - ***garden_events***
+			 - I select a `garden_event` to edit, the data is displayed in the inputs of the `edit_event.html` form. 
+			 - I click delete, and the modal opens, informing me deleting the data is irreversible. 
+			 - I click delete again, the modal closes and redirects me back to the `get_garden_events` page. 
+			 - A success alert informs me the deletion was successful. The event is no longer on the list. 
 		 - ***plants***
+		 	 - I select a `plant` to edit, the data is displayed in the inputs of the `edit_plant.html` form. 
+			 - I click delete, and the modal opens, informing me deleting the data is irreversible. 
+			 - I click delete again, the modal closes and redirects me back to the `get_plants` page. 
+			 - A success alert informs me the deletion was successful. The plant is no longer on the list. 
 		 - ***categories***
+		 	 - I select a `category` to edit, the data is displayed in the input of the `categories.html` form. 
+			 - I click delete, and the modal opens, informing me deleting the data is irreversible. 
+			 - I click delete again, the modal closes and redirects me back to the `add_category` page. 
+			 - A success alert informs me the deletion was successful. The category is no longer on the list. 
+- **NOTES** 
+	- There were a few things that I precisely wanted to achieve in displaying the user data. 
+		1. A session user can only view their data, so the almanac is a personal application for users to view personal and relevant information. 
+		2. I wanted the admin user to view all collection items, events, plants, and categories. 
+		3. I wanted to remove the possibility of admin users deleting or changing user data by mistake. 
+	- I created an admin account. 
+	- Within the `app.py` functions for events, plants, and categories, I added an if statement that checks if the session user is admin.
+		- If true, the function then gets a list of all items in a collection to display in the accounts pages. 
+		- If false, the function gets a list of all items for the session user to display in the user accounts pages 
+		- If the list of items for the session user is empty, as it is for a new user, the function displays an alert informing the user to add data to be displayed in the pages. 
+	Adding the URL to the add_plant page, for example, would open the add_plants page.- I discovered that users not logged in could access pages that should only be available to session users. I fixed this by nesting the entire function inside an if statement that checks `if user in session:`, the function runs, `else:` it returns a flash message error alert asking the user to log in to view the page. The function redirects the user to the login page. 
+	
 		 
 #### Git Version Control
 
