@@ -13,22 +13,25 @@
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
                 <input id="firstname" name="firstname" type="text" minlength="5" maxlength="15"
-                  pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                  pattern="^[a-zA-Z0-9]{5,15}$" class="count-text validate" data-length="15" required>
                 <label for="firstname">First Name</label>
+                <span class="helper-text">Required</span>
               </div>
 
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
                 <input id="lastname" name="lastname" type="text" minlength="5" maxlength="15"
-                  pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                  pattern="^[a-zA-Z0-9]{5,15}$" class="count-text validate" data-length="15" required>
                 <label for="lastname">Last Name</label>
+                <span class="helper-text">Required</span>
               </div>
 
             <div class="input-field col s12 m12">
               <i class="fas fa-user-plus prefix"></i>
               <input id="username" name="username" type="text" minlength="5" maxlength="15"
-                pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                pattern="^[a-zA-Z0-9]{5,15}$" class="count-text validate" data-length="15" required>
               <label for="username">Username</label>
+              <span class="helper-text">Required</span>
             </div>
 
             <div class="input-field col s12 m12">
@@ -36,13 +39,15 @@
               <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 class="validate" required>
               <label for="email">Your Email</label>
+              <span class="helper-text">Required</span>
             </div>
 
             <div class="input-field col s12 m12">
               <i class="fa fa-unlock-alt prefix"></i>
               <input id="password" name="password" type="password" minlength="5" maxlength="15"
-                pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                pattern="^[a-zA-Z0-9]{5,15}$" class="count-text validate" data-length="15" required>
               <label for="password">Password</label>
+              <span class="helper-text">Required</span>
             </div>
 
 

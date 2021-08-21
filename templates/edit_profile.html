@@ -27,22 +27,28 @@
                   <div class="input-field col s12 m6">
                     <i class="fas fa-user-plus prefix"></i>
                     <input id="firstname" name="firstname" type="text" minlength="5" maxlength="15"
-                    value="{{ existing_user.firstname }}" pattern="^[a-zA-Z0-9]{5,15}$" class="validate">
+                    value="{{ existing_user.firstname }}" pattern="^[a-zA-Z0-9]{5,15}$" 
+                    class="count-text validate" data-length="15" required>
                     <label for="firstname">First Name</label>
+                    <span class="helper-text">Required</span>
                   </div>
     
                   <div class="input-field col s12 m6">
                     <i class="fas fa-user-plus prefix"></i>
                     <input id="lastname" name="lastname" type="text" minlength="5" maxlength="15"
-                    value="{{ existing_user.lastname }}" pattern="^[a-zA-Z0-9]{5,15}$" class="validate">
+                    value="{{ existing_user.lastname }}" pattern="^[a-zA-Z0-9]{5,15}$" 
+                    class="count-text validate" data-length="15" required>
                     <label for="lastname">Last Name</label>
+                    <span class="helper-text">Required</span>
                   </div>
     
                   <div class="input-field col s12 m12">
                     <i class="fa fa-envelope prefix"></i>
-                    <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                      value="{{ existing_user.email }}" class="validate" >
+                    <input id="email" name="email" type="email" 
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                      value="{{ existing_user.email }}" class="validate" required >
                     <label for="email">Your Email</label>
+                    <span class="helper-text">Required</span>
                   </div>
     
                   <div class="input-field col s12 m12">

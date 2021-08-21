@@ -39,15 +39,10 @@
                     <ul class="right hide-on-med-and-down">
 
                         <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
-                        <!-- <li><a class="head-link" href="#projects">Projects</a></li> -->
-                        <!-- <li><a class="head-link" href="#aboutus">About</a></li> -->
                         {% if session.user %}
                             <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Almanac</a></li>
                             <li><a class="head-link" href="{{ url_for('get_plants') }}">Plants</a></li>
-                            <!-- <li><a class="head-link" href="{{ url_for('add_event') }}">Add Event</a></li> -->
                             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Create<i class="material-icons right">arrow_drop_down</i></a></li>
-                            <!-- <li><a class="head-link" href="#">Add Plants</a></li> -->
-                            <!-- <li><a class="head-link" href="#">Add Categories</a></li> -->
                             <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">
                                 {% if username == "admin" %}
                                     Admin Profile
@@ -64,7 +59,6 @@
                             <li><a class="head-link" href="{{ url_for('messages') }}">Messages</a></li>
                         {% endif %}
                         <li><a class="head-link" href="{{ url_for('contact') }}">Contact</a></li>
-                        <!-- <li><a class="head-link modal-trigger" href="#footer-modal">Contact</a></li> -->
                     </ul>
                 </div>
             </nav>
@@ -73,8 +67,6 @@
         <!-- mobile offcanvas nav -->
         <ul class="sidenav" id="mobile-demo">
             <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
-            <!-- <li><a class="head-link" href="#projects">Projects</a></li> -->
-            <!-- <li><a class="head-link" href="#aboutus">About</a></li> -->
             {% if session.user %}
                 <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Almanac</a></li>
                 <li><a class="head-link" href="{{ url_for('get_plants') }}">Plants</a></li>
@@ -90,7 +82,6 @@
             {% if session.user == "admin" %}
                 <li><a class="head-link" href="{{ url_for('messages') }}">Messages</a></li>
             {% endif %}
-
             <li><a class="head-link" href="{{ url_for('contact') }}">Contact</a></li>
         </ul>
 
@@ -104,7 +95,6 @@
                 <div class="caption center-align">
                     <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
                     <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
-                    <!-- <span class="slider-heading text-shadow">Spring</span> -->
                     <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">Spring: Action! Plant, nourish, enjoy!</h4>
                 </div>
             </li>
@@ -113,7 +103,6 @@
                 <div class="caption center-align text-shadow">
                     <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
                     <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
-                    <!-- <span class="slider-heading text-shadow">Summer</span> -->
                     <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">Summer: Tend to the gardens needs.</h4>
                 </div>
             </li>
@@ -122,7 +111,6 @@
                 <div class="caption center-align">
                     <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
                     <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
-                    <!-- <span class="slider-heading text-shadow">Autumn</span> -->
                     <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">Autumn: Prepare for the dormant season.</h4>
                 </div>
             </li>
@@ -131,7 +119,6 @@
                 <div class="caption center-align">
                     <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
                     <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
-                    <!-- <span class="slider-heading text-shadow">Winter</span> -->
                     <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">Winter: Plan for the next seasons bounty. </h4>
                 </div>
             </li>
@@ -142,19 +129,6 @@
 
 <section>
     <!-- flash messages - includes alert category-->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <!-- <div class=""> -->
-                    <div class="row flashes">
-                        <!-- <div class="col s12 m12"> -->
-                            <span id="messageDiv" class="materialert {{category}} center-align icon">{{ message }}</span>
-                        <!-- </div> -->
-                    </div>
-                <!-- </div> -->
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
 
 </section>
 

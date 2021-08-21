@@ -212,7 +212,7 @@ def login():
                         "password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
-                    request.form.get("username")))
+                    request.form.get("username")),"default")
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
@@ -285,7 +285,7 @@ def edit_profile(user_id):
 @app.route("/logout")
 def logout():
     # remove user from session cookie
-    flash("You have been logged out")
+    flash("You have been logged out", "default")
     session.pop("user")
     return redirect(url_for("login"))
 

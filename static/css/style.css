@@ -324,7 +324,7 @@ li.active .collapsible-header .caret {
 ================================ Material Alerts ===============================
 ================================================================================ 
 */
-
+/* Materialert based on https://github.com/Rinebeck/materialert */
 .materialert{
   position: relative;
   min-width: 150px;
@@ -371,6 +371,9 @@ li.active .collapsible-header .caret {
 }
 
 /**************************** Custom Alert Messages ***************************/
+.materialert.info{
+  background-color: rgba(3,155,229,0.8);
+}
 
 .materialert.info{
   background-color: rgba(3,155,229,0.8);
@@ -407,6 +410,10 @@ ul.form-error {
 
 /****************************** Custom  Alert Icons ***************************/
 
+.materialert.default:before {
+  font-family: "Material Icons"; font-weight: 900; content: "\e86c";
+  margin-right: 10px;
+}
 .materialert.success:before {
   font-family: "Material Icons"; font-weight: 900; content: "\e92d";
   margin-right: 10px;
