@@ -211,9 +211,13 @@ def login():
                     existing_user["password"], request.form.get(
                         "password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(
-                    request.form.get("username")),"default")
-                return redirect(url_for("profile", username=session["user"]))
+                # username = session["user"]
+                user = mongo.db.users.find_one({"username": session["user"]})
+                user.pop("password")
+                flash("Welcome, " + user["firstname"])
+                # flash("Welcome, {}".format(
+                #     request.form.get("username")), "default")
+                return redirect(url_for("profile", username=session["user"], user=user))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password", "error")
@@ -334,52 +338,55 @@ def add_event():
 
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
 def edit_event(event_id):
-    if request.method == "POST":
-        date_string = request.form.get("occurs_at")
-        date_object = pd.to_datetime(date_string)
-        month = date_object.strftime("%B")
-        # change plant name variable to plant_id in events collection
-        # Also change in edit_events.html and add_events.html
-        event_plant_id = request.form.get("event_plant_id")
+    if "user" in session:
+        if request.method == "POST":
+            date_string = request.form.get("occurs_at")
+            date_object = pd.to_datetime(date_string)
+            month = date_object.strftime("%B")
+            # Store plant ObjectId string in variable
+            event_plant_id = request.form.get("event_plant_id")
 
-        submit = {
-            "category": request.form.get("category"),
-            # Creates an object from the string to send to collection
-            "event_plant_id": ObjectId(event_plant_id),
-            "name": request.form.get("name"),
-            "repeats": request.form.get("repeats"),
-            "occurs_at": date_object,
-            "month": month,
-            "notes": request.form.get("notes"),
-            "created_by": session["user"]
-        }
-        mongo.db.garden_events.update({"_id": ObjectId(event_id)}, submit)
-        flash("Event Successfully Updated", "success")
-        return redirect(url_for("get_garden_events"))
+            submit = {
+                "category": request.form.get("category"),
+                # Creates an object from the string to send to collection
+                "event_plant_id": ObjectId(event_plant_id),
+                "name": request.form.get("name"),
+                "repeats": request.form.get("repeats"),
+                "occurs_at": date_object,
+                "month": month,
+                "notes": request.form.get("notes"),
+                "created_by": session["user"]
+            }
+            mongo.db.garden_events.update({"_id": ObjectId(event_id)}, submit)
+            flash("Event Successfully Updated", "success")
+            return redirect(url_for("get_garden_events"))
 
-    garden_event = mongo.db.garden_events.find_one(
-        {"_id": ObjectId(event_id)})
+        garden_event = mongo.db.garden_events.find_one(
+            {"_id": ObjectId(event_id)})
 
-    garden_events = list(mongo.db.garden_events.find().sort("occurs_at"))
+        garden_events = list(mongo.db.garden_events.find().sort("occurs_at"))
 
-    plants = []
-    categories = []
-    # distinguish if admin or normal user to populate list accordingly
-    if session["user"] == "admin":
-        plants = list(mongo.db.plants.find().sort("type"))
-        categories = mongo.db.categories.find().sort("category", 1)
+        plants = []
+        categories = []
+        # distinguish if admin or normal user to populate list accordingly
+        if session["user"] == "admin":
+            plants = list(mongo.db.plants.find().sort("type"))
+            categories = mongo.db.categories.find().sort("category", 1)
+        else:
+            plants = list(mongo.db.plants.find(
+                {"created_by": session["user"]}).sort("type"))
+            categories = list(mongo.db.categories.find(
+                {"created_by": session["user"]}).sort("category"))
+
+        if not plants:
+            flash("Create plants to populate this page.", "info")
+
+        return render_template(
+            "edit_event.html", plants=plants, garden_events=garden_events,
+            garden_event=garden_event, categories=categories)
     else:
-        plants = list(mongo.db.plants.find(
-            {"created_by": session["user"]}).sort("type"))
-        categories = list(mongo.db.categories.find(
-            {"created_by": session["user"]}).sort("category"))
-
-    if not plants:
-        flash("Create plants to populate this page.", "info")
-
-    return render_template(
-        "edit_event.html", plants=plants, garden_events=garden_events,
-        garden_event=garden_event, categories=categories)
+        flash("Please log in to view page", "error")
+        return redirect(url_for("login"))
 
 
 @app.route("/delete_event/<event_id>")
