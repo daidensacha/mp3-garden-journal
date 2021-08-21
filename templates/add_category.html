@@ -19,7 +19,8 @@
                 <!-- submit button -->
                 <div class="row">
                     <div class="col s12 center-align">
-                        <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
+                        <button type="submit" 
+                                class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
                             Add Category <i class="fas fa-plus-square right"></i>
                         </button>
                     </div>
@@ -37,10 +38,11 @@
                         <li class="collection-item">
                             <div>{{ loop.index}}:
                             {{ category.category.capitalize() }}
-                            <!-- Exclude button from admin user -->
+                            <!-- Hide edit button from admin user -->
                                 {% if category.created_by == session["user"] %}
                                     <a href="{{ url_for('edit_category', category_id=category._id) }}" 
-                                        class="secondary-content indigo-text darken-4-text edit-link">Edit <i class="fas fa-edit"></i>
+                                        class="secondary-content indigo-text darken-4-text edit-link">Edit 
+                                        <i class="fas fa-edit"></i>
                                     </a>
                                 {% endif %}
                                 <span class="secondary-content mr-20"><strong class="emph-dark-teal">

@@ -26,7 +26,7 @@
                         <select id="event_plant_id" name="event_plant_id" class="validate" required>
                             <option value="" disabled selected>Choose Plant</option>
                             {% for plant in plants %}
-                            <!-- Here the plant ObjectId is used in value as sudo foreign key -->
+                            <!-- Here the plant ObjectId is used in value as pseudo foreign key -->
                             <option value="{{ plant._id }}">{{ plant.name }}</option>
                             {% endfor %}
                         </select>
@@ -55,7 +55,8 @@
                     <!-- event repeat cycle -->
                     <div class="input-field col s12 m6">
                         <i class="far fa-clock prefix teal-text text-darken-2"></i>
-                        <input id="repeats" name="repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  type="text" class="count-text validate" max-length="40" data-length="40">
+                        <input id="repeats" name="repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  
+                                type="text" class="count-text validate" max-length="40" data-length="40">
                         <label for="repeats">Event Repeats</label>
                         <span class="helper-text">Optional</span>
                     </div>
