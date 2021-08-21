@@ -216,11 +216,11 @@ The ```created_by``` key is the ```usename``` of the user and what I use to link
 		_id: 			<ObjectId>
 		type: 			<string>
 		name: 			<string>
-		sow_at: 			<date>
-		plant_at: 			<date>
+		sow_at: 		<date>
+		plant_at: 		<date>
 		harvest_from: 		<date>
 		harvest_to: 		<date>
-		fertilise: 			<string>
+		fertilise: 		<string>
 		fertiliser: 		<string>
 		notes: 			<string>
 		created_by: 		<string>  
@@ -254,12 +254,12 @@ The pivot of the whole application concept hinges on relationships to categories
 This was not in my initial plan, but was inpired when I was working out what to do with my contact form data. For the sake of the learnign process, I resisted using JS to handle the form and send it via a third party. I used `flask-wtf` forms to build the form and validation. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created a Admin Message Inbox to display the messages. 
 ```js 
 	messages	{
-		    _id: 			<ObjectId>
-		    firstname: 			<string>
-		    lastname: 			<string>
-		    email: 			<string>
-		    message: 			<string>
-		    created_at: 		<date>
+				_id: 			<ObjectId>
+				firstname: 			<string>
+				lastname: 			<string>
+				email: 			<string>
+				message: 			<string>
+				created_at: 		<date>
 	}
 ```
 #### Database Issues and Notes 
