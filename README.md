@@ -196,7 +196,7 @@ I decided on the following schema, using collections to group separate groups of
 
 ***Users***
 The whole site revoles around the users, and garden events.  The ```username``` is what links plants, events and categores. When teh user creates a new item for plants, events, or categories, the  `user_name` is inserted as a reference key `created_by` . I am able to match the session user with the ```username```  key in the collections to retrieve the users data from the database. 
-```js  
+```javascript 
 	users  {
 		_id: 			<ObjectId>
 		username: 		<string>
@@ -211,7 +211,7 @@ The whole site revoles around the users, and garden events.  The ```username``` 
 
 ***Plants***
 The ```created_by``` key is the ```usename``` of the user and what I use to link the plant entry to the user. The remaining combination of fields are for gathering relevant information to fullfill needs of the user. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user. Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
-```js   
+```javascript 
 	plants  {
 		_id: 			<ObjectId>
 		type: 			<string>
@@ -228,7 +228,7 @@ The ```created_by``` key is the ```usename``` of the user and what I use to link
 ```   
 ***Categories***
 The user has total discretion to group the types of events how they prefer, which will suit their needs and desire to search or filter infomtation. The user can add, edit and update, or delete  categories, which are displayed in a select input in the add or edit ```garden_event``` forms. The user is required to select a category when creating an event. 
-```js  
+```javascript  
 	categories  {
 		    _id: 			<ObjectId>
 		    category: 			<string>
@@ -237,7 +237,7 @@ The user has total discretion to group the types of events how they prefer, whic
 ```
 ***Garden Events***
 The pivot of the whole application concept hinges on relationships to categories and plants.  I used the plant ObjectId as the sudo foreign key to link events with the related plant. The ObjectId is unique to the plant, and immutable, which enables me to maintain the link without complications that would occur if I use a field that can be edited. Spme fields are required, and other optional, similar reasons for the same in the plants collection. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
-```js 
+```javascript 
 	garden_events 	{
 			_id: 			<ObjectId>
 			category: 		<string>
@@ -252,7 +252,7 @@ The pivot of the whole application concept hinges on relationships to categories
 ```
 ***Messages***
 This was not in my initial plan, but was inpired when I was working out what to do with my contact form data. For the sake of the learnign process, I resisted using JS to handle the form and send it via a third party. I used `flask-wtf` forms to build the form and validation. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created a Admin Message Inbox to display the messages. 
-```js 
+```javascript 
 	messages	{
 			_id: 			<ObjectId>
 			firstname: 		<string>
@@ -667,56 +667,75 @@ I customized it how I wanted it, kept some things, and had a starting point for 
 	Adding the URL to the add_plant page, for example, would open the add_plants page.- I discovered that users not logged in could access pages that should only be available to session users. I fixed this by nesting the entire function inside an if statement that checks `if user in session:`, the function runs, `else:` it returns a flash message error alert asking the user to log in to view the page. The function redirects the user to the login page. 
 	
 		 
-#### Git Version Control
 
-#### INITIAL PLAN TO USE BOTTOM SHEET MODAL WIT HTML FORM
+#### TESTING DEVICES INFOMATION
+**Personal Testing Devices/ Software/ Browsers**
 
-#### FLASK WTFORMS AND WHAT TO DO, UPLOAD TO DB
+-   Macbook Pro (15-inch)
+    -   macOS Big Sur 11.2.3
+        -   Safari Version 14.0.3 (16610.4.3.1.7)
+        -   Chrome Version 90.0.4430.72 (Official Build) (x86_64)
+        -   Firefox 88 (64-bit)
+    -   Windows 10 (bootcamp)
+        -   Microsoft Edge
+        -   Chrome
+        -   Firefox
+-   Dell 2419 Monitor
+-   iPad Air
+-   iPhone 11 Pro
+
+**Secondary Testing Device/ Sofware/ Browser**
+
+-   HP ProDesk 600 Desktop PC
+    -   Windows 10 Pro
+        -   Microsoft Edge Version 90.0.818.42 (Official Build) (64-Bit)
+        -   Firefox 78.10.0esr (64-Bit)
+        -   Chrome Version 90.0.4430.85 (Official Build) (64-Bit)
+-   AOC 22E15 21.5-inch Full HD 1920x1080 at 75 Hz
+- 
+#### Git Version Control 
+I incrementally commited my work, and pushed it to the remote repository on GitHub. I endevoured to make my commits self explanitory, and meaningful. 
+**GitPod Problems**
+On a few occasions at the end of the project, I had issues with GitPod crashing and my work was not the same when I gained access to the GitPod workspace. 
+On one occasion, a chuck of code for displaying flash messages had been deleted from my `base.html`. I only discovered it when testing, and noticed that my flash error and success messages were no showing. They were previous to the GitPod crash. When I looked, and saw the code missing, I went to my commits on GitHub, to look back to see the last commit where the code was present. I was able to copy it, anh paste it back into my work. My commit saved me, on more than one occasion. 
+The first time, I lost access to my work space for 30 hours, and when I got it back, it was behond my remote, so GitPod had lost data and restored my workspace from an old back up. It tokk me hald a day sort out the mess, as when I pulled the remote, I had to resolve all the conflicts. Once that was done, there was still quite a bit to work though to sort it out. 
+I leaned, the version control is my backup, and not to put my trust in a third party to the extent that I forget it is normal that there are breakdowns sometimes. 
+I'm very aware now not to forget and leave my work without committing, or closing my workspace. 
 
 
+**ERROR Pages**
+The development process was incremental, piece by piece, checking for breaks or mistakes in the code and fixing them along the way. With ```debug=True``` Jinja showed me the errors as I progressed, so I could quickly locate where I made a mistake, and it was then just a process of troubleshooting it. 
 
-#### DEVICES INFOMATION
+I had created three accounts to test features, my own, an admin, and a third fictitious user. I created plants, categories, events by different users, updated them, deleted them, testing as many scenarios I could imagine to see what happens and if the behavior was expected or unexpected. 
+At one point, I created a custom 404 error page for when users might encounter a broken link, and I experienced a 500 error. I then created a custom 500 error page and threw in a customer 405 error page as well. At that point, I was trying to find ways or scenarios to show me where the code needed to be improved or made more secure. 
 
-#### PROBLEMS WITH GITPOD
+I encountered a 404 error when testing what happens when non-session users enter a page URL meant for session users. 
+![404-page-not-found](static/images/404-page-not-found.jpg)    
+The customer error pages all have links back to the home page. 
 
-At this point, I impletemented Flask, and created my base template with the Materialize Theme. I began the process of building the HTML templates using Jinja, and extending the templates from the base,html. 
- 
-- **Connect with Mongo DB** I connected my mongoDB with the Flask app. 
-
-
-**Incremental Development and Simultaneious Testing**
-The development process was incremental, piece by piece, checking as I went for breaks or mistakes in the code, and fixing them along the way. With ```debug=True``` Jinja showed me the errors as I progeressed, so I was able to easily locate where the mistake was made, and it was then just a process of troubleshooting it. 
-
-In order to test features, I had created 3 accoutns, my own, an admin, and a third ficticious user. I created plants, categories, events by different users, updated them, deleted them, testing as many scenarios I could imagine to see what happens and if behaviour was expected or unexpected. 
-At one point, I created a custom 404 error page for when users might encouter a broken link, and I encoutered a 500 error. I then created a custom 500 error page, and threw in a customer 405 error page as well. At that point, I actually was trying to find ways, or scenarios that woudld show me where the code needed to be improved or made more secure. 
-
-I deployed my project to Heroku early, to be so I had a live version to check, and compare to what I was seeing in my local server. 
-
-Testing was completed in Chome Dev Tools, and I checked the performce of the application in multiple browsers, operating systems, computers and devices. 
-
-See [Testing.md](/documentation/TESTING.md) for more detail.
+### Deployment
 
 ### Deployment
 
 **Deploy to Heroku**
-1. Setup pages required by Heroku to run app.
+1. Setup pages required by Heroku to run the app.
 	- In the console  I run `pip3 freeze --local > requirements.txt` . It creates the file `requirements.txt` and lists all the dependencies needed to run the application. 
-	- in terminal I create the Procfile by typing `echo web: python app.py > Procfile`. Heroku looks for this to know what file is needed to run the app and how to run it.
-	- I remove the black line at the bottom of the Procfile, which can cause problems running the app on Heroku.
+	- in the terminal, I create the Procfile by typing `echo web: python app.py > Procfile`. Heroku looks for this file to know what is needed to run the app and how to run it.
+	- I remove the blank line at the bottom of the Procfile, which can cause problems running the app on Heroku.
 2. I go to heroku.com, 
-	-  I log in, and in the user dashboard click "create new app". 
-	- I create a unique app name, using lower case, dashes and or underscores. 
-	- I select the region closest to me (Europe), and click "create app",
+	-  I log in, and in the user dashboard, click "create new app". 
+	- I create a unique app name using lower case, dashes, and or underscores. 
+	- I select the region closest to me (Europe) and click "create app",
 3. Setup automatic deployment from my GitHub repository.
-	- With my GitHub usename displayed, I enter the repository name, and click search.
-	- It finds my repo and I click "connect to this app".
-4. Add evironment variables that are in a hidden file env.py that is not commited with the app.
-	- I click on the "Settings" tab for my app, and then click on "Reveal Config Vars".
+	- With my GitHub username displayed, I enter the repository name and click search.
+	- It finds my repo, and I click "connect to this app".
+4. Add environment variables in a hidden file env.py that is not committed and pushed to GitHub with the app.
+	- I click on the "Settings" tab for my app and click on "Reveal Config Vars".
 	- I enter the key-value pairs, minus quotes.
-	- I leave the MONGO_URI value empty as i don't have that yet.
-	- Before deploying, i commit and push my 2 new files to the repository. 
+	- I leave the MONGO_URI value empty as I don't have that yet.
+	- Before deploying, I commit and push my two new files to the repository. 
 	- I complete the git command, `git status`, `git add .`, `git commit -m "add requirements.txt and Procfile"`, then `git push`. 
-5. Back in Heroku, I click "deploy branch"
+5. Back in Heroku, I click "deploy branch."
 6. After about short wait, Heroku has received the code from GitHub, built the app, and a message says, "Your app has been successfully deployed".
 7. To confirm, I click "View" to launch the app.
 
@@ -725,27 +744,27 @@ See [Testing.md](/documentation/TESTING.md) for more detail.
 
 ### Credits
 ***Flask App*** 
-Without the Code Institute code along [Task Manager project](https://github.com/Code-Institute-Solutions/TaskManagerAuth) as a reference, I feel this project would have been far more difficult. Time and time again I referred back to examples in the Task Manager project to grasp a concept, or to find my way through a situation.  
+Without the Code Institute code along [Task Manager project](https://github.com/Code-Institute-Solutions/TaskManagerAuth) as a reference, I feel this project would have been far more complex. Time and time again, I referred back to examples in the Task Manager project to grasp a concept or find my way through a situation.  
 ***Theme inspiration*** 
-I came across some [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes), and used them as the inspiration to develop my own theme template. I had to update the markup a little for the latest  version of marterializecss, and customised the theme to my own needs. But anylising these thems helped me to get a grasp of the structure and function of materializecss elements. 
+I came across some [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes) and used them to develop my theme template. I had to update the markup for the latest version of marterializecss and customize the theme to my own needs. But analyzing these themes helped me to get a grasp of the structure and function of materializecss elements. 
 
 ## NOTES
 
 
-## IMPROVEMENTS - FUTURE FEATURES
+## IMPROVEMENTS/ FUTURE FEATURES
 **Admin**
 - **User Groups**
-With limited time to complete my project, I have had to exclude developing the admn panel to how I would like it. Its a learning process, but in working on limiting users accessability, having users with different permissions, its clear that planning for, and assigning user group permissions is a good idea. 
+With limited time to complete my project, I have had to exclude developing the admin panel to how I would like it. It's a learning process, but in working on limiting users' accessibility, having users with different permissions, it's clear that planning for and assigning user group permissions is a good idea. 
 	- **User Management** 
-	I would like to have a page in the admin profile, to list all users, and monitor their activity. It woudl also be good to be able to change the group permissions from the from this page. I plan on changing and adding this to the site. 
+	I would like to have a page in the admin profile to list all users and monitor their activity. It would also be good to be able to change the group permissions from this page. I plan on changing and adding this to the site. 
 - **Interest Groups** 
-I see potential to develop this into a social plattform, where users with similar interests can connect and share their events, plants and infomation. This would be invaluable as an almanac, as it depends on experience, and the broader the user base of experience being input and contributed, the more accurate and helpful the information will be. 
+I see potential to develop this into a social platform, where users with similar interests can connect and share their events, plants, and information. It would be invaluable as an almanac, as it depends on experience. The broader the user base of knowledge being input and contributed, the more accurate and helpful the information. 
 
 ## BUGS and ISSUES
 - **MongoDB Schema**
 
-In the almanac page, I display the envents and plant information. I needed a way to identify the plant with the corresponding event. Initially I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, so I could identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when the plant name was changed, and then my code couldn't match tht plant with the stored plant name in the garden event collection. 
-I decided to use the plant ObjectId instead, as it's immutable, and unique. I had some issued then which took me a while to work out, like how to complare the ObjectId string with the ObjectId. In my add/ edit_event routes, i used the MaterialDesing select as follows.
+On the almanac page, I display the events and plant information. Initially, I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, to identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when users changed the plant name, and then my code couldn't match the plant with the stored plant name in the garden event collection. I needed a way to identify the plant with the corresponding event. 
+I had some issues then, which took me a while to work out, like comparing the ObjectId string with the ObjectId. I decided to use the plant ObjectId instead, as it's immutable and unique. In my add/ edit_event routes, I used the Material Design select as follows.
 ```html+jinja
 <select id="event_plant_id" name="event_plant_id" class="validate" required>
 	<option value="" disabled selected>Choose Plant</option>
@@ -755,18 +774,18 @@ I decided to use the plant ObjectId instead, as it's immutable, and unique. I ha
 	{% endfor %}
 </select>
 ```
-I then called the ObjectId string value in my fucntion like so. 
-```python
+I then called the ObjectId string value in my function like so. 
+```
 event_plant_id = request.form.get("event_plant_id")
 ```
-The ObjectId string is then converted back to teh ObjectId for sending to MongoDB to store in the ```garden_events```  collection. 
+The ObjectId string is then converted back to the ObjectId for sending to MongoDB to store in the ```garden_events```  collection. 
  ```"event_plant_id": ObjectId(event_plant_id)```
-Once I was able to convert the string format to its ObjectId format, I was able to loop through the plants to find the matching ObjectId, and then display the related plant information in along side the garden event.
+Once I converted the string format to its ObjectId format, I looped through the plants to find the matching ObjectId and then display the related plant information alongside the garden event.
 
 - **Edit Categories**
 
-I clicked on the edit category, and was redirected to the edit category page. The category _id was showing in the browser URL, but the category name displaying in the input was incorrect, and always the same. 
-I created my cursor in the app.route for categories as follows.
+I clicked on the edit category, and the app redirected me to the edit category page. The category _id was showing in the browser URL, but the category name displaying in the input was incorrect and always the same. 
+I created my cursor in the ```app.route``` for categories as follows.
 
 ```python
 categories = list(mongo.db.categories.find().sort("event_category"))
@@ -778,8 +797,8 @@ for category in categories:
 	if (category["created_by"] == session["user"] or session["user"] == "admin"):
 		user_categories.append(category)
 ```
-It worked on the plants, and amanac pages, but for some reason was playing up here. 
-The above code was repeated and I changed it to onlz get the ```session["user"]``` items.
+It worked on the plants and almanac pages, but it was playing up here for some reason. 
+I changed the code to reduce duplication and only get the ```session["user"]``` items.
 
 ```python
 categories = []
@@ -793,5 +812,5 @@ else:
 if  not categories:
 flash("Create event categories to populate this list.", "info")
 ```
-This has simplifies my coding, as i use the same list name now for ```categories```, instaed of creating a new list ```user_categories``` and then using that also in my template.  
-The bug dissapeared, and my code was simpler. I repeated these changes in the app.py for plants and events. 
+The change has simplified my coding, as I now use the same list name for ```categories``` instead of creating a new list ```user_categories``` and then using that in my template.  
+The bug disappeared, and my code was more straightforward. I repeated these changes in the app.py for plants and events. 

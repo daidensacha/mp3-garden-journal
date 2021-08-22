@@ -21,7 +21,7 @@
                         <i class="fas fa-grip-lines-vertical"></i> 
                         {{ plant.name.title() }}</h5>
                     <ul>
-                                                
+                            <!--  -->
                             <li>
                                 <span class="material-icons flower md-12"></span> 
                                 <span class="emph-red">Sow</span> seeds 
@@ -34,11 +34,11 @@
                                 {% endif %}
                                 </span> so they are ready for planting time.
                             </li>
-                        
+                            <!-- sowing date -->
                             <li>
                                 <span class="material-icons flower md-12"></span> 
                                 <span class="emph-red">Plant</span> 
-                                {% if plant.sow_at == "" %}
+                                {% if plant.plant_at == "" %}
                                 <span class="emph-highlight">
                                     {{ "Enter Date" -}}
                                 {% else %}
@@ -47,11 +47,7 @@
                                 {% endif %}
                                 </span> at earliest.
                             </li>
-                        
-                        
-                        <!-- <li></li> -->
-                            <!-- <li><span class="material-icons flower md-12"></span> <span class="emph-red">Harvest From</span>:<span class="emph-green"> Enter Harvest Date</span>.</li> -->
-                        
+                            <!-- harvest from - harvest to -->
                             <li><span class="material-icons flower md-12"></span> 
                                 <span class="emph-red">Harvesting</span> 
                                 season is from 
@@ -73,23 +69,19 @@
                                     {% endif %}
                                 </span>
                             </li>
-                        
+                            <!-- fertilise - fertiliser -->
                             <li>
                                 <span class="material-icons flower md-12"></span> 
                                 <span class="emph-red">Fertilise</span> 
-                                <!-- <span class="emph-green">
-                                    {{ plant.fertilise}}</span> with 
-                                <span class="emph-green">
-                                    {{ plant.fertiliser }}
-                                </span>.  -->
-                                <span class="emph-green">
+                                <!-- <span class="emph-green"> -->
                                     {% if plant.fertilise == "" %}
                                 <span class="emph-highlight">
                                       {{ "Enter How Often" -}}
                                     {% else %}
                                 <span class="emph-green">
                                     {{ plant.fertilise}}
-                                  {% endif %}</span> with 
+                                  {% endif %}
+                                </span> with 
                                     {% if plant.fertiliser == "" %}
                                 <span class="emph-highlight">
                                       {{ "Enter Fertiliser Type" -}}

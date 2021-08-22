@@ -253,7 +253,16 @@ li.active .collapsible-header .caret {
   transform-origin: 0.6em 0.5em;
 }
 
-
+.collapsible-body {
+  /* background-color: #fffde7; */
+  background-color: #ffffff;
+}
+.almanac-plant, .almanac-event {
+  /* background-color: #f1f8e9; */
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid rgb(231, 230, 230);
+}
 
 /*
 ================================================================================

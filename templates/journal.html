@@ -14,6 +14,7 @@
             <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
             <input type="text" name="query" id="query" minlength="3" class="validate" required>
             <label for="query">Search Events</label>
+            <span class="helper-text">search single (category, plant, month) or multiple (category plant, category month, month plant)</span>
           </div>
           <div class="col s12 m5 l4">
             <a href="{{ url_for('get_garden_events') }}"
@@ -53,6 +54,8 @@
 
             <!-- For loop to display garden events -->
             <div class="collection">
+
+              <div class="row almanac-event"> <!-- end event div wrapper -->
               <!-- begin plant data section -->
               <h6>{{ garden_event.name.title() }}</h6>
 
@@ -107,124 +110,129 @@
                 </a>
                 {% endif %}  
               </div>
+            </div><!-- end event div wrapper -->
               <br>
 <!--  hr center of the accordion content info -->
-              <hr>
-              <br>
-<!-- begin plant data section -->
-              <!-- Loop through plants and get plant data -->
-              {% for plant in plants %}
+              <!-- <hr> -->
+              <div class="row almanac-plant"> <!-- start plant div wrapper -->
+                <br>
+  <!-- begin plant data section -->
+                <!-- Loop through plants and get plant data -->
+                {% for plant in plants %}
 
-              <!-- If comparitor to match event and plant info -->
-              {% if garden_event.event_plant_id == plant._id %}
+                <!-- If comparitor to match event and plant info -->
+                {% if garden_event.event_plant_id == plant._id %}
 
-              <!-- Plant title, and plant modal trigger link. Use loop.index to create unique id for the modal trigger href  -->
-              <h6>{{ plant.type.title() }}:
-                {{ plant.name.title() }}
-              </h6>
+                <!-- Plant title, and plant modal trigger link. Use loop.index to create unique id for the modal trigger href  -->
+                <h6>{{ plant.type.title() }}:
+                  {{ plant.name.title() }}
+                </h6>
 
 
-              <div class="row">
                 <div class="row">
-                  <ul>
-                    {% if plant.sow_at == "" %}
-                    <!-- <li></li> -->
-                        <li><span class="material-icons flower md-12"></span> <span class="emph-red">Sow</span>:<span class="emph-highlight"> Enter Sowing Date</span>.</li>
-                    {% else %}
-                    <li><span class="material-icons flower md-12"></span> 
-                      <span class="emph-red">Sow</span> seeds 
-                      <span class="emph-green">
-                        {{ plant.sow_at.strftime("%B %d") }}
-                      </span> so they are ready for planting time.
-                    </li>
-                    {% endif %}
-                    {% if plant.plant_at == "" %}
-                    <!-- <li></li> -->
-                        <li><span class="material-icons flower md-12"></span> <span class="emph-red">Plant</span>:<span class="emph-highlight"> Enter Planting Date</span>.</li>
-                    {% else %}
-                    <li>
-                      <span class="material-icons flower md-12"></span> 
-                      <span class="emph-red">Plant</span> 
-                      <span class="emph-green">
-                        {{ plant.plant_at.strftime("%B %d") }}
-                      </span> at earliest.
-                    </li>
-                    {% endif%}
-                    <li>
-                      <span class="material-icons flower md-12"></span> 
-
-                        <span class="emph-red">Harvesting</span> 
-                        season is from 
-                            {% if plant.harvest_from == "" %}
-                        <span class="emph-highlight">
-                                {{ "Enter Date" -}}
-                            {% else %}
+                  <div class="row">
+                    <ul>
+                      {% if plant.sow_at == "" %}
+                      <!-- <li></li> -->
+                          <li><span class="material-icons flower md-12"></span> <span class="emph-red">Sow</span>:<span class="emph-highlight"> Enter Sowing Date</span>.</li>
+                      {% else %}
+                      <li><span class="material-icons flower md-12"></span> 
+                        <span class="emph-red">Sow</span> seeds 
                         <span class="emph-green">
-                                {{ plant.harvest_from.strftime("%B %d") }}
-                            {% endif %}
-                        </span> to 
+                          {{ plant.sow_at.strftime("%B %d") }}
+                        </span> so they are ready for planting time.
+                      </li>
+                      {% endif %}
+                      {% if plant.plant_at == "" %}
+                      <!-- <li></li> -->
+                          <li><span class="material-icons flower md-12"></span> <span class="emph-red">Plant</span>:<span class="emph-highlight"> Enter Planting Date</span>.</li>
+                      {% else %}
+                      <li>
+                        <span class="material-icons flower md-12"></span> 
+                        <span class="emph-red">Plant</span> 
+                        <span class="emph-green">
+                          {{ plant.plant_at.strftime("%B %d") }}
+                        </span> at earliest.
+                      </li>
+                      {% endif%}
+                      <li>
+                        <span class="material-icons flower md-12"></span> 
+
+                          <span class="emph-red">Harvesting</span> 
+                          season is from 
+                              {% if plant.harvest_from == "" %}
+                          <span class="emph-highlight">
+                                  {{ "Enter Date" -}}
+                              {% else %}
+                          <span class="emph-green">
+                                  {{ plant.harvest_from.strftime("%B %d") }}
+                              {% endif %}
+                          </span> to 
+                          
+                              {% if plant.harvest_to == "" %}
+                          <span class="emph-highlight">
+                                  {{ "Enter Date" -}}
+                              {% else %}
+                          <span class="emph-green">
+                                  {{ plant.harvest_to.strftime("%B %d") }}
+                              {% endif %}
+                          </span>
+
+
+                      </li>
+                      <li>
+                        <span class="material-icons flower md-12"></span> 
+                        <span class="emph-red">Fertilise</span> 
+                        <!-- <span class="emph-green"> -->
+                          {% if plant.fertilise == "" %}
+                        <span class="emph-highlight">
+                            {{ "Enter Repeat" -}}
+                          {% else %}
+                        <span class="emph-green">
+                          {{ plant.fertilise}}
+                        {% endif %}</span> with 
                         
-                            {% if plant.harvest_to == "" %}
+                          {% if plant.fertiliser == "" %}
                         <span class="emph-highlight">
-                                {{ "Enter Date" -}}
-                            {% else %}
-                        <span class="emph-green">
-                                {{ plant.harvest_to.strftime("%B %d") }}
-                            {% endif %}
-                        </span>
+                            {{ "Enter Fertiliser" -}}
+                          {% else %}
+                        <span class="emph-green"> 
+                            {{ plant.fertiliser -}}
+                          {% endif %}</span>. 
+                      </li>
+                    </ul>
+                    <ul>
+                      <li class="mt-5"><strong class="emph-dark-teal">
+                        Plant Notes:</strong> {{ plant.notes.capitalize() }}
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="row">
+                    <ul>
+                      <li class="mt-10"><strong class="emph-dark-teal">
+                        Created by: </strong><span class="emph-ital">
+                          {{ plant.created_by }}</span>
+                      </li>
+                    </ul>
+                  </div>
 
+                  <div class="row right-align">
+                    {% if session["user"] == plant.created_by %}
+                      <a href="{{ url_for('edit_plant', plant_id=plant._id) }}"
+                        class="waves-effect waves-green btn-small blue darken-2 btn-edit">
+                        Edit Plant <i class="fas fa-edit right"></i>
+                      </a>
+                    {% endif %}
+                  </div>
 
-                    </li>
-                    <li>
-                      <span class="material-icons flower md-12"></span> 
-                      <span class="emph-red">Fertilise</span> 
-                      <!-- <span class="emph-green"> -->
-                        {% if plant.fertilise == "" %}
-                      <span class="emph-highlight">
-                          {{ "Enter Repeat" -}}
-                        {% else %}
-                      <span class="emph-green">
-                        {{ plant.fertilise}}
-                      {% endif %}</span> with 
-                      
-                        {% if plant.fertiliser == "" %}
-                      <span class="emph-highlight">
-                          {{ "Enter Fertiliser" -}}
-                        {% else %}
-                      <span class="emph-green"> 
-                          {{ plant.fertiliser -}}
-                        {% endif %}</span>. 
-                    </li>
-                  </ul>
-                  <ul>
-                    <li class="mt-5"><strong class="emph-dark-teal">
-                      Plant Notes:</strong> {{ plant.notes.capitalize() }}
-                    </li>
-                  </ul>
                 </div>
-                <div class="row">
-                  <ul>
-                    <li class="mt-10"><strong class="emph-dark-teal">
-                      Created by: </strong><span class="emph-ital">
-                        {{ plant.created_by }}</span>
-                    </li>
-                  </ul>
-                </div>
+                {% endif %}
 
-                <div class="row right-align">
-                  {% if session["user"] == plant.created_by %}
-                    <a href="{{ url_for('edit_plant', plant_id=plant._id) }}"
-                      class="waves-effect waves-green btn-small blue darken-2 btn-edit">
-                      Edit Plant <i class="fas fa-edit right"></i>
-                    </a>
-                  {% endif %}
-                </div>
+                <!--  wrapper to here  -->
 
-              </div>
-              {% endif %}
-
-              {% endfor %}
-
+                {% endfor %}
+              </div> <!-- end div wrapper -->
+            
             </div>
             <!-- end collapsible body -->
           </span>
