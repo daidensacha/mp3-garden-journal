@@ -120,7 +120,7 @@ def get_garden_events():
                     {"created_by": session["user"]}).sort("month"))
         if not garden_events:
             flash(
-                "Create events and event categories to populate this page.",
+                "Add events, plants and categories to populate this page.",
                 "info")
         return render_template("journal.html", plants=plants,
                                garden_events=garden_events,
@@ -142,7 +142,7 @@ def get_plants():
             plants = list(mongo.db.plants.find(
                 {"created_by": session["user"]}).sort("type"))
         if not plants:
-            flash("Create plants to populate this page.", "info")
+            flash("Add plants to populate this page.", "info")
         return render_template("plants.html", plants=plants)
     else:
         flash("Please log in to view page.", "error")
@@ -529,7 +529,7 @@ def add_category():
                               {"created_by": session["user"]}).sort(
                                   "category"))
         if not categories:
-            flash("Create event categories to populate this list.", "info")
+            flash("Add event categories to populate this list.", "info")
         return render_template(
             "add_category.html", categories=categories)
     else:
