@@ -211,13 +211,11 @@ def login():
                     existing_user["password"], request.form.get(
                         "password")):
                 session["user"] = request.form.get("username").lower()
-                # username = session["user"]
-                user = mongo.db.users.find_one({"username": session["user"]})
-                user.pop("password")
-                flash("Welcome, " + user["firstname"])
+                flash("Welcome, {}".format(
+                    existing_user["firstname"]), "default")
                 # flash("Welcome, {}".format(
                 #     request.form.get("username")), "default")
-                return redirect(url_for("profile", username=session["user"], user=user))
+                return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password", "error")
