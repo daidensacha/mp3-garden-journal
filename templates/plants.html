@@ -21,47 +21,82 @@
                         <i class="fas fa-grip-lines-vertical"></i> 
                         {{ plant.name.title() }}</h5>
                     <ul>
-                        {% if plant.sow_at == "" %}
-                        <li></li>
-                            <!-- <li><span class="material-icons flower md-12"></span> <span class="emph-red">No sowing date</span> available for this plant at this time.</li> -->
-                        {% else %}
+                                                
                             <li>
                                 <span class="material-icons flower md-12"></span> 
                                 <span class="emph-red">Sow</span> seeds 
+                                {% if plant.sow_at == "" %}
+                                <span class="emph-highlight">
+                                    {{ "Enter Date" -}}
+                                {% else %}
                                 <span class="emph-green">
                                     {{ plant.sow_at.strftime("%B %d") }}
+                                {% endif %}
                                 </span> so they are ready for planting time.
                             </li>
-                        {% endif %}
-                        {% if plant.plant_at == "" %}
-                        <li></li>
-                            <!-- <li><span class="material-icons flower md-12"></span> <span class="emph-red">No planting date</span> available for this plant at this time.</li> -->
-                        {% else %}
+                        
                             <li>
                                 <span class="material-icons flower md-12"></span> 
                                 <span class="emph-red">Plant</span> 
+                                {% if plant.sow_at == "" %}
+                                <span class="emph-highlight">
+                                    {{ "Enter Date" -}}
+                                {% else %}
                                 <span class="emph-green">
                                     {{ plant.plant_at.strftime("%B %d") }}
+                                {% endif %}
                                 </span> at earliest.
                             </li>
-                        {% endif %}
+                        
+                        
+                        <!-- <li></li> -->
+                            <!-- <li><span class="material-icons flower md-12"></span> <span class="emph-red">Harvest From</span>:<span class="emph-green"> Enter Harvest Date</span>.</li> -->
+                        
                             <li><span class="material-icons flower md-12"></span> 
                                 <span class="emph-red">Harvesting</span> 
-                                season is from <span class="emph-green">
-                                    {{ plant.harvest_from.strftime("%B %d") }}
-                                </span> to 
+                                season is from 
+                                    {% if plant.harvest_from == "" %}
+                                <span class="emph-highlight">
+                                        {{ "Enter Date" -}}
+                                    {% else %}
                                 <span class="emph-green">
-                                    {{ plant.harvest_to.strftime("%B %d") }}
+                                        {{ plant.harvest_from.strftime("%B %d") }}
+                                    {% endif %}
+                                </span> to 
+                                
+                                    {% if plant.harvest_to == "" %}
+                                <span class="emph-highlight">
+                                        {{ "Enter Date" -}}
+                                    {% else %}
+                                <span class="emph-green">
+                                        {{ plant.harvest_to.strftime("%B %d") }}
+                                    {% endif %}
                                 </span>
                             </li>
+                        
                             <li>
                                 <span class="material-icons flower md-12"></span> 
                                 <span class="emph-red">Fertilise</span> 
-                                <span class="emph-green">
+                                <!-- <span class="emph-green">
                                     {{ plant.fertilise}}</span> with 
                                 <span class="emph-green">
                                     {{ plant.fertiliser }}
-                                </span>. 
+                                </span>.  -->
+                                <span class="emph-green">
+                                    {% if plant.fertilise == "" %}
+                                <span class="emph-highlight">
+                                      {{ "Enter How Often" -}}
+                                    {% else %}
+                                <span class="emph-green">
+                                    {{ plant.fertilise}}
+                                  {% endif %}</span> with 
+                                    {% if plant.fertiliser == "" %}
+                                <span class="emph-highlight">
+                                      {{ "Enter Fertiliser Type" -}}
+                                    {% else %}
+                                <span class="emph-green">
+                                      {{ plant.fertiliser -}}
+                                    {% endif %}</span>. 
                             </li>
 
                     </ul>
@@ -69,7 +104,7 @@
                     <div class="row">
                         <ul>
                             <li>
-                                <strong class="emph-dark-teal">Note:</strong> 
+                                <strong class="emph-dark-teal">Plant Notes:</strong> 
                                 {{ plant.notes }}
                             </li>
                         </ul>

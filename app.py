@@ -118,12 +118,10 @@ def get_garden_events():
             events_months = list(
                 mongo.db.garden_events.find(
                     {"created_by": session["user"]}).sort("month"))
-
         if not garden_events:
             flash(
                 "Create events and event categories to populate this page.",
                 "info")
-
         return render_template("journal.html", plants=plants,
                                garden_events=garden_events,
                                categories=categories,
@@ -143,10 +141,8 @@ def get_plants():
         else:
             plants = list(mongo.db.plants.find(
                 {"created_by": session["user"]}).sort("type"))
- 
         if not plants:
             flash("Create plants to populate this page.", "info")
-
         return render_template("plants.html", plants=plants)
     else:
         flash("Please log in to view page.", "error")
@@ -155,18 +151,22 @@ def get_plants():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    query = request.form.get("query")
-    categories = list(mongo.db.categories.find(
-        {"$text": {"$search": query}}))
-    plants = list(mongo.db.plants.find(
-        {"$text": {"$search": query}}))
-    garden_events = list(mongo.db.garden_events.find(
-        {"$text": {"$search": query}}).sort("occurs_at"))
+    if "user" in session:
+        query = request.form.get("query")
+        categories = list(mongo.db.categories.find(
+            {"$text": {"$search": query}}))
+        plants = list(mongo.db.plants.find(
+            {"$text": {"$search": query}}))
+        garden_events = list(mongo.db.garden_events.find(
+            {"$text": {"$search": query}}).sort("occurs_at"))
 
-    return render_template("journal.html",
-                           garden_events=garden_events,
-                           categories=categories,
-                           plants=plants)
+        return render_template("journal.html",
+                               garden_events=garden_events,
+                               categories=categories,
+                               plants=plants)
+    else:
+        flash("Please log in to view page.", "error")
+        return redirect(url_for("login"))
                  
 
 @app.route("/register", methods=["GET", "POST"])
@@ -204,7 +204,6 @@ def login():
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
@@ -213,19 +212,15 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
                     existing_user["firstname"]), "default")
-                # flash("Welcome, {}".format(
-                #     request.form.get("username")), "default")
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password", "error")
                 return redirect(url_for("login"))
-
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password", "error")
             return redirect(url_for("login"))
-
     return render_template("login.html")
 
 
@@ -251,37 +246,35 @@ def profile(username):
 
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
-
-    existing_user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-
-    if request.method == "POST":
-
-        if existing_user:
-            if check_password_hash(
-                        existing_user["password"], request.form.get(
-                            "old_password")):
-                # flash("Password validation passed", "success")
-
-                email = request.form.get("email")
-                if email is not None:
-                    update = {
-                        "email": request.form.get("email"),
-                        "firstname": request.form.get("firstname"),
-                        "lastname": request.form.get("lastname"),
-                    }
-                    mongo.db.users.update_one(
-                        {"_id": ObjectId(user_id)}, {"$set": update})
-                    flash("The information has been updated successfully.", 
-                            "success")
-                    return redirect(url_for(
-                        "profile", username=session["user"]))
-
-            else:
-                flash("Please confirm the correct password.", "error")
-                return redirect(url_for("edit_profile", user_id=user_id))
-     
-    return render_template(
-        "edit_profile.html", existing_user=existing_user)
+    if "user" in session:
+        existing_user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+        if request.method == "POST":
+            if existing_user:
+                if check_password_hash(
+                            existing_user["password"], request.form.get(
+                                "old_password")):
+                    # flash("Password validation passed", "success")
+                    email = request.form.get("email")
+                    if email is not None:
+                        update = {
+                            "email": request.form.get("email"),
+                            "firstname": request.form.get("firstname"),
+                            "lastname": request.form.get("lastname"),
+                        }
+                        mongo.db.users.update_one(
+                            {"_id": ObjectId(user_id)}, {"$set": update})
+                        flash("The information has been updated successfully.", 
+                                "success")
+                        return redirect(url_for(
+                            "profile", username=session["user"]))
+                else:
+                    flash("Please confirm the correct password.", "error")
+                    return redirect(url_for("edit_profile", user_id=user_id))
+        return render_template(
+            "edit_profile.html", existing_user=existing_user)
+    else:
+        flash("Please log in for access.", "error")
+        return redirect(url_for("login", ))
 
 
 @app.route("/logout")
@@ -389,9 +382,13 @@ def edit_event(event_id):
 
 @app.route("/delete_event/<event_id>")
 def delete_event(event_id):
-    mongo.db.garden_events.remove({"_id": ObjectId(event_id)})
-    flash("Event Successfuly Deleted", "success")
-    return redirect(url_for("get_garden_events"))
+    if "user" in session:
+        mongo.db.garden_events.remove({"_id": ObjectId(event_id)})
+        flash("Event Successfuly Deleted", "success")
+        return redirect(url_for("get_garden_events"))
+    else:
+        flash("Please log in to view page.", "error")
+        return redirect(url_for("login"))
 
 
 @app.route("/add_plant", methods=["GET", "POST"])
@@ -406,12 +403,21 @@ def add_plant():
                 sowing_date_object = sowing_date_string
             else:
                 sowing_date_object = pd.to_datetime(sowing_date_string)
+
             if planting_date_string == "":
                 planting_date_object = planting_date_string
             else:
                 planting_date_object = pd.to_datetime(planting_date_string)
-            harvest_from_object = pd.to_datetime(harvest_from_string)
-            harvest_to_object = pd.to_datetime(harvest_to_string)
+            if harvest_from_string == "":
+                harvest_from_object = harvest_from_string
+            else:
+                harvest_from_object = pd.to_datetime(harvest_from_string)
+            if harvest_to_string == "":
+                harvest_to_object = harvest_to_string
+            else:
+                harvest_to_object = pd.to_datetime(harvest_to_string)
+            # harvest_from_object = pd.to_datetime(harvest_from_string)
+            # harvest_to_object = pd.to_datetime(harvest_to_string)
 
             plant = {
                 "type": request.form.get("type"),
@@ -438,50 +444,66 @@ def add_plant():
 
 @app.route("/edit_plant/<plant_id>", methods=["GET", "POST"])
 def edit_plant(plant_id):
-    if request.method == "POST":
-        sowing_date_string = request.form.get("sow_at")
-        planting_date_string = request.form.get("plant_at")
-        harvest_from_string = request.form.get("harvest_from")
-        harvest_to_string = request.form.get("harvest_to")
-        if sowing_date_string == "":
-            sowing_date_object = sowing_date_string
-        else:
-            sowing_date_object = pd.to_datetime(sowing_date_string)
-        if planting_date_string == "":
-            planting_date_object = planting_date_string
-        else:
-            planting_date_object = pd.to_datetime(planting_date_string)
-        harvest_from_object = pd.to_datetime(harvest_from_string)
-        harvest_to_object = pd.to_datetime(harvest_to_string)
+    if "user" in session:
+        if request.method == "POST":
+            sowing_date_string = request.form.get("sow_at")
+            planting_date_string = request.form.get("plant_at")
+            harvest_from_string = request.form.get("harvest_from")
+            harvest_to_string = request.form.get("harvest_to")
+            if sowing_date_string == "":
+                sowing_date_object = sowing_date_string
+            else:
+                sowing_date_object = pd.to_datetime(sowing_date_string)
+            if planting_date_string == "":
+                planting_date_object = planting_date_string
+            else:
+                planting_date_object = pd.to_datetime(planting_date_string)
+            if harvest_from_string == "":
+                harvest_from_object = harvest_from_string
+            else:
+                harvest_from_object = pd.to_datetime(harvest_from_string)
+            if harvest_to_string == "":
+                harvest_to_object = harvest_to_string
+            else:
+                harvest_to_object = pd.to_datetime(harvest_to_string)
+            # harvest_from_object = pd.to_datetime(harvest_from_string)
+            # harvest_to_object = pd.to_datetime(harvest_to_string)
 
-        submit = {
-            "type": request.form.get("type"),
-            "name": request.form.get("name"),
-            "sow_at": sowing_date_object,
-            "plant_at": planting_date_object,
-            "harvest_from": harvest_from_object,
-            "harvest_to": harvest_to_object,
-            "fertilise": request.form.get(
-                "fertilise"),
-            "fertiliser": request.form.get("fertiliser"),
-            "notes": request.form.get("notes"),
-            "created_by": session["user"]
-        }
-        mongo.db.plants.update({"_id": ObjectId(plant_id)}, submit)
-        flash("Plant Successfully Updated", "success")
-        return redirect(url_for("get_plants"))
+            submit = {
+                "type": request.form.get("type"),
+                "name": request.form.get("name"),
+                "sow_at": sowing_date_object,
+                "plant_at": planting_date_object,
+                "harvest_from": harvest_from_object,
+                "harvest_to": harvest_to_object,
+                "fertilise": request.form.get(
+                    "fertilise"),
+                "fertiliser": request.form.get("fertiliser"),
+                "notes": request.form.get("notes"),
+                "created_by": session["user"]
+            }
+            mongo.db.plants.update({"_id": ObjectId(plant_id)}, submit)
+            flash("Plant Successfully Updated", "success")
+            return redirect(url_for("get_plants"))
 
-    plant = mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
+        plant = mongo.db.plants.find_one({"_id": ObjectId(plant_id)})
 
-    plants = list(mongo.db.plants.find().sort("type"))
-    return render_template("edit_plant.html", plants=plants, plant=plant)
+        plants = list(mongo.db.plants.find().sort("type"))
+        return render_template("edit_plant.html", plants=plants, plant=plant)
+    else:
+        flash("Please log in to view page.", "error")
+        return redirect(url_for("login"))
 
 
 @app.route("/delete_plant/<plant_id>")
 def delete_plant(plant_id):
-    mongo.db.plants.remove({"_id": ObjectId(plant_id)})
-    flash("Plant Successfuly Deleted", "success")
-    return redirect(url_for("get_plants"))
+    if "user" in session:
+        mongo.db.plants.remove({"_id": ObjectId(plant_id)})
+        flash("Plant Successfuly Deleted", "success")
+        return redirect(url_for("get_plants"))
+    else:
+        flash("Please log in to view page.", "error")
+        return redirect(url_for("login"))
 
 
 @app.route("/add_category", methods=["GET", "POST"])
@@ -506,10 +528,8 @@ def add_category():
             categories = list(mongo.db.categories.find(
                               {"created_by": session["user"]}).sort(
                                   "category"))
-
         if not categories:
             flash("Create event categories to populate this list.", "info")
-
         return render_template(
             "add_category.html", categories=categories)
     else:
@@ -519,30 +539,38 @@ def add_category():
 
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
-    if request.method == "POST":
-        submit = {
-            "category": request.form.get("category"),
-            "created_by": session["user"]
-        }
-        mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
-        flash("Category Successfully Updated", "success")
-        return redirect(url_for("add_category"))
+    if "user" in session:
+        if request.method == "POST":
+            submit = {
+                "category": request.form.get("category"),
+                "created_by": session["user"]
+            }
+            mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
+            flash("Category Successfully Updated", "success")
+            return redirect(url_for("add_category"))
 
-    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+        category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
 
-    # Get list of all categories filtered by session user
-    categories = list(mongo.db.categories.find(
-                        {"created_by": session["user"]}).sort("category"))
+        # Get list of all categories filtered by session user
+        categories = list(mongo.db.categories.find(
+                            {"created_by": session["user"]}).sort("category"))
 
-    return render_template(
-        "edit_category.html", categories=categories, category=category)
+        return render_template(
+            "edit_category.html", categories=categories, category=category)
+    else:
+        flash("Please log in to view page.", "error")
+        return redirect(url_for("login"))
 
 
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
-    mongo.db.categories.remove({"_id": ObjectId(category_id)})
-    flash("Category Successfuly Deleted", "success")
-    return redirect(url_for("add_category"))
+    if "user" in session:
+        mongo.db.categories.remove({"_id": ObjectId(category_id)})
+        flash("Category Successfuly Deleted", "success")
+        return redirect(url_for("add_category"))
+    else:
+        flash("Please log in to view page.", "error")
+        return redirect(url_for("login"))
 
 
 @app.errorhandler(404)
