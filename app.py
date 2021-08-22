@@ -56,7 +56,7 @@ def contact():
             lastname = form.lastname.data
             email = form.email.data
             message = form.message.data
-            
+
             form_message = {
                 "firstname": firstname,
                 "lastname": lastname,
@@ -167,7 +167,7 @@ def search():
     else:
         flash("Please log in to view page.", "error")
         return redirect(url_for("login"))
-                 
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -230,7 +230,7 @@ def profile(username):
         users = list(mongo.db.users.find().sort("username"))
         user_profile = []
         for user in users:
-            # check if user logged in, and matches user logged in. 
+            # check if user logged in, and matches user logged in.
             if "user" in session and (user["username"] == session["user"]):
                 user_profile.append(user)
         # get session users username from db
@@ -263,8 +263,8 @@ def edit_profile(user_id):
                         }
                         mongo.db.users.update_one(
                             {"_id": ObjectId(user_id)}, {"$set": update})
-                        flash("The information has been updated successfully.", 
-                                "success")
+                        flash("The information has been updated successfully.",
+                              "success")
                         return redirect(url_for(
                             "profile", username=session["user"]))
                 else:

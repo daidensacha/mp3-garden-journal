@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Fondamento&family=Georama&display=swap');
 
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+* Prefixed 22.08.2021
+*/
+
 #main-block {
   min-height: 45vh;
 }
@@ -28,19 +36,19 @@ div.faq-info p {
 }
 
 .btn-close:hover {
-  background-color: #78909c!important;
+  background-color: #78909c !important;
 }
 
 .btn-edit:hover {
-  background-color: #1e88e5!important;
+  background-color: #1e88e5 !important;
 }
 
 .btn-delete:hover {
-  background-color: #c62828!important;
+  background-color: #c62828 !important;
 }
 
 .edit-link:hover {
-  color: #3d5afe!important;
+  color: #3d5afe !important;
 }
 
 .btn-small {
@@ -56,7 +64,7 @@ div.faq-info p {
 }
 
 .email-send:hover {
-  color: #037b80!important;
+  color: #037b80 !important;
 }
 
 input#submit.waves-button-input {
@@ -71,7 +79,7 @@ input#submit.waves-button-input {
 }
 
 .email-delete:hover {
-  color: #a8063d!important;
+  color: #a8063d !important;
 }
 
 /*
@@ -82,26 +90,25 @@ input#submit.waves-button-input {
 
 .parallax-container {
   min-height: 200px;
-  max-height:auto;
+  max-height: auto;
   line-height: 0;
   height: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
-  .parallax-container .section {
-    width: 100%;
-  }
+
+.parallax-container .section {
+  width: 100%;
+}
 
 /* Style parallax images */
- .parallax img 
- {
- 	 background-repeat: no-repeat;
- 	 background-size: cover;
- }
+.parallax img {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
- .parallax-container
- {
- 	color: black;
- }
+.parallax-container {
+  color: black;
+}
 
 /*
 ================================================================================
@@ -109,11 +116,11 @@ input#submit.waves-button-input {
 ================================================================================
 */
 
- nav a.button-collapse {
- 	color:black;
- }
+nav a.button-collapse {
+  color: black;
+}
 
- .purple.lighten-1 {
+.purple.lighten-1 {
   background-color: #CC0066 !important;
 }
 
@@ -122,14 +129,15 @@ input#submit.waves-button-input {
 }
 
 .share-buttons {
-	list-style: none;
+  list-style: none;
 }
 
 .share-buttons li {
-	display: inline;
+  display: inline;
 }
+
 nav {
-	overflow: visible;
+  overflow: visible;
 }
 
 nav ul a,
@@ -139,9 +147,9 @@ nav .brand-logo {
 }
 
 nav li a {
-    -webkit-transition: background .3s ease-in-out;
-    -moz-transition: background .3s ease-in-out;
-    transition: background .3s ease-in-out;
+  -webkit-transition: background .3s ease-in-out;
+  -o-transition: background .3s ease-in-out;
+  transition: background .3s ease-in-out;
 }
 
 /***************************** Social Icon styling ****************************/
@@ -152,7 +160,7 @@ nav li a {
 
 .social-icon {
   color: #ffab91;
-  text-shadow: 1px 2px 5px rgba(.76,.74,.74,.64);
+  text-shadow: 1px 2px 5px rgba(.76, .74, .74, .64);
   /* margin-right: 10px; */
 }
 
@@ -172,11 +180,15 @@ footer.page-footer {
 .page-footer .footer-copyright {
   overflow: hidden;
   min-height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 10px 0px;
-  color: rgba(255,255,255,0.8);
-  background-color: rgba(51,51,51,0.08);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(51, 51, 51, 0.08);
 }
 
 ul.share-buttons {
@@ -184,23 +196,19 @@ ul.share-buttons {
   color: #efefef
 }
 
-.footer-card{
+.footer-card {
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
-
-/* .flexbox {
-  display: flex;
-  overflow: hidden;
-}
-.flexbox .col .card-panel {
-  flex: 1;
-  /* background: red; */
-  margin: 10px;
-  padding: 20px;
-} */
 
 /*
 ================================================================================
@@ -233,32 +241,37 @@ ul.share-buttons {
 /************************* Collapsible Rotating Caret  ************************/
 
 li .collapsible-header {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
 li .collapsible-header .caret {
   color: #fff;
   margin-right: 0;
+  -webkit-transition: -webkit-transform 0.2s ease;
+  transition: -webkit-transform 0.2s ease;
+  -o-transition: transform 0.2s ease;
   transition: transform 0.2s ease;
+  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
 }
-
-/* li.active .collapsible-header {
-  background-color: lightcoral;
-  color: white;
-} */
 
 li.active .collapsible-header .caret {
   color: #ffab91;
+  -webkit-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
   transform: rotate(-180deg);
+  -webkit-transform-origin: 0.6em 0.5em;
+  -ms-transform-origin: 0.6em 0.5em;
   transform-origin: 0.6em 0.5em;
 }
 
 .collapsible-body {
-  /* background-color: #fffde7; */
   background-color: #ffffff;
 }
-.almanac-plant, .almanac-event {
-  /* background-color: #f1f8e9; */
+
+.almanac-plant,
+.almanac-event {
   background-color: #ffffff;
   padding: 10px;
   border: 1px solid rgb(231, 230, 230);
@@ -281,6 +294,7 @@ li.active .collapsible-header .caret {
 .collection a.collection-item {
   display: block;
   -webkit-transition: .25s;
+  -o-transition: .25s;
   transition: .25s;
   color: #051a12;
 }
@@ -297,15 +311,9 @@ li.active .collapsible-header .caret {
   background-color: #ecf0c48a;
 }
 
-/* .collection .collection-item {
-  display: block;
-  -webkit-transition: .25s;
-  transition: .25s;
-  color: #051a12;
-} */
-
 .collection li:hover {
   -webkit-transition: .25s;
+  -o-transition: .25s;
   transition: .25s;
   background-color: #ecf0c4;
 }
@@ -325,7 +333,7 @@ li.active .collapsible-header .caret {
 }
 
 .brand-logo {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 /* 
@@ -334,23 +342,21 @@ li.active .collapsible-header .caret {
 ================================================================================ 
 */
 /* Materialert based on https://github.com/Rinebeck/materialert */
-.materialert{
+.materialert {
   position: relative;
   min-width: 150px;
   padding: 15px;
   margin: 0px auto 0px;
   font-size: 22px;
-  /* margin-bottom: 20px;
-  margin-top: 15px; */
   border: 1px solid transparent;
   border-radius: 2px;
   transition: all 0.1s linear;
-  webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex; 
+  display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -358,13 +364,13 @@ li.active .collapsible-header .caret {
   justify-content: center;
 }
 
-.materialert .icons{
+.materialert .icons {
   margin-right: 10px;
 }
 
-.materialert .close-alert{
+.materialert .close-alert {
   -webkit-appearance: none;
-  border: 0; 
+  border: 0;
   cursor: pointer;
   color: inherit;
   background: 0 0;
@@ -380,38 +386,44 @@ li.active .collapsible-header .caret {
 }
 
 /**************************** Custom Alert Messages ***************************/
-.materialert.default{
-  background-color: rgba(255,255,255,0.9);
+.materialert.default {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
-.materialert.info{
-  background-color: rgba(3,155,229,0.8);
+.materialert.info {
+  background-color: rgba(3, 155, 229, 0.8);
   color: #fff;
 }
-.materialert.success{
-  background-color: rgba(67,160,71,0.8);
+
+.materialert.success {
+  background-color: rgba(67, 160, 71, 0.8);
   color: #fff;
 }
-.materialert.error{
-  background-color: rgba(198, 40, 40,0.8);
+
+.materialert.error {
+  background-color: rgba(198, 40, 40, 0.8);
   color: #fff;
 }
-.materialert.danger{
-  background-color: rgba(198, 40, 40,0.8);
+
+.materialert.danger {
+  background-color: rgba(198, 40, 40, 0.8);
   color: #fff;
 }
-.materialert.warning{
-  background-color: rgba(251,192,45,0.8);
+
+.materialert.warning {
+  background-color: rgba(251, 192, 45, 0.8);
   color: #fff;
 }
-.form-error{
-  /* background-color: rgba(198, 40, 40,0.8); */
-  color: rgba(198, 40, 40,0.8);
+
+.form-error {
+  color: rgba(198, 40, 40, 0.8);
 }
+
 ul.form-error {
   margin-top: 0;
   padding-top: 0;
 }
+
 .form-error li {
   margin-top: 0;
   padding-top: 0;
@@ -420,148 +432,182 @@ ul.form-error {
 /****************************** Custom  Alert Icons ***************************/
 
 .materialert.default:before {
-  font-family: "Material Icons"; font-weight: 900; content: "\e86c";
-  margin-right: 10px;
-}
-.materialert.success:before {
-  font-family: "Material Icons"; font-weight: 900; content: "\e92d";
-  margin-right: 10px;
-}
-.materialert.error:before {
-  font-family: "Material Icons"; font-weight: 900; content: "\e001";
-  margin-right: 10px;
-}
-.materialert.warning:before {
-  font-family: "Material Icons"; font-weight: 900; content: "\e001";
-  margin-right: 10px;
-}
-.materialert.danger:before {
-  font-family: "Material Icons"; font-weight: 900; content: "\e001";
+  font-family: "Material Icons";
+  font-weight: 900;
+  content: "\e86c";
   margin-right: 10px;
 }
 
-  /* tabs fix for auto height when adding content that 
+.materialert.success:before {
+  font-family: "Material Icons";
+  font-weight: 900;
+  content: "\e92d";
+  margin-right: 10px;
+}
+
+.materialert.error:before {
+  font-family: "Material Icons";
+  font-weight: 900;
+  content: "\e001";
+  margin-right: 10px;
+}
+
+.materialert.warning:before {
+  font-family: "Material Icons";
+  font-weight: 900;
+  content: "\e001";
+  margin-right: 10px;
+}
+
+.materialert.danger:before {
+  font-family: "Material Icons";
+  font-weight: 900;
+  content: "\e001";
+  margin-right: 10px;
+}
+
+/* tabs fix for auto height when adding content that 
   exceeds 400px, as the tabs are styled by carousel css */
-  .tabs-content.carousel .carousel-item .tab { height:auto; }
+.tabs-content.carousel .carousel-item .tab {
+  height: auto;
+}
 
 .row.flashes {
   margin: 0;
 }
-  /***************************** Custom Modal Syling **************************/
-  .modal-title {
-    font-size: 18px;
-    font-weight: 700;
-  }
 
-  .modal.bottom-sheet {
-    max-height: 100% !important;
-  }
+/***************************** Custom Modal Syling **************************/
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+}
 
-  /*************************** Custom Margin Classes **************************/
-  .mt-5 {
-    margin-top: 5px;
-  }
+.modal.bottom-sheet {
+  max-height: 100% !important;
+}
 
-  .mt-10 {
-    margin-top: 10px;
-  }
+/*************************** Custom Margin Classes **************************/
+.mt-5 {
+  margin-top: 5px;
+}
 
-  .mt-90 {
-    margin-top: 90px;
-  }
+.mt-10 {
+  margin-top: 10px;
+}
 
-  .mb-1em {
-    margin-bottom: 1em;
-  }
+.mt-90 {
+  margin-top: 90px;
+}
 
-  .mr-20 {
-    margin-right: 20px;
-  }
+.mb-1em {
+  margin-bottom: 1em;
+}
 
-  .pr-10 {
-    padding-right: 10px;
-  }
-  /* .mt-10 {
-    margin-top: 10px;
-  } */
+.mr-20 {
+  margin-right: 20px;
+}
 
-  /*********************** Emphasis class custom styles ***********************/
-  .emph-ital {
-    font-style: italic;
-  }
+.pr-10 {
+  padding-right: 10px;
+}
 
-  /* text style clases */
-  .emph-red {
-    color:rgba(198, 40, 40,0.8);
-  }
+/*********************** Emphasis class custom styles ***********************/
 
-  .emph-green {
-    color: #689f38 ;
-  }
+.emph-ital {
+  font-style: italic;
+}
 
-  .emph-highlight {
-    color: #9e9e9e;
-  }
+/* text style clases */
+.emph-red {
+  color: rgba(198, 40, 40, 0.8);
+}
 
-  .emph-black {
-    color: #000000 ;
-  }
+.emph-green {
+  color: #689f38;
+}
 
-  .emph-dark-teal {
-    color: #00695c;
-    font-style: italic;
-  }
+.emph-highlight {
+  color: #9e9e9e;
+}
 
-  .emph-yellow {
-    color: #fffde7;
-  }
+.emph-black {
+  color: #000000;
+}
 
-  /**************************** DIVIDER ARROW DOWN* ***************************/
+.emph-dark-teal {
+  color: #00695c;
+  font-style: italic;
+}
+
+.emph-yellow {
+  color: #fffde7;
+}
+
+/**************************** DIVIDER ARROW DOWN* ***************************/
 
 
 .custom-divider {
-	position: relative;
-	margin: 40px 0;
-	height: 1px;
+  position: relative;
+  margin: 40px 0;
+  height: 1px;
 }
 
 .div-gradient:before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 25%;
-	right: 25%;
-	width: 50%;
-	height: 1px;
-	background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  width: 50%;
+  height: 1px;
+  background-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgb(48, 49, 51)), to(transparent));
+  background-image: -o-linear-gradient(left, transparent, rgb(48, 49, 51), transparent);
+  background-image: linear-gradient(to right, transparent, rgb(48, 49, 51), transparent);
 }
 
 .div-arrow-down:after {
-	content: "";
-	position: absolute;
-	z-index: 1;
-	top: -7px;
-	left: calc(50% - 7px);
-	width: 14px;
-	height: 14px;
-	transform: rotate(45deg);
-	background-color: white;
-	border-bottom: 1px solid rgb(48,49,51);
-	border-right: 1px solid rgb(48,49,51);
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -7px;
+  left: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background-color: white;
+  border-bottom: 1px solid rgb(48, 49, 51);
+  border-right: 1px solid rgb(48, 49, 51);
 }
 
 
-  /**************************** MATERIAL ICON SIZES ***************************/
-.material-icons.md-12 { font-size: 12px; }
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+/**************************** MATERIAL ICON SIZES ***************************/
+.material-icons.md-12 {
+  font-size: 12px;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
 
 .flower:before {
   font-family: "Material Icons";
   content: "\e3e3";
 }
+
 .error:before {
   font-family: "Material Icons";
   content: "\e001";
@@ -587,51 +633,64 @@ li a.dropdown-trigger:focus {
   #index-banner .section {
     top: 0;
   }
+
   /* fix for logo width issue */
   nav .brand-logo {
     left: calc(50% - 20px);
     /* left: calc(25%); */
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     font-size: 1em;
   }
+
   .caption .slider-heading {
     display: block;
     font-size: 3.2em;
   }
+
   .caption .slider-subheading {
     display: block;
     font-size: 1.2em;
   }
+
   .parallax-container {
     color: white;
   }
+
   ul.share-buttons {
     margin-right: 5px;
   }
+
   .social-icon {
     font-size: 10px;
     margin-right: 2px;
   }
+
   div.footer-copyright .container {
     width: auto;
   }
+
   .materialert {
     font-size: 14px;
   }
+
   .modal .modal-content {
     padding: 10px 20px;
   }
+
   .email-send {
     padding: 0 5px;
     margin-top: 10px;
   }
+
   .email-delete {
     padding: 0 5px;
     margin-top: 10px;
-    /* text-align: center ; */
   }
+
   .smt-10 {
-    margin-top:10px;
+    margin-top: 10px;
   }
 }
 
@@ -641,6 +700,7 @@ li a.dropdown-trigger:focus {
     display: block;
     font-size: 3.2em;
   }
+
   .caption .slider-subheading {
     display: block;
     font-size: 2.4em;
@@ -651,15 +711,15 @@ li a.dropdown-trigger:focus {
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     height: auto;
-    /* position: absolute; */
-    /* top: 40%; */
   }
+
   #index-banner .section {
     top: 10%;
   }
+
   #main-block {
     min-height: calc(100vh - 593px);
-}
+  }
 }
 
 /* Extra Large Screens */
@@ -668,6 +728,7 @@ li a.dropdown-trigger:focus {
     display: block;
     font-size: 4.2em;
   }
+
   .caption .slider-subheading {
     display: block;
     font-size: 2.4em;
@@ -678,8 +739,8 @@ li a.dropdown-trigger:focus {
 /* materializecss tabs fix */
 @media (max-width: 1900px) {
   .tabs {
-    display: -webkit-flex;
     display: -ms-flexbox;
+    display: -webkit-box;
     display: flex;
   }
 }
