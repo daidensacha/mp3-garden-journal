@@ -159,8 +159,7 @@ This section tests pages and features available only to logged-in users.
 3. **Admin Users:** 
 This section tests pages and features only available to admin users
 
-## TESTING CHECKLIST (Development-Deployment)
-[README/Testing](/README.md/#testing)
+-------
 
 ### ALL USERS
 #### Main Navbar
@@ -410,6 +409,7 @@ I had the same issue with deleting plants. See Issue 1 above. I needed to preven
   
 
 ## USER STORIES REVIEW (Development-Deployment)
+[README/User Stories](/README.md/#strategy)
 
 1. **As a hobby gardener:**
 

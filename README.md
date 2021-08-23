@@ -715,8 +715,6 @@ The customer error pages all have links back to the home page.
 
 ### Deployment
 
-### Deployment
-
 **Deploy to Heroku**
 1. Setup pages required by Heroku to run the app.
 	- In the console  I run `pip3 freeze --local > requirements.txt` . It creates the file `requirements.txt` and lists all the dependencies needed to run the application. 
