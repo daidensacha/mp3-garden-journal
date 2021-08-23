@@ -308,7 +308,7 @@ The Almanac page has a Material Design Collapsible that displays garden events a
 - [x] The updated event is now showing the new information in the collapsible. The app inserted the data into the database.
 
 #### Delete Event
-- [x] On the edit event page for the event, I click delete, a modal appears with a red flash alert informing me that deleting event data is irreversible. It asks me if I am sure I want to delete the "Plant Snack cucumbers" event.
+- [x] On the edit event page for the event, I click delete, a modal appears with a red flash alert informing me that deleting event data is irreversible. It asks me if I am sure I want to delete the "Plant Snack cucumbers" event.  
 ![](/documentation/images/modal-delete-event.png)  
 - [x] I click cancel and am redirected back to the Almanac "My Events" page.
 - [x] I confirm and click delete, and the app redirects me back to the Almanac "My Events" page, where a green flash alert informs me the app successfully deleted the event. The event is no longer on the list in the collapsible. 
@@ -316,7 +316,7 @@ The Almanac page has a Material Design Collapsible that displays garden events a
 #### Plants Page
 The Plants page uses a Material Design Collection to displays a list of plants. Clicking on one of the plants opens a modal to view the plant information. 
 ![](/documentation/images/collection-plants.png)   
-- [x] I click on the view for a plant, a modal opens displaying the plant information.
+- [x] I click on the view for a plant, a modal opens displaying the plant information.  
 ![](/documentation/images/modal-plants.png)  
 -[x] I click cancel, the modal closes, and I am back at the plant's page. 
 
