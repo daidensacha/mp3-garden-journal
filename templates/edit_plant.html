@@ -18,7 +18,7 @@
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-                        <input id="name" name="name"  minlength="5" maxlength="30" 
+                        <input id="name" name="name"  minlength="3" maxlength="30" 
                         value="{{ plant.name }}" type="text" class="count-text validate" data-length="30" required>
                         <label for="name">Plant Name</label>
                         <span class="helper-text">Required</span>
@@ -134,7 +134,7 @@
                             <p class="materialert danger">Deleting plant data is irreversable.</p>
                         </div>
                         <div class="modal-content">
-                            <p>Are you sure you want to delete  "<strong class="emph-green">{{ plant.name }}</strong>"?</p>
+                            <p>Are you sure you want to delete the "<strong class="emph-green">{{ plant.name }}</strong>" plant?</p>
                         </div>
                         <div class="modal-footer">
                             <a href="{{ url_for('delete_plant', plant_id=plant._id) }}" 

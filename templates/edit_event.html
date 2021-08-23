@@ -103,7 +103,7 @@
                             <p class="materialert danger">Deleting event data is irreversable.</p>
                         </div>
                         <div class="modal-content">
-                            <p>Are you sure you want to delete "<strong class="emph-green">{{ garden_event.name }}</strong>" ?</p>
+                            <p>Are you sure you want to delete the "<strong class="emph-green">{{ garden_event.name }}</strong>" event?</p>
                         </div>
                         <div class="modal-footer">
                             <a href="{{ url_for('delete_event', event_id=garden_event._id) }}" 

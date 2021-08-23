@@ -11,7 +11,9 @@
                 class="collection-item m-bot-10 waves-effect waves-light modal-trigger">{{ loop.index}}:
                 {{ plant.type.capitalize() }} 
                 {{ plant.name.title() }}
-                <i class="fas fa-book-open light-green-text text-darken-4 right"></i>
+                <!-- <i class="fas fa-book-open light-green-text text-darken-4 right"></i> -->
+                <span class="right">view <i class="fas fa-edit light-green-text text-darken-4"></i></span>
+                <!-- <i class="fas fa-file-image light-green-text text-darken-4 right"></i> -->
             </a>
 <!-- MODAL START -->
             <div id="plant_id_{{ loop.index }}" class="modal">

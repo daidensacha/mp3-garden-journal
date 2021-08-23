@@ -508,13 +508,19 @@ def edit_plant(plant_id):
 
 @app.route("/delete_plant/<plant_id>")
 def delete_plant(plant_id):
-    if "user" in session:
-        mongo.db.plants.remove({"_id": ObjectId(plant_id)})
-        flash("Plant Successfuly Deleted", "success")
-        return redirect(url_for("get_plants"))
+    check_events = mongo.db.garden_events.find_one(
+                        {"event_plant_id": ObjectId(plant_id)})
+    if not check_events:
+        if "user" in session:
+            mongo.db.plants.remove({"_id": ObjectId(plant_id)})
+            flash("Plant Successfuly Deleted", "success")
+            return redirect(url_for("get_plants"))
+        else:
+            flash("Please log in to view page.", "error")
+            return redirect(url_for("login"))
     else:
-        flash("Please log in to view page.", "error")
-        return redirect(url_for("login"))
+        flash("Plants with related events cannot be deleted", "error")
+        return redirect(url_for("get_plants"))
 
 
 @app.route("/add_category", methods=["GET", "POST"])

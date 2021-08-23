@@ -229,7 +229,7 @@ ul.share-buttons {
 }
 
 .keyboard-focused .collapsible-header:focus {
-  background-color: none;
+  background-color: none!important;
   border: 1px solid #c1ad0f;
 }
 
