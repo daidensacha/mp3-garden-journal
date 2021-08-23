@@ -9,7 +9,7 @@
 
 View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 
-[Testing.md](/documentation/TESTING.md) outlines my testing strategy, development, deployment and post deployment.
+[Testing.md](/documentation/testing.md) outlines my testing strategy, development, deployment and post deployment.
 
 ## UX DESIGN
 
