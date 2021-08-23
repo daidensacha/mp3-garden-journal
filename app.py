@@ -319,6 +319,17 @@ def add_event():
                 {"created_by": session["user"]}).sort("type"))
             categories = list(mongo.db.categories.find(
                 {"created_by": session["user"]}).sort("category"))
+            # Check if categories and plants to create event
+            if not categories and not plants:
+                flash("Please enter categories and"
+                      " plants before entering an event", "info")
+            if categories and not plants:
+                flash("Please enter plants before entering an event", "info")
+            if plants and not categories:
+                flash("Please enter categories before"
+                      " entering an event", "info")
+                return render_template(
+                    "add_event.html", categories=categories, plants=plants)
 
         return render_template(
             "add_event.html", categories=categories, plants=plants)
