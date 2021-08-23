@@ -230,8 +230,12 @@ ul.share-buttons {
 
 .keyboard-focused .collapsible-header:focus {
   background-color: none;
+  border: 1px solid #c1ad0f;
 }
 
+/* .collapsible li:active .collapsible-header:focus {
+  border-bottom: 2px solid red;
+} */
 
 .collapsible .row {
   margin-bottom: 0;
@@ -273,6 +277,7 @@ li.active .collapsible-header .caret {
 
 .collapsible-body {
   background-color: #ffffff;
+  border-top: 1px solid #c1ad0f;
 }
 
 .almanac-plant,
