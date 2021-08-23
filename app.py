@@ -581,13 +581,21 @@ def edit_category(category_id):
 
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
-    if "user" in session:
-        mongo.db.categories.remove({"_id": ObjectId(category_id)})
-        flash("Category Successfuly Deleted", "success")
-        return redirect(url_for("add_category"))
+    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    check_events = mongo.db.garden_events.find_one(
+                        {"category": category["category"]})
+
+    if not check_events:
+        if "user" in session:
+            mongo.db.categories.remove({"_id": ObjectId(category_id)})
+            flash("Category Successfuly Deleted", "success")
+            return redirect(url_for("add_category"))
+        else:
+            flash("Please log in to view page.", "error")
+            return redirect(url_for("login"))
     else:
-        flash("Please log in to view page.", "error")
-        return redirect(url_for("login"))
+        flash("Categories with related events cannot be deleted", "error")
+        return redirect(url_for("add_category"))
 
 
 @app.errorhandler(404)
