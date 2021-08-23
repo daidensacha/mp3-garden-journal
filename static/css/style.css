@@ -228,6 +228,11 @@ ul.share-buttons {
   line-height: 1.2rem;
 }
 
+.keyboard-focused .collapsible-header:focus {
+  background-color: none;
+}
+
+
 .collapsible .row {
   margin-bottom: 0;
 }
