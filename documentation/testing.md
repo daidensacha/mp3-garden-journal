@@ -420,29 +420,112 @@ I had the same issue with deleting plants. See Issue 1 above. I needed to preven
 ## USER STORIES REVIEW (Development-Deployment)
 [Readme/User Stories](/README.md/#user-stories)
 
-1. **As a hobby gardener:**
+I wanted to create the Almanac as a 365 day journal, as the events of Nature repeat as they have for millions of years. The years are not of real importance, but users can reference specific years in the notes if they want to. 
+I also created a dependency between events and plants, so users need to add the plants in order to create the events. It is a Garden Almanac, for users to record specific events for their garden plants, and they can refine those entries as the years pass. 
+The added features allow for the app to be used in many different ways. 
+Users can add:
+1. **Plants**
+	- The plants are a separate collection, in which users can add specific information for the plant. Plant Type and Plant Name are required, the other information optional. 
+		- Plant Type - required
+		- Plant Name - required
+		- Sowing Time - optional
+		- Planting Time - optional
+		- Harvest From - optional
+		- Harvest To - optional
+		- Fertilse Frequency - optional
+		- Fertiliser Type - optional
+		- Plant Notes - optional
+		
+	![](/documentation/images/add-plant-form.png)   
+	Users can view the plants in a list on the Plants page. 
+	
+	![](/documentation/images/my-plant-list.png)   
+	There the user can click on a plant to view the plants information in a modal.
+	![](/documentation/images/my-plant-modal.png)   
+	The user can click on "Edit" to edit or update information about the plant. They can also delete the plant, providing there are no related events that depend on the plant information.
+	![](/documentation/images/edit-plant-form.png)   
+2. **Event Categories**
+	- By categorising garden events, the user can easily  filter the event list by category, to see only events that are relevant to what the user is looking for. This is a required field when the user adds events, so the app encourages users to think about the categories and how to group the events. The categories themselves can be edited and updated, but only deleted if there are no related garden events. 
+	
+3. **Garden Events**
+	- Creating a garden event requires infomation from the plants and category collections. The three brought together, allows for the user to use this app in many different ways. They can record plant information independently of the event, and also record event information independent of the plants.
+	
+I anticipate that the list of events could become long, and difficult to look through to find particular events. Its why I indexed the colletions in MongoDB, and implemented the search filter for users to look for particular events 
+![](/documentation/images/search-filter.jpg)   
+	
 
-	- As a hobby gardener, I want to record yearly changes of individual plants.
-	- As a hobby gardener, I want to set up reminders for yearly maintenance tasks (like pruning, pest control, etc.)
-	- As a hobby gardener, I'm interested in recording the time of year when plants flower
-	- As a hobby gardener, I would like to add my plants to a list of plants containing information relevant to that plant. 
-	- As a hobby gardener, I would like to be able to add images of the plants. 
-	- As a hobby gardener, I want to edit plants and events when information to improve the records over time.
+### User Story Reviews
+---
+### As a hobby gardener, ...
+**As a hobby gardener:**
+> I want to record yearly changes of individual plants.
+- Users can add plants, with and then add events to record changes that occur at the same time of the year. The user can add notes in the event, and or in the plant. The Almanac display both plant and event together, with edit buttons so the user can easily update, add or change information. 
+![](/documentation/images/collapsible-event.png)   
 
-2. **As a vegetable gardener:**
+**As a hobby gardener:**
+> I want to set up reminders for yearly maintenance tasks (like pruning, pest control, etc.)
+- The Garden Almanac displays events by date order (month-day), displays the category and event name. The user can create specific categories which allows them to easily filter out the events using the search filter. The user can easily see what events occur and at what times of the year. 
+![](/documentation/images/collapsible-events.png)   
+	
+**As a hobby gardener:**	
+> I'm interested in recording the time of year when plants flower.
+- The user can create a category for flowering, add the plant, and then create an event for the plant that redords the flowering event. In subsequent years, the user will have that event as a reference so they can look and see when the plant flowers. They can also keep pspecific notes in the plant, and or the event document. 
 
-	- As a vegetable gardener, I would like to set a reminder when the last frost is, so I know when it is safe to plant outside.
-	- As a vegetable gardener, I want to set reminders for when to plant particular seeds so they are ready to plant out after the last frost.
-	- As a vegetable gardener, I want to record regular or yearly maintenance tasks so I don't forget them.
-	- As a vegetable gardener, I want to know when my fruit and vegetable crops are ready to pick.
-	- As a vegetable gardener, I want to edit plants and events to improve the records over time.
+**As a hobby gardener:**
+> I would like to add my plants to a list of plants containing information relevant to that plant. 
+- The plants are displayed in a list, and the plant highlights when the user moves the mouse cursor over the plant. Clicking on the plant opens the modal displaying the information about the plant. 
 
-1.  **As the owner:**
-	- I want to engage gardening enthusiasts to build up a user base of registered users.
-	- I want to build a base of registered users to develop a social network of users with a similar interest in gardening.
-	- I envisage that I will add pages to market a raised garden bed that I designed for growing vegetables.
-	- I want users to register and log in to access the journal with garden reminders and tasks.
+**As a hobby gardener:**
+> I would like to be able to add images of the plants. 
+- I have implemented the feature in this build as it was beyond the scope of possibility for now. I would like to add this feature in the future and have listed it in future improvements. 
 
+**As a hobby gardener:**
+> As a hobby gardener, I want to edit plants and events when information to improve the records over time.
+- The Garden Almanac is exaclty for this, to record information, and to improve the accuracy over time with experience. 
+---
+
+### As a vegetable gardener, .....
+
+**As a vegetable gardener:**
+> I would like to set a reminder when the last frost is, so I know when it is safe to plant outside.
+- The user can create an event for his plants that is set as a reminder for the last frost. In the plant information, there are fields that cater specifically for the need of the user to know when to sow, plant and harvest. 
+
+**As a vegetable gardener:**
+> I want to set reminders for when to plant particular seeds so they are ready to plant out after the last frost.
+- Users are able to create events in the Garden Almanac, for example when to sow seeds so that they are ready to plant once the last frost has past. Different plants climates determine the specific needs for the plant, and users can use the Garden Almanac for their specific needs. 
+
+**As a vegetable gardener:**
+>I want to record regular or yearly maintenance tasks so I don't forget them.
+- This is very easy for the user to create an event for a plant, and create the category for the specific type of event they want to create. That way the user can easily group and filter events by category using the search filter. 
+
+**As a vegetable gardener:**
+>I want to know when my fruit and vegetable crops are ready to pick.
+- The Garden Almanac displays all the information added into the plant and event forms when the plants and events are added, or updated. The user can add the harvest dates so they can plan on when the garden bounty will be ready. Settinf other imporant events like, sowing, planting, and fertilising, will help the user to get the most out of the garden. 
+
+**As a vegetable gardener:**
+>As a vegetable gardener, I want to edit plants and events to improve the records over time.
+- The starting point is just that, and there is no end. So entering  plant and event information is just the start, because every year when you have records from past years, you can impove and update the infomation so each year it will impove and get easier. 
+In the following screen shots, you can see how I created a plant with information that tells me when to sow, plant, harvest and how to fertilse. In the event, which will always be in the Almanac, I can easily edit the information if and when needed. 
+![](/documentation/images/user-story-plant.png)   
+![](/documentation/images/user-story-event.png)   
+----
+**As the owner:**
+> I want to engage gardening enthusiasts to build up a user base of registered users. 
+- I have personalised the application for registered users. The logo for instance, "Your Garden Almanac" for logged out users, changes to "My Garden Almanac" When users log in. The navbar profile link, changes to the "Daniel's Profile" for example, and in the profile page the title of the page is Daniel's Profile. Its about developing a relationship, and encouraging a sense of ownership in the site and what it does.
+![](/documentation/images/navbar-session-user.png)  
+![](/documentation/images/login-user-profile.jpg)   
+
+>  I want to build a base of registered users to develop a social network of users with a similar interest in gardening.
+- My focus has been on the long game, and building an app that is not only useful, but meets a need that is not really catered for yet. I know, becuase I have looked for an app like this for the last 5 years. If I can improve it and allow it to evolve, building a solid and loyal client base in the process, I see the potential for this project to become a perfect foundation to evolve it to include soclial networking options. I will look to add features, and improve on the ones already implemented, so that the app is not only useful, but fun to use. I think the app has a way to go, but I'm happy with the start. 
+
+**As the owner:**
+> I envisage that I will add pages to market a raised garden bed that I designed for growing vegetables.
+- I already have developed my garden bed, and have the plans for it. I will look at adding a page with information about it, and how to build it. I will most probably sell the plans for it, but have not yet decided on the best course of action. The site is a perfect forum for it as the users will be the perfect market for it. 
+![](/documentation/images/hochbeet.jpg)   
+
+**As the owner:**
+> I want users to register and log in to access the journal with garden reminders and tasks.
+- The implemantation of user-session cookies with the login process for users to access the Garden Almanac works. It limits access to registered users, and user information is private. 
 
 
 

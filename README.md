@@ -489,6 +489,7 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 - ***Materialert alert messages***  
 	- Materializecss doens't have alert messages like in Bootstrap, or UIkit.
 	- I found [Materialert](https://github.com/Rinebeck/materialert) which creates and styles alert classes. 
+![](documentation/images/materialert.png)  
 
 - ***Flashing with Categories*** Flask flash messages allows for [adding a second value to the flash message](https://flask.palletsprojects.com/en/2.0.x/patterns/flashing/#flashing-with-categories).  
 	- In the HTML template flash message section per documentation:
