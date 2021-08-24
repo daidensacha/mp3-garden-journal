@@ -347,7 +347,7 @@ The Plants page uses a Material Design Collection to displays a list of plants. 
 - [x] I click delete to confirm, am redirected to the plant's page, and a green flash alert informs me the app deleted the plant. It is not on the list. 
 [x] I open the Almanac page and click on the event still in the list. The event information is showing, but the plant information is no longer there. 
 ![](/documentation/images/delete-plant-2.png)  
-See [Issues and Fixes](/documentation/testing.md/#issues-and-fixes) . Issue 1: I resolved this issue by changing the delete_plant function. Test as follows. 
+See [Issues and Fixes](/documentation/testing.md/#issue-1) . Issue 1: I resolved this issue by changing the delete_plant function. Test as follows. 
 - [x] I select a plant with a related event.
 ![](/documentation/images/delete-plant-3.png)  
 - [x] I click the edit button for the plant, redirecting me to the edit plant page. I click delete, and the modal appears warning me data deletion is irreversible, that plants with related events cannot be deleted, and asks me if I am sure I want to delete the plant. 
@@ -369,7 +369,7 @@ I chose to display the categories in a materializecss collection on the add cate
 - [x] I change the category name and click save, am redirected back to the add category page, and a green flash alert message informs me the app successfully updated the category. The new category name is in the list below the input. 
 
 #### Delete Category
-NOTE: See [Issues and Fixes](/documentation/testing.md/#issues-and-fixes) . Issue 2. 
+NOTE: See [Issues and Fixes](/documentation/testing.md/#issue-2) . Issue 2. 
 - [x] On the add category page, I click edit for a category with a related event. The app redirects me to the edit category page, entering the category in the edit category input. 
 - [x] I click delete, a modal appears with a red flash alert informing me that deleting plant data is irreversible. The app tells me categories with related events cannot be deleted and asks me if I'm sure I want to delete the category.
 - [x] I click cancel and am redirected back to the add category page.
@@ -406,12 +406,14 @@ Admin user has one Navbar link exclusive for admin users. "Messages".
 ### Issues and Fixes
 See also [README/BUGS and ISSUES](/README.md/#bugs-and-issues)
 
-**Issue 1: Delete plant with a related event.**
+##### ISSUE: 1
+**Delete plant with a related event.**
 I had this issue but had not thought about it until testing. I had to think it out to discern what is expected behavior in this case. 
 There is one select in the add event form that the app populates with the plant names. It is a required field. The user has to add the plant for an event first; otherwise, they can't add the garden event. However, once the user created the event, it was still possible to delete the garden event. On the Almanac events page in the collapsible, the plant section is left empty, and there is an event without a related plant. 
 Having used the plant OjectId when creating the event, I decided to search the garden events for the ObjectId before deleting the plant. The app stops the deletion if the ObjectId exists in the garden_events collection. 
 When the user now tries to delete a plant with related events, the delete_plant function redirects the user to the plant's page, and a red flash alert informs the user that the app cant delete plants with related events. They first need to delete related event/s, and then the app can delete the plant. This fix maintains the integrity of associated data.
-**Issue 2: Delete category with a related event.**
+##### ISSUE: 2
+**Delete category with a related event.**
 I had the same issue with deleting plants. See Issue 1 above. I needed to prevent users from deleting categories when there is a related event using the category the user wants to delete. I changed the code in the delete_category function to check garden events and prevent the user from deleting the category if there is a related event. The user has two options, update the category in the event to a different one or delete the event/s. Then the app can delete the category. 
   
 

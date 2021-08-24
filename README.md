@@ -321,8 +321,8 @@ I inlcuded images of fruit and vegetables to inspire users to make use of the ap
      Used to display data from the mongoDB in the front end templates.
 3. [Heroku](https://www.heroku.com/home)
 	Hosting the project.
-4. [mongoDB](https://www.mongodb.com/)
-5. noSQL database used to store non-relational data of the website.
+4. [mongoDB](https://www.mongodb.com/)  
+	noSQL database used to store non-relational data of the website.
 6. [Flask-WTForms](https://flask-wtf.readthedocs.io/en/0.15.x/) 
     A simple integration of Flask and WTForms, offering validation and implementation using Jinja. 
 7. [Font Awesome](https://fontawesome.com/)
