@@ -3,7 +3,10 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" /> -->
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garden Almanac</title>
 
     <!-- CSS  -->
@@ -12,7 +15,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{{ url_for('static',filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{{ url_for('static',filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen" />
     {% block styles %}
     {% endblock%}
 </head>
@@ -97,7 +100,7 @@
     <div class="slider">
         <ul class="slides">
             <li>
-                <img src="{{url_for('static', filename='images/summer_1240x528_b.jpg')}}">
+                <img src="{{url_for('static', filename='images/summer_1240x528_b.jpg')}}" alt="Spring">
                 <div class="caption center-align">
                     <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
                     <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
@@ -105,7 +108,7 @@
                 </div>
             </li>
             <li>
-                <img src="{{url_for('static', filename='images/flowers_1240x528_b.jpg')}}">
+                <img src="{{url_for('static', filename='images/flowers_1240x528_b.jpg')}}" alt="Summer">
                 <div class="caption center-align text-shadow">
                     <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
                     <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
@@ -113,7 +116,7 @@
                 </div>
             </li>
             <li>
-                <img src="{{url_for('static', filename='images/autumn_1240x528_b.jpg')}}">
+                <img src="{{url_for('static', filename='images/autumn_1240x528_b.jpg')}}" alt="Autumn">
                 <div class="caption center-align">
                     <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
                     <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
@@ -121,7 +124,7 @@
                 </div>
             </li>
             <li>
-                <img src="{{url_for('static', filename='images/winter_1240x528_b.jpg')}}">
+                <img src="{{url_for('static', filename='images/winter_1240x528_b.jpg')}}" alt="Winter">
                 <div class="caption center-align">
                     <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
                     <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
@@ -149,9 +152,6 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
-
-
-
 </section>
 
 <main id="main-block">

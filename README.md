@@ -817,3 +817,7 @@ flash("Create event categories to populate this list.", "info")
 ```
 The change has simplified my coding, as I now use the same list name for ```categories``` instead of creating a new list ```user_categories``` and then using that in my template.  
 The bug disappeared, and my code was more straightforward. I repeated these changes in the app.py for plants and events. 
+
+ **Issue 3. Collapsible displaying white background**
+In my meeting with my tutor, he mentioned that the collapsible header was white when he clicked on it. I had not seen this behavior at all and had tested it on multiple computers, systems, locally and live on Heroku. 
+Yesterday, I saw it, as it appeared when I was working through my testing checklist. I found what I thought was the issue, applied a css style to override the materializecss, and it appeared to work. The issue returned about 30 minutes later, and it appeared that the materializecss style was overriding my fix. I added `background-color: none!important` to my css, and it seems to have fixed it, but I am still wary and observing. Hopefully, it has been fixed.

@@ -417,16 +417,22 @@ NOTE: See [Issues and Fixes](/documentation/testing.md/#issues-and-fixes) . Issu
 #### Login Page
 - [x] I enter my admin username and password, and click login. I am logged in and directed to the Admin Profile Page. 
 #### Navbar
+
 ![](/documentation/images/navbar-admin.png)  
+
 Admin user has one Navbar link exclusive for admin users. "Messages". 
 - [x] I click on the Navbar messages link. The message's page opens, showing a collapsible with some messages.
 #### Off-canvas Navbar
+
 ![](/documentation/images/off-canvas-admin-users.png)  
+
 Admin user has one Navbar link exclusive for admin users. "Messages". 
 - [x] I click on the Navbar messages link. The message's page opens, showing a collapsible with some messages.
 #### Messages Page
 - [x] I click on the Navbar messages link. The message's page opens, showing a collapsible with some messages.
+
 ![](/documentation/images/navbar-admin.png)   
+
 #### View Messages
 - [x] On the messages page, I click on one of the messages, the collapsible message opens and displays the message. 
 - [x] I click on the email icon in the message header. It opens my default mail application on my computer and opens a new message with the sender's email inserted in the email. I write a short message and click send to send a reply to the sender. 
@@ -465,16 +471,19 @@ Users can add:
 		- Fertiliser Type - optional
 		- Plant Notes - optional
 
-	![](/documentation/images/add-plant-form.png)
+	![](/documentation/images/add-plant-form.png)  
 
 Users can view the plants in a list on the Plants page.
-![](/documentation/images/my-plant-list.png)
+
+![](/documentation/images/my-plant-list.png)  
 
 There the user can click on a plant to view the plant's information in a modal.
-![](/documentation/images/my-plant-modal.png)
+
+![](/documentation/images/my-plant-modal.png)  
 
 The user can click on "Edit" to edit or update information about the plant. They can also delete the plant, providing there are no related events that depend on the plant information.
-![](/documentation/images/edit-plant-form.png)
+
+![](/documentation/images/edit-plant-form.png)  
 
 2. **Event Categories**
 	- By categorizing garden events, the user can easily filter the event list by category to see only relevant events. The category is a required field when the user adds events, so the app encourages users to think about the categories and group the events. Users can edit and update categories but only delete them if there are no related garden events.
@@ -507,7 +516,7 @@ I anticipate that the list of events could become long and difficult to look thr
 
 - The Garden Almanac displays events by date order (month-day), displaying the month and day, the category, and event name in the collapsible header. The user can create specific categories, allowing them to filter out the events using the search filter easily. The user can easily see what events occur and at what times of the year.
 
-![](/documentation/images/collapsible-events.png)
+![](/documentation/images/collapsible-events.png)  
 
 **As a hobby gardener:**
 
@@ -559,9 +568,9 @@ The Garden Almanac is precisely for this, to record information and improve accu
 
 The following screenshots show how I created a plant with the information that tells me when to sow, plant, harvest, and fertilize. In the event, which will always be in the Almanac, I can easily edit the information if and when needed.
 
-![](/documentation/images/user-story-plant.png)
+![](/documentation/images/user-story-plant.png)  
 
-![](/documentation/images/user-story-event.png)
+![](/documentation/images/user-story-event.png)  
 
 ----
 
@@ -569,9 +578,9 @@ The following screenshots show how I created a plant with the information that t
 > I want to engage gardening enthusiasts to build up a user base of registered users.
 -   The logo logged out users see, "Your Garden Almanac", changes to "My Garden Almanac" when users log in. I have personalized the application for registered users. For example, the navbar profile link changes to the "Daniel's Profile", and on the profile page, the page's title is Daniel's Profile. It's about developing a relationship and encouraging a sense of ownership in the site and what it does.
 
-![](/documentation/images/navbar-session-user.png)
+![](/documentation/images/navbar-session-user.png)  
 
-![](/documentation/images/login-user-profile.jpg)
+![](/documentation/images/login-user-profile.jpg)  
 
 **As the owner:** 
 > I want to build a base of registered users to develop a social network of users with a similar interest in gardening.
