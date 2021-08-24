@@ -256,10 +256,16 @@
 
         <div class="footer-copyright">
             <div class="container">
-                <p>Copyright © oodaiden.com</p>
-            </div><span><a href="#footer-modal" title="FAQ"
-                class="faq-icon social-icon modal-trigger" style="font-size: 2em;margin-right: 10px;">FAQ<i class="fas fa-info-circle hide-on-small-only"></i></a></span>
-            <ul class="share-buttons">
+            <ul class="left">
+                <li><span class="social-icon copyright">Copyright © 2021</span></li>
+            </ul>
+                <!-- <span>Copyright ©</span>
+            <span><a href="#footer-modal" title="FAQ"
+                class="faq-icon social-icon modal-trigger" style="font-size: 2em;margin-right: 10px;">FAQ<i class="fas fa-info-circle hide-on-small-only"></i></a></span> -->
+            <ul class="share-buttons right">
+                <!-- <li><span class="social-icon">Copyright ©</span></li> -->
+                <li><a href="#footer-modal" title="FAQ"
+                    class="faq-icon social-icon modal-trigger">FAQ<i class="fas fa-info-circle hide-on-small-only"></i></a></li>
                 <li><a href="https://github.com/daidensacha" target="_blank" title="GitHub"
                         class="social-icon"><i class="fab fa-github fa-2x"></i></a></li>
                 <li><a href="https://www.linkedin.com/in/daiden-sacha-8852b41a6/" target="_blank"
@@ -267,6 +273,7 @@
                 <li><a href="{{ url_for('contact') }}" title="Email"
                     class="social-icon"><i class="fas fa-envelope fa-2x"></i></a></li>
             </ul>
+        </div>
         </div>
     </footer>
 

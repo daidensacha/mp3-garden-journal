@@ -745,10 +745,14 @@ The customer error pages all have links back to the home page.
 
 
 ### Credits
-***Flask App*** 
-Without the Code Institute code along [Task Manager project](https://github.com/Code-Institute-Solutions/TaskManagerAuth) as a reference, I feel this project would have been far more complex. Time and time again, I referred back to examples in the Task Manager project to grasp a concept or find my way through a situation.  
+***Code Institute*** 
+I leant a lot on the Code Institute code along [Task Manager project](https://github.com/Code-Institute-Solutions/TaskManagerAuth) as a reference. Time and time again, I referred back to examples in the Task Manager project to grasp a concept or find my way through a situation.
+Parts of the code were used in this project, like the materializecss select js validation code. Much of the code in my app routes are based on the code from the Task Manager project, and I adapted it to my projects needs.   
 ***Theme inspiration*** 
-I came across some [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes) and used them to develop my theme template. I had to update the markup for the latest version of marterializecss and customize the theme to my own needs. But analyzing these themes helped me to get a grasp of the structure and function of materializecss elements. 
+I came across some [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes) and used them to develop my theme template. I had to update the markup for the latest version of marterializecss and customize the theme to my own needs. But analyzing these themes helped me to get a grasp of the structure and function of materializecss elements.
+***ES6 Scroll to-top button*** 
+The ES6 Scroll-to-top button is from a [Codepen by Josh Mason](https://codepen.io/joshuamasen/pen/OYaYbL)
+  
 
 ## NOTES
 
@@ -764,7 +768,7 @@ I see potential to develop this into a social platform, where users with similar
 
 ## BUGS and ISSUES
 See also [TESTING/Issues and Fixes](/documentation/testing.md/#issues-and-fixes)
-- **MongoDB Schema**
+- **Issue 1. MongoDB Schema - Implemented**
 
 On the almanac page, I display the events and plant information. Initially, I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, to identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when users changed the plant name, and then my code couldn't match the plant with the stored plant name in the garden event collection. I needed a way to identify the plant with the corresponding event. 
 I had some issues then, which took me a while to work out, like comparing the ObjectId string with the ObjectId. I decided to use the plant ObjectId instead, as it's immutable and unique. In my add/ edit_event routes, I used the Material Design select as follows.
@@ -785,7 +789,7 @@ The ObjectId string is then converted back to the ObjectId for sending to MongoD
  ```"event_plant_id": ObjectId(event_plant_id)```
 Once I converted the string format to its ObjectId format, I looped through the plants to find the matching ObjectId and then display the related plant information alongside the garden event.
 
-- **Edit Categories**
+- **Issue 2. Edit Categories - Fixed**
 
 I clicked on the edit category, and the app redirected me to the edit category page. The category _id was showing in the browser URL, but the category name displaying in the input was incorrect and always the same. 
 I created my cursor in the ```app.route``` for categories as follows.
@@ -818,6 +822,6 @@ flash("Create event categories to populate this list.", "info")
 The change has simplified my coding, as I now use the same list name for ```categories``` instead of creating a new list ```user_categories``` and then using that in my template.  
 The bug disappeared, and my code was more straightforward. I repeated these changes in the app.py for plants and events. 
 
- **Issue 3. Collapsible displaying white background**
+ **Issue 3. Collapsible displaying white background - Fixed**
 In my meeting with my tutor, he mentioned that the collapsible header was white when he clicked on it. I had not seen this behavior at all and had tested it on multiple computers, systems, locally and live on Heroku. 
 Yesterday, I saw it, as it appeared when I was working through my testing checklist. I found what I thought was the issue, applied a css style to override the materializecss, and it appeared to work. The issue returned about 30 minutes later, and it appeared that the materializecss style was overriding my fix. I added `background-color: none!important` to my css, and it seems to have fixed it, but I am still wary and observing. Hopefully, it has been fixed.
