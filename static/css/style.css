@@ -820,7 +820,7 @@ li a.dropdown-trigger:focus {
     font-size: 2.4em;
   }
   .copyright {
-    font-size: 1.2em;
+    font-size: 1.8em;
   }
 }
 
@@ -843,9 +843,9 @@ li a.dropdown-trigger:focus {
   .top-link:hover i {
     fill: #000000;
   }
-  .copyright {
+  /* .copyright {
     font-size: 1.8em;
-  }
+  } */
 }
 
 /* Extra Large Screens */
