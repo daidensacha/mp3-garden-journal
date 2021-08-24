@@ -136,11 +136,13 @@
     </div>
 <!-- end slider -->
 
-<section>
+<!-- <section> -->
     <!-- flash messages - includes alert category-->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
+    <section>
         {% for category, message in messages %}
+        
                 <!-- <div class="row flashes">
                         <span id="messageDiv" class="materialert {{category}} center-align icon">{{ message }}</span>
                 </div> -->
@@ -150,9 +152,10 @@
                 </div>
 
         {% endfor %}
+    </section>
     {% endif %}
 {% endwith %}
-</section>
+<!-- </section> -->
 
 <main id="main-block">
     {% block content %}
