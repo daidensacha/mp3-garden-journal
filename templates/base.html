@@ -136,26 +136,26 @@
     </div>
 <!-- end slider -->
 
-<!-- <section> -->
+<div>
     <!-- flash messages - includes alert category-->
     {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <section>
-        {% for category, message in messages %}
-        
-                <!-- <div class="row flashes">
-                        <span id="messageDiv" class="materialert {{category}} center-align icon">{{ message }}</span>
-                </div> -->
-                <div class="materialert {{category}}">
-                    <span>{{ message }}</span>
-                    <button type="button" class="close-alert">×</button>
-                </div>
+        {% if messages %}
+        <!-- <section> -->
+            {% for category, message in messages %}
+            
+                    <!-- <div class="row flashes">
+                            <span id="messageDiv" class="materialert {{category}} center-align icon">{{ message }}</span>
+                    </div> -->
+                    <div class="materialert {{category}}">
+                        <span>{{ message }}</span>
+                        <button type="button" class="close-alert">×</button>
+                    </div>
 
-        {% endfor %}
-    </section>
-    {% endif %}
-{% endwith %}
-<!-- </section> -->
+            {% endfor %}
+        <!-- </section> -->
+        {% endif %}
+    {% endwith %}
+</div>
 
 <main id="main-block">
     {% block content %}

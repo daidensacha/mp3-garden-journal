@@ -89,8 +89,8 @@ input#submit.waves-button-input {
 */
 
 .parallax-container {
-  min-height: 200px;
-  max-height: auto;
+  /* min-height: 200px; */
+  /* max-height: auto; */
   line-height: 0;
   height: auto;
   background-color: rgba(0, 0, 0, 0.4);
@@ -240,7 +240,7 @@ ul.share-buttons {
 }
 
 .keyboard-focused .collapsible-header:focus {
-  background-color: none!important;
+  background-color: #aa8d30!important;
   border: 1px solid #c1ad0f;
 }
 
@@ -363,6 +363,13 @@ li.active .collapsible-header .caret {
 ================================================================================ 
 */
 /* Materialert based on https://github.com/Rinebeck/materialert */
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .materialert {
   position: relative;
   min-width: 150px;
@@ -371,18 +378,20 @@ li.active .collapsible-header .caret {
   font-size: 22px;
   border: 1px solid transparent;
   border-radius: 2px;
+  -webkit-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
   transition: all 0.1s linear;
-  webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .materialert .icons {
