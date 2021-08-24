@@ -347,7 +347,7 @@ The Plants page uses a Material Design Collection to displays a list of plants. 
 - [x] I click delete to confirm, am redirected to the plant's page, and a green flash alert informs me the app deleted the plant. It is not on the list. 
 [x] I open the Almanac page and click on the event still in the list. The event information is showing, but the plant information is no longer there. 
 ![](/documentation/images/delete-plant-2.png)  
-See [Issues and Fixes](#issues-and-fixes) . Issue 1: I resolved this issue by changing the delete_plant function. Test as follows. 
+See [Issues and Fixes](/documentation/testing.md/#issues-and-fixes) . Issue 1: I resolved this issue by changing the delete_plant function. Test as follows. 
 - [x] I select a plant with a related event.
 ![](/documentation/images/delete-plant-3.png)  
 - [x] I click the edit button for the plant, redirecting me to the edit plant page. I click delete, and the modal appears warning me data deletion is irreversible, that plants with related events cannot be deleted, and asks me if I am sure I want to delete the plant. 
@@ -369,7 +369,7 @@ I chose to display the categories in a materializecss collection on the add cate
 - [x] I change the category name and click save, am redirected back to the add category page, and a green flash alert message informs me the app successfully updated the category. The new category name is in the list below the input. 
 
 #### Delete Category
-NOTE: See [Issues and Fixes](#issues-and-fixes) . Issue 2. 
+NOTE: See [Issues and Fixes](/documentation/testing.md/#issues-and-fixes) . Issue 2. 
 - [x] On the add category page, I click edit for a category with a related event. The app redirects me to the edit category page, entering the category in the edit category input. 
 - [x] I click delete, a modal appears with a red flash alert informing me that deleting plant data is irreversible. The app tells me categories with related events cannot be deleted and asks me if I'm sure I want to delete the category.
 - [x] I click cancel and am redirected back to the add category page.

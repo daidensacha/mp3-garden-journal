@@ -460,7 +460,7 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 	 - I tested the app. In the terminal, ```python3 app.py``` then clicked open in the browser. The app was working, and my template was showing.
 
 - **Create login and register page and function**
-**NOTE** The login and register route code is based on the Code Institute Task Manaager project, with minor changes, there wasn't a lot to change to add it to my project as functions and does jsut want I want it to do. See [Credits](#credits) at the end of the README.
+**NOTE** The login and register route code is based on the Code Institute Task Manaager project, with minor changes, there wasn't a lot to change to add it to my project as functions and does jsut want I want it to do. See [Credits](/README.md/#credits) at the end of the README.
 	- ***Create the HTML template*** to extend the base template for login.
 		-	```touch templates/login.html```
 		-	I added start and end blocks using Jinja.
@@ -552,7 +552,7 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 	 - ***Collections:***
 		 - ***add_garden_events***
 			 -  ***Considerations***
-				 1. This app route function needs to access the `garden_events` and `plants` collections to display the event and the related plant data. [See Database Issues and Notes](#database-issues-and-notes) for how I used the plant `ObjectId` This is required to match the plant `ObjectId` with the `event_plant_id` used in the  in the  `garden_events` collection.
+				 1. This app route function needs to access the `garden_events` and `plants` collections to display the event and the related plant data. [See Database Issues and Notes](/README.md/#database-issues-and-notes) for how I used the plant `ObjectId` This is required to match the plant `ObjectId` with the `event_plant_id` used in the  in the  `garden_events` collection.
 				 2. I save the `date_object` in ISODate and month string format in the `garden_events` collection. It is inserted in month format so the user can filter by month name.
 
 					 ```python
@@ -671,7 +671,7 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 	Adding the URL to the add_plant page, for example, would open the add_plants page.- I discovered that users not logged in could access pages that should only be available to session users. I fixed this by nesting the entire function inside an if statement that checks `if user in session:`, the function runs, `else:` it returns a flash message error alert asking the user to log in to view the page. The function redirects the user to the login page. 
  
 #### TESTING DEVICES INFORMATION
-[TESTING/Testing Devices](/testing.md/#testing-devices)
+[TESTING/Testing Devices](/documentation/testing.md/#testing-devices)
 **Personal Testing Devices/ Software/ Browsers**
 
 -   Macbook Pro (15-inch)
