@@ -1,6 +1,10 @@
+
 # TESTING
 ## TESTING PLAN (Pre-development)
 
+[README](/README.md) Documentation for the project
+
+[README/Testing](/README.md/#testing)
 
 
 ### RESEARCH
@@ -17,7 +21,6 @@
 - Research and study up on MongoDB to see how to best design a Schema that will fulfill the needs of the Garden Almanac. 
 
 ### DEVELOPMENT
-
 [README/Development](/README.md/#development)
 
 #### HTML
@@ -36,6 +39,8 @@
 - Initialize Materializecss components using jQuery. For this project, I will, where possible, maintain a preference for using jQuery. 
 
 #### MongoDB
+[README/MongoDB](/README.md/#mongodb)
+
 - Design the schema to serve the needs of the Garden Almanac application. 
 - Create the database, and collections, along with sample data. 
 
@@ -45,7 +50,6 @@
 - Connect the MongoDB database to the Flask application.
 
 ### DEPLOYMENT
-
 [README/Deployment](/README.md/#deployment)
 
 #### Test for production
@@ -95,7 +99,7 @@
 My preferred browser for development is Chrome DevTools. I have a USB-C to dual HDMI hub for my MacBook Pro, with 2 x Dell U2419H monitors, a wireless keyboard, and a mouse.
 
 ### TESTING DEVICES
-
+[README/Testing Devices Info](/README.md/#testing-devices-information)
 #### MacBook Pro 15 inch
 
 ```shell
@@ -158,9 +162,7 @@ This section tests pages and features available only to logged-in users.
 
 3. **Admin Users:** 
 This section tests pages and features only available to admin users
-
--------
-
+---
 ### ALL USERS
 #### Main Navbar
 ![](/documentation/images/navbar-all-users.png)  
@@ -315,7 +317,7 @@ The Almanac page has a Material Design Collapsible that displays garden events a
 #### Plants Page
 The Plants page uses a Material Design Collection to displays a list of plants. Clicking on one of the plants opens a modal to view the plant information. 
 ![](/documentation/images/collection-plants.png)   
-- [x] I click on the view for a plant, a modal opens displaying the plant information.  
+- [x] I click on the view for a plant, a modal opens displaying the plant information.
 ![](/documentation/images/modal-plants.png)  
 -[x] I click cancel, the modal closes, and I am back at the plant's page. 
 
@@ -396,20 +398,25 @@ Admin user has one Navbar link exclusive for admin users. "Messages".
 #### Delete Messages
 - [x] I click the delete icon on the message, a modal appears with a red flash alert informing me deleting the message is irreversible and asks me if I am sure I want to delete the message. 
 - [x] I click delete to confirm, the modal closes, I am on the messages page, a green flash alert informs me the app successfully deleted the message, and the message is no longer in the email inbox. 
-
+#### 404 Errors
+##### ALL USERS
+- [x] I enter URL to a page that doesn't exist. A custom 404 page not found page appears, with a link to the home page. A red flash alert also informs me, "Error, the page was not found".
+##### USERS NOT LOGGED IN
+- [x] I enter a URL to a page only available to logged-in users, e.g., http://mp3-garden-journal.herokuapp.com/add_plant. The app redirects me to the "Log in" page, and a red flash alert informs me to log in to view the page.
 ### Issues and Fixes
+See also [README/BUGS and ISSUES](/README.md/#bugs-and-issues)
+
 **Issue 1: Delete plant with a related event.**
 I had this issue but had not thought about it until testing. I had to think it out to discern what is expected behavior in this case. 
 There is one select in the add event form that the app populates with the plant names. It is a required field. The user has to add the plant for an event first; otherwise, they can't add the garden event. However, once the user created the event, it was still possible to delete the garden event. On the Almanac events page in the collapsible, the plant section is left empty, and there is an event without a related plant. 
-Having used the plant OjectId when creating the event, I decided to search in the garden events for the ObjectId before deleting the plant and stop the deletion if there the ObjectId existed in the garden_events collection. 
+Having used the plant OjectId when creating the event, I decided to search the garden events for the ObjectId before deleting the plant. The app stops the deletion if the ObjectId exists in the garden_events collection. 
 When the user now tries to delete a plant with related events, the delete_plant function redirects the user to the plant's page, and a red flash alert informs the user that the app cant delete plants with related events. They first need to delete related event/s, and then the app can delete the plant. This fix maintains the integrity of associated data.
-
 **Issue 2: Delete category with a related event.**
 I had the same issue with deleting plants. See Issue 1 above. I needed to prevent users from deleting categories when there is a related event using the category the user wants to delete. I changed the code in the delete_category function to check garden events and prevent the user from deleting the category if there is a related event. The user has two options, update the category in the event to a different one or delete the event/s. Then the app can delete the category. 
   
 
 ## USER STORIES REVIEW (Development-Deployment)
-[README/User Stories](/README.md/#strategy)
+[Readme/User Stories](/README.md/#user-stories)
 
 1. **As a hobby gardener:**
 
@@ -435,8 +442,7 @@ I had the same issue with deleting plants. See Issue 1 above. I needed to preven
 	- I want users to register and log in to access the journal with garden reminders and tasks.
 
 
-### NOTES - To Check reminders
-2. Check 404 errors. 
+
 
 1. Issue: Collapsible displaying white background when I click the header of an item. Not showing locally. Fix default materializecss CSS style by adding `background-color: none` in style.css.
 2. Issue: Add border-top to the collapsible body, so there is a border under the collapsible header when the item opens. 

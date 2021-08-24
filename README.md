@@ -9,13 +9,13 @@
 
 View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 
-[Testing.md](/documentation/testing.md) outlines my testing strategy, development, deployment and post deployment.
+[TESTING/](/documentation/TESTING.md) outlines my testing strategy, development, deployment and post deployment.
 
 ## UX DESIGN
 
 ### 1. Strategy
-**User Stories:**
-
+#### User Stories:
+[TESTING/User Stories Review](/documentation/testing.md#user-stories-review-development-deployment)
 
 1. **As a hobby gardener:**
 
@@ -42,69 +42,68 @@ View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 
 ### 2. Scope
 
-**Required Features**
-- **All Users:**
-	- **Home page** The landing page will be light and fresh, with images of nature and plants.
-		- **Search Filter** A search input above the collapsible on the almanac page searches the event, catefores, months, plants. 
-		- **Image slider** will be the main eye-catching feature of the landing page, visible as soon as users arrive at the landing page. 
-		- **Material Box** Material Design implementation of the Lightbox plugin to display images. Used to display images of nature, to inspire and connect with users. 
-		- **Navbar**
-			- **Contact Form Link** will link users to the contact form.
-			- **Log in link** will open the login form for users to log in. 
-			- **Register link** will open the register form for users to register. 
-		- **Footer** Will hold the social links and contact icon link. 
-			- **Social Icons** in the footer so users can open my GitHub and LinkedIn profiles. 
-	- **Contact page** Will display the contact form. 
-		- **Contact form** for users to send messages to site admin.
-	- **Login Page** with the login form. 
-		- **Login Form** for users to log in. 
-	- **Register Page** with the register form.
-		- **Register Form** for users to register.
+#### Required Features
+##### ALL USERS: 
+- **Home page** The landing page will be light and fresh, with images of nature and plants.
+	- **Search Filter** A search input above the collapsible on the almanac page searches the event, catefores, months, plants. 
+	- **Image slider** will be the main eye-catching feature of the landing page, visible as soon as users arrive at the landing page. 
+	- **Material Box** Material Design implementation of the Lightbox plugin to display images. Used to display images of nature, to inspire and connect with users. 
+	- **Navbar**
+		- **Contact Form Link** will link users to the contact form.
+		- **Log in link** will open the login form for users to log in. 
+		- **Register link** will open the register form for users to register. 
+	- **Footer** Will hold the social links and contact icon link. 
+		- **Social Icons** in the footer so users can open my GitHub and LinkedIn profiles. 
+- **Contact page** Will display the contact form. 
+	- **Contact form** for users to send messages to site admin.
+- **Login Page** with the login form. 
+	- **Login Form** for users to log in. 
+- **Register Page** with the register form.
+	- **Register Form** for users to register.
 
+##### REGISTERED USERS:
+- **Navbar** - The Navbar for registered users who log in will display additional links to the journal page, plants page, add garden event page, add plants page, and add categories page. 
+- **Journal page** - To display the session user's garden events in the Material Design Collapsible.
+	-	**Materializecss Collapsible** - For viewing Garden Events. The header will display the event date in month/ day format. It will show the event name
+	 - **Edit button** - So user scan open the edit garden event and edit plant forms.
+- **Plants page** - To display the session user's plants in the Material Design styles collection (list)
+- **Profile page** - To display the session user's profile in the disabled form inputs.
+- **Materializecss Collection** - A Material Design style list for displaying the plants. 
+	 - **Edit button**, so user scan open the edit garden event and edit plant forms.
 
-- **Registered Users:**
-	- **Navbar** - The Navbar for registered users who log in will display additional links to the journal page, plants page, add garden event page, add plants page, and add categories page. 
-	- **Journal page** - To display the session user's garden events in the Material Design Collapsible.
-		-	**Materializecss Collapsible** - For viewing Garden Events. The header will display the event date in month/ day format. It will show the event name
-		 - **Edit button** - So user scan open the edit garden event and edit plant forms.
-	- **Plants page** - To display the session user's plants in the Material Design styles collection (list)
-	- **Profile page** - To display the session user's profile in the disabled form inputs.
-	- **Materializecss Collection** - A Material Design style list for displaying the plants. 
-		 - **Edit button**, so user scan open the edit garden event and edit plant forms.
+- **Forms**
+	- **Create plant** -  So users can create and add their plants
+	- **Create Garden Event** - So users can add garden events
+	- **Create Category** - So users can create event categories.
+	- **Update plant** - So users can edit and update plant information.
+	- **Update Garden Event** - So users can edit and update garden event information. 
+	- **Update Category** - So users can edit and update garden event categories.  
+	- **User Profile Form** (disabled for viewing only) - To display the user profile. 
+	- **Update Profile Form** - So users can update select profile information.
 
-	- **Forms**
-		- **Create plant** -  So users can create and add their plants
-		- **Create Garden Event** - So users can add garden events
-		- **Create Category** - So users can create event categories.
-		- **Update plant** - So users can edit and update plant information.
-		- **Update Garden Event** - So users can edit and update garden event information. 
-		- **Update Category** - So users can edit and update garden event categories.  
-		- **User Profile Form** (disabled for viewing only) - To display the user profile. 
-		- **Update Profile Form** - So users can update select profile information.
+- **Modals**
+	- **View Plant Modal** - Will open when the user clicks on the plant in the list. I will display the plant information, and have an edit button. 
+		- **Edit button** - When the user clicks the button, they will be redirected to the edit plant page, displaying the plant information in the update plant form.
+	- **Delete Plant Modal** - The modal will open when the user has clicked to delete a plant. It will display a danger alert, informing the user that the action is irreversible. 
+		- **Delete Button** By clicking this button, the user confirms they want to delete the plant data. When clicked, the plant data will be deleted, and the user will be redirected to the plants page. 
+		- **Cancel Button** When the user clicks this button to cancel their intention to delete the plant, the modal will close, and the user will be redirected to the plant's page. 
+	- **Delete Garden Event Modal** - The modal will open when the user has clicked to delete a garden event. The modal will display a danger alert, informing the user that deleting data is irreversible.  
+		- **Delete Button** By clicking this button, the user confirms they want to delete the garden event data. When clicked, the event data will be deleted, and the user will be redirected to the journal page. 
+		- **Cancel Button** When the user clicks this button to cancel their intention to delete the garden event, the modal will close, and the user will be redirected to the journal page. 
+	- **Delete Category Modal** - The modal will open when the user has clicked to delete an event category. The modal will display a danger alert, informing the user that deleting data is irreversible.  
+		- **Delete Button** By clicking this button, the user confirms they want to delete the event category. When clicked, the category will be deleted, and the user will be redirected to the add category page. 
+		- **Cancel Button** When the user clicks this button to cancel their intention to delete the event category, the modal will close, and the user will be redirected to the add category page. 
 
-	- **Modals**
-		- **View Plant Modal** - Will open when the user clicks on the plant in the list. I will display the plant information, and have an edit button. 
-			- **Edit button** - When the user clicks the button, they will be redirected to the edit plant page, displaying the plant information in the update plant form.
-		- **Delete Plant Modal** - The modal will open when the user has clicked to delete a plant. It will display a danger alert, informing the user that the action is irreversible. 
-			- **Delete Button** By clicking this button, the user confirms they want to delete the plant data. When clicked, the plant data will be deleted, and the user will be redirected to the plants page. 
-			- **Cancel Button** When the user clicks this button to cancel their intention to delete the plant, the modal will close, and the user will be redirected to the plant's page. 
-		- **Delete Garden Event Modal** - The modal will open when the user has clicked to delete a garden event. The modal will display a danger alert, informing the user that deleting data is irreversible.  
-			- **Delete Button** By clicking this button, the user confirms they want to delete the garden event data. When clicked, the event data will be deleted, and the user will be redirected to the journal page. 
-			- **Cancel Button** When the user clicks this button to cancel their intention to delete the garden event, the modal will close, and the user will be redirected to the journal page. 
-		- **Delete Category Modal** - The modal will open when the user has clicked to delete an event category. The modal will display a danger alert, informing the user that deleting data is irreversible.  
-			- **Delete Button** By clicking this button, the user confirms they want to delete the event category. When clicked, the category will be deleted, and the user will be redirected to the add category page. 
-			- **Cancel Button** When the user clicks this button to cancel their intention to delete the event category, the modal will close, and the user will be redirected to the add category page. 
+##### ADMIN USERS:	
+- **Navbar** The Navbar for admin will display an additional link to the messages page.  
+	- **Messages page** to display the session user messages.
+		- **Materialize Collapsible** for viewing messages, The header of the collapsible with have a delete button, that will open the confirm delete modal when clicked.
+			- **Delete button** - So admin can delete the user messages.
+		- **Delete Message Modal** - The modal will open when the user has clicked to delete a message. The modal will display a danger alert, informing the user that deleting the message is irreversible.  
+			- **Delete button** - So admin can confirm deletion of the user message.
+			- **Send Email button** - To reply to the user in the default email app of the computer. 
 
-- **Admin Users**
-	- **Navbar** The Navbar for admin will display an additional link to the messages page.  
-		- **Messages page** to display the session user messages.
-			- **Materialize Collapsible** for viewing messages, The header of the collapsible with have a delete button, that will open the confirm delete modal when clicked.
-				- **Delete button** - So admin can delete the user messages.
-			- **Delete Message Modal** - The modal will open when the user has clicked to delete a message. The modal will display a danger alert, informing the user that deleting the message is irreversible.  
-				- **Delete button** - So admin can confirm deletion of the user message.
-				- **Send Email button** - To reply to the user in the default email app of the computer. 
-
-**Functional Requirements**
+#### Functional Requirements
 - **Image slider** It will have 4 images, and will automatically scroll at intervals of around 10 seconds, enough time for the image to be viewed by the user. The transition of the images, each representing a season, relates to the cyclical nature of existence and events. The images will give the impression of looking through a window.
 - **Material Box** Images in the Lightbox plugin will expand when clicked, and revert to their initial display when the screen is clicked again. The images are to illustrate the beauty of nature. 
 - **Navbar** The Navbar for non session users will display links to the login page, register page, and contact page.
@@ -116,16 +115,20 @@ View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 -	**Materializecss Collapsible** The collapsible is closed by default, and the user can click on the header to open the accordion. The header displays the "Month/ Day", event category, and event name. When opened, the event and plant information is displayed for the event. An edit button for the plant, and one for the event, link to the respective edit pages. 
 - **Search Filter** The use can fliter events by events name, category, month to easliy find required events.  
 
-**Content Requirements**
+#### Content Requirements
 The garden almanac revolves arount creating a record of recurring events in the garden. The goal is to develop and improve knowledge based on historical experience recorded in the events, plants, and categories of the application. The data is broght together to display a yearly event calendar so the user can manage and get teh most our of teh garden. SOme fields in the forms for entering the data is required so the events and plants can be displayed.Other fields are optional, so the user can enter this content if it suits them. 
 
 ### 3. Structure
-**Interaction Design**
-**ALL USERS:** The site is one page with a contact form in the bottom of the page, with a link to it in the Navbar. 
-Unregistered unsers are limited to viewing the homepage, withh an option to register via the link in the Navbar. They can also send a message via the contact form. 
+#### Interaction Design
+##### ALL USERS: 
+The site is one page with a contact form in the bottom of the page, with a link to it in the Navbar. 
+
+Unregistered unsers are limited to viewing the homepage, with an option to register via the link in the Navbar. They can also send a message via the contact form. 
+
 - ***Contact Page:*** Users will be able to contact me to give feeedback, or to ask for support, or feature requests. Contact easliy accessibel from main Navbar, or a link in the footer. 
 
-**REGISTERED USERS:** Registered users can login, and this enables additional links in the Navbar, to a Journal page, and Plants page. 
+##### REGISTERED USERS:
+Registered users can login, and this enables additional links in the Navbar, to a Journal page, and Plants page. 
 - ***Journal page:*** 
 	- A search filter will be positioned above the accordion on the page, so the user can enter month, plant name, event category to easily filter the events. This will improve UX as the list of events grows. 
 	- An accordion will display the events, and all list items in the accordion will be closed by default, and ordered by date. Being an almanac, items will be ordered by month and day, to reflect the cyclical nature of events. User can click on an event and the accordion item will open, displaying the event and related plant, with edit buttons to be able to directly open and edit either item. 
@@ -138,7 +141,7 @@ Unregistered unsers are limited to viewing the homepage, withh an option to regi
 - ***Profile Page:*** 
 	- A disabled form on the page will display the registered users information. There will be an edit button that will open an edit profile page, with some fields editable so the user can udpate their information.*
 
-**Information Architecture** 
+#### Information Architecture
  There will be 3 pages for the site, with only the Homepage being accessable to users that are not registered or logged in. 
  
  **CRUD Update forms** 
@@ -147,26 +150,27 @@ Unregistered unsers are limited to viewing the homepage, withh an option to regi
 **CRUD Delete structure** 
 - ***Forms and delete process*** The user can click the delete button on the update item page, which will open a modal with a danger alert, informing the user that deleting the data is irreversable. They can choose from the delete, or cancel buttons, to delete, or cancel and return to the related items group page. 
    
-- **Visible to all users**
-   - ***Homepage***
+**Visible to all users**
+  - ***Homepage***
 	   - Home page navigation will link to the contact form at the bottom of the page, also the login/ registration form. 
 	   - There will be a slider with images relating to the four seasons. These images are a feature, and I kept them in the base template so they are viewable on all pages. 
 	   - A collection of images to inspire interest in gardening. 
-	   
-- **Additional pages visable to registered and logged in users** 
-   - ***Journal page***
+   
+**Visible to registered and logged in users** 
+  - ***Journal page***
 	   - Will display the the events for the users garden.
 	   - Buttons to open a form to add, update or delete an event will open a modal window to perform the action. 
 	   - Event name along with the plant name will be links that will open the corresponding entry to be viewed, updated or deleted.  
-   - ***Plants Page***
+  - ***Plants Page***
 	   - Will display a list of the  plants entered by the user.
 	   - The plant name in the list will be a link that opens the plant profile in a modal window to be viewed, updated, or deleted.
-	   
+   
 ### MongoDB  
+[TESTING/MongoDB](/documentation/testing.md/#mongodb)
 
-I decided to create separate collections for users, event categories, and plants. the fourth collection will be the garden events, which will contain the information about the event. Within the garden event entry, I will record the plant id, the user id, and categoy, to make it easy to filter the data base for the information. During development, I had the idea to create a message feature for the admin, and display sent messages in the back end. To this end, I created one more collection for messages. 
+I decided to create separate collections for users, event categories, and plants. The fourth collection will be the garden events, which will contain information about the event. Within the garden event entry, I will record the plant id, the user id, and the category to make it easy to filter the database for the information. During development, I created a message feature for the admin and displayed messages in the admin account. To this end, I made one more MongoDB collection for messages. 
 
-**MongoDB Schema**
+#### MongoDB Schema Design
 
 ![MongoDB Schema](documentation/images/almanac_schema-a2.jpg)  
 
@@ -189,10 +193,9 @@ For the sake of the learning experience, and in step with the learning objective
 6. ***Dates are stored in MongoDB in ISODate format.***
 I'll be honest, and say this was a dive into learning something very new for me. The Material Design datepicker enables the date to be chosen, its responsive, and works well. I serves the date in string format however, which I discovered when posting form date to the database collections. I chose to convert the date to ISODate format to store in the database, and its pretty straight forward once you get used to it. 
 
-
 I decided on the following schema, using collections to group separate groups of data, users, plants, categories (event), garden_events, and messages. 
 
-
+#### MongoDB Collections
 
 ***Users***
 The whole site revoles around the users, and garden events.  The ```username``` is what links plants, events and categores. When teh user creates a new item for plants, events, or categories, the  `user_name` is inserted as a reference key `created_by` . I am able to match the session user with the ```username```  key in the collections to retrieve the users data from the database. 
@@ -277,16 +280,16 @@ In the jQuery function for the datepicker, my chosen format to display the date 
 
 ### 4. Skeleton
 
-**Wireframing:**
+#### Wireframing:
 The wireframes were compelted in Adobe XD, and I kept them simple, to display the layout of the required complonents. I have used Materializecss as the framework, and based my work around a simple free template I found at [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes). 
 
-#### Home page wireframes  
+**Home page wireframes**    
 ![Home Page](documentation/images/wireframes/wireframe-homepage.jpg)
 
-#### Journal page wireframes  
+**Journal page wireframes**    
 ![Journal Page](documentation/images/wireframes/wireframe-journal.jpg)
 
-#### Plants page wireframes  
+**Plants page wireframes**    
 ![Plants Page](documentation/images/wireframes/wireframe-plants.jpg)
 
 ### 5. Surface
@@ -347,29 +350,31 @@ My source of choice for stock images.
 18. [Webmaker App](https://webmaker.app/app/) It is a free application similar to codepen, used to create and save the work locally. I use it to implement and experiment with using components of different frameowrks that I am using, so I am familiar with how to use them when I come to implementing them in my work. 
 
 ## TESTING
-
-See: [Testing.md](/documentation/testing.md)  
-
+[TESTING/Testing Checklist](/documentation/testing.md#testing-checklist-development-deployment)
 ### Research
+
+[TESTING/Research](/documentation/testing.md/#research)
+
 ---
 Having decided to use Materializecss, I needed to become familiar with the framework, its syntax and the available components. I needed to see what is available to meet my needs so I can implement my design requirements how I need them to be.
 My testing at experimentation is done locally using [Webmaker App](https://webmaker.app/app/), as its free, works really well, and I am able to create codepen examples of what I want to implement with select components. I can save these to an HTML codument to share with clients to view the examples. 
 - ***Grid*** Its pretty straight forward and similar in many ways to bootstrap. Some class names are similar, i.e. ```.row``` and ```.col```. The grid class syntax is also pretty simple to grasp. 
 - ***Collapsible*** The Material Design name for what is better known as an accordion. I needed to reasearch how to implement the accordion, and decide teh best way to display the garden event information. 
 - ***Collection*** Material Design name for a list. I wanted to use it for displaying the list of plants, and also the list of categories. 
-- ***Tabs	(confict...)*** It was my initial plant to try to display the events by month in tabs, but Materializecss uses teh image carousel css in the tabs, and this created a confict with the image slider. The tabs automatically scrolled. Furthermore there were othe issues, nothing that couldn't be sorted in time, but my time was limited so I needed to go an easier route. I didn't use tabs in my project, and overall I'm happy I went the "Collapsilble" route.
+- ***Tabs	(confict...)*** It was my initial plant to try to display the events by month in tabs, but Materializecss uses teh image carousel css in the tabs, and this created a confict with the image slider. The tabs automatically scrolled. Furthermore, with limited time to sort the issues, I decided to go an easier route. I didn't use tabs in my project, and overall I'm happy I went the "Collapsilble" route.
 - ***Image slider*** I wanted to have this as teh main feature when the user lands on the homepage. One image relating to each season, Spring, Summer, Autumn, Winter. I found my images on Deposit photos, and created the slider images from the stock images.
 - ***Forms*** I needed to look at the form elements, see the implementation proceedure, to know in advance what I was going to implement before I came to it. 
 - ***Modal*** The plan was to use modals, to display plant information, and also for the contact form. I changed the form from HTML to Flask-WTForms in the end, to stay with Python so did away with the form modal. I used modals for the delete confirmation messages.
 
 - ***Material Design Template*** I wanted to use Material Desing framework, so I spent a little time looking at what was online with regard to templates. I came across [Materialize Themes](http://swarnakishore.github.io/MaterializeThemes/#themes), and really found inspiration in what I saw. The theme I chose was using an older version of materializecss, so I needed to go through it from top to bottom as there were some things that needed to be updated to work with the latest release. 
-I customized it how I wanted it, kept some things, and had a starting point for my project. I created the home page locally, customizing the theme and updating it, changing it to suit my needs. I added the image slider, created an HTML form in the bottom sheet modal, and added the menu as I would want.
+I customized it how I wanted it, kept some things, and started my project. I created the home page locally, customizing the theme and updating it, changing it to suit my needs. I added the image slider, created an HTML form in the bottom sheet modal, and added the menu as I would want.
 - ***Stock images*** [Deposit Photos](https://depositphotos.com/?gclsrc=aw.ds&&utm_source=google&utm_medium=cpc&utm_campaign=DP_EU_EN_Brand_Search&utm_term=depositphotos&gclid=CjwKCAjwuvmHBhAxEiwAWAYj-EVeHDBPdjs594mAT_HDLeFGM_g2IVcGn78NSArH7vXIYqfoO1BuhBoCv_kQAvD_BwE), my first stop for stock images when I need them. I found the images I needed for the image slider, and also for the parallax. 
 
 - ***Mongo DB Schema design*** With zero experience designing or working with building any database, apart from the Code Institure code along project, I was totally overwhelmed. I read so much information, watched so many youtube videos, I had all the info but it was totally abstract without a reference point of experience to understand it in real terms. I heard it often, that the data base design pretty much depended on the needs of the applications, ... got it... but how to design it? I spent the first week reasearching just this, and in the end, decided to just jump in and learn. For the most part, the finished product is very close to what I planned, apart from a few changes I made to impove things, (to meet the needs of the application). 
 
 ### Development
----
+[TESTING/Development](/documentation/testing.md/#development)
+
 
 #### Create Mongo Data Base
 1. Navigate to mongodb.com, register and create an account. 
@@ -455,6 +460,7 @@ I customized it how I wanted it, kept some things, and had a starting point for 
 	 - I tested the app. In the terminal, ```python3 app.py``` then clicked open in the browser. The app was working, and my template was showing.
 
 - **Create login and register page and function**
+**NOTE** The login and register route code is based on the Code Institute Task Manaager project, with minor changes, there wasn't a lot to change to add it to my project as functions and does jsut want I want it to do. See [Credits](#credits) at the end of the README.
 	- ***Create the HTML template*** to extend the base template for login.
 		-	```touch templates/login.html```
 		-	I added start and end blocks using Jinja.
@@ -575,8 +581,6 @@ I customized it how I wanted it, kept some things, and had a starting point for 
 			 - I enter the app route in the form and the Navbar link.
 			 - I enter a new category, enter create. The function uploads the new category and the session `user_name` to identify the field with the session_user.
 
-
-
  - **Add Update Functionality**		
 	 - ***Create HTML template files***
 	 	```bash
@@ -665,10 +669,9 @@ I customized it how I wanted it, kept some things, and had a starting point for 
 		- If false, the function gets a list of all items for the session user to display in the user accounts pages 
 		- If the list of items for the session user is empty, as it is for a new user, the function displays an alert informing the user to add data to be displayed in the pages. 
 	Adding the URL to the add_plant page, for example, would open the add_plants page.- I discovered that users not logged in could access pages that should only be available to session users. I fixed this by nesting the entire function inside an if statement that checks `if user in session:`, the function runs, `else:` it returns a flash message error alert asking the user to log in to view the page. The function redirects the user to the login page. 
-	
-		 
-
-#### TESTING DEVICES INFOMATION
+ 
+#### TESTING DEVICES INFORMATION
+[TESTING/Testing Devices](/testing.md/#testing-devices)
 **Personal Testing Devices/ Software/ Browsers**
 
 -   Macbook Pro (15-inch)
@@ -714,7 +717,7 @@ I encountered a 404 error when testing what happens when non-session users enter
 The customer error pages all have links back to the home page. 
 
 ### Deployment
-
+[TESTING/Deployment](/documentation/testing.md/#deployment)
 **Deploy to Heroku**
 1. Setup pages required by Heroku to run the app.
 	- In the console  I run `pip3 freeze --local > requirements.txt` . It creates the file `requirements.txt` and lists all the dependencies needed to run the application. 
@@ -759,6 +762,7 @@ With limited time to complete my project, I have had to exclude developing the a
 I see potential to develop this into a social platform, where users with similar interests can connect and share their events, plants, and information. It would be invaluable as an almanac, as it depends on experience. The broader the user base of knowledge being input and contributed, the more accurate and helpful the information. 
 
 ## BUGS and ISSUES
+See also [TESTING/Issues and Fixes](/documentation/testing.md/#issues-and-fixes)
 - **MongoDB Schema**
 
 On the almanac page, I display the events and plant information. Initially, I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, to identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when users changed the plant name, and then my code couldn't match the plant with the stored plant name in the garden event collection. I needed a way to identify the plant with the corresponding event. 
