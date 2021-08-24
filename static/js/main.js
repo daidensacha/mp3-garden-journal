@@ -1,4 +1,3 @@
-// (function($){
 $(function () {
   $(".dropdown-trigger").dropdown({
     hover: true,
@@ -24,13 +23,16 @@ $(function () {
     }
   });
   $('.materialboxed').materialbox();
-  $('ul.tabs').tabs({
-    // swipeable : true,
-    // responsiveThreshold : 1920
-  });
+
   $('.modal').modal();
   $('select').formSelect();
   $('input.count-text, textarea.materialize-textarea').characterCounter();
+
+  // Materialert customer alert for materialize css
+  $(".materialert > .close-alert").click(function () {
+    $(this).parent().hide('fade-out');
+  });
+
 // Materializecss select validation code from code institute walk through project. 
 validateMaterializeSelect();
 function validateMaterializeSelect() {
@@ -60,75 +62,44 @@ function validateMaterializeSelect() {
     });
 }
 }); // end of document ready
-//   })(jQuery); // end of jQuery name space
 
-
-// Tabs fix for height issue as it is stykled by carousel css.
-$(function () {
-  resizeTab();
-  $(window).resize(function () {
-    resizeTab();
-  });
-});
-
-function resizeTab() {
-  var maxHeight = 0;
-  $('.carousel-item').each(function () {
-    if ($(this).height() > maxHeight) maxHeight = $(this).height();
-  });
-  $(".tabs-content").css('height', maxHeight + 'px');
-}
-
-//   $('.head-link').click(function(e) {
-//     e.preventDefault();
-
-//     var goto = $(this).attr('href');
-
-//     $('html, body').animate({
-//         scrollTop: $(goto).offset().top
-//     }, 800);
+// $(".materialert > .close-alert").click(function () {
+//   $(this).parent().hide('fade-out');
 // });
 
-// $('.head-link').on('click', function (event) {
-//     if (this.href !== '') {
-//       event.preventDefault();
+/*
+Created by Josh Mason https://codepen.io/joshuamasen/pen/OYaYbL
+*/
 
-//       const hash = this.href;
+const scrollToTopButton = document.getElementById('js-top');
 
-//       $('html, body').animate({
-//         scrollTop: $(hash).offset().top - 100
-//       },
-//         800
-//       );
-//     }
-//   });
+const scrollFunc = () => {
 
-$(document).ready(function () {
-  // Add smooth scrolling to all links
-  $(".head-link").on('click', function (event) {
+  let y = window.scrollY;
 
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
+  if (y > 0) {
+    scrollToTopButton.className = "top-link show";
+  } else {
+    scrollToTopButton.className = "top-link hide";
+  }
+};
 
-      // Store hash
-      var hash = this.hash;
+window.addEventListener("scroll", scrollFunc);
 
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function () {
+const scrollToTop = () => {
 
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-});
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
+  
+  if (c > 0) {
+    window.requestAnimationFrame(scrollToTop);
 
-$(".materialert > .close-alert").click(function () {
-  $(this).parent().hide('fade-out');
-});
+    window.scrollTo(0, c - c / 10);
+  }
+};
+
+scrollToTopButton.onclick = function(e) {
+  e.preventDefault();
+  scrollToTop();
+}
+
 
