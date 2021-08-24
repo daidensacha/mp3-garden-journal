@@ -152,6 +152,17 @@ nav li a {
   transition: background .3s ease-in-out;
 }
 
+.table-of-contents a {
+  display: inline-block;
+  font-weight: 300;
+  color: #757575;
+  padding-left: 16px;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  letter-spacing: .4px;
+  display: inline-block;
+}
+
 /***************************** Social Icon styling ****************************/
 
 .icon-block {
