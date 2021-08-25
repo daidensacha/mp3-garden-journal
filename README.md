@@ -753,11 +753,13 @@ The customer error pages all have links back to the home page.
 
 ### Credits
 ***Code Institute*** 
-I leant a lot on the Code Institute code along [Task Manager project](https://github.com/Code-Institute-Solutions/TaskManagerAuth) as a reference. Time and time again, I referred back to examples in the Task Manager project to grasp a concept or find my way through a situation.
-Parts of the code were used in this project, like the materializecss select js validation code. Much of the code in my app routes are based on the code from the Task Manager project, and I adapted it to my projects needs.   
+I learned a lot from the Code Institute code along [Task Manager project](https://github.com/Code-Institute-Solutions/TaskManagerAuth) as a reference. Time and time again, I referred back to examples in the Task Manager project to grasp a concept or find my way through a situation.
+I based much of the code in my app routes on the code from the Task Manager project, and I adapted it to my project's needs. I used parts of the code in this project, like the ***materializecss select js validation code***. I changed what I needed to change, and some things like the login and register forms are not changed much at all as they function perfectly and suit the intended need. It was quite a jump from the front end into the backend, and while I was feeling overwhelmed, it would have been much harder without the Task Manager project.
+***Materializecss***
+I used the [materializecss](https://materializecss.com/) framework for the project. The documentation is straightforward, with many examples. I copied and adapted snippets in their documentation to use their components in the application. 
 ***Theme inspiration*** 
-I came across some [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes) and used them to develop my theme template. I had to update the markup for the latest version of marterializecss and customize the theme to my own needs. But analyzing these themes helped me to get a grasp of the structure and function of materializecss elements.
-***ES6 Scroll to-top button*** 
+I came across some [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes) and used them to develop my theme template. I had to update the markup for the latest version of marterializecss and customize the theme to my own needs. But analyzing these themes helped me to get a grasp of the structure and function of materializecss elements. 
+***To-top button*** 
 The ES6 Scroll-to-top button is from a [Codepen by Josh Mason](https://codepen.io/joshuamasen/pen/OYaYbL)
   
 
@@ -780,6 +782,7 @@ I see potential to develop this into a social platform, where users with similar
 
 ## BUGS and ISSUES
 See also [TESTING/Issues and Fixes](/documentation/testing.md/#issues-and-fixes)
+See also [README/Database Issues and Notes](/README.md/#database-issues-and-notes)
 
 **Issue 1. MongoDB Schema - Implemented**
 On the almanac page, I display the events and plant information. Initially, I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, to identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when users changed the plant name, and then my code couldn't match the plant with the stored plant name in the garden event collection. I needed a way to identify the plant with the corresponding event. 

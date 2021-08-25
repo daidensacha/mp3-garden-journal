@@ -172,6 +172,7 @@ nav a.button-collapse {
 
 .share-buttons {
   list-style: none;
+  line-height:21px;
 }
 
 .share-buttons li {
@@ -231,6 +232,10 @@ nav li a {
 
 .faq-icon {
   font-size: 1.8em;
+  color: #ffab91;
+  margin-right: 5px;
+  margin-left:10px;
+  text-shadow: 1px 2px 5px rgba(.76, .74, .74, .64);
 }
 
 .info-icon-med-up {
@@ -729,6 +734,10 @@ li a.dropdown-trigger:focus {
     top: 0;
   }
 
+  h3 {
+    text-align: center;
+  }
+
   /* fix for logo width issue */
   nav .brand-logo {
     left: calc(50% - 20px);
@@ -761,12 +770,15 @@ li a.dropdown-trigger:focus {
     font-size: 10px;
     margin-right: 2px;
   }
+  .social-icon i {
+    font-size:1.8em!important;
+  }
   .faq-icon {
     font-size: 1.2em;
   }
-  .copyright {
+  /* .copyright {
     font-size: 1.2em;
-  }
+  } */
 
   div.footer-copyright .container {
     width: auto;
@@ -805,6 +817,13 @@ li a.dropdown-trigger:focus {
   }
   .top-link:hover i {
     fill: #000000;
+  }
+  .collapsible-body {
+    padding: 0;
+  }
+  .container {
+    padding: 15px 0;
+    width: 100%;
   }
 }
 
