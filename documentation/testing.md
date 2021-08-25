@@ -522,7 +522,7 @@ I anticipate that the list of events could become long and difficult to look thr
 
 > I'm interested in recording the time of year when plants flower.
 
-- The user can create a category for flowering, add the plant, and then create an event for the plant that records the flowering event. In subsequent years, the user will have that event as a reference to look and see when the plant flowers. They can also keep specific notes in the plant and or the event document.
+- The user can create a category for flowering, add the plant, and then create an event for the plant that records the flowering event. In subsequent years, the user will have that event as a reference to look and see when the plant flowers. The user can also keep specific notes in the plant and or the event document.
 
 **As a hobby gardener:**
 
