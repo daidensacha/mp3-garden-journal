@@ -31,11 +31,11 @@ div.faq-info p {
 ================================================================================
 */
 /* Created by Josh Mason https://codepen.io/joshuamasen/pen/OYaYbL */
-
+/* 
 .top-link {
   transition: all 0.25s ease-in-out;
   position: fixed;
-  bottom: 45px;
+  bottom: 60px;
   right: 0;
   display: inline-flex;
   cursor: pointer;
@@ -65,7 +65,7 @@ div.faq-info p {
 }
 .top-link:hover i {
   fill: #000000;
-}
+} */
 
 /*
 ================================================================================
@@ -790,25 +790,36 @@ li a.dropdown-trigger:focus {
   .faq-icon {
     font-size: 1.2em;
   }
-  /* .copyright {
-    font-size: 1.2em;
-  } */
   .copyright {
     font-size: 1em;
-    /* position: relative;
-    bottom: -14px; */
+  }
+  .page-footer .footer-copyright {
+    padding: 0;
   }
 
-  div.footer-copyright .container {
+  .footer-copyright .container {
     width: auto;
   }
 
   .materialert {
     font-size: 14px;
   }
-
+  
   .modal .modal-content {
-    padding: 10px 20px;
+    padding: 10px 10px;
+  }
+  #footer-modal .modal-content {
+    padding: 10px 0px;
+  }
+  #footer-modal .modal-content .col {
+    padding: 0px;
+  }
+  .card-panel {
+    padding: 24px 15px;
+  }
+
+  .sm-pl-10p {
+    padding-left: 10%;
   }
 
   .email-send {
@@ -824,8 +835,13 @@ li a.dropdown-trigger:focus {
   .smt-10 {
     margin-top: 10px;
   }
-  .top-link {
+  .top-link i {
+    visibility: hidden;
+    opacity: 0;
+  }
+  /* .top-link {
     background-color: rgba(213,210,210,0.29);
+    bottom: 40px;
   }
   .top-link i {
     color: #9e9e9e;
@@ -836,7 +852,7 @@ li a.dropdown-trigger:focus {
   }
   .top-link:hover i {
     fill: #000000;
-  }
+  } */
   .collapsible-body {
     padding: 0;
   }
@@ -860,6 +876,13 @@ li a.dropdown-trigger:focus {
   .copyright {
     font-size: 1.2em;
   }
+  #main-block .container {
+    width: 100%;
+  }
+
+  #main-block h3 {
+    padding-left: 15px;
+  }
 }
 
 /*  Large Screens */
@@ -875,11 +898,9 @@ li a.dropdown-trigger:focus {
   #main-block {
     min-height: calc(100vh - 593px);
   }
-  .top-link:hover {
-    background-color: rgba(213,210,210,0.29);
-  }
-  .top-link:hover i {
-    fill: #000000;
+  .top-link i {
+    visibility: hidden;
+    opacity: 0;
   }
   /* .copyright {
     font-size: 1.8em;
@@ -897,6 +918,48 @@ li a.dropdown-trigger:focus {
     display: block;
     font-size: 2.4em;
   }
+  
+/*
+================================================================================
+========================== ES6 Scroll to top button ============================
+================================================================================
+*/
+/* Created by Josh Mason https://codepen.io/joshuamasen/pen/OYaYbL */
+
+.top-link {
+  transition: all 0.25s ease-in-out;
+  position: fixed;
+  bottom: 40px;
+  right: 0;
+  display: inline-flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3em 3em 0;
+  border-radius: 50%;
+  padding: 0.25em;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(213,210,210,0.29);
+}
+.top-link.show {
+  visibility: visible;
+  opacity: 1;
+}
+.top-link.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+.top-link i {
+  color: #9e9e9e;
+  font-size: 24px;
+}
+.top-link:hover {
+  background-color: rgba(232,232,232,.39);
+}
+.top-link:hover i {
+  fill: #000000;
+}
 }
 
 /* This is not needed if I don't use tabs */
