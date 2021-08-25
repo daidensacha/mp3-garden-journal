@@ -768,15 +768,20 @@ The ES6 Scroll-to-top button is from a [Codepen by Josh Mason](https://codepen.i
 **Admin**
 - **User Groups**
 With limited time to complete my project, I have had to exclude developing the admin panel to how I would like it. It's a learning process, but in working on limiting users' accessibility, having users with different permissions, it's clear that planning for and assigning user group permissions is a good idea. 
-	- **User Management** 
+- **User Management** 
 	I would like to have a page in the admin profile to list all users and monitor their activity. It would also be good to be able to change the group permissions from this page. I plan on changing and adding this to the site. 
-- **Interest Groups** 
+	
+**User Profiles**
+	Had I more time, my next work would be to work on the user profiles. Its the landing page for users when they log in, and I would like it to me more like an administration panel for the user, where they can view how many plants, events and categories they have. I would also have it showing the next months events. There would be direct links from that page to the users events and plants. There is so much that I would like to do there. 
+**Image Uploads** 
+- I was my desire to have this feature included in this build, but alas time is the ultimate master and with documentation, and the work I already did, I had enough on my plate. I will be including this feature once I am abel to research and learn the best way to do it. 
+**Interest Groups** 
 I see potential to develop this into a social platform, where users with similar interests can connect and share their events, plants, and information. It would be invaluable as an almanac, as it depends on experience. The broader the user base of knowledge being input and contributed, the more accurate and helpful the information. 
 
 ## BUGS and ISSUES
 See also [TESTING/Issues and Fixes](/documentation/testing.md/#issues-and-fixes)
-- **Issue 1. MongoDB Schema - Implemented**
 
+**Issue 1. MongoDB Schema - Implemented**
 On the almanac page, I display the events and plant information. Initially, I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, to identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when users changed the plant name, and then my code couldn't match the plant with the stored plant name in the garden event collection. I needed a way to identify the plant with the corresponding event. 
 I had some issues then, which took me a while to work out, like comparing the ObjectId string with the ObjectId. I decided to use the plant ObjectId instead, as it's immutable and unique. In my add/ edit_event routes, I used the Material Design select as follows.
 ```html+jinja
@@ -789,14 +794,14 @@ I had some issues then, which took me a while to work out, like comparing the Ob
 </select>
 ```
 I then called the ObjectId string value in my function like so. 
-```
+```python
 event_plant_id = request.form.get("event_plant_id")
 ```
 The ObjectId string is then converted back to the ObjectId for sending to MongoDB to store in the ```garden_events```  collection. 
  ```"event_plant_id": ObjectId(event_plant_id)```
 Once I converted the string format to its ObjectId format, I looped through the plants to find the matching ObjectId and then display the related plant information alongside the garden event.
 
-- **Issue 2. Edit Categories - Fixed**
+**Issue 2. Edit Categories - Fixed**
 
 I clicked on the edit category, and the app redirected me to the edit category page. The category _id was showing in the browser URL, but the category name displaying in the input was incorrect and always the same. 
 I created my cursor in the ```app.route``` for categories as follows.
@@ -829,6 +834,41 @@ flash("Create event categories to populate this list.", "info")
 The change has simplified my coding, as I now use the same list name for ```categories``` instead of creating a new list ```user_categories``` and then using that in my template.  
 The bug disappeared, and my code was more straightforward. I repeated these changes in the app.py for plants and events. 
 
- **Issue 3. Collapsible displaying white background - Fixed**
-In my meeting with my tutor, he mentioned that the collapsible header was white when he clicked on it. I had not seen this behavior at all and had tested it on multiple computers, systems, locally and live on Heroku. 
-Yesterday, I saw it, as it appeared when I was working through my testing checklist. I found what I thought was the issue, applied a css style to override the materializecss, and it appeared to work. The issue returned about 30 minutes later, and it appeared that the materializecss style was overriding my fix. I added `background-color: none!important` to my css, and it seems to have fixed it, but I am still wary and observing. Hopefully, it has been fixed.
+
+**Issue 3. Users no plant, category, or events have empty pages - Fix implemented**
+I didn't like it when users with no plant, category, or events have an empty page with no idea where to start.
+- I added code to check if the user has data when opening the plant, event, or category pages. If there is no data, i.e., the user has not added a plant, category, or event, then a blue flash alert informs the user to add items to populate the page. 
+- If the list of items for the session user is empty, as it is for a new user, the function displays an alert informing the user to add data to be displayed in the pages. 
+- The Almanac page that displays the event information requires category and plant information to create the event. I added additional if statements to the add event page that checks if the user has categories and or plants and displays a blue flash alert informing them to add items if there is no data.
+	```python
+	# Check if categories and plants to create an event
+	if  not categories and  not plants:
+		flash("Please enter categories and"
+			  " plants before entering an event", "info")
+	if categories and  not plants:
+		flash("Please enter plants before entering an event", "info")
+	if plants and  not categories:
+		flash("Please enter categories before"
+		      " entering an event", "info")
+	```
+- Here I was presented with another issue I hadn't encountered. PEP8 error, lines were too long. The only way to break the string onto a new line was to break it into two strings. It works and doesn't throw any errors.  
+- The conditional statements check and inform the user to add plants and or categories before adding an event if there are none. 
+
+**Issue 4. Adding the URL for user pages would open the pages. - Fix Implemented**
+I discovered that users not logged in could access pages that should only be available to session users. 
+- I fixed this by nesting the entire function inside an if statement that checks `if user in session:`, the function runs, `else:` it returns a flash message error alert asking the user to log in to view the page. The function redirects the user to the login page. 
+	```python
+	if  "user"  in session:
+		# Function to run if true
+		# Nested inside the if statement
+	else:
+		flash("Please log in to view page", "error")
+		return redirect(url_for("login"))
+	```
+See the result of [add_plant](http://mp3-garden-journal.herokuapp.com/get_plants) added to URL. I added this fix to all app route functions that displayed pages restricted for viewing by logged in users. 
+
+![](/documentation/images/redirect-login.png)  
+
+**Issue 5. Collapsible displaying white background - Fixed**
+In my meeting with my tutor, he mentioned that the collapsible header was white when he clicked on it. I had not seen this behavior and tested it on multiple computers, systems, locally, and live on Heroku. 
+Yesterday, I saw it, as it appeared when I was working through my testing checklist. I found what I thought was the issue, applied a css style to override the materializecss, and it appeared to work. The issue returned about 30 minutes later, and it appeared that the materializecss style was overriding my fix. I added `background-color: none!important` to my css, and it seems to have fixed it, but I am still wary and observing.
