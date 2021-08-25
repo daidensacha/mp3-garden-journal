@@ -875,7 +875,7 @@ Yesterday, I saw it, as it appeared when I was working through my testing checkl
 
 ![](/documentation/images/event-bug.png)  
 
-I found what I thought was the issue, applied a css style to override the materializecss, and it appeared to work. The issue returned about 30 minutes later, and it appeared that the materializecss style was overriding my fix. I added `background-color: none!important` to my css, and it seems to have fixed it, but I am still wary and observing.
+I found what I thought was the issue, applied a css style to override the materializecss, and it appeared to work. The issue returned about 30 minutes later, and it appeared that the materializecss style was overriding my fix. I added `background-color: #aa8d30!important;` to my css, and it seems to have fixed it, but I am still wary and observing.
 
 ![](/documentation/images/event-normal.png)  
 
