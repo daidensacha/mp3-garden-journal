@@ -481,7 +481,7 @@ There the user can click on a plant to view the plant's information in a modal.
 
 ![](/documentation/images/my-plant-modal.png)  
 
-The user can click on "Edit" to edit or update information about the plant. They can also delete the plant, providing there are no related events that depend on the plant information.
+The user can click on "Edit" to edit or update information about the plant. They can also delete the plant, providing no related events depend on the plant information.
 
 ![](/documentation/images/edit-plant-form.png)  
 
@@ -566,7 +566,7 @@ The Garden Almanac is precisely for this, to record information and improve accu
 >As a vegetable gardener, I want to edit plants and events to improve the records over time.
 - The starting point is just that, and there is no end. So entering plant and event information is just the start, because every year when you have records from past years, you can improve and update the information so it will improve and get easier each year.
 
-The following screenshots show how I created a plant with the information that tells me when to sow, plant, harvest, and fertilize. In the event, which will always be in the Almanac, I can easily edit the information if and when needed.
+The following screenshots show how I created a plant that tells me when to sow, plant, harvest, and fertilize. In the event, which will always be in the Almanac, I can easily edit the information if and when needed.
 
 ![](/documentation/images/user-story-plant.png)  
 

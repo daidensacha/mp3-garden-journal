@@ -665,11 +665,18 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 		2. I wanted the admin user to view all collection items, events, plants, and categories. 
 		3. I wanted to remove the possibility of admin users deleting or changing user data by mistake. 
 	- I created an admin account. 
-	- Within the `app.py` functions for events, plants, and categories, I added an if statement that checks if the session user is admin.
-		- If true, the function then gets a list of all items in a collection to display in the accounts pages. 
-		- If false, the function gets a list of all items for the session user to display in the user accounts pages 
-		- If the list of items for the session user is empty, as it is for a new user, the function displays an alert informing the user to add data to be displayed in the pages. 
-	Adding the URL to the add_plant page, for example, would open the add_plants page.- I discovered that users not logged in could access pages that should only be available to session users. I fixed this by nesting the entire function inside an if statement that checks `if user in session:`, the function runs, `else:` it returns a flash message error alert asking the user to log in to view the page. The function redirects the user to the login page. 
+	- Within the `app.py` functions for events, plants, and categories, I added an ***if statement that checks if the session user is admin***.
+		- ***If true***, the function then ***gets a list of all items in a collection*** to display in the accounts pages. 
+		- ***If false***, the function ***gets a list of all items for the session user*** to display in the user accounts pages.
+	- I added an if statement in all HTML templates that checks if the user viewing the data is the session user. If it is not the session user, the edit/ delete buttons are not displayed. This code removes the possibility that an admin user could delete user data by mistake.
+	```html+jinja
+	{% if session["user"] == plant.created_by %}
+		<a  href="{{ url_for('edit_plant', plant_id=plant._id) }}"
+			class="waves-effect waves-light btn-small blue darken-2 btn-edit">
+				Edit <i  class="fas fa-edit right"></i>
+		</a>
+	{% endif %}
+	```
  
 #### TESTING DEVICES INFORMATION
 [TESTING/Testing Devices](/documentation/testing.md/#testing-devices)
