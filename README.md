@@ -732,7 +732,7 @@ The customer error pages all have links back to the home page.
 	- in the terminal, I create the Procfile by typing `echo web: python app.py > Procfile`. Heroku looks for this file to know what is needed to run the app and how to run it.
 	- I remove the blank line at the bottom of the Procfile, which can cause problems running the app on Heroku.
 2. I go to heroku.com, 
-	-  I log in, and in the user dashboard, click "create new app". 
+	- I log in, and in the user dashboard, click "create new app". 
 	- I create a unique app name using lower case, dashes, and or underscores. 
 	- I select the region closest to me (Europe) and click "create app",
 3. Setup automatic deployment from my GitHub repository.
@@ -747,6 +747,9 @@ The customer error pages all have links back to the home page.
 5. Back in Heroku, I click "deploy branch."
 6. After about short wait, Heroku has received the code from GitHub, built the app, and a message says, "Your app has been successfully deployed".
 7. To confirm, I click "View" to launch the app.
+
+Once deployed and ready for production, I move to the testing phase and extensively check all functions work as expected, and in the process, look for issues I might have missed. It's tedious but a great exercise and allows me to improve code where is needed. 
+[TESTING/Testing Checklist](/documentation/testing.md#testing-checklist-development-deployment)
 
 ### Feedback
 
