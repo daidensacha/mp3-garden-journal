@@ -1,86 +1,94 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="container">
+<div class="container">
 
-        <h3 class="teal-text text-darken-2 center-align">Add Event</h3>
+    <h3 class="teal-text text-darken-2 center-align">Add Event</h3>
 
-        <div class="row">
-            <form class="col s12" method="POST" action="{{ url_for('add_event') }}">
-                <!-- select event category  -->
-                <div class="row">
-                    <div class="input-field col s12 m6">
-                        <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
-                        <select id="category" name="category" class="validate" required>
-                            <option value="" disabled selected>Choose Category</option>
-                            {% for category in categories %}
-                            <option value="{{ category.category }}">{{ category.category }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="category">Event Category</label>
-                        <span class="helper-text">Required</span>
-                    </div>
-                    <!-- select plant name -->
-                    <div class="input-field col s12 m6">
-                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-                        <select id="event_plant_id" name="event_plant_id" class="validate" required>
-                            <option value="" disabled selected>Choose Plant</option>
-                            {% for plant in plants %}
-                            <!-- Here the plant ObjectId is used in value as pseudo foreign key -->
-                            <option value="{{ plant._id }}">{{ plant.name }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="event_plant_id">Plant Name</label>
-                        <span class="helper-text">Required</span>
-                    </div>
+    <div class="row">
+        <form class="col s12" method="POST" action="{{ url_for('add_event') }}">
+            <!-- select event category  -->
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
+                    <select id="category" name="category" class="validate" required>
+                        <option value="" disabled selected>Choose Category</option>
+                        {% for category in categories %}
+                            <option value="{{ category.category }}">
+                                {{ category.category }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="category">Event Category</label>
+                    <span class="helper-text">Required</span>
                 </div>
-                <!-- event name -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
-                        <input id="name" name="name"  minlength="5" maxlength="40" 
-                          type="text" class="count-text validate" data-length="40" required>
-                        <label for="name">Event Name</label>
-                        <span class="helper-text">Required</span>
-                    </div>
+                <!-- select plant name -->
+                <div class="input-field col s12 m6">
+                    <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+                    <select id="event_plant_id" name="event_plant_id" 
+                            class="validate" required>
+                        <option value="" disabled selected>Choose Plant</option>
+                        {% for plant in plants %}
+                        <!-- Here the plant ObjectId is used in value as pseudo foreign key -->
+                        <option value="{{ plant._id }}">{{ plant.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="event_plant_id">Plant Name</label>
+                    <span class="helper-text">Required</span>
                 </div>
-                <!--  event date -->
-                <div class="row">
-                    <div class="input-field col s12 m6">
-                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
-                        <input id="occurs_at" name="occurs_at" type="text" class="datepicker validate" required>
-                        <label for="occurs_at">Event Date</label>
-                        <span class="helper-text">Required</span>
-                    </div>
-                    <!-- event repeat cycle -->
-                    <div class="input-field col s12 m6">
-                        <i class="far fa-clock prefix teal-text text-darken-2"></i>
-                        <input id="repeats" name="repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  
-                                type="text" class="count-text validate" max-length="40" data-length="40">
-                        <label for="repeats">Event Repeats</label>
-                        <span class="helper-text">Optional</span>
-                    </div>
+            </div>
+            <!-- event name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
+                    <input id="name" name="name"  minlength="5" maxlength="40" 
+                        type="text" class="count-text validate" 
+                        data-length="40" required>
+                    <label for="name">Event Name</label>
+                    <span class="helper-text">Required</span>
                 </div>
+            </div>
+            <!--  event date -->
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+                    <input id="occurs_at" name="occurs_at" 
+                            type="text" class="datepicker validate" required>
+                    <label for="occurs_at">Event Date</label>
+                    <span class="helper-text">Required</span>
+                </div>
+                <!-- event repeat cycle -->
+                <div class="input-field col s12 m6">
+                    <i class="far fa-clock prefix teal-text text-darken-2"></i>
+                    <input id="repeats" 
+                            name="repeats" placeholder="Daily, 2/3/Weekly, 2/3/Monthly, Yearly"  
+                            type="text" class="count-text validate" 
+                            max-length="40" data-length="40">
+                    <label for="repeats">Event Repeats</label>
+                    <span class="helper-text">Optional</span>
+                </div>
+            </div>
 
-                <!-- event note -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
-                      <textarea id="notes" name="notes" minlength="5" 
-                      maxlength="200" class="materialize-textarea validate" data-length="200"></textarea>
-                      <label for="notes">Event Notes</label>
-                      <span class="helper-text">Optional</span>
-                    </div>
+            <!-- event note -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
+                    <textarea id="notes" name="notes" minlength="5" 
+                            maxlength="200" class="materialize-textarea validate" 
+                            data-length="200"></textarea>
+                    <label for="notes">Event Notes</label>
+                    <span class="helper-text">Optional</span>
                 </div>
-                <!-- submit button -->
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5">
-                            Add Event <i class="fas fa-plus-square right"></i>
-                        </button>
-                    </div>
+            </div>
+            <!-- submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" 
+                            class="btn-small blue darken-2 teal-text text-lighten-5">
+                        Add Event <i class="fas fa-plus-square right"></i>
+                    </button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+</div>
 {% endblock %}

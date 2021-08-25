@@ -748,7 +748,7 @@ The customer error pages all have links back to the home page.
 6. After about short wait, Heroku has received the code from GitHub, built the app, and a message says, "Your app has been successfully deployed".
 7. To confirm, I click "View" to launch the app.
 
-Once deployed and ready for production, I move to the testing phase and extensively check all functions work as expected, and in the process, look for issues I might have missed. It's tedious but a great exercise and allows me to improve code where is needed. 
+Once deployed and ready for production, I move to the testing phase and extensively check all functions work as expected, and in the process, look for issues I might have missed. It's tedious but a great exercise and allows me to improve code where it's needed. 
 [TESTING/Testing Checklist](/documentation/testing.md#testing-checklist-development-deployment)
 
 ### Feedback
