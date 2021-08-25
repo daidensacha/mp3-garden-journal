@@ -1,89 +1,81 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="container">
-
-        <h3 class="teal-text text-darken-2 center-align">Edit Category</h3>
-
-        <div class="row">
-            <form class="col s12" method="POST" action="{{ url_for('edit_category', category_id=category._id) }}">
-                <!-- add new category -->
-                <div class="row">
-
-                        <div class="input-field col s12">
-                            <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
-                            <input id="category" name="category"  minlength="3" maxlength="40" 
-                                value="{{ category.category }}" type="text" class="count-text validate" data-length="40" required>
-                            <label for="category">New Event Category</label>
-                        </div>
-
-                </div>
-                <!-- submit button -->
-                <div class="row">
-                    <div class="col s12 center-align">
-                    
-                        {% if session["user"] == category.created_by %}
-                        
-                        <a href="#delete-category-modal" 
-                            class="waves-effect waves-light btn btn-small red darken-4 btn-delete modal-trigger">
-                            Delete <i class="fas fa-times-circle right hide-on-small-only"></i>
-                        </a>
-                        <button type="submit" class="btn-small blue darken-2 btn-edit">
-                            Save <i class="fas fa-edit right hide-on-small-only"></i>
-                        </button>
-                        
-                        {% endif %}
-                  
-                        <a href="{{ url_for('add_category') }}" class="btn-small blue-grey btn-close">
-                            Cancel <i class="fas fa-times-circle right hide-on-small-only"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- should I move form to section tags to after the model ??? -->
-                <!-- Modal Structure -->
-                <div id="delete-category-modal" class="modal">
-                    <div class="modal-header">
-                        <p class="materialert danger">Deleting category data is irreversable.</p>
-                    </div>
-                    <div class="modal-content">
-                        <p>Categories with related events cannot be deleted. <br>
-                        Are you sure you want to delete category "<strong class="emph-green">{{ category.category | lower}}</strong>"?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="{{ url_for('delete_category', category_id=category._id) }}" 
-                            class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
-                            Delete <i class="fas fa-times-circle right"></i>
-                        </a>
-                        <a href="{{ url_for('add_category') }}" class="btn-small blue-grey btn-close">
-                            Cancel <i class="fas fa-times-circle right"></i>
-                        </a>
-                    </div>
-                </div>
-        <!-- end modal -->
-            </form>
+<div class="container">
+  <h3 class="teal-text text-darken-2 center-align">Edit Category</h3>
+  <div class="row">
+    <form class="col s12" method="POST" action="{{ url_for('edit_category', category_id=category._id) }}">
+      <!-- add new category -->
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
+          <input id="category" name="category" minlength="3" maxlength="40" value="{{ category.category }}" type="text"
+            class="count-text validate" data-length="40" required>
+          <label for="category">New Event Category</label>
         </div>
-        <section>
-            
-            <h3>Event Categories</h3>
-    
-            <ul class="collection">
-                {% for category in categories %}
-                    {% if category.created_by == session["user"] %}
-                    <li class="collection-item">
-                        <div>{{ loop.index}}: {{ category.category.capitalize() }} 
-                            <a href="{{ url_for('edit_category', category_id=category._id) }}" 
-                                class="secondary-content indigo-text darken-4-text edit-link">Edit <i class="fas fa-edit"></i>
-                            </a>
-                            <span class="secondary-content mr-20"><strong class="emph-dark-teal">
-                                Created by:</strong> <span class="emph-ital emph-black">
-                                    {{ category.created_by }}</span>
-                            </span>
-                        </div>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-              </ul>
-        </section>
-    </div>
+      </div>
+      <!-- submit button -->
+      <div class="row">
+        <div class="col s12 center-align">
+          {% if session["user"] == category.created_by %}
+            <a href="#delete-category-modal"
+              class="waves-effect waves-light btn btn-small red darken-4 btn-delete modal-trigger">
+              Delete <i class="fas fa-times-circle right hide-on-small-only"></i>
+            </a>
+            <button type="submit" class="btn-small blue darken-2 btn-edit">
+              Save <i class="fas fa-edit right hide-on-small-only"></i>
+            </button>
+          {% endif %}
+          <a href="{{ url_for('add_category') }}" class="btn-small blue-grey btn-close">
+            Cancel <i class="fas fa-times-circle right hide-on-small-only"></i>
+          </a>
+        </div>
+      </div>
+      <!-- Modal Delete -->
+      <div id="delete-category-modal" class="modal">
+        <div class="modal-header">
+          <p class="materialert danger">Deleting category data is irreversable.</p>
+        </div>
+        <div class="modal-content">
+          <p>Categories with related events cannot be deleted. <br>
+            Are you sure you want to delete category "
+            <strong class="emph-green">{{ category.category | lower}}</strong>"?</p>
+        </div>
+        <div class="modal-footer">
+          <a href="{{ url_for('delete_category', category_id=category._id) }}"
+            class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
+            Delete <i class="fas fa-times-circle right"></i>
+          </a>
+          <a href="{{ url_for('add_category') }}" class="btn-small blue-grey btn-close">
+            Cancel <i class="fas fa-times-circle right"></i>
+          </a>
+        </div>
+      </div>
+      <!-- end modal -->
+    </form>
+  </div>
+  <section>
+
+    <h3>Event Categories</h3>
+
+    <ul class="collection">
+      {% for category in categories %}
+        {% if category.created_by == session["user"] %}
+          <li class="collection-item">
+            <div>{{ loop.index}}: {{ category.category.capitalize() }}
+              <a href="{{ url_for('edit_category', category_id=category._id) }}"
+                class="secondary-content indigo-text darken-4-text edit-link">
+                Edit <i class="fas fa-edit"></i>
+              </a>
+              <span class="secondary-content mr-20"><strong class="emph-dark-teal">
+                  Created by:</strong> <span class="emph-ital emph-black">
+                  {{ category.created_by }}</span>
+              </span>
+            </div>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+</div>
 {% endblock %}

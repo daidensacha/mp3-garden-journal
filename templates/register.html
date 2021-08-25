@@ -2,14 +2,11 @@
 {% block content %}
   <div class="container">
     <div class="row mt-90">
-
-      <div class="card-panel z-depth-2">
+      <!-- <div class="card-panel z-depth-2"> -->
         <h4 class="center">Register</h4>
         <div class="row">
 
-
           <form class="" method="POST" action="{{ url_for('register') }}">
-            <!-- <div class="row"> -->
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
                 <input id="firstname" name="firstname" type="text" minlength="5" maxlength="15"
@@ -17,7 +14,6 @@
                 <label for="firstname">First Name</label>
                 <span class="helper-text">Required</span>
               </div>
-
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
                 <input id="lastname" name="lastname" type="text" minlength="5" maxlength="15"
@@ -25,7 +21,6 @@
                 <label for="lastname">Last Name</label>
                 <span class="helper-text">Required</span>
               </div>
-
             <div class="input-field col s12 m12">
               <i class="fas fa-user-plus prefix"></i>
               <input id="username" name="username" type="text" minlength="5" maxlength="15"
@@ -33,7 +28,6 @@
               <label for="username">Username</label>
               <span class="helper-text">Required</span>
             </div>
-
             <div class="input-field col s12 m12">
               <i class="fa fa-envelope prefix"></i>
               <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
@@ -41,7 +35,6 @@
               <label for="email">Your Email</label>
               <span class="helper-text">Required</span>
             </div>
-
             <div class="input-field col s12 m12">
               <i class="fa fa-unlock-alt prefix"></i>
               <input id="password" name="password" type="password" minlength="5" maxlength="15"
@@ -49,22 +42,14 @@
               <label for="password">Password</label>
               <span class="helper-text">Required</span>
             </div>
-
-
-            <!-- </div> -->
             <button class="btn waves-effect waves-light center col s12 m12" type="submit" name="action">Register
               <i class="fa fa-sign-in-alt right"></i>
             </button>
           </form>
 
         </div>
-        <!--row-->
-
-      </div>
-      <!--card-->
-
+      <!-- </div> -->
     </div>
-    <!--row-->
     <div class="row">
       <div class="col s12">
         <p class="center-align">
@@ -73,6 +58,5 @@
         </p>
       </div>
     </div>
-
   </div>
 {% endblock %}

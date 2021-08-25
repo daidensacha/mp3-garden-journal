@@ -2,275 +2,266 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garden Almanac</title>
-    <!-- CSS  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{{ url_for('static',filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen" />
-    {% block styles %}
-    {% endblock%}
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garden Almanac</title>
+  <!-- CSS  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static',filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen" />
+  {% block styles %}
+  {% endblock%}
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-            <!-- main navbar -->
-            <div id="navbar" class="navbar-fixed scrollspy">
-                <nav class="white">
-                    <ul id="dropdown1" class="dropdown-content">
-                        <li><a href="{{ url_for('add_event') }}">Event</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{{ url_for('add_plant') }}">Plant</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{{ url_for('add_category') }}">Category</a></li>
-                    </ul>
-                    <div class="nav-wrapper">
+  <div class="wrapper">
+    <header>
+      <!-- main navbar -->
+      <div id="navbar" class="navbar-fixed scrollspy">
+        <nav class="white">
+          <ul id="dropdown1" class="dropdown-content">
+            <li><a href="{{ url_for('add_event') }}">Event</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ url_for('add_plant') }}">Plant</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ url_for('add_category') }}">Category</a></li>
+          </ul>
+          <div class="nav-wrapper">
 
-                        <a href="{{ url_for('home') }}" class="brand-logo">{% if session.user %}My Garden Almanac{% else %}Your Garden Almanac{% endif %}</a>
-                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-                        <ul class="right hide-on-med-and-down">
+            <a href="{{ url_for('home') }}" class="brand-logo">{% if session.user %}My Garden
+              Almanac{% else %}Your Garden Almanac{% endif %}</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down">
 
-                            <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
-                            {% if session.user %}
-                                <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Almanac</a></li>
-                                <li><a class="head-link" href="{{ url_for('get_plants') }}">Plants</a></li>
-                                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">New<i class="material-icons right">arrow_drop_down</i></a></li>
-                                <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">
-                                    {% if username == "admin" %}
-                                        Admin Profile
-                                    {% else %}
-                                        {{ user["firstname"] }}'s Profile
-                                    {% endif %}
-                                </a></li>
-                                <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
-                            {% else %}
-                                <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
-                                <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
-                            {% endif %}
-                            {% if session.user == "admin" %}
-                                <li><a class="head-link" href="{{ url_for('messages') }}">Messages</a></li>
-                            {% endif %}
-                            <li><a class="head-link" href="{{ url_for('contact') }}">Contact</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-            
-            <!-- mobile offcanvas nav -->
-            <ul class="sidenav" id="mobile-demo">
-                <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
-                {% if session.user %}
-                    <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Almanac</a></li>
-                    <li><a class="head-link" href="{{ url_for('get_plants') }}">Plants</a></li>
-                    <li><a class="head-link" href="{{ url_for('add_event') }}">New Event</a></li>
-                    <li><a class="head-link" href="{{ url_for('add_plant') }}">New Plant</a></li>
-                    <li><a class="head-link" href="{{ url_for('add_category') }}">New Category</a></li>
-                    <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">
-                        {% if username == "admin" %}
-                            Admin Profile
-                        {% else %}
-                            {{ user["firstname"] }}'s Profile
-                        {% endif %}
-                    </a></li>
-                    <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
-                {% else %}
-                    <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
-                    <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
-                {% endif %}
-                {% if session.user == "admin" %}
-                    <li><a class="head-link" href="{{ url_for('messages') }}">Messages</a></li>
-                {% endif %}
-                <li><a class="head-link" href="{{ url_for('contact') }}">Contact</a></li>
+              <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
+              {% if session.user %}
+                <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Almanac</a></li>
+                <li><a class="head-link" href="{{ url_for('get_plants') }}">Plants</a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">New<i
+                      class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">
+                    {% if username == "admin" %}
+                      Admin Profile
+                    {% else %}
+                      {{ user["firstname"] }}'s Profile
+                    {% endif %}
+                  </a></li>
+                <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
+              {% else %}
+                <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
+                <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
+              {% endif %}
+              {% if session.user == "admin" %}
+                <li><a class="head-link" href="{{ url_for('messages') }}">Messages</a></li>
+              {% endif %}
+              <li><a class="head-link" href="{{ url_for('contact') }}">Contact</a></li>
             </ul>
+          </div>
+        </nav>
+      </div>
 
-        </header>
+      <!-- mobile offcanvas nav -->
+      <ul class="sidenav" id="mobile-demo">
+        <li><a class="head-link" href="{{ url_for('home') }}">Home</a></li>
+        {% if session.user %}
+          <li><a class="head-link" href="{{ url_for('get_garden_events') }}">Almanac</a></li>
+          <li><a class="head-link" href="{{ url_for('get_plants') }}">Plants</a></li>
+          <li><a class="head-link" href="{{ url_for('add_event') }}">New Event</a></li>
+          <li><a class="head-link" href="{{ url_for('add_plant') }}">New Plant</a></li>
+          <li><a class="head-link" href="{{ url_for('add_category') }}">New Category</a></li>
+          <li><a class="head-link" href="{{ url_for('profile', username=session['user']) }}">
+              {% if username == "admin" %}
+                Admin Profile
+              {% else %}
+                {{ user["firstname"] }}'s Profile
+              {% endif %}
+            </a></li>
+          <li><a class="head-link" href="{{ url_for('logout') }}">Log Out</a></li>
+        {% else %}
+          <li><a class="head-link" href="{{ url_for('login') }}">Log In</a></li>
+          <li><a class="head-link" href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+        {% if session.user == "admin" %}
+          <li><a class="head-link" href="{{ url_for('messages') }}">Messages</a></li>
+        {% endif %}
+        <li><a class="head-link" href="{{ url_for('contact') }}">Contact</a></li>
+      </ul>
+    </header>
 
-        <!-- slider -->
-        <div class="slider">
-            <ul class="slides">
-                <li>
-                    <img src="{{url_for('static', filename='images/summer_1240x528_b.jpg')}}" alt="Spring">
-                    <div class="caption center-align">
-                        <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
-                        <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
-                        <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">
-                            Spring: Action! Plant, nourish, enjoy!</h4>
-                    </div>
-                </li>
-                <li>
-                    <img src="{{url_for('static', filename='images/flowers_1240x528_b.jpg')}}" alt="Summer">
-                    <div class="caption center-align text-shadow">
-                        <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
-                        <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
-                        <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">
-                            Summer: Tend to the gardens needs.</h4>
-                    </div>
-                </li>
-                <li>
-                    <img src="{{url_for('static', filename='images/autumn_1240x528_b.jpg')}}" alt="Autumn">
-                    <div class="caption center-align">
-                        <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
-                        <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
-                        <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">
-                            Autumn: Prepare for the dormant season.</h4>
-                    </div>
-                </li>
-                <li>
-                    <img src="{{url_for('static', filename='images/winter_1240x528_b.jpg')}}" alt="Winter">
-                    <div class="caption center-align">
-                        <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
-                        <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
-                        <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">
-                            Winter: Plan for the next seasons bounty. </h4>
-                    </div>
-                </li>
-            </ul>
-
-        </div>
-        <!-- end slider -->
-        <div>
-            <!-- flash messages - includes alert category-->
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                <!-- <section> -->
-                    {% for category, message in messages %}
-                    
-                            <div class="materialert {{category}}">
-                                <span>{{ message }}</span>
-                                <button type="button" class="close-alert hide-on-small-only">×</button>
-                            </div>
-
-                    {% endfor %}
-                <!-- </section> -->
-                {% endif %}
-            {% endwith %}
-        </div>
-
-        <main id="main-block">
-            {% block content %}
-            {% endblock %}
-        </main>
-
-
-        <!-- Modal Trigger -->
-
-        <!-- Modal Structure -->
-        <div id="footer-modal" class="modal bottom-sheet blue-grey darken-4">
-            <div class="modal-content">
-            
-                <!-- contact form section -->
-                <div class=" section scrollspy">
-                    <div class="section">
-                
-
-                        <div class="row flexbox">
-
-                            <div class="col s12 xl4">
-                                <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info footer-card flow-text">
-                                <h4 class="center">Your Almanac</h4>
-                                <div class="custom-divider div-gradient div-rhombus"></div>
-                                <p>Did you know, the Old Farmer’s Almanac, has been 
-                                    continuously published in the United States since 1792.  
-                                </p>
-                                <p>The historical data, handed down for generations,is 
-                                    priceless for farmers, and hobby gardeners alike.
-                                    interested in growing and living off the land. 
-                                </p>
-                                <p>It's a process, that starts with the first step, and 
-                                    never ends. You can record events, your plants, 
-                                    what works, and what doesn't.
-                                </p>
-                                <div class="flex-grow"></div>
-                                </div>
-                            </div>
-
-                            <div class="col s12 xl4" >
-                                <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info footer-card flow-text">
-                                <h4 class="center">Events</h4>
-                                <div class="custom-divider div-gradient div-rhombus"></div>
-                                <p>Garden events are cyclic in nature, which means that
-                                    you can be sure what happens today, will more than 
-                                    likely happen again in the future.</p>
-                                <p>Recording events is your historical record, a foundation
-                                    of experience, a reference to what worked and what you 
-                                    could do different.
-                                </p>
-                                <p>Knowing when events are likely to occur helps you to 
-                                    prepare, to be ready and to make the most of the seasonal
-                                    changes. 
-                                </p>
-                                <div class="flex-grow"></div>
-                            </div>
-                            </div>
-
-                            <div class="col s12 xl4">
-                                <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info footer-card flow-text">
-                                    <h4 class="center">Plants</h4>
-                                    <div class="custom-divider div-gradient div-rhombus"></div>
-                                    <p>Preparing, nourishing and enjoying the fruits of your 
-                                        labour is easy when you know how. 
-                                    Knowing what, and when to feed your plants, and how to care for 
-                                    them in different conditions comes from experience.</p>
-                                    <p>Build a data base of information for future reference. 
-                                        Little by little, edit your notes, on how to care 
-                                    for your garden.</p>
-                                    <p>Farmers relied on this for generations, the wisdom is 
-                                        tried and true.
-                                    </p>
-                                    <div class="flex-grow"></div>
-                                </div>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close <i class="far fa-times-circle right"></i></a>
-            </div>
-        </div>   
-  
-        <a class="top-link hide" href="" id="js-top">
-            <i class="fas fa-chevron-up show-on-large"></i>
-        </a>
-
+    <!-- slider -->
+    <div class="slider">
+      <ul class="slides">
+        <li>
+          <img src="{{url_for('static', filename='images/summer_1240x528_b.jpg')}}" alt="Spring">
+          <div class="caption center-align">
+            <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
+            <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
+            <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">
+              Spring: Action! Plant, nourish, enjoy!</h4>
+          </div>
+        </li>
+        <li>
+          <img src="{{url_for('static', filename='images/flowers_1240x528_b.jpg')}}" alt="Summer">
+          <div class="caption center-align text-shadow">
+            <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
+            <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
+            <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">
+              Summer: Tend to the gardens needs.</h4>
+          </div>
+        </li>
+        <li>
+          <img src="{{url_for('static', filename='images/autumn_1240x528_b.jpg')}}" alt="Autumn">
+          <div class="caption center-align">
+            <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
+            <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
+            <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">
+              Autumn: Prepare for the dormant season.</h4>
+          </div>
+        </li>
+        <li>
+          <img src="{{url_for('static', filename='images/winter_1240x528_b.jpg')}}" alt="Winter">
+          <div class="caption center-align">
+            <h1 class="hide-on-small-only text-shadow">Garden Almanac</h1>
+            <h3 class="show-on-small hide-on-med-and-up text-shadow">Garden Almanac</h3>
+            <h4 class="slider-subheading light grey-text text-lighten-3 text-shadow">
+              Winter: Plan for the next seasons bounty. </h4>
+          </div>
+        </li>
+      </ul>
 
     </div>
-    <!-- footer section -->
-    <footer class="page-footer">
-        <div class="footer-copyright">
-            <div class="container">
-                <div class="row">
-                 <span class="copyright">Copyright © 2021</span> 
-                    <ul class="share-buttons right">
-                        <li><a href="#footer-modal" title="FAQ"
-                            class="faq-icon modal-trigger">FAQ</a></li>
-                        <li><a href="https://github.com/daidensacha" target="_blank" title="GitHub"
-                                class="social-icon"><i class="fab fa-github fa-2x"></i></a></li>
-                        <li><a href="https://www.linkedin.com/in/daiden-sacha-8852b41a6/" target="_blank"
-                                title="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in fa-2x"></i></a></li>
-                        <li><a href="{{ url_for('contact') }}" title="Email"
-                            class="social-icon"><i class="fas fa-envelope fa-2x"></i></a></li>
-                    </ul>
-                </div>
-           
-            </div>
-        </div>
-    </footer>
+    <!-- end slider -->
+    <div>
+      <!-- flash messages - includes alert category-->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <!-- <section> -->
+        {% for category, message in messages %}
+          <div class="materialert {{category}}">
+            <span>{{ message }}</span>
+            <button type="button" class="close-alert hide-on-small-only">×</button>
+          </div>
+        {% endfor %}
+        <!-- </section> -->
+      {% endif %}
+      {% endwith %}
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    {% block scripts %}
-    {% endblock%}
+    <main id="main-block">
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <!-- Modal Structure -->
+    <div id="footer-modal" class="modal bottom-sheet blue-grey darken-4">
+      <div class="modal-content">
+        <div class=" section scrollspy">
+          <div class="section">
+
+            <div class="row flexbox">
+              <div class="col s12 xl4">
+                <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info footer-card flow-text">
+                  <h4 class="center">Your Almanac</h4>
+                  <div class="custom-divider div-gradient div-rhombus"></div>
+                  <p>Did you know, the Old Farmer’s Almanac, has been
+                    continuously published in the United States since 1792.
+                  </p>
+                  <p>The historical data, handed down for generations,is
+                    priceless for farmers, and hobby gardeners alike.
+                    interested in growing and living off the land.
+                  </p>
+                  <p>It's a process, that starts with the first step, and
+                    never ends. You can record events, your plants,
+                    what works, and what doesn't.
+                  </p>
+                  <div class="flex-grow"></div>
+                </div>
+              </div>
+              <div class="col s12 xl4">
+                <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info footer-card flow-text">
+                  <h4 class="center">Events</h4>
+                  <div class="custom-divider div-gradient div-rhombus"></div>
+                  <p>Garden events are cyclic in nature, which means that
+                    you can be sure what happens today, will more than
+                    likely happen again in the future.</p>
+                  <p>Recording events is your historical record, a foundation
+                    of experience, a reference to what worked and what you
+                    could do different.
+                  </p>
+                  <p>Knowing when events are likely to occur helps you to
+                    prepare, to be ready and to make the most of the seasonal
+                    changes.
+                  </p>
+                  <div class="flex-grow"></div>
+                </div>
+              </div>
+              <div class="col s12 xl4">
+                <div class="card-panel grey lighten-4 teal-text text-darken-4 faq-info footer-card flow-text">
+                  <h4 class="center">Plants</h4>
+                  <div class="custom-divider div-gradient div-rhombus"></div>
+                  <p>Preparing, nourishing and enjoying the fruits of your
+                    labour is easy when you know how.
+                    Knowing what, and when to feed your plants, and how to care for
+                    them in different conditions comes from experience.</p>
+                  <p>Build a data base of information for future reference.
+                    Little by little, edit your notes, on how to care
+                    for your garden.</p>
+                  <p>Farmers relied on this for generations, the wisdom is
+                    tried and true.
+                  </p>
+                  <div class="flex-grow"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">
+          Close <i class="far fa-times-circle right"></i></a>
+      </div>
+    </div>
+
+    <a class="top-link hide" href="" id="js-top">
+      <i class="fas fa-chevron-up show-on-large"></i>
+    </a>
+
+
+  </div>
+  <!-- footer section -->
+  <footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="row">
+          <span class="copyright">Copyright © 2021</span>
+          <ul class="share-buttons right">
+            <li><a href="#footer-modal" title="FAQ" class="faq-icon modal-trigger">FAQ</a></li>
+            <li><a href="https://github.com/daidensacha" target="_blank" title="GitHub" class="social-icon"><i
+                  class="fab fa-github fa-2x"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/daiden-sacha-8852b41a6/" target="_blank" title="LinkedIn"
+                class="social-icon">
+                <i class="fab fa-linkedin-in fa-2x"></i></a></li>
+            <li><a href="{{ url_for('contact') }}" title="Email" class="social-icon"><i
+                  class="fas fa-envelope fa-2x"></i></a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+  </script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}
+  {% endblock%}
 </body>
 
 </html>

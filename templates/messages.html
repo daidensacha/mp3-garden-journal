@@ -1,84 +1,62 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-	<div class="row mt-90">
+  <div class="row mt-90">
 
-		<h3 class="center">Admin Message Inbox</h3>
+    <h3 class="center">Admin Message Inbox</h3>
 
-		<ul class="collapsible popout">
-			{% for message in messages %}
-			<li>
-				<div class="collapsible-header">
-					<div class="row" style="width: 100%;">
-
-						<div class="col s6 m3"><span class="collapsible-heading"><i class="caret fas fa-caret-down"></i>
-								{{ message.created_at.strftime("%b %d") }}</span>
-						</div>
-
-						
-
-						<div class="col s6 m3">
-							<span class="collapsible-heading">
-								<div class="row left">
-									<div class="col s12 m12">
-										<a class="email-send" href="mailto:{{ message.email }}"><span class=""></span>
-											<i class="far fa-envelope"></i>
-										</a>
-									<!-- </div>
-									<div class="col s6 m6 left"> -->
-										<a href="#message_{{ loop.index }}" class="modal-trigger email-delete"><span
-												class=""></span>
-											<i class="fas fa-times-circle "></i>
-										</a>
-									</div>
-								</div>
-							</span>
-						</div>
-
-						<div class="col s12 m6 smt-10"><span class="collapsible-heading ">Message From:
-							{{ message.firstname }}
-							{{ message.lastname }}</span>
-						</div>
-
-						
-
-
-						<!-- </div>
-						</div> -->
-					</div>
-				</div> <!-- end collapsible header -->
-				<div class="collapsible-body"><span>{{ message.message }}</span></div>
-				<!-- <a href="#delete-message-modal" class="btn-small red darken-4 modal-trigger btn-delete">
-						Delete <i class="fas fa-times-circle right"></i>
-					</a> -->
-			</li>
-			<!-- Modal Structure -->
-			<div id="message_{{ loop.index }}" class="modal">
-				<div class="modal-header">
-					<p class="materialert danger">Deleting messages is irreversable.</p>
-				</div>
-				<div class="modal-content">
-					<p>Are you sure you want to delete "<strong class="emph-green">{{ message.firstname }}'s' message</strong>"?
-					</p>
-				</div>
-				<div class="modal-footer">
-					<a href="{{ url_for('delete_message', message_id=message._id) }}"
-						class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
-						Delete <i class="fas fa-times-circle right"></i>
-					</a>
-					<a href="{{ url_for('messages') }}" class="btn-small blue-grey btn-close">
-						Cancel <i class="fas fa-times-circle right"></i>
-					</a>
-				</div>
-			</div>
-			<!-- end modal -->
-			{% endfor %}
-		</ul>
-
-	</div>
-
+    <ul class="collapsible popout">
+      {% for message in messages %}
+      <li>
+        <div class="collapsible-header">
+          <div class="row" style="width: 100%;">
+            <div class="col s6 m3"><span class="collapsible-heading"><i class="caret fas fa-caret-down"></i>
+                {{ message.created_at.strftime("%b %d") }}</span>
+            </div>
+            <div class="col s6 m3">
+              <span class="collapsible-heading">
+                <div class="row left">
+                  <div class="col s12 m12">
+                    <a class="email-send" href="mailto:{{ message.email }}"><span class=""></span>
+                      <i class="far fa-envelope"></i>
+                    </a>
+                    <a href="#message_{{ loop.index }}" class="modal-trigger email-delete"><span class=""></span>
+                      <i class="fas fa-times-circle "></i>
+                    </a>
+                  </div>
+                </div>
+              </span>
+            </div>
+            <div class="col s12 m6 smt-10">
+              <span class="collapsible-heading ">Message From: {{ message.firstname }} {{ message.lastname }}</span>
+            </div>
+          </div>
+        </div> <!-- end collapsible header -->
+        <div class="collapsible-body"><span>{{ message.message }}</span></div>
+      </li>
+      <!-- Modal Structure -->
+      <div id="message_{{ loop.index }}" class="modal">
+        <div class="modal-header">
+          <p class="materialert danger">Deleting messages is irreversable.</p>
+        </div>
+        <div class="modal-content">
+          <p>Are you sure you want to delete "<strong class="emph-green">{{ message.firstname }}'s' message</strong>"?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="{{ url_for('delete_message', message_id=message._id) }}"
+            class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
+            Delete <i class="fas fa-times-circle right"></i>
+          </a>
+          <a href="{{ url_for('messages') }}" class="btn-small blue-grey btn-close">
+            Cancel <i class="fas fa-times-circle right"></i>
+          </a>
+        </div>
+      </div>
+      <!-- end modal -->
+      {% endfor %}
+    </ul>
+  </div>
 </div>
-
-
 
 {% endblock %}

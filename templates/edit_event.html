@@ -1,124 +1,123 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="container">
-
-        <h3 class="teal-text text-darken-2 center-align">Edit Event</h3>
-
-        <div class="row">
-            <form class="col s12" method="POST" action="{{ url_for('edit_event', event_id=garden_event._id) }}">
-                <!-- select event category  -->
-                <div class="row">
-                    <div class="input-field col s12 m6">
-                        <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
-                        <select id="category" name="category" class="validate" required>
-                            <option value="" disabled>Choose Category</option>
-                            {% for category in categories %}
-                                {% if category.category == garden_event.category %}
-                                <option value="{{ category.category }}" selected>{{ category.category }}</option>
-                                {% else %}
-                                <option value="{{ category.category }}">{{ category.category }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <label for="category">Event Category</label>
-                        <span class="helper-text">Required</span>
-                    </div>
-                    <!-- select plant name -->
-                    <div class="input-field col s12 m6">
-                        <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-                        <select id="event_plant_id" name="event_plant_id" class="validate" required>
-                            <option value="" disabled>Choose Plant</option>
-                            {% for plant in plants %}
-                                {% if garden_event.event_plant_id == plant._id %}
-                                <!-- Here the plant ObjectId is used in value as sudo foreign key -->
-                                <option value="{{ plant._id }}" selected>{{ plant.name }}</option>
-                                {% else %}
-                                <option value="{{ plant._id }}">{{ plant.name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <label for="event_plant_id">Plant Name</label>
-                        <span class="helper-text">Required</span>
-                    </div>
-                </div>
-                <!-- event name -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
-                        <input id="name" name="name"  minlength="5" maxlength="40" 
-                          value="{{ garden_event.name }}" type="text" class="count-text validate" data-length="40" required>
-                        <label for="name">Event Name</label>
-                        <span class="helper-text">Required</span>
-                    </div>
-                </div>
-                <!--  event date -->
-                <div class="row">
-                    <div class="input-field col s12 m6">
-                        <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
-                        <input id="occurs_at" name="occurs_at" type="text" value="{{ garden_event.occurs_at.strftime('%B %d, %Y') }}" class="datepicker validate" required>
-                        <label for="occurs_at">Event Date</label>
-                        <span class="helper-text">Required</span>
-                    </div>
-                    <!-- event repeat cycle -->
-                    <div class="input-field col s12 m6">
-                        <i class="far fa-clock prefix teal-text text-darken-2"></i>
-                        <input id="repeats" name="repeats" placeholder="daily, 2/3/weekly, 2/3/monthly, yearly"  
-                        value="{{ garden_event.repeats }}" type="text" max-length="40" data-length="40" class="count-text validate">
-                        <label for="repeats">Event Repeats</label>
-                        <span class="helper-text">Optional</span>
-                    </div>
-                </div>
-
-                <!-- event note -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
-                      <textarea id="notes" name="notes" minlength="5" 
-                        maxlength="200" class="materialize-textarea validate" data-length="200" >
+<div class="container">
+  <h3 class="teal-text text-darken-2 center-align">Edit Event</h3>
+  <div class="row">
+    <form class="col s12" method="POST" action="{{ url_for('edit_event', event_id=garden_event._id) }}">
+      <!-- select event category  -->
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
+          <select id="category" name="category" class="validate" required>
+            <option value="" disabled>Choose Category</option>
+            {% for category in categories %}
+              {% if category.category == garden_event.category %}
+                <option value="{{ category.category }}" selected>{{ category.category }}</option>
+              {% else %}
+                <option value="{{ category.category }}">
+                  {{ category.category }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          <label for="category">Event Category</label>
+          <span class="helper-text">Required</span>
+        </div>
+        <!-- select plant name -->
+        <div class="input-field col s12 m6">
+          <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
+          <select id="event_plant_id" name="event_plant_id" class="validate" required>
+            <option value="" disabled>Choose Plant</option>
+            {% for plant in plants %}
+              {% if garden_event.event_plant_id == plant._id %}
+                <!-- Here the plant ObjectId is used as sudo foreign key -->
+                <option value="{{ plant._id }}" selected>{{ plant.name }}</option>
+              {% else %}
+                <option value="{{ plant._id }}">{{ plant.name }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          <label for="event_plant_id">Plant Name</label>
+          <span class="helper-text">Required</span>
+        </div>
+      </div>
+      <!-- event name -->
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
+          <input id="name" name="name" minlength="5" maxlength="40" value="{{ garden_event.name }}" type="text"
+            class="count-text validate" data-length="40" required>
+          <label for="name">Event Name</label>
+          <span class="helper-text">Required</span>
+        </div>
+      </div>
+      <!--  event date -->
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+          <input id="occurs_at" name="occurs_at" type="text" value="{{ garden_event.occurs_at.strftime('%B %d, %Y') }}"
+            class="datepicker validate" required>
+          <label for="occurs_at">Event Date</label>
+          <span class="helper-text">Required</span>
+        </div>
+        <!-- event repeat cycle -->
+        <div class="input-field col s12 m6">
+          <i class="far fa-clock prefix teal-text text-darken-2"></i>
+          <input id="repeats" name="repeats" placeholder="Daily, 2/3/Weekly, 2/3/Monthly, Yearly"
+            value="{{ garden_event.repeats }}" type="text" max-length="40" data-length="40" class="count-text validate">
+          <label for="repeats">Event Repeats</label>
+          <span class="helper-text">Optional</span>
+        </div>
+      </div>
+      <!-- event note -->
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
+          <textarea id="notes" name="notes" minlength="5" maxlength="200" class="materialize-textarea validate"
+            data-length="200">
                         {{- garden_event.notes -}}
                     </textarea>
-                      <label for="notes">Event Notes</label>
-                      <span class="helper-text">Optional</span>
-                    </div>
-                </div>
-                <!-- submit button -->
-                <div class="row">
-                    <div class="col s12 center-align">
-                        {% if session["user"] == garden_event.created_by %}
-                            <a href="#delete-event-modal" class="btn-small red darken-4 modal-trigger btn-delete">
-                                Delete <i class="fas fa-times-circle right hide-on-small-only"></i>
-                            </a>                   
-                            <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
-                                Save <i class="fas fa-edit right hide-on-small-only"></i>
-                            </button>
-                        {% endif %}
-                        <a href="{{ url_for('get_garden_events') }}" class="btn-small blue-grey btn-close">
-                            Cancel <i class="fas fa-times-circle right hide-on-small-only"></i>
-                        </a>
-                    </div>
-            <!-- Modal Structure -->
-                    <div id="delete-event-modal" class="modal">
-                        <div class="modal-header">
-                            <p class="materialert danger">Deleting event data is irreversable.</p>
-                        </div>
-                        <div class="modal-content">
-                            <p>Are you sure you want to delete the "<strong class="emph-green">{{ garden_event.name }}</strong>" event?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{{ url_for('delete_event', event_id=garden_event._id) }}" 
-                                class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
-                                Delete <i class="fas fa-times-circle right"></i>
-                            </a>
-                            <a href="{{ url_for('get_garden_events') }}" class="btn-small blue-grey btn-close">
-                                Cancel <i class="fas fa-times-circle right"></i>
-                            </a>
-                        </div>
-                    </div>
-            <!-- end modal -->
-
-                </div>
-            </form>
+          <label for="notes">Event Notes</label>
+          <span class="helper-text">Optional</span>
         </div>
-    </div>
+      </div>
+      <!-- submit button -->
+      <div class="row">
+        <div class="col s12 center-align">
+          {% if session["user"] == garden_event.created_by %}
+            <a href="#delete-event-modal" class="btn-small red darken-4 modal-trigger btn-delete">
+              Delete <i class="fas fa-times-circle right hide-on-small-only"></i>
+            </a>
+            <button type="submit" class="btn-small blue darken-2 teal-text text-lighten-5 btn-edit">
+              Save <i class="fas fa-edit right hide-on-small-only"></i>
+            </button>
+          {% endif %}
+          <a href="{{ url_for('get_garden_events') }}" class="btn-small blue-grey btn-close">
+            Cancel <i class="fas fa-times-circle right hide-on-small-only"></i>
+          </a>
+        </div>
+        <!-- Modal Delete -->
+        <div id="delete-event-modal" class="modal">
+          <div class="modal-header">
+            <p class="materialert danger">Deleting event data is irreversable.</p>
+          </div>
+          <div class="modal-content">
+            <p>Are you sure you want to delete the "<strong class="emph-green">{{ garden_event.name }}</strong>" event?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <a href="{{ url_for('delete_event', event_id=garden_event._id) }}"
+              class="waves-effect waves-light btn btn-small red darken-4 btn-delete">
+              Delete <i class="fas fa-times-circle right"></i>
+            </a>
+            <a href="{{ url_for('get_garden_events') }}" class="btn-small blue-grey btn-close">
+              Cancel <i class="fas fa-times-circle right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- end modal -->
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

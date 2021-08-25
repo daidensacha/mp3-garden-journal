@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="container">
-    <div class="row">
-            <img class="responsive-img"  src="{{url_for('static', filename='images/four-o-five.jpg')}}">
-            <h4 class="center"><a href="{{ url_for('home') }}">Back home.</a></h4>
-    </div>
+<div class="container">
+  <div class="row">
+    <img class="responsive-img" src="{{url_for('static', filename='images/four-o-five.jpg')}}">
+    <h4 class="center"><a href="{{ url_for('home') }}">Back home.</a></h4>
   </div>
+</div>
 {% endblock %}
