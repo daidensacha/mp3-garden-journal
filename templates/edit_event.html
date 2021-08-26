@@ -46,7 +46,7 @@
         <div class="input-field col s12">
           <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
           <input id="name" name="name" minlength="5" maxlength="40" value="{{ garden_event.name }}" type="text"
-            class="count-text validate" data-length="40" required>
+            class="count-text validate" data-length="40" pattern="^[a-zA-Z\x7f-\xff ]{2,40}$" required>
           <label for="name">Event Name</label>
           <span class="helper-text">Required</span>
         </div>
@@ -64,7 +64,8 @@
         <div class="input-field col s12 m6">
           <i class="far fa-clock prefix teal-text text-darken-2"></i>
           <input id="repeats" name="repeats" placeholder="Daily, 2/3/Weekly, 2/3/Monthly, Yearly"
-            value="{{ garden_event.repeats }}" type="text" max-length="40" data-length="40" class="count-text validate">
+            value="{{ garden_event.repeats }}" type="text" max-length="40" data-length="40" 
+            pattern="^[a-zA-Z\x7f-\xff ]{2,40}$" class="count-text validate">
           <label for="repeats">Event Repeats</label>
           <span class="helper-text">Optional</span>
         </div>

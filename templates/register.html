@@ -10,14 +10,14 @@
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
                 <input id="firstname" name="firstname" type="text" minlength="2" maxlength="15"
-                  pattern="^[a-zA-Z0-9]{2,15}$" class="count-text validate" data-length="15" required>
+                  pattern="^[a-zA-Z\x7f-\xff]{2,15}$" class="count-text validate" data-length="15" required>
                 <label for="firstname">First Name</label>
                 <span class="helper-text">Required</span>
               </div>
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
                 <input id="lastname" name="lastname" type="text" minlength="2" maxlength="15"
-                  pattern="^[a-zA-Z0-9]{2,15}$" class="count-text validate" data-length="15" required>
+                pattern="^[a-zA-Z\x7f-\xff]{2,15}$" class="count-text validate" data-length="15" required>
                 <label for="lastname">Last Name</label>
                 <span class="helper-text">Required</span>
               </div>

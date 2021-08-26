@@ -12,14 +12,14 @@
         <div class="input-field col s12 m6">
           <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
           <input id="type" name="type" minlength="4" maxlength="30" type="text" class="count-text validate"
-            data-length="30" required>
+            data-length="30" pattern="^[a-zA-Z\x7f-\xff ]{2,30}$" required>
           <label for="type">Plant Type</label>
           <span class="helper-text">Required</span>
         </div>
         <div class="input-field col s12 m6">
           <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
           <input id="name" name="name" minlength="3" maxlength="30" type="text" class="count-text validate"
-            data-length="30" required>
+            data-length="30" pattern="^[a-zA-Z\x7f-\xff ]{2,30}$" required>
           <label for="name">Plant Name</label>
           <span class="helper-text">Required</span>
         </div>
