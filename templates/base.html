@@ -135,21 +135,21 @@
 
     </div>
     <!-- end slider -->
-    <div>
+    <!-- <div> -->
       <!-- flash messages - includes alert category-->
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-        <!-- <section> -->
+        <section>
         {% for category, message in messages %}
           <div class="materialert {{category}}">
             <span>{{ message }}</span>
             <button type="button" class="close-alert hide-on-small-only">×</button>
           </div>
         {% endfor %}
-        <!-- </section> -->
+        </section>
       {% endif %}
       {% endwith %}
-    </div>
+    <!-- </div> -->
 
     <main id="main-block">
       {% block content %}

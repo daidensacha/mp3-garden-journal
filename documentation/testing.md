@@ -532,12 +532,6 @@ I anticipate that the list of events could become long and difficult to look thr
 
 **As a hobby gardener:**
 
-> I would like to be able to add images of the plants.
-
-- I have not implemented the feature in this build as it was beyond the scope of possibility for now. I would like to add this feature in the future and have listed it in future improvements.
-
-**As a hobby gardener:**
-
 > As a hobby gardener, I want to edit plants and events to improve the records over time.
 
 The Garden Almanac is precisely for this, to record information and improve accuracy over time with experience. The Garden Almanac provides various options for the user to record information about plants and plant events. The user can create many different types of events for one plant and group the events by category. The recorded data is easily editable by clicking the edit button for the event or plant in the Almanac collapsible. The user can also edit and update plant information directly from the plant list on the plant's page.

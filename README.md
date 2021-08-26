@@ -23,7 +23,6 @@ View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 	- As a hobby gardener I want to set up reminders for yearly maintenance tasks (like pruning, pest control etc.)
 	- As a hobby gardener, I'm interested in recording the time of year when plants flower
 	- As a hobby gardener, I would like to add my plants to a list of plants, containing information relevant to that plant. 
-	- As a hobby gardener, I would like to be able to add images of the plants. 
 	- As a hobby gardener, I want to edit plants and event when information so I can improve the records over time.
 
 2. **As a vegetable gardener:**
@@ -812,7 +811,7 @@ With limited time to complete my project, I have had to exclude developing the a
 **User Profiles**
 	Had I more time, my next work would be to work on the user profiles. Its the landing page for users when they log in, and I would like it to me more like an administration panel for the user, where they can view how many plants, events and categories they have. I would also have it showing the next months events. There would be direct links from that page to the users events and plants. There is so much that I would like to do there. 
 **Image Uploads** 
-- I was my desire to have this feature included in this build, but alas time is the ultimate master and with documentation, and the work I already did, I had enough on my plate. I will be including this feature once I am abel to research and learn the best way to do it. 
+- I wanted to include this feature in this build, but alas time is the ultimate master and with documentation, and the work I already did, I had enough on my plate. I will be including this feature once I am able to research and learn the best way to do it. 
 **Interest Groups** 
 I see potential to develop this into a social platform, where users with similar interests can connect and share their events, plants, and information. It would be invaluable as an almanac, as it depends on experience. The broader the user base of knowledge being input and contributed, the more accurate and helpful the information. 
 
