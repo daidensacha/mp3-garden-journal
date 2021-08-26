@@ -98,6 +98,16 @@ div.faq-info p {
   /* min-width: 50px; */
 }
 
+.btn-edit-profile {
+  width: calc(50% - 16px)!important;
+  margin-left: 10px!important;
+}
+
+.btn-profile {
+  width: calc(100% - 20px)!important;
+  margin-left: 10px!important;
+}
+
 .email-send {
   border: none;
   box-shadow: none;
@@ -259,6 +269,13 @@ nav li a {
   color:#333;
 }
 
+/**************** Add Event Select Dropdown Option 2 Color ********************/
+
+.select-dropdown>li:nth-child(2)>span{
+
+  color: #a1887f;
+  }
+
 /******************************* Footer Styling *******************************/
 
 footer.page-footer {
@@ -352,12 +369,17 @@ li .collapsible-header {
 
 li .collapsible-header .caret {
   color: #fff;
-  margin-right: 0;
+  /* margin-right: 0; */
+  /* margin: 0 auto; */
   -webkit-transition: -webkit-transform 0.2s ease;
   transition: -webkit-transform 0.2s ease;
   -o-transition: transform 0.2s ease;
   transition: transform 0.2s ease;
   transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+
+.mx-auto {
+  margin: 0 auto;
 }
 
 li.active .collapsible-header .caret {

@@ -102,4 +102,29 @@ scrollToTopButton.onclick = function(e) {
   scrollToTop();
 }
 
+function handleSelect(redirect) {
 
+  let dataAttr = redirect.options[redirect.selectedIndex].getAttribute('data-url');
+  // console.log(dataAttr)
+  // dataAttr = dataAttr.substring(1); 
+  
+  console.log(dataAttr)
+  console.log(typeof dataAttr)
+
+  let url = window.location.origin;
+  console.log(url)
+  // let getUrl = window.location;
+  // console.log(getUrl)
+  // let baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+  // console.log(baseURL)
+
+
+  if (dataAttr) {
+    window.location.href = url + dataAttr;
+  }
+  else return;
+  
+  // if (dataAttr == "{{url_for('add_plant')}}") {return window.location.href = redirect.getAttribute("data-url");}
+  // else if (dataAttr == "{{url_for('add_category')}}") {return window.location.href = redirect.getAttribute("data-url");}
+  // else return
+}

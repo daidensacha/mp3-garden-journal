@@ -752,7 +752,40 @@ Once deployed and ready for production, I move to the testing phase and extensiv
 [TESTING/Testing Checklist](/documentation/testing.md#testing-checklist-development-deployment)
 
 ### Feedback
+I put my work out for peer code review yesterday, and today when I sat down to work, I was pleasantly surprised that there was a message.
 
+***Richard Ash***
+>Hi Daiden. The site looks great, and it's a really good idea. I spotted a couple of minor issues while registering and adding some events. When I added my user profile, the first name and last name fields are limited to a minimum of 5 characters which is too short for my surname. You should probably change these to 2 or 3 characters minimum instead of 5. Also would be nice to have a link to the New Plant and New Category Routes from the drop downs on the Add event page. Great work, though!
+
+Richard had some excellent points, and I thought worthy of fixing for submission. 
+- The thought of the min length for names had occurred to me. I changed that, so users require a min of 2 letters in their name. That was the easy one.
+- The second point was great feedback, hitting the heart of UX. In the Navbar, there are links to "events, plants, and categories" under the add dropdown, but Richard missed it and found his way to add an event. New users will potentially find it tricky, as `garden_events` are dependent on plants and categories. Having found their way to the add_event page, a new user will have to navigate to the `add_plants` and `add_categories` pages. It would detract from the experience, and as Richard mentioned, it would be so much more convenient if he could click on an option in the select to `add_plant` or `add_category`. 
+- I added the feature to category and plant selects, but had to use Javascript to do it. 
+
+**The HTML**
+	```html+jinja
+	<!-- Add onchange to the select -->
+	<select  id="category"  name="category"  class="validate"  onchange="javascript:handleSelect(this)"  required>
+
+	<!-- Add data-url attribute to the select option for the redirect -->
+	<option  value=""  data-url="{{url_for('add_category')}}">Add Category</option>
+	```
+	**The Javascript**
+	```javascript
+		function handleSelect(redirect) {
+			// Assign data-url attribute of selected item to the variable
+			let dataAttr = redirect.options[redirect.selectedIndex].getAttribute('data-url');
+			// lets get the root url for the current page, means it will work on different domains.
+			let url = window.location.origin;
+			// check if the data variable returned a value, and add the root url to the redirect
+			if (dataAttr) {
+				window.location.href = url + dataAttr;
+			} else  return;
+	}
+	```
+	**Result**
+
+	![](/documentation/images/add_category_plant.png) 
 
 ### Credits
 ***Code Institute*** 
@@ -885,3 +918,6 @@ I found what I thought was the issue, applied a css style to override the materi
 
 ![](/documentation/images/event-normal.png)  
 
+**Issue 6. No Cancel button in edit profile page**
+I realized that I needed to make it possible for users to cancel updating their profile and return to the profile page without hitting the back button in the browser. Just good UX. 
+I added the cancel button and made some changes to the style and width of the form buttons. There is now a cancel button on the edit profile page.

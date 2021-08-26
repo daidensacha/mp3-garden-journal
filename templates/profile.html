@@ -27,13 +27,13 @@
               </div>
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
-                <input id="firstname" name="firstname" type="text" minlength="5" maxlength="15"
+                <input id="firstname" name="firstname" type="text" minlength="2" maxlength="15"
                   value="{{ user.firstname }}" pattern="^[a-zA-Z0-9]{5,15}$" disabled>
                 <label for="firstname">First Name</label>
               </div>
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
-                <input id="lastname" name="lastname" type="text" minlength="5" maxlength="15" value="{{ user.lastname }}"
+                <input id="lastname" name="lastname" type="text" minlength="2" maxlength="15" value="{{ user.lastname }}"
                   pattern="^[a-zA-Z0-9]{5,15}$" disabled>
                 <label for="lastname">Last Name</label>
               </div>
@@ -49,10 +49,12 @@
                   pattern="^[a-zA-Z0-9]{5,15}$" class="validate" disabled>
                 <label for="old_password">Password</label>
               </div>
+
               <a href="{{ url_for('edit_profile', user_id=user._id) }}"
-                class="waves-effect waves-green btn-small blue darken-2 btn-edit col s12 m12">
+                class="waves-effect waves-green btn-small blue darken-2 btn-edit btn-profile col s12">
                 Edit Profile <i class="fas fa-edit right"></i>
               </a>
+
             </form>
 
           </div>

@@ -120,7 +120,7 @@ def get_garden_events():
                     {"created_by": session["user"]}).sort("month"))
         if not garden_events:
             flash(
-                "Add events, plants and categories to populate this page.",
+                "Add plants, categories and events to populate this page.",
                 "info")
         return render_template("journal.html", plants=plants,
                                garden_events=garden_events,
@@ -581,10 +581,12 @@ def edit_category(category_id):
 
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
+    # get category from categories
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    # Check if garden events uses this category
     check_events = mongo.db.garden_events.find_one(
                         {"category": category["category"]})
-
+    # if variable is empty, run function, otherwise stop deletion. 
     if not check_events:
         if "user" in session:
             mongo.db.categories.remove({"_id": ObjectId(category_id)})
