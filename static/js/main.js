@@ -104,10 +104,8 @@ scrollToTopButton.onclick = function(e) {
 
 // Get event select add_category and add_plant url 
 function handleSelect(redirect) {
-
   let dataAttr = redirect.options[redirect.selectedIndex].getAttribute('data-url');
   let url = window.location.origin;
-
   if (dataAttr) {
     window.location.href = url + dataAttr;
   }

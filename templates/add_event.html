@@ -12,7 +12,7 @@
           <select id="category" name="category" class="validate" onchange="javascript:handleSelect(this)" required>
             <option value="" disabled selected>Choose Category</option>
             <!-- Add option for user to link directly to the add category page -->
-            <option value="" style="color:orange;" data-url="{{url_for('add_category')}}">Add Category</option>
+            <option value="" data-url="{{url_for('add_category')}}">Add Category</option>
             <!-- <option value="" style="color:orange;" data-url="/add_category">Add Category</option> -->
             {% for category in categories %}
             <option value="{{ category.category }}">{{ category.category }}</option>
