@@ -530,6 +530,8 @@ I anticipate that the list of events could become long and difficult to look thr
 
 - Plants are displayed in a list that highlights when the user moves the mouse cursor over the plant. Clicking on the plant opens the modal displaying the information about the plant.
 
+![](/documentation/images/userstory-plant-list.png)  
+
 **As a hobby gardener:**
 
 > As a hobby gardener, I want to edit plants and events to improve the records over time.
@@ -542,11 +544,13 @@ The Garden Almanac is precisely for this, to record information and improve accu
 
 **As a vegetable gardener:**
 > I would like to set a reminder when the last frost is, so I know when it is safe to plant outside.
-- The user can create an event for his plants as a reminder for the last frost. Some fields cater specifically to the user's need to know when to sow, plant, and harvest in the plant information.
+- The user can create an event for his plants as a reminder for the last frost. Some fields cater specifically to the user's need to know when to sow, plant, and harvest in the plant information. The user can create an event that reminds them when it's safe to plant the seedlings to be safe from the frost.
+
+![](/documentation/images/modal-plants.png) 
 
 **As a vegetable gardener:**
 > I want to set reminders for planting particular seeds, so they are ready to plant out after the last frost.
-- Users can create events in the Garden Almanac, such as when to sow seeds to prepare to plant once the last frost has passed. Different plant climates determine the plant's specific needs, and users can use the Garden Almanac for their particular needs.
+- Users can create events in the Garden Almanac, such as when to sow seeds to prepare to plant once the last frost has passed. Different plant climates determine the plant's specific needs, and users can use the Garden Almanac for their particular needs. See the image above.
 
 **As a vegetable gardener:**
 >I want to record regular or yearly maintenance tasks, so I don't forget them.
@@ -605,6 +609,121 @@ When the user now tries to delete a plant with related events, the delete_plant 
 I had the same issue with deleting plants. See Issue 1 above. I needed to prevent users from deleting categories when there is a related event using the category the user wants to delete. I changed the code in the delete_category function to check garden events and prevent the user from deleting the category if there is a related event. The user has two options, update the category in the event to a different one or delete the event/s. Then the app can delete the category. 
   
 
+##### ISSUE: 3
+
+**Forms**
+
+In the walk-through project, which I have been super grateful for, the teacher made a mistake, and I didn't question it. I based my process for creating my CRUD functionality in the same order and style as in the Task Manager Project. The teacher created a `add_category` page, wired it up, then copied it to create the edit category page, which is a good way to do it. The issue was that he did not rename the form input ID on the duplicated page.   It's not semantically correct to have elements in the website with the same ID. I realized my mistake yesterday when using JavaScript and working on two form elements. Today I fixed the error and renamed the inputs to be unique, which meant also changing those input references in the app route functions. It was no small task, but I feel much better having corrected it. 
+
+- **Materializecss Validation Class**
+The forms all have the materializecss validation class added, so the browser checks the input data and displays the standard browser tooltip with an error message asking the user to fill in the correct information. I personally don't like it when I get that message, and it isn't clear what the required format is. 
+
+- **Custom Regex Patterns**
+I did some research on Regex, as I live in Germany and have friends who have names with German characters. I added custom Regex patterns, which accept German and English, and now I am confident that all Germans with an umlaut in their name will be able to register in their native language. This also is added to all the text inputs. 
+A very handy tool for creating the Regex, [Regex101.com](https://r
+
+**Add Event Form**
+| element  | type | class                         | id                    | validation     | required |
+| -------- | ---- | ----------------------------- | --------------------- | -------------- | -------- |
+| select   |      | validate                      | add\_event\_category  | Browser        | Yes      |
+| select   |      | validate                      | add\_event\_plant\_id | Browser        | Yes      |
+| input    | text | count-text validate           | add\_event\_name      | Browser/ Regex | No       |
+| input    | text | datepicker validate           | add\_occurs\_at       | Browser        | Yes      |
+| input    | text | count-text validate           | add\_event\_repeats   | Browser/ Regex | No       |
+| textarea |      | materialize-textarea validate | add\_event\_notes     | Browser        | No       |
+
+**Edit Event Form**
+| element  | type | class                         | id                     | validation     | required |
+| -------- | ---- | ----------------------------- | ---------------------- | -------------- | -------- |
+| select   |      | validate                      | edit\_event\_category  | Browser        | Yes      |
+| select   |      | validate                      | edit\_event\_plant\_id | Browser        | Yes      |
+| input    | text | count-text validate           | edit\_event\_name      | Browser/ Regex | No       |
+| input    | text | datepicker validate           | edit\_occurs\_at       | Browser        | Yes      |
+| input    | text | count-text validate           | edit\_event\_repeats   | Browser/ Regex | No       |
+| textarea |      | materialize-textarea validate | edit\_event\_notes     | Browser        | No       |
+
+**Add Plant Form**
+| element  | type | class                         | id                 | validation     | required |
+| -------- | ---- | ----------------------------- | ------------------ | -------------- | -------- |
+| input    | text | count-text validate           | add\_plant\_type   | Browser/ Regex | Yes      |
+| input    | text | count-text validate           | add\_plant\_name   | Browser/ Regex | Yes      |
+| input    | text | datepicker validate           | add\_sow\_at       | Browser        | No       |
+| input    | text | datepicker validate           | add\_plant\_at     | Browser        | No       |
+| input    | text | datepicker validate           | add\_harvest\_from | Browser        | No       |
+| input    | text | datepicker validate           | add\_harvest\_to   | Browser        | No       |
+| input    | text | count-text validate           | add\_fertilise     | Browser/ Regex | No       |
+| input    | text | count-text validate           | add\_fertiliser    | Browser/ Regex | No       |
+| textarea |      | materialize-textarea validate | add\_plant\_notes  | Browser        | No       |
+
+**Edit Plant Form**
+| element  | type | class                         | id                  | validation     | required |
+| -------- | ---- | ----------------------------- | ------------------- | -------------- | -------- |
+| input    | text | count-text validate           | edit\_plant\_type   | Browser/ Regex | Yes      |
+| input    | text | count-text validate           | edit\_plant\_name   | Browser/ Regex | Yes      |
+| input    | text | datepicker validate           | edit\_sow\_at       | Browser        | No       |
+| input    | text | datepicker validate           | edit\_plant\_at     | Browser        | No       |
+| input    | text | datepicker validate           | edit\_harvest\_from | Browser        | No       |
+| input    | text | datepicker validate           | edit\_harvest\_to   | Browser        | No       |
+| input    | text | count-text validate           | edit\_fertilise     | Browser/ Regex | No       |
+| input    | text | count-text validate           | edit\_fertiliser    | Browser/ Regex | No       |
+| textarea |      | materialize-textarea validate | edit\_plant\_notes  | Browser        | No       |
+
+**Add Category Form**
+| element | type   | class               | id             | validation     | required |
+| ------- | ------ | ------------------- | -------------- | -------------- | -------- |
+| input   | text   | count-text validate | add\_category  | Browser/ Regex | Yes      |
+
+**Edit Category Form**
+| element | type   | class               | id             | validation     | required |
+| ------- | ------ | ------------------- | -------------- | -------------- | -------- |
+| input   | text   | count-text validate | edit\_category | Browser/ Regex | Yes      |
+
+**Login**
+| element | type     | class               | id                       | validation     | required |
+| ------- | -------- | ------------------- | ------------------------ | -------------- | -------- |
+| input   | text     | validate            | login\_username          | Browser/ Regex | Yes      |
+| input   | password | validate            | login\_password          | Browser/ Regex | Yes      |
+
+**Register**
+| element | type  | class               | id                  | validation     | required |
+| ------- | ----- | ------------------- | ------------------- | -------------- | -------- |
+| input   | text  | count-text validate | register\_firstname | Browser/ Regex | Yes      |
+| input   | text  | count-text validate | register\_lastname  | Browser/ Regex | Yes      |
+| input   | text  | count-text validate | register\_username  | Browser/ Regex | Yes      |
+| input   | email | count-text validate | register\_email     | Browser/ Regex | Yes      |
+
+**Profile**
+| element | type     | class               | id                 | validation     | required |
+| ------- | -------- | ------------------- | ------------------ | -------------- | -------- |
+| input   | text     |                     | profile\_joined    |                | disabled |
+| input   | text     | count-text validate | profile\_username  | Browser/ Regex | disabled |
+| input   | text     | count-text validate | profile\_firstname | Browser/ Regex | disabled |
+| input   | text     | count-text validate | profile\_lastname  | Browser/ Regex | disabled |
+| input   | email    | count-text validate | profile\_email     | Browser/ Regex | disabled |
+| input   | password | count-text validate | profile\_password  | Browser/ Regex | disabled |
+
+**Edit Profile**
+| element | type     | class               | id                       | validation     | required |
+| ------- | -------- | ------------------- | ------------------------ | -------------- | -------- |
+| input   | text     | count-text validate | edit\_profile\_firstname | Browser/ Regex | Yes      |
+| input   | text     | count-text validate | edit\_profile\_lastname  | Browser/ Regex | Yes      |
+| input   | text     | count-text validate | edit\_profile\_username  | Browser/ Regex | Yes      |
+| input   | email    | count-text validate | edit\_profile\_email     | Browser/ Regex | Yes      |
+| input   | password | count-text validate | edit\_profile\_password  | Browser/ Regex | Yes      |
+  
+## Validation
+
+### Form Validation
+I have multiple protections for the forms. Browser validation using the materializcss validate class. The Materializecss data-error and data-success class display error and success messages to inform the user what is required. I thought this really important from the user experience perspective. 
+The inputs have custom Regex to ensure only relavent text can be posted.
+
+### HTML Validation
+HTML  validated by W3C Markup Validation Service
+See Garden Almanac [W3C Markup Validation Result](https://validator.w3.org/nu/?doc=http%3A%2F%2Fmp3-garden-journal.herokuapp.com%2F)
+
+### CSS Validation
+CSS valitated by W3C CSS Validation Service
+See Garden Almanac W3C CSS Validation Result
 
 
  

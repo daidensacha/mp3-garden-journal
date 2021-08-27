@@ -335,7 +335,7 @@ I inlcuded images of fruit and vegetables to inspire users to make use of the ap
 11. [Adobe XD](https://www.adobe.com/products/xd.html) 
 	Used to create wireframes
 12. [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
-	Used to edit images for the site.
+	The software used to work on the project images.
 13. [Adobe Illustrator](https://www.adobe.com/de/creativecloud.html?mv=search&mv=search&sdid=MQH8S7GK&ef_id=Cj0KCQjwgtWDBhDZARIsADEKwgPZA7lnHvCbzk4T9-Q7HVENkRXnk1GxIseaWipJrYnWF0LQvFTw21MaAlQ6EALw_wcB:G:s&s_kwcid=AL!3085!3!392740825380!b!!g!!%2badobe!1419110055!55481570853&gclid=Cj0KCQjwgtWDBhDZARIsADEKwgPZA7lnHvCbzk4T9-Q7HVENkRXnk1GxIseaWipJrYnWF0LQvFTw21MaAlQ6EALw_wcB)
 	Used to create my 404, 405 and 500 error images to display if users encounted missing or broken page links.
 14. [Squoosh](https://squoosh.app/)
@@ -360,7 +360,7 @@ My testing at experimentation is done locally using [Webmaker App](https://webma
 - ***Grid*** Its pretty straight forward and similar in many ways to bootstrap. Some class names are similar, i.e. ```.row``` and ```.col```. The grid class syntax is also pretty simple to grasp. 
 - ***Collapsible*** The Material Design name for what is better known as an accordion. I needed to reasearch how to implement the accordion, and decide teh best way to display the garden event information. 
 - ***Collection*** Material Design name for a list. I wanted to use it for displaying the list of plants, and also the list of categories. 
-- ***Tabs	(confict...)*** It was my initial plant to try to display the events by month in tabs, but Materializecss uses teh image carousel css in the tabs, and this created a confict with the image slider. The tabs automatically scrolled. Furthermore, with limited time to sort the issues, I decided to go an easier route. I didn't use tabs in my project, and overall I'm happy I went the "Collapsilble" route.
+- ***Tabs	(conflict)*** My initial plan was to show the events by month in tabs, but Materializecss uses the image carousel css in the tabs, which created a conflict with the image slider. The tabs automatically scrolled. Furthermore, with limited time to sort the issues, I decided to go an easier route. I didn't use tabs in my project, and overall I'm happy I went the "Collapsible" route.
 - ***Image slider*** I wanted to have this as teh main feature when the user lands on the homepage. One image relating to each season, Spring, Summer, Autumn, Winter. I found my images on Deposit photos, and created the slider images from the stock images.
 - ***Forms*** I needed to look at the form elements, see the implementation proceedure, to know in advance what I was going to implement before I came to it. 
 - ***Modal*** The plan was to use modals, to display plant information, and also for the contact form. I changed the form from HTML to Flask-WTForms in the end, to stay with Python so did away with the form modal. I used modals for the delete confirmation messages.
@@ -799,7 +799,7 @@ The ES6 Scroll-to-top button is from a [Codepen by Josh Mason](https://codepen.i
   
 
 ## NOTES
-
+**To-top button** I removed this from tablets and mobiles because, during testing with all the inputs, I found it an impedance on touch screen devices. From my experience, swiping on a touch screen is just as easy, and I don't have a small to-top button obscuring my view or access to the actual content of the site. For desktops, it's perfect, and I'm really happy to have it on the site. I just wanted to document my measured decision not to have it on touch screen devices. 
 
 ## IMPROVEMENTS/ FUTURE FEATURES
 **Admin**
@@ -811,7 +811,7 @@ With limited time to complete my project, I have had to exclude developing the a
 **User Profiles**
 	Had I more time, my next work would be to work on the user profiles. Its the landing page for users when they log in, and I would like it to me more like an administration panel for the user, where they can view how many plants, events and categories they have. I would also have it showing the next months events. There would be direct links from that page to the users events and plants. There is so much that I would like to do there. 
 **Image Uploads** 
-- I wanted to include this feature in this build, but alas time is the ultimate master and with documentation, and the work I already did, I had enough on my plate. I will be including this feature once I am able to research and learn the best way to do it. 
+- I wanted to include this feature in this build, but alas time is the ultimate master and with documentation, and the work I already did, I had enough on my plate. I will be including this feature in a future build of the project.
 **Interest Groups** 
 I see potential to develop this into a social platform, where users with similar interests can connect and share their events, plants, and information. It would be invaluable as an almanac, as it depends on experience. The broader the user base of knowledge being input and contributed, the more accurate and helpful the information. 
 
@@ -920,3 +920,16 @@ I found what I thought was the issue, applied a css style to override the materi
 **Issue 6. No Cancel button in edit profile page**
 I realized that I needed to make it possible for users to cancel updating their profile and return to the profile page without hitting the back button in the browser. Just good UX. 
 I added the cancel button and made some changes to the style and width of the form buttons. There is now a cancel button on the edit profile page.
+
+**Issue 7. Materializecss CSS validation error in the materialize.1.0.0 CSS Sheet**
+They have not assigned a value to the `0.4`. I looked it up, downloaded the CSS sheet, and discovered it needs to be 0.4 something, px, em, rem, but leaving it blank is causing the validation error. 
+[Value Error](https://jigsaw.w3.org/css-validator/validator?uri=http://mp3-garden-journal.herokuapp.com/&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+#### URI :  [https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css](https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css)
+| line  | element  | error |
+|------|-------|-----|
+|13.| table-of-contents a|Value Error : letter-spacing only  `0`  can be a  `unit`. You must put a unit after your number:  0.4|
+
+What do I do with this error? 
+- Option 1: I guess I could try to download the SASS files, update and compile the CSS to store in the static CSS file? 
+- Document what I have written above in my readme, and leave it?
+All my HTML templates, CSS, and JS pass apart from this one item.
