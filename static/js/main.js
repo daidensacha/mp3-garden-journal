@@ -33,9 +33,9 @@ $(function () {
     $(this).parent().hide('fade-out');
   });
 
-  setTimeout(() => { 
-    $(".materialert").hide('fade-out');
-}, 8000);
+//   setTimeout(() => { 
+//     $(".materialert").hide('fade-out');
+// }, 8000);
 
 
 // Materializecss select validation code from code institute walk through project. 

@@ -218,7 +218,7 @@ nav li a {
 
 /**************** Add Event Select Dropdown Option 2 Color ********************/
 
-.select-dropdown>li:nth-child(2)>span{
+#style-selects .select-dropdown>li:nth-child(2)>span{
   color: #455a64;
   background-color: #f0f4c3;
   }
