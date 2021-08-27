@@ -750,6 +750,53 @@ The customer error pages all have links back to the home page.
 Once deployed and ready for production, I move to the testing phase and extensively check all functions work as expected, and in the process, look for issues I might have missed. It's tedious but a great exercise and allows me to improve code where it's needed. 
 [TESTING/Testing Checklist](/documentation/testing.md#testing-checklist-development-deployment)
 
+#### Forking or Cloning Garden Almanac
+1. If you're interested in forking the project to experiment with the code, or to propose changes, then navigate to the [Garden Almanac Project](https://github.com/daidensacha/mp3-garden-journal), and click on the fork button.
+
+![](/documentation/images/fork-project.png)   
+
+2. You have forked the project but will not yet have files locally on your computer.
+If you go to your GitHub repository of the project, click on the code button above the list of files, you will see this.
+
+![](/documentation/images/clone-project.png)   
+
+3. To clone using HTTPS, under this heading, click the clipboard icon to copy the link. 
+
+4. Open terminal. Move to the directory where you want to have the project. 
+Type `git clone` and then paste the URL you copied. You should see the following link with your username in the link. 
+`https://github.com/YOUR-USERNAME/mp3-garden-journal.git`
+Press enter, and your clone will be created. 
+
+5. At this point, you can open up the project and run `git init`. It will initialize the project on your local server. 
+
+6. You will need to create two files. Type `touch env.py`  and `touch Procfile`.
+
+7. In the `Procfile`, enter `web: python app.py`, save and ensure no blank line is after it. 
+In `env.py`, you will need to add sensitive information for connecting to your database. 
+
+	```python
+	import os
+	os.environ.setdefault("IP", "IP-ADDRESS")
+	os.environ.setdefault("PORT", "PORT-NUMBER")
+	os.environ.setdefault("SECRET_KEY", "YOUR-SECRET-KEY")
+	os.environ.setdefault("MONGO_URI", "LINK-TO-CONNECT-TO-MONGODB")
+	os.environ.setdefault("MONGO_DBNAME", "YOUR-MONGO-DATABASE-NAME")
+	```
+	You can get a secure fort knox key from [randomkeygen](https://randomkeygen.com/)
+
+8. Navigate to [MongoDB](https://account.mongodb.com/account/login), create an account if you don't have one. You can create a free account and a cluster to create your database. You will need to replicate the collections as outlined in the MongoDB Schema section of this document. 
+9. Get the link from MongoDB to connect your database to your local installation of the application. Enter this into the env.py. 
+Add the name of your database and the IP and PORT info to the env.py.
+
+10. You should have a gitignore file, having initiated git. If not, then type `touch .gitignore`.
+Enter env.py with your private information into the gitignore file, and save it so it isn't shared on GitHub. 
+
+11. Type `pip3 freeze --local > requirements.txt` in terminal. Pip3 will install all the dependencies required to run the project. 
+
+12. At this point, you should be ready, type `python3 app.py`, and then `Open in browser` when a popup appears.
+
+GitHub has [more detailed information](https://docs.github.com/en/get-started/quickstart/fork-a-repo) if you're interested in forking using SSH. 
+
 ### Feedback
 I put my work out for peer code review yesterday, and today when I sat down to work, I was pleasantly surprised that there was a message.
 
