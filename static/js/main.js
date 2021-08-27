@@ -33,6 +33,11 @@ $(function () {
     $(this).parent().hide('fade-out');
   });
 
+  setTimeout(() => { 
+    $(".materialert").hide('fade-out');
+}, 8000);
+
+
 // Materializecss select validation code from code institute walk through project. 
 validateMaterializeSelect();
 function validateMaterializeSelect() {
@@ -63,18 +68,12 @@ function validateMaterializeSelect() {
 }
 }); // end of document ready
 
-// $(".materialert > .close-alert").click(function () {
-//   $(this).parent().hide('fade-out');
-// });
-
 /*
 Created by Josh Mason https://codepen.io/joshuamasen/pen/OYaYbL
 */
 
 const scrollToTopButton = document.getElementById('js-top');
-
 const scrollFunc = () => {
-
   let y = window.scrollY;
 
   if (y > 0) {
@@ -85,14 +84,11 @@ const scrollFunc = () => {
 };
 
 window.addEventListener("scroll", scrollFunc);
-
 const scrollToTop = () => {
-
   const c = document.documentElement.scrollTop || document.body.scrollTop;
-  
+
   if (c > 0) {
     window.requestAnimationFrame(scrollToTop);
-
     window.scrollTo(0, c - c / 10);
   }
 };
@@ -103,12 +99,10 @@ scrollToTopButton.onclick = function(e) {
 }
 
 // Function adds the links for add_plant and add_category 
-// pages into the selects on the add_event page.
 // Very helpful: https://www.codegrepper.com/code-examples/javascript/javascript+get+base+url
 function handleSelect(redirect) {
   // Assign data-url attribute of selected item to the variable
   let dataAttr = redirect.options[redirect.selectedIndex].getAttribute('data-url');
-
   // lets get the root url for the current page, means it will work on different domains. 
   let url = window.location.origin;
   // check if the data variable returned a value, and add the root url to the redirect 

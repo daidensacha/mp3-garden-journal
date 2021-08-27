@@ -514,6 +514,13 @@ ul.form-error {
   margin-right: 10px;
 }
 
+.materialert.info:before {
+  font-family: "Material Icons";
+  font-weight: 900;
+  content: "\e001";
+  margin-right: 10px;
+}
+
 .materialert.success:before {
   font-family: "Material Icons";
   font-weight: 900;
