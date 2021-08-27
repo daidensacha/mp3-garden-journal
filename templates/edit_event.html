@@ -15,8 +15,7 @@
               {% if category.category == garden_event.category %}
                 <option value="{{ category.category }}" selected>{{ category.category }}</option>
               {% else %}
-                <option value="{{ category.category }}">
-                  {{ category.category }}</option>
+                <option value="{{ category.category }}">{{ category.category }}</option>
               {% endif %}
             {% endfor %}
           </select>
