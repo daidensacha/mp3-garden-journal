@@ -11,17 +11,17 @@
       <div class="row">
         <div class="input-field col s12 m6">
           <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-          <input id="type" name="type" minlength="4" maxlength="30" value="{{ plant.type}}" type="text"
-            class="count-text validate" data-length="30" pattern="^[a-zA-Z\x7f-\xff ]{2,30}$" required>
-          <label for="type">Plant Type</label>
-          <span class="helper-text">Required</span>
+          <input id="edit_plant_type" name="edit_plant_type" minlength="3" maxlength="30" value="{{ plant.type}}" type="text"
+            class="count-text validate" data-length="30" pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{3,30}$" required>
+          <label for="edit_plant_type">Plant Type</label>
+          <span class="helper-text" data-error="3-30 characters" data-success="Correct">Required</span>
         </div>
         <div class="input-field col s12 m6">
           <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-          <input id="name" name="name" minlength="3" maxlength="30" value="{{ plant.name }}" type="text"
-            class="count-text validate" data-length="30" pattern="^[a-zA-Z\x7f-\xff ]{2,30}$" required>
-          <label for="name">Plant Name</label>
-          <span class="helper-text">Required</span>
+          <input id="edit_plant_name" name="edit_plant_name" minlength="3" maxlength="30" value="{{ plant.name }}" type="text"
+            class="count-text validate" data-length="30" pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{3,30}$" required>
+          <label for="edit_plant_name">Plant Name</label>
+          <span class="helper-text" data-error="3-30 characters" data-success="Correct">Required</span>
         </div>
       </div>
       <!--  sowing time / planting time -->
@@ -29,24 +29,24 @@
         <div class="input-field col s12 m6">
           <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
           {% if plant.sow_at == "" %}
-            <input id="sow_at" name="sow_at" value="" type="text" class="datepicker validate">
+            <input id="edit_sow_at" name="edit_sow_at" value="" type="text" class="datepicker validate">
           {% else %}
-            <input id="sow_at" name="sow_at" value="{{ plant.sow_at.strftime('%B %d, %Y') }}" type="text"
+            <input id="edit_sow_at" name="edit_sow_at" value="{{ plant.sow_at.strftime('%B %d, %Y') }}" type="text"
               class="datepicker validate">
           {% endif %}
-          <label for="sow_at">Sowing Time</label>
-          <span class="helper-text">Optional</span>
+          <label for="edit_sow_at">Sowing Time</label>
+          <span class="helper-text" data-error="Please select from the datepicker" data-success="Correct">Optional</span>
         </div>
         <div class="input-field col s12 m6">
           <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
           {% if plant.plant_at == "" %}
-            <input id="plant_at" name="plant_at" value="" type="text" class="datepicker validate">
+            <input id="edit_plant_at" name="edit_plant_at" value="" type="text" class="datepicker validate">
           {% else %}
-            <input id="plant_at" name="plant_at" value="{{ plant.plant_at.strftime('%B %d, %Y') }}" type="text"
+            <input id="edit_plant_at" name="edit_plant_at" value="{{ plant.plant_at.strftime('%B %d, %Y') }}" type="text"
               class="datepicker validate">
           {% endif %}
-          <label for="plant_at">Planting Time</label>
-          <span class="helper-text">Optional</span>
+          <label for="edit_plant_at">Planting Time</label>
+          <span class="helper-text" data-error="Please select from the datepicker" data-success="Correct">Optional</span>
         </div>
       </div>
       <!-- harvest from / harvest to -->
@@ -54,24 +54,24 @@
         <div class="input-field col s12 m6">
           <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
           {% if plant.harvest_from == "" %}
-            <input id="harvest_from" name="harvest_from" value="" type="text" class="datepicker validate">
+            <input id="edit_harvest_from" name="edit_harvest_from" value="" type="text" class="datepicker validate">
           {% else %}
-            <input id="harvest_from" name="harvest_from" value="{{ plant.harvest_from.strftime('%B %d, %Y') }}"
+            <input id="edit_harvest_from" name="edit_harvest_from" value="{{ plant.harvest_from.strftime('%B %d, %Y') }}"
               type="text" class="datepicker validate">
           {% endif %}
-          <label for="harvest_from">Harvest From</label>
-          <span class="helper-text">Optional</span>
+          <label for="edit_harvest_from">Harvest From</label>
+          <span class="helper-text" data-error="Please select from the datepicker" data-success="Correct">Optional</span>
         </div>
         <div class="input-field col s12 m6">
           <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
           {% if plant.harvest_to == "" %}
-            <input id="harvest_to" name="harvest_to" value="" type="text" class="datepicker validate">
+            <input id="edit_harvest_to" name="edit_harvest_to" value="" type="text" class="datepicker validate">
           {% else %}
-            <input id="harvest_to" name="harvest_to" value="{{ plant.harvest_to.strftime('%B %d, %Y') }}" type="text"
+            <input id="edit_harvest_to" name="edit_harvest_to" value="{{ plant.harvest_to.strftime('%B %d, %Y') }}" type="text"
               class="datepicker validate">
           {% endif %}
-          <label for="harvest_to">Harvest To</label>
-          <span class="helper-text">Optional</span>
+          <label for="edit_harvest_to">Harvest To</label>
+          <span class="helper-text" data-error="Please select from the datepicker" data-success="Correct">Optional</span>
         </div>
       </div>
       <!-- fertilise frequesncy / fertiliser type -->
@@ -79,31 +79,31 @@
         <div class="input-field col s12 m6">
           <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
           {% if plant.fertilise == "" %}
-            <input id="fertilise" name="fertilise" minlength="5" maxlength="30" value="" type="text"
-              class="count-text validate" pattern="^[a-zA-Z\x7f-\xff ]{2,30}$" data-length="25">
+            <input id="edit_fertilise" name="edit_fertilise" minlength="5" maxlength="30" value="" type="text"
+              class="count-text validate" pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{5,30}$" data-length="30">
           {% else %}
-            <input id="fertilise" name="fertilise" minlength="5" maxlength="30" value="{{ plant.fertilise}}" type="text"
-              class="count-text validate" pattern="^[a-zA-Z\x7f-\xff ]{2,30}$" data-length="30">
+            <input id="edit_fertilise" name="edit_fertilise" minlength="5" maxlength="30" value="{{ plant.fertilise}}" type="text"
+              class="count-text validate" pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{5,30}$" data-length="30">
           {% endif %}
-          <label for="fertilise">Fertilise Frequency</label>
-          <span class="helper-text">Optional</span>
+          <label for="edit_fertilise">Fertilise Frequency</label>
+          <span class="helper-text" data-error="5-30 characters" data-success="Correct">Optional</span>
         </div>
         <div class="input-field col s12 m6">
           <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-          <input id="fertiliser" name="fertiliser" minlength="5" maxlength="30" value="{{ plant.fertiliser}}"
-            type="text" class="count-text validate" pattern="^[a-zA-Z\x7f-\xff ]{2,30}$" data-length="30">
-          <label for="fertiliser">Fertiliser Type</label>
-          <span class="helper-text">Optional</span>
+          <input id="edit_fertiliser" name="edit_fertiliser" minlength="5" maxlength="30" value="{{ plant.fertiliser}}"
+            type="text" class="count-text validate" pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{5,30}$" data-length="30">
+          <label for="edit_fertiliser">Fertiliser Type</label>
+          <span class="helper-text" data-error="5-30 characters" data-success="Correct">Optional</span>
         </div>
       </div>
       <!-- add plant note -->
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
-          <textarea id="notes" name="notes" minlength="5" maxlength="200" class="materialize-textarea validate"
+          <textarea id="edit_plant_notes" name="edit_plant_notes" minlength="5" maxlength="200" class="materialize-textarea validate"
             data-length="200">{{- plant.notes -}}</textarea>
-          <label for="notes">Plant Notes</label>
-          <span class="helper-text">Optional</span>
+          <label for="edit_plant_notes">Plant Notes</label>
+          <span class="helper-text" data-error="5-200 characters, standard punctuation allowed" data-success="Correct">Optional</span>
         </div>
       </div>
       <!-- submit button -->

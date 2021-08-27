@@ -102,12 +102,17 @@ scrollToTopButton.onclick = function(e) {
   scrollToTop();
 }
 
-// Get event select add_category and add_plant url 
+// Function adds the links for add_plant and add_category 
+// pages into the selects on the add_event page.
+// Very helpful: https://www.codegrepper.com/code-examples/javascript/javascript+get+base+url
 function handleSelect(redirect) {
+  // Assign data-url attribute of selected item to the variable
   let dataAttr = redirect.options[redirect.selectedIndex].getAttribute('data-url');
+
+  // lets get the root url for the current page, means it will work on different domains. 
   let url = window.location.origin;
+  // check if the data variable returned a value, and add the root url to the redirect 
   if (dataAttr) {
     window.location.href = url + dataAttr;
-  }
-  else return;
+  } else return;
 }

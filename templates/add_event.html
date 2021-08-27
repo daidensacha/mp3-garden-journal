@@ -9,7 +9,7 @@
       <div class="row">
         <div class="input-field col s12 m6">
           <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
-          <select id="category" name="category" class="validate" onchange="javascript:handleSelect(this)" required>
+          <select id="add_event_category" name="add_event_category" class="validate" onchange="javascript:handleSelect(this)" required>
             <option value="" disabled selected>Choose Category</option>
             <!-- Add option for user to link directly to the add category page -->
             <option value="" data-url="{{url_for('add_category')}}">Add Category</option>
@@ -18,13 +18,13 @@
             <option value="{{ category.category }}">{{ category.category }}</option>
             {% endfor %}
           </select>
-          <label for="category">Event Category</label>
-          <span class="helper-text">Required</span>
+          <label for="add_event_category">Event Category</label>
+          <span class="helper-text" data-error="Please select or create a related category for the event" data-success="Correct">Required</span>
         </div>
         <!-- select plant name -->
         <div class="input-field col s12 m6">
           <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-          <select id="event_plant_id" name="event_plant_id" class="validate" onchange="javascript:handleSelect(this)" required>
+          <select id="add_event_plant_id" name="add_event_plant_id" class="validate" onchange="javascript:handleSelect(this)" required>
             <option value="" disabled selected>Choose Plant</option>
             <!-- Add option for user to link directly to the add plant page -->
             <option value="" data-url="{{url_for('add_plant')}}">Add Plant</option>
@@ -33,45 +33,45 @@
             <option value="{{ plant._id }}">{{ plant.name }}</option>
             {% endfor %}
           </select>
-          <label for="event_plant_id">Plant Name</label>
-          <span class="helper-text">Required</span>
+          <label for="add_event_plant_id">Plant Name</label>
+          <span class="helper-text" data-error="Please select or create a related plant for the event" data-success="Correct">Required</span>
         </div>
       </div>
       <!-- event name -->
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
-          <input id="name" name="name" minlength="5" maxlength="40" type="text" class="count-text validate"
-            data-length="40" pattern="^[a-zA-Z\x7f-\xff ]{2,40}$" required>
-          <label for="name">Event Name</label>
-          <span class="helper-text">Required</span>
+          <input id="add_event_name" name="add_event_name" minlength="5" maxlength="40" type="text" class="count-text validate"
+            data-length="40" pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{5,40}$" required>
+          <label for="add_event_name">Event Name</label>
+          <span class="helper-text" data-error="5-40 characters" data-success="Correct">Required</span>
         </div>
       </div>
       <!--  event date -->
       <div class="row">
         <div class="input-field col s12 m6">
           <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
-          <input id="occurs_at" name="occurs_at" type="text" class="datepicker validate" required>
-          <label for="occurs_at">Event Date</label>
-          <span class="helper-text">Required</span>
+          <input id="add_occurs_at" name="add_occurs_at" type="text" class="datepicker validate" required>
+          <label for="add_occurs_at">Event Date</label>
+          <span class="helper-text" data-error="Please select from the datepicker" data-success="Correct">Required</span>
         </div>
         <!-- event repeat cycle -->
         <div class="input-field col s12 m6">
           <i class="far fa-clock prefix teal-text text-darken-2"></i>
-          <input id="repeats" name="repeats" placeholder="Daily, 2/3/Weekly, 2/3/Monthly, Yearly" type="text"
-            class="count-text validate" max-length="40" pattern="^[a-zA-Z\x7f-\xff ]{2,40}$" data-length="40">
-          <label for="repeats">Event Repeats</label>
-          <span class="helper-text">Optional</span>
+          <input id="add_event_repeats" name="add_event_repeats" placeholder="Daily, 2/3/Weekly, 2/3/Monthly, Yearly" type="text"
+            class="count-text validate" minlength="5" maxlength="30" pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{5,30}$" data-length="30">
+          <label for="add_event_repeats">Event Repeats</label>
+          <span class="helper-text" data-error="5-30 characters" data-success="Correct">Optional</span>
         </div>
       </div>
       <!-- event note -->
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
-          <textarea id="notes" name="notes" minlength="5" maxlength="200" class="materialize-textarea validate"
-            data-length="200"></textarea>
-          <label for="notes">Event Notes</label>
-          <span class="helper-text">Optional</span>
+          <textarea id="add_event_notes" name="add_event_notes" minlength="5" maxlength="200" class="materialize-textarea validate"
+            pattern="^[a-zA-Z0-9 \n\r\t\.'’,;()?/!-äöüÄÖÜß]{5,200}$" data-length="200"></textarea>
+          <label for="add_event_notes">Event Notes</label>
+          <span class="helper-text" data-error="5-200 characters, standard punctuation allowed." data-success="Correct">Optional</span>
         </div>
       </div>
       <!-- submit button -->

@@ -16,38 +16,38 @@
             <form class="" method="POST" action="{{ url_for('edit_profile', user_id=user._id) }}">
               <div class="input-field col s12 m6">
                 <i class="fas fa-calendar-alt prefix"></i>
-                <input id="joined" name="joined" type="text" value="{{ user.registered.strftime('%d %B, %Y')}}" disabled>
-                <label for="joined">Joined</label>
+                <input id="profile_joined" name="profile_joined" type="text" value="{{ user.registered.strftime('%d %B, %Y')}}" disabled>
+                <label for="profile_joined">Joined</label>
               </div>
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-cog prefix"></i>
-                <input id="username" name="username" type="text" minlength="5" maxlength="15" value="{{ user.username }}"
+                <input id="profile_username" name="profile_username" type="text" minlength="5" maxlength="15" value="{{ user.username }}"
                   pattern="^[a-zA-Z0-9]{5,15}$" disabled>
-                <label for="username">Username</label>
+                <label for="profile_username">Username</label>
               </div>
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
-                <input id="firstname" name="firstname" type="text" minlength="2" maxlength="15"
-                  value="{{ user.firstname }}" pattern="^[a-zA-Z0-9]{2,15}$" disabled>
-                <label for="firstname">First Name</label>
+                <input id="profile_firstname" name="profile_firstname" type="text" minlength="2" maxlength="15"
+                  value="{{ user.firstname }}" pattern="^[a-zA-Z -äöüÄÖÜß]{2,15}$" disabled>
+                <label for="profile_firstname">First Name</label>
               </div>
               <div class="input-field col s12 m6">
                 <i class="fas fa-user-plus prefix"></i>
-                <input id="lastname" name="lastname" type="text" minlength="2" maxlength="15" value="{{ user.lastname }}"
-                  pattern="^[a-zA-Z0-9]{2,15}$" disabled>
-                <label for="lastname">Last Name</label>
+                <input id="profile_lastname" name="profile_lastname" type="text" minlength="2" maxlength="15" value="{{ user.lastname }}"
+                  pattern="^[a-zA-Z -äöüÄÖÜß]{2,15}$" disabled>
+                <label for="profile_lastname">Last Name</label>
               </div>
               <div class="input-field col s12 m12">
                 <i class="fa fa-envelope prefix"></i>
-                <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                <input id="profile_email" name="profile_email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   value="{{ user.email }}" class="validate" disabled>
-                <label for="email">Your Email</label>
+                <label for="profile_email">Your Email</label>
               </div>
               <div class="input-field col s12 m12">
                 <i class="fa fa-unlock-alt prefix"></i>
-                <input id="old_password" name="old_password" type="password" minlength="" maxlength=""
+                <input id="profile_password" name="profile_password" type="password" minlength="5" maxlength="15"
                   pattern="^[a-zA-Z0-9]{5,15}$" class="validate" disabled>
-                <label for="old_password">Password</label>
+                <label for="profile_password">Password</label>
               </div>
 
               <a href="{{ url_for('edit_profile', user_id=user._id) }}"

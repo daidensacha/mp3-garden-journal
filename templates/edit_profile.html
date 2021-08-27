@@ -9,45 +9,45 @@
           <form class="" method="POST" action="{{ url_for('edit_profile', user_id=existing_user._id) }}">
             <div class="input-field col s12 m6">
               <i class="fas fa-calendar-alt prefix"></i>
-              <input id="joined" name="joined" type="text" value="{{ existing_user.registered.strftime('%d %B, %Y')}}"
+              <input id="edit_profile_joined" name="edit_profile_joined" type="text" value="{{ existing_user.registered.strftime('%d %B, %Y')}}"
                 disabled>
-              <label for="joined">Joined</label>
+              <label for="edit_profile_joined">Joined</label>
             </div>
             <div class="input-field col s12 m6">
               <i class="fas fa-user-cog prefix"></i>
-              <input id="username" name="username" type="text" minlength="5" maxlength="15"
+              <input id="edit_profile_username" name="edit_profile_username" type="text" minlength="5" maxlength="15"
                 value="{{ existing_user.username }}" pattern="^[a-zA-Z0-9]{5,15}$" disabled>
-              <label for="username">Username</label>
+              <label for="edit_profile_username">Username</label>
             </div>
             <div class="input-field col s12 m6">
               <i class="fas fa-user-plus prefix"></i>
-              <input id="firstname" name="firstname" type="text" minlength="2" maxlength="15"
-                value="{{ existing_user.firstname }}" pattern="^[a-zA-Z\x7f-\xff]{2,15}$" class="count-text validate"
+              <input id="edit_profile_firstname" name="edit_profile_firstname" type="text" minlength="2" maxlength="15"
+                value="{{ existing_user.firstname }}" pattern="^[a-zA-Z -äöüÄÖÜß]{2,15}$" class="count-text validate"
                 data-length="15" required>
-              <label for="firstname">First Name</label>
-              <span class="helper-text">Required</span>
+              <label for="edit_profile_firstname">First Name</label>
+              <span class="helper-text" data-error="2-15 characters" data-success="Correct">Required</span>
             </div>
             <div class="input-field col s12 m6">
               <i class="fas fa-user-plus prefix"></i>
-              <input id="lastname" name="lastname" type="text" minlength="2" maxlength="15"
-                value="{{ existing_user.lastname }}" pattern="^[a-zA-Z\x7f-\xff]{2,15}$" class="count-text validate"
+              <input id="edit_profile_lastname" name="edit_profile_lastname" type="text" minlength="2" maxlength="15"
+                value="{{ existing_user.lastname }}" pattern="^[a-zA-Z -äöüÄÖÜß]{2,15}$" class="count-text validate"
                 data-length="15" required>
-              <label for="lastname">Last Name</label>
-              <span class="helper-text">Required</span>
+              <label for="edit_profile_lastname">Last Name</label>
+              <span class="helper-text" data-error="2-15 characters" data-success="Correct">Required</span>
             </div>
             <div class="input-field col s12 m12">
               <i class="fa fa-envelope prefix"></i>
-              <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              <input id="edit_profile_email" name="edit_profile_email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 value="{{ existing_user.email }}" class="validate" required>
-              <label for="email">Your Email</label>
-              <span class="helper-text">Required</span>
+              <label for="edit_profile_email">Your Email</label>
+              <span class="helper-text" data-error="A valid email is required" data-success="Correct">Required</span>
             </div>
             <div class="input-field col s12 m12">
               <i class="fa fa-unlock-alt prefix"></i>
-              <input id="old_password" name="old_password" type="password" minlength="" maxlength=""
+              <input id="edit_profile_password" name="edit_profile_password" type="password" minlength="5" maxlength="15"
                 pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
               <label for="old_password">Password</label>
-              <span class="helper-text">Required</span>
+              <span class="helper-text" data-error="Correct password is required" data-success="Correct">Enter Password to Validate</span>
             </div>
             <div class="col s12">
               <div class="row center-align">

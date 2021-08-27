@@ -9,9 +9,10 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
-          <input id="category" name="category" minlength="3" maxlength="15" type="text" class="count-text validate"
-            data-length="15" pattern="^[a-zA-Z\x7f-\xff ]{2,15}$" required> 
-          <label for="category">New Event Category</label>
+          <input id="add_category" name="add_category" minlength="3" maxlength="20" type="text" class="count-text validate"
+            data-length="20" data-error='Input should be 3-20 letters, spaces and hyphen allowed.' pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{3,20}$" required> 
+          <label for="add_category">New Event Category</label>
+          <span class="helper-text" data-error="3-20 characters" data-success="Correct"></span>
         </div>
       </div>
       <!-- submit button -->
