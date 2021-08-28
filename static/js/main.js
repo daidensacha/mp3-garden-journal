@@ -66,7 +66,8 @@ function validateMaterializeSelect() {
         }
     });
 }
-}); // end of document ready
+}); 
+
 
 /*
 Created by Josh Mason https://codepen.io/joshuamasen/pen/OYaYbL
