@@ -6,10 +6,11 @@
   <div class="row">
     <form class="col s12" method="POST" action="{{ url_for('add_event') }}">
       <!-- select event category  -->
-      <div class="row" id="style-selects">
+      <!-- <div class="row" id="style-selects"> -->
+      <div class="row">
         <div class="input-field col s12 m6" >
           <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
-          <select id="add_event_category" name="add_event_category" class="validate" onchange="javascript:handleSelect(this)" required>
+          <select id="add_event_category" name="add_event_category" class="validate" required>
             <option value="" disabled selected>Choose Category</option>
             <!-- Add option for user to link directly to the add category page -->
             <option value="" data-url="{{url_for('add_category')}}">Add Category</option>
@@ -23,7 +24,7 @@
         <!-- select plant name -->
         <div class="input-field col s12 m6">
           <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
-          <select id="add_event_plant_id" name="add_event_plant_id" class="validate" onchange="javascript:handleSelect(this)" required>
+          <select id="add_event_plant_id" name="add_event_plant_id" class="validate" required>
             <option value="" disabled selected>Choose Plant</option>
             <!-- Add option for user to link directly to the add plant page -->
             <option value="" data-url="{{url_for('add_plant')}}">Add Plant</option>
