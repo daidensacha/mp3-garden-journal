@@ -9,8 +9,8 @@
           <form class="" method="POST" action="{{ url_for('edit_profile', user_id=existing_user._id) }}">
             <div class="input-field col s12 m6">
               <i class="fas fa-calendar-alt prefix"></i>
-              <input id="edit_profile_joined" name="edit_profile_joined" type="text" value="{{ existing_user.registered.strftime('%d %B, %Y')}}"
-                disabled>
+              <input id="edit_profile_joined" name="edit_profile_joined" type="text"
+                value="{{ existing_user.registered.strftime('%d %B, %Y')}}" disabled>
               <label for="edit_profile_joined">Joined</label>
             </div>
             <div class="input-field col s12 m6">
@@ -37,25 +37,29 @@
             </div>
             <div class="input-field col s12 m12">
               <i class="fa fa-envelope prefix"></i>
-              <input id="edit_profile_email" name="edit_profile_email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                value="{{ existing_user.email }}" class="validate" required>
+              <input id="edit_profile_email" name="edit_profile_email" type="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="{{ existing_user.email }}" class="validate"
+                required>
               <label for="edit_profile_email">Your Email</label>
               <span class="helper-text" data-error="A valid email is required" data-success="Correct">Required</span>
             </div>
             <div class="input-field col s12 m12">
               <i class="fa fa-unlock-alt prefix"></i>
-              <input id="edit_profile_password" name="edit_profile_password" type="password" minlength="5" maxlength="15"
-                pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+              <input id="edit_profile_password" name="edit_profile_password" type="password" minlength="5"
+                maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
               <label for="old_password">Password</label>
-              <span class="helper-text" data-error="Correct password is required" data-success="Correct">Enter Password to Validate</span>
+              <span class="helper-text" data-error="Correct password is required" data-success="Correct">Enter Password
+                to Validate</span>
             </div>
             <div class="col s12">
               <div class="row center-align">
-                <button class="btn-small btn-edit-profile col s6 waves-effect waves-light" type="submit" name="action">Update
+                <button class="btn-small btn-edit-profile col s6 waves-effect waves-light" type="submit"
+                  name="action">Update
                   Information
                   <i class="fa fa-sign-in-alt right"></i>
                 </button>
-                <a href="{{ url_for('profile', username=session['user']) }}" class="btn-small btn-edit-profile col s6 blue-grey btn-close">
+                <a href="{{ url_for('profile', username=session['user']) }}"
+                  class="btn-small btn-edit-profile col s6 blue-grey btn-close">
                   Cancel <i class="fas fa-times-circle right"></i>
                 </a>
               </div>
@@ -66,7 +70,7 @@
             </button> -->
           </form>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
 </div>

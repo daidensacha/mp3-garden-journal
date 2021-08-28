@@ -20,7 +20,8 @@
             {% endfor %}
           </select>
           <label for="edit_event_category">Event Category</label>
-          <span class="helper-text" data-error="Please select or create a related category for the event" data-success="Correct">Required</span>
+          <span class="helper-text" data-error="Please select or create a related category for the event"
+            data-success="Correct">Required</span>
         </div>
         <!-- select plant name -->
         <div class="input-field col s12 m6">
@@ -37,48 +38,53 @@
             {% endfor %}
           </select>
           <label for="edit_event_plant_id">Plant Name</label>
-          <span class="helper-text" data-error="Please select or create a related plant for the event" data-success="Correct">Required</span>
+          <span class="helper-text" data-error="Please select or create a related plant for the event"
+            data-success="Correct">Required</span>
         </div>
       </div>
       <!-- event name -->
       <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
-          <input id="edit_event_name" name="edit_event_name" minlength="5" maxlength="40" value="{{ garden_event.name }}" type="text"
-            class="count-text validate" data-length="40" pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{5,40}$" required>
+          <input id="edit_event_name" name="edit_event_name" minlength="5" maxlength="40"
+            value="{{ garden_event.name }}" type="text" class="count-text validate" data-length="40"
+            pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{5,40}$" required>
           <label for="edit_event_name">Event Name</label>
           <span class="helper-text" data-error="5-40 characters" data-success="Correct">Required</span>
         </div>
-      </div>
-      <!--  event date -->
-      <div class="row">
-        <div class="input-field col s12 m6">
-          <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
-          <input id="edit_occurs_at" name="edit_occurs_at" type="text" value="{{ garden_event.occurs_at.strftime('%B %d, %Y') }}"
-            class="datepicker validate" required>
-          <label for="edit_occurs_at">Event Date</label>
-          <span class="helper-text" data-error="Please select from the datepicker" data-success="Correct">Required</span>
         </div>
-        <!-- event repeat cycle -->
-        <div class="input-field col s12 m6">
-          <i class="far fa-clock prefix teal-text text-darken-2"></i>
-          <input id="edit_event_repeats" name="edit_event_repeats" placeholder="Daily, 2/3/Weekly, 2/3/Monthly, Yearly"
-            value="{{ garden_event.repeats }}" type="text" minlength="5" maxlength="30" data-length="30" 
-            pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{5,30}$" class="count-text validate">
-          <label for="edit_event_repeats">Event Repeats</label>
-          <span class="helper-text" data-error="5-30 characters" data-success="Correct">Optional</span>
+        <!--  event date -->
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <i class="fas fa-calendar-alt prefix teal-text text-darken-2"></i>
+            <input id="edit_occurs_at" name="edit_occurs_at" type="text"
+              value="{{ garden_event.occurs_at.strftime('%B %d, %Y') }}" class="datepicker validate" required>
+            <label for="edit_occurs_at">Event Date</label>
+            <span class="helper-text" data-error="Please select from the datepicker"
+              data-success="Correct">Required</span>
+          </div>
+          <!-- event repeat cycle -->
+          <div class="input-field col s12 m6">
+            <i class="far fa-clock prefix teal-text text-darken-2"></i>
+            <input id="edit_event_repeats" name="edit_event_repeats"
+              placeholder="Daily, 2/3/Weekly, 2/3/Monthly, Yearly" value="{{ garden_event.repeats }}" type="text"
+              minlength="5" maxlength="30" data-length="30" pattern="^[a-zA-Z0-9 \-äöüÄÖÜß]{5,30}$"
+              class="count-text validate">
+            <label for="edit_event_repeats">Event Repeats</label>
+            <span class="helper-text" data-error="5-30 characters" data-success="Correct">Optional</span>
+          </div>
         </div>
-      </div>
-      <!-- event note -->
-      <div class="row">
+        <!-- event note -->
+        <div class="row">
         <div class="input-field col s12">
           <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
-          <textarea id="edit_event_notes" name="edit_event_notes" minlength="5" maxlength="200" class="materialize-textarea validate"
-            data-length="200">
+          <textarea id="edit_event_notes" name="edit_event_notes" minlength="5" maxlength="200"
+            class="materialize-textarea validate" data-length="200">
                         {{- garden_event.notes -}}
                     </textarea>
           <label for="edit_event_notes">Event Notes</label>
-          <span class="helper-text" data-error="5-200 characters, standard punctuation allowed" data-success="Correct">Optional</span>
+          <span class="helper-text" data-error="5-200 characters, standard punctuation allowed"
+            data-success="Correct">Optional</span>
         </div>
       </div>
       <!-- submit button -->

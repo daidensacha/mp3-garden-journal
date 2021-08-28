@@ -1,62 +1,62 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="container">
-    <div class="row mt-90">
-      <!-- <div class="card-panel z-depth-2"> -->
-        <h4 class="center">Register</h4>
-        <div class="row">
-
-          <form class="" method="POST" action="{{ url_for('register') }}">
-              <div class="input-field col s12 m6">
-                <i class="fas fa-user-plus prefix"></i>
-                <input id="register_firstname" name="register_firstname" type="text" minlength="2" maxlength="15"
-                  pattern="^[a-zA-Z -äöüÄÖÜß]{2,15}$" class="count-text validate" data-length="15" required>
-                <label for="register_firstname">First Name</label>
-                <span class="helper-text" data-error="2-15 characters" data-success="Correct">Required</span>
-              </div>
-              <div class="input-field col s12 m6">
-                <i class="fas fa-user-plus prefix"></i>
-                <input id="register_lastname" name="register_lastname" type="text" minlength="2" maxlength="15"
-                pattern="^[a-zA-Z -äöüÄÖÜß]{2,15}$" class="count-text validate" data-length="15" required>
-                <label for="register_lastname">Last Name</label>
-                <span class="helper-text" data-error="2-15 characters" data-success="Correct">Required</span>
-              </div>
-            <div class="input-field col s12 m12">
-              <i class="fas fa-user-plus prefix"></i>
-              <input id="register_username" name="register_username" type="text" minlength="5" maxlength="15"
-                pattern="^[a-zA-Z0-9]{5,15}$" class="count-text validate" data-length="15" required>
-              <label for="register_username">Username</label>
-              <span class="helper-text" data-error="5-15 letters or numbers" data-success="Correct">Required</span>
-            </div>
-            <div class="input-field col s12 m12">
-              <i class="fa fa-envelope prefix"></i>
-              <input id="register_email" name="register_email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                class="validate" required>
-              <label for="register_email">Your Email</label>
-              <span class="helper-text" data-error="A valid email is reequired" data-success="Correct">Required</span>
-            </div>
-            <div class="input-field col s12 m12">
-              <i class="fa fa-unlock-alt prefix"></i>
-              <input id="register_password" name="register_password" type="password" minlength="5" maxlength="15"
-                pattern="^[a-zA-Z0-9]{5,15}$" class="count-text validate" data-length="15" required>
-              <label for="register_password">Password</label>
-              <span class="helper-text" data-error="5-15 characters" data-success="Correct">Required</span>
-            </div>
-            <button class="btn waves-effect waves-light center col s12 m12" type="submit" name="action">Register
-              <i class="fa fa-sign-in-alt right"></i>
-            </button>
-          </form>
-
-        </div>
-      <!-- </div> -->
-    </div>
+<div class="container">
+  <div class="row mt-90">
+    <!-- <div class="card-panel z-depth-2"> -->
+    <h4 class="center">Register</h4>
     <div class="row">
-      <div class="col s12">
-        <p class="center-align">
-          Already registered?
-          <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">Log in</a>
-        </p>
-      </div>
+
+      <form class="" method="POST" action="{{ url_for('register') }}">
+        <div class="input-field col s12 m6">
+          <i class="fas fa-user-plus prefix"></i>
+          <input id="register_firstname" name="register_firstname" type="text" minlength="2" maxlength="15"
+            pattern="^[a-zA-Z -äöüÄÖÜß]{2,15}$" class="count-text validate" data-length="15" required>
+          <label for="register_firstname">First Name</label>
+          <span class="helper-text" data-error="2-15 characters" data-success="Correct">Required</span>
+        </div>
+        <div class="input-field col s12 m6">
+          <i class="fas fa-user-plus prefix"></i>
+          <input id="register_lastname" name="register_lastname" type="text" minlength="2" maxlength="15"
+            pattern="^[a-zA-Z -äöüÄÖÜß]{2,15}$" class="count-text validate" data-length="15" required>
+          <label for="register_lastname">Last Name</label>
+          <span class="helper-text" data-error="2-15 characters" data-success="Correct">Required</span>
+        </div>
+        <div class="input-field col s12 m12">
+          <i class="fas fa-user-plus prefix"></i>
+          <input id="register_username" name="register_username" type="text" minlength="5" maxlength="15"
+            pattern="^[a-zA-Z0-9]{5,15}$" class="count-text validate" data-length="15" required>
+          <label for="register_username">Username</label>
+          <span class="helper-text" data-error="5-15 letters or numbers" data-success="Correct">Required</span>
+        </div>
+        <div class="input-field col s12 m12">
+          <i class="fa fa-envelope prefix"></i>
+          <input id="register_email" name="register_email" type="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="validate" required>
+          <label for="register_email">Your Email</label>
+          <span class="helper-text" data-error="A valid email is reequired" data-success="Correct">Required</span>
+        </div>
+        <div class="input-field col s12 m12">
+          <i class="fa fa-unlock-alt prefix"></i>
+          <input id="register_password" name="register_password" type="password" minlength="5" maxlength="15"
+            pattern="^[a-zA-Z0-9]{5,15}$" class="count-text validate" data-length="15" required>
+          <label for="register_password">Password</label>
+          <span class="helper-text" data-error="5-15 characters" data-success="Correct">Required</span>
+        </div>
+        <button class="btn waves-effect waves-light center col s12 m12" type="submit" name="action">Register
+          <i class="fa fa-sign-in-alt right"></i>
+        </button>
+      </form>
+
+    </div>
+    <!-- </div> -->
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <p class="center-align">
+        Already registered?
+        <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">Log in</a>
+      </p>
     </div>
   </div>
+</div>
 {% endblock %}
