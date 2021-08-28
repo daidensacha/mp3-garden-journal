@@ -135,21 +135,19 @@
 
     </div>
     <!-- end slider -->
-    <!-- <div> -->
       <!-- flash messages - includes alert category-->
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-        <section>
+        <div class="row alert-section">
         {% for category, message in messages %}
           <div class="materialert {{category}}">
             <span>{{ message }}</span>
             <button type="button" class="close-alert hide-on-small-only">×</button>
           </div>
         {% endfor %}
-        </section>
+        </div>
       {% endif %}
       {% endwith %}
-    <!-- </div> -->
 
     <main id="main-block">
       {% block content %}
@@ -230,7 +228,6 @@
     <a class="top-link hide" href="" id="js-top">
       <i class="fas fa-chevron-up show-on-large"></i>
     </a>
-
 
   </div>
   <!-- footer section -->

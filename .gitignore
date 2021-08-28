@@ -6,3 +6,5 @@ __pycache__/
 *.py[cod]
 node_modules/
 .github/
+README-bkp.md
+documentation/testing-bkp.md

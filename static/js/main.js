@@ -11,7 +11,6 @@ $(function () {
     transition: 800,
   });
   $('.collapsible').collapsible({
-    // accordion: false,
   });
   $('.tooltipped').tooltip();
   $('.datepicker').datepicker({
@@ -32,11 +31,6 @@ $(function () {
   $(".materialert > .close-alert").click(function () {
     $(this).parent().hide('fade-out');
   });
-
-//   setTimeout(() => { 
-//     $(".materialert").hide('fade-out');
-// }, 8000);
-
 
 // Materializecss select validation code from code institute walk through project. 
 validateMaterializeSelect();
@@ -72,11 +66,10 @@ function validateMaterializeSelect() {
 /*
 Created by Josh Mason https://codepen.io/joshuamasen/pen/OYaYbL
 */
-
+// Add to top button for destops, see readme.
 const scrollToTopButton = document.getElementById('js-top');
 const scrollFunc = () => {
   let y = window.scrollY;
-
   if (y > 0) {
     scrollToTopButton.className = "top-link show";
   } else {
@@ -87,7 +80,6 @@ const scrollFunc = () => {
 window.addEventListener("scroll", scrollFunc);
 const scrollToTop = () => {
   const c = document.documentElement.scrollTop || document.body.scrollTop;
-
   if (c > 0) {
     window.requestAnimationFrame(scrollToTop);
     window.scrollTo(0, c - c / 10);
@@ -100,38 +92,37 @@ scrollToTopButton.onclick = function(e) {
 }
 
 
+// Event listeners for add event selects.
+// Add links for user to add plant and add category.
+if (document.querySelector("#add_event_category")) {
 
-  if (document.querySelector("#add_event_category")) {
-
-    const addEventCat = document.querySelector("#add_event_category");
-    addEventCat.addEventListener("change", event => {
-      const selected = event.target.value;
-      console.log(selected)
-      if (selected == 'redirect-add') {
-        // do your redirect here
-        let dataAttr = addEventCat.options[addEventCat.selectedIndex].getAttribute('data-url');
-        let url = window.location.origin;
-        if (dataAttr) {
-          window.location.href = url + dataAttr;
-        }
+  const addEventCat = document.querySelector("#add_event_category");
+  addEventCat.addEventListener("change", event => {
+    const selected = event.target.value;
+    console.log(selected)
+    if (selected == 'redirect-add') {
+      let dataAttr = addEventCat.options[addEventCat.selectedIndex].getAttribute('data-url');
+      let url = window.location.origin;
+      if (dataAttr) {
+        window.location.href = url + dataAttr;
       }
-    })
-    
-    const addEventPlant = document.querySelector("#add_event_plant_id");
-    addEventPlant.addEventListener("change", event => {
-      const selected = event.target.value;
-      console.log(selected)
-      if (selected == 'redirect-add') {
-        // do your redirect here
-        let dataAttr = addEventPlant.options[addEventPlant.selectedIndex].getAttribute('data-url');
-        let url = window.location.origin;
-        if (dataAttr) {
-          window.location.href = url + dataAttr;
-        }
+    }
+  })
+  
+  const addEventPlant = document.querySelector("#add_event_plant_id");
+  addEventPlant.addEventListener("change", event => {
+    const selected = event.target.value;
+    console.log(selected)
+    if (selected == 'redirect-add') {
+      let dataAttr = addEventPlant.options[addEventPlant.selectedIndex].getAttribute('data-url');
+      let url = window.location.origin;
+      if (dataAttr) {
+        window.location.href = url + dataAttr;
       }
-    })
-    
-  }
+    }
+  })
+  
+}
 
  
   

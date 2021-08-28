@@ -1,7 +1,5 @@
 
-
-
-# Welcome
+![](/documentation/images/summer-readme.png)
 
 ## Code Institute: Milestone Project 3
 
@@ -9,7 +7,7 @@
 
 View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 
-[TESTING/](/documentation/testing.md) outlines my testing strategy, development, deployment and post deployment.
+[TESTING/](/documentation/testing.md) outlines my testing strategy, development, deployment and post-deployment.
 
 ## UX DESIGN
 
@@ -20,23 +18,23 @@ View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 1. **As a hobby gardener:**
 
 	- As a hobby gardener, I want to record yearly changes of individual plants.
-	- As a hobby gardener I want to set up reminders for yearly maintenance tasks (like pruning, pest control etc.)
+	- As a hobby gardener, I want to set up reminders for yearly maintenance tasks (like pruning, pest control, etc.)
 	- As a hobby gardener, I'm interested in recording the time of year when plants flower
-	- As a hobby gardener, I would like to add my plants to a list of plants, containing information relevant to that plant. 
-	- As a hobby gardener, I want to edit plants and event when information so I can improve the records over time.
+	- As a hobby gardener, I would like to add my plants to a list of plants containing information relevant to that plant. 
+	- As a hobby gardener, I want to edit plants and events to improve the records over time.
 
 2. **As a vegetable gardener:**
 
 	- As a vegetable gardener, I would like to set a reminder when the last frost is, so I know when it is safe to plant outside.
-	- As a vegetable gardener, I want to set reminders for when to plant particular seeds, so they are ready to plant out after the last frost.
-	- As a vegetable gardener, I want to record regular or yearly maintenance tasks, so I don't forget them.
+	- As a vegetable gardener, I want to set reminders for when to plant particular seeds so they are ready to plant out after the last frost.
+	- As a vegetable gardener, I want to record regular or yearly maintenance tasks so I don't forget them.
 	- As a vegetable gardener, I want to know when my fruit and vegetable crops are ready to pick.
-	- As a vegetable gardener, I want to edit plants and event when information so I can improve the records over time.
+	- As a vegetable gardener, I want to edit plants and events to improve the records over time.
 
 1.  **As the owner:**
-	- I want to engage gardening enthusiasts with the goal to build up a user base of registered users.
-	- I want to build a base of registered users with a view towards developing a social network of users with the similar interest in gardening.
-	- I envisage that I will be able to add pages to market a raised garden bed that I designed for growing vegetables.
+	- I want to engage gardening enthusiasts to build up a user base of registered users.
+	- I want to build a base of registered users to develop a social network of users with a similar interest in gardening.
+	- I envisage adding pages to market a raised garden bed that I designed for growing vegetables.
 	- I want users to register and log in to access the journal with garden reminders and tasks.
 
 ### 2. Scope
@@ -44,31 +42,31 @@ View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 #### Required Features
 ##### ALL USERS: 
 - **Home page** The landing page will be light and fresh, with images of nature and plants.
-	- **Search Filter** A search input above the collapsible on the almanac page searches the event, catefores, months, plants. 
+	- **Search Filter** A search input above the collapsible on the almanac page searches the event, categories, months, plants. 
 	- **Image slider** will be the main eye-catching feature of the landing page, visible as soon as users arrive at the landing page. 
-	- **Material Box** Material Design implementation of the Lightbox plugin to display images. Used to display images of nature, to inspire and connect with users. 
+	- **Material Box** Material Design implementation of the Lightbox plugin to display images. I used to show pictures of nature, to inspire and connect with users. 
 	- **Navbar**
 		- **Contact Form Link** will link users to the contact form.
 		- **Log in link** will open the login form for users to log in. 
-		- **Register link** will open the register form for users to register. 
+		- **Register link** will open the registration form for users to register. 
 	- **Footer** Will hold the social links and contact icon link. 
 		- **Social Icons** in the footer so users can open my GitHub and LinkedIn profiles. 
 - **Contact page** Will display the contact form. 
 	- **Contact form** for users to send messages to site admin.
 - **Login Page** with the login form. 
 	- **Login Form** for users to log in. 
-- **Register Page** with the register form.
+- **Register Page** with the registration form.
 	- **Register Form** for users to register.
 
 ##### REGISTERED USERS:
 - **Navbar** - The Navbar for registered users who log in will display additional links to the journal page, plants page, add garden event page, add plants page, and add categories page. 
 - **Journal page** - To display the session user's garden events in the Material Design Collapsible.
-	-	**Materializecss Collapsible** - For viewing Garden Events. The header will display the event date in month/ day format. It will show the event name
-	 - **Edit button** - So user scan open the edit garden event and edit plant forms.
+	-	**Materializecss Collapsible** - For viewing Garden Events. The header will display the event date in month/ day format. It will show the event name.
+	 - **Edit button** - So users can open the edit garden event and edit plant forms.
 - **Plants page** - To display the session user's plants in the Material Design styles collection (list)
 - **Profile page** - To display the session user's profile in the disabled form inputs.
 - **Materializecss Collection** - A Material Design style list for displaying the plants. 
-	 - **Edit button**, so user scan open the edit garden event and edit plant forms.
+	 - **Edit button** - So that users can open the edit garden event and edit plant forms.
 
 - **Forms**
 	- **Create plant** -  So users can create and add their plants
@@ -81,88 +79,88 @@ View the [Garden Almanac](https://mp3-garden-journal.herokuapp.com/) on Heroku.
 	- **Update Profile Form** - So users can update select profile information.
 
 - **Modals**
-	- **View Plant Modal** - Will open when the user clicks on the plant in the list. I will display the plant information, and have an edit button. 
+	- **View Plant Modal** - Will open when the user clicks on the plant in the list. I will display the plant information and have an edit button. 
 		- **Edit button** - When the user clicks the button, they will be redirected to the edit plant page, displaying the plant information in the update plant form.
 	- **Delete Plant Modal** - The modal will open when the user has clicked to delete a plant. It will display a danger alert, informing the user that the action is irreversible. 
-		- **Delete Button** By clicking this button, the user confirms they want to delete the plant data. When clicked, the plant data will be deleted, and the user will be redirected to the plants page. 
-		- **Cancel Button** When the user clicks this button to cancel their intention to delete the plant, the modal will close, and the user will be redirected to the plant's page. 
+		- **Delete Button** By clicking this button, the user confirms they want to delete the plant data. The app will delete the plant data and redirect the user to the plant's page when clicked. 
+		- **Cancel Button** When the user clicks this button to cancel their intention to delete the plant, the modal will close, and the app will redirect the user to the plant's page. 
 	- **Delete Garden Event Modal** - The modal will open when the user has clicked to delete a garden event. The modal will display a danger alert, informing the user that deleting data is irreversible.  
-		- **Delete Button** By clicking this button, the user confirms they want to delete the garden event data. When clicked, the event data will be deleted, and the user will be redirected to the journal page. 
-		- **Cancel Button** When the user clicks this button to cancel their intention to delete the garden event, the modal will close, and the user will be redirected to the journal page. 
+		- **Delete Button** By clicking this button, the user confirms they want to delete the garden event data. The app will delete event data, redirect the user to the journal page when clicked. 
+		- **Cancel Button** When the user clicks this button to cancel their intention to delete the garden event, the modal will close and redirect the user to the journal page. 
 	- **Delete Category Modal** - The modal will open when the user has clicked to delete an event category. The modal will display a danger alert, informing the user that deleting data is irreversible.  
-		- **Delete Button** By clicking this button, the user confirms they want to delete the event category. When clicked, the category will be deleted, and the user will be redirected to the add category page. 
-		- **Cancel Button** When the user clicks this button to cancel their intention to delete the event category, the modal will close, and the user will be redirected to the add category page. 
+		- **Delete Button** By clicking this button, the user confirms they want to delete the event category. The app will delete the category and redirect the user to the add category page when clicked. 
+		- **Cancel Button** When the user clicks this button to cancel their intention to delete the event category, the modal will close. The app will redirect the user to the add category page. 
 
 ##### ADMIN USERS:	
 - **Navbar** The Navbar for admin will display an additional link to the messages page.  
 	- **Messages page** to display the session user messages.
-		- **Materialize Collapsible** for viewing messages, The header of the collapsible with have a delete button, that will open the confirm delete modal when clicked.
+		**Materialize Collapsible** for viewing messages; the collapsible header has a delete button that will open the modal when clicked to confirm the deletion.
 			- **Delete button** - So admin can delete the user messages.
 		- **Delete Message Modal** - The modal will open when the user has clicked to delete a message. The modal will display a danger alert, informing the user that deleting the message is irreversible.  
 			- **Delete button** - So admin can confirm deletion of the user message.
-			- **Send Email button** - To reply to the user in the default email app of the computer. 
+			**Send Email button** - To reply to the user in the computer's default email app. 
 
 #### Functional Requirements
-- **Image slider** It will have 4 images, and will automatically scroll at intervals of around 10 seconds, enough time for the image to be viewed by the user. The transition of the images, each representing a season, relates to the cyclical nature of existence and events. The images will give the impression of looking through a window.
-- **Material Box** Images in the Lightbox plugin will expand when clicked, and revert to their initial display when the screen is clicked again. The images are to illustrate the beauty of nature. 
-- **Navbar** The Navbar for non session users will display links to the login page, register page, and contact page.
+- **Image slider** It will have four images and automatically scroll at intervals of around 10 seconds, enough time for users to view the images. The transition of the images, each representing a season, relates to the cyclical nature of existence and events. The images will give the impression of looking through a window.
+- **Material Box** Images in the Lightbox plugin will expand when clicked and revert to their initial display when the user clicks the screen is once again. The images are to illustrate the beauty of nature. 
+- **Navbar** The Navbar for non-session users will display links to the login page, register page, and contact page.
 - **Contact Form** The form inputs will have multiple levels of validation. 
-	- **Browser side validation** will utilize the Material Design class `validate`. When the fields are clicked without filling them in, a red line will appear under the input. If the user has not filled in the input, a tooltip message will appear asking the user to fill in the input. 
-	- **Server Side Validation** is handled by Flask-WTForms, and defined in the form class. Inputs that fail validation will display a red message under the input, informing the user what needed for the input to pass validation. An error alert will appear, informing the user validation has failed. When the form validates, the information is sent, a success alert appears with a message informing the user the message has been sent. 
-- **Login Page** The user will be required to enter their username and password to log in. If they enter correctly, they will be redirected to the profile page, and the additional functionality will be available for the user. If they enter incorrect information, an error alert appears, informing the user the details were incorrect. 
-- **Registration Page** The user registers by completing all the fields in the registraion form. The fields are valididated by the browser, and a tooltip appear with a validation message if a field fails validation. If the form passes validation, the user is looged in and redirected to the profile page.
--	**Materializecss Collapsible** The collapsible is closed by default, and the user can click on the header to open the accordion. The header displays the "Month/ Day", event category, and event name. When opened, the event and plant information is displayed for the event. An edit button for the plant, and one for the event, link to the respective edit pages. 
-- **Search Filter** The use can fliter events by events name, category, month to easliy find required events.  
+	- **Browser side validation** will utilize the Material Design class `validate`. When users click fields without filling them in, a red line will appear under the input. If the user has not entered information, a tooltip message will appear asking the user to fill in the form input. 
+	- **Server Side Validation** is handled by Flask-WTForms, and defined in the form class. Inputs that fail validation will display a red message under the form input, informing the user what is needed to pass validation. An error alert will appear, telling the user validation has failed. When the form validates, the app sends the information, and a success alert informs the user the message has been sent. 
+- **Login Page** The user will be required to enter their username and password to log in. If they enter correctly, a session cookie will be created. The app will redirect users to the profile page, and the additional functionality will be available for the user. If they enter incorrect information, an error alert appears, informing the user the details were wrong. 
+- **Registration Page** The user registers by completing all the fields in the registration form. The browser validates the fields, and a tooltip appears with a validation message if a form field fails validation. If the form passes validation, the user is logged in and redirected to the profile page.
+-	**Materializecss Collapsible** The header displays the "Month/ Day", event category, and event name. The collapsible is closed by default, and the user can click on the header to open the accordion. When opened, the user can see the event and plant information. An edit button for the plant, and one for the event, link to the respective edit pages. 
+- **Search Filter** The user can filter events by events name, category, month to quickly find required events.  
 
 #### Content Requirements
-The garden almanac revolves arount creating a record of recurring events in the garden. The goal is to develop and improve knowledge based on historical experience recorded in the events, plants, and categories of the application. The data is broght together to display a yearly event calendar so the user can manage and get teh most our of teh garden. SOme fields in the forms for entering the data is required so the events and plants can be displayed.Other fields are optional, so the user can enter this content if it suits them. 
+The garden almanac revolves around creating a record of recurring events in the garden. The goal is to develop and improve knowledge based on historical experience recorded in the application's events, plants, and categories. Data is displayed in a yearly event calendar to manage and get the most out of the garden. Some fields in the forms for entering the data are required to show the events and plants. Other form fields are optional, so the user can enter this content if it suits them. 
 
 ### 3. Structure
 #### Interaction Design
 ##### ALL USERS: 
-The site is one page with a contact form in the bottom of the page, with a link to it in the Navbar. 
+The site has a landing page and a contact form.
 
-Unregistered unsers are limited to viewing the homepage, with an option to register via the link in the Navbar. They can also send a message via the contact form. 
+Unregistered users are limited to viewing the homepage, with an option to register via the link in the Navbar. They can also send a message via the contact form. 
 
-- ***Contact Page:*** Users will be able to contact me to give feeedback, or to ask for support, or feature requests. Contact easliy accessibel from main Navbar, or a link in the footer. 
+- ***Contact Page:*** Users will be able to contact me to give feedback or to ask for support or feature requests. Contact easily accessible from the main Navbar or a link in the footer. 
 
 ##### REGISTERED USERS:
-Registered users can login, and this enables additional links in the Navbar, to a Journal page, and Plants page. 
+Registered users can log in, enabling additional links in the Navbar to a Journal page and Plants page. 
 - ***Journal page:*** 
-	- A search filter will be positioned above the accordion on the page, so the user can enter month, plant name, event category to easily filter the events. This will improve UX as the list of events grows. 
-	- An accordion will display the events, and all list items in the accordion will be closed by default, and ordered by date. Being an almanac, items will be ordered by month and day, to reflect the cyclical nature of events. User can click on an event and the accordion item will open, displaying the event and related plant, with edit buttons to be able to directly open and edit either item. 
+	- A search filter will be above the accordion on the page so that the user can enter the month, plant name, event category to quickly filter the events. The user experience will be maintained as the list of events grows. 
+	The app will order items by month and day to reflect the cyclical nature of events.- An accordion will display the events, and all list items in the accordion will be closed by default and ordered by date. Users can click on an event, and the accordion item will open, displaying the event and related plant, with edit buttons to directly open and edit either item. 
 	
 - ***Plant Page:*** 
-	- The plant page displays a list of the users plants. 
-	- The user can click on a plant, which will open a modal displaying the users plant information. 
+	- The plant page displays a list of the user's plants. 
+	- The user can click on a plant, which will open a modal displaying the user's plant information. 
 	- The modal will have an edit button that will link to an update plant page, where the user can update or delete the plant information.
 	
 - ***Profile Page:*** 
-	- A disabled form on the page will display the registered users information. There will be an edit button that will open an edit profile page, with some fields editable so the user can udpate their information.*
+	- A disabled form on the page will display the registered user's information. An edit button will open an edit profile page, with some fields editable so the user can update their information.
 
 #### Information Architecture
- There will be 3 pages for the site, with only the Homepage being accessable to users that are not registered or logged in. 
+ There will be three pages for the site, with only the Homepage being accessible to users that are not registered or logged in. 
  
  **CRUD Update forms** 
- - ***Forms:*** Information for each user will be displayed in pages, and will contain edit links that will redirect to the update/edit page where the the forms will automatically display the item to be edited. Some fields in the related forms will be required, other optional, but clearly labelled. The user will be able to change and update the information easily, and will be redirected back to the related item group. The update forms will have a save, delete, or cancel button for the user. 
+ - ***Forms:*** The app will display information for each user on pages. It will contain edit links that will redirect to the update/edit page, where the forms will automatically display the item the user wishes to edit. Some fields in the related forms will be required, and others are optional but clearly labeled. The user can change and update information quickly, and the app redirects them back to the related item group. The update forms will have a save, delete, or cancel button for the user. 
 
 **CRUD Delete structure** 
-- ***Forms and delete process*** The user can click the delete button on the update item page, which will open a modal with a danger alert, informing the user that deleting the data is irreversable. They can choose from the delete, or cancel buttons, to delete, or cancel and return to the related items group page. 
+- ***Forms and delete process*** The user can click the delete button on the update item page, which will open a modal with a danger alert, informing the user that deleting the data is irreversible. They can choose from the delete, or cancel buttons, to delete or cancel and return to the related items group page. 
    
 **Visible to all users**
   - ***Homepage***
 	   - Home page navigation will link to the contact form at the bottom of the page, also the login/ registration form. 
-	   - There will be a slider with images relating to the four seasons. These images are a feature, and I kept them in the base template so they are viewable on all pages. 
+	   - There will be a slider with images relating to the four seasons. These images are a feature, and I kept them in the base template to view them on all pages. 
 	   - A collection of images to inspire interest in gardening. 
    
 **Visible to registered and logged in users** 
   - ***Journal page***
-	   - Will display the the events for the users garden.
-	   - Buttons to open a form to add, update or delete an event will open a modal window to perform the action. 
-	   - Event name along with the plant name will be links that will open the corresponding entry to be viewed, updated or deleted.  
+	   - Will display the events for the user's garden.
+	   - Buttons to open a form to add, update or delete an event will open a modal window so users can add, edit or delete. 
+	   - Event name and plant name will be links that will open the corresponding entry so users can view, update, or delete.  
   - ***Plants Page***
-	   - Will display a list of the  plants entered by the user.
-	   - The plant name in the list will be a link that opens the plant profile in a modal window to be viewed, updated, or deleted.
+	   - Will display a list of the plants entered by the user.
+	   - The plant name in the list will be a link that opens the plant profile in a modal window so users can view, update, or delete.
    
 ### MongoDB  
 [TESTING/MongoDB](/documentation/testing.md/#mongodb)
@@ -171,33 +169,33 @@ I decided to create separate collections for users, event categories, and plants
 
 #### MongoDB Schema Design
 
-![MongoDB Schema](documentation/images/almanac_schema-a2.jpg)  
+![MongoDB Schema](documentation/images/almanac_schema-a2.png)  
 
 **Crucial considerations in designing the above schema**
 
-1. ***Users will create events, related to plants.***
-The user is required to select a plant from the list of their created plants, in order to create an event. The plant ObjectId is then saved in the ```garden_event``` collection as the 			```event_plant_id```. This was important, because the ObjectId is immutable, whereas if I used the plant name, the user could update and change that, then it would be more complex the maintain the connection between the event and plant. 
+1. ***Users will create events related to plants.***
+The user is required to select a plant from the list of their created plants to create an event. The plant ObjectId is then saved in the ```garden_event``` collection as the 	```event_plant_id```. The ObjectId is immutable, whereas if I used the plant name, the user could update and change that, then it would be more complex the maintain the connection between the event and plant. 
 
 2. ***Users will be able to group types of events by category.***
-Events are many, but they can be grouped into few categories. THose categores often relate to seasons, so by filtering by category, it is easy to see the types of approaching events. For this reason, I've created the category collection so users can create, and edit or delete categories and when creating an event, the categories can be chosen from a select input. 
+Events are many, but users can group them into few categories. Those categories often relate to seasons, so it is easy to see the types of approaching events by filtering by category. For this reason, I've created the category collection so users can create and edit or delete categories. When creating an event, users can choose the categories from a select input. 
 
 3. ***Plants, events, and categories will be associated with the creator of them.***
-Once registered, the user name cannot be changed, and all plants, categories, and events created by the user will contain the field ```created_by```. In this way I am easily able to filter the collections for items created by the user.
+Once registered, the user cannot change the user name, and all plants, categories, and events created by the user will contain the field ```created_by```. In this way, I am easily able to filter the collections for items created by the user.
 
-4. ***Plants, events, and categories will only viewable by that user.***
-I have used the user name as the session cookie to identify the user, and filter out the items that are displayed for that user. I felt this was important, as the list of events will grow expedentially. The user experience would be diminished if the list of plants, events and categories is full of other users items. 
+4. ***Plants, events, and categories will be only viewable by that user.***
+I have used the user name as the session cookie to identify the user and filter out the displayed items for that user. I felt this was important, as the list of events will grow exponentially. It will detract from the user experience if the list of plants, events, and categories contains other users' items. 
 
-5. ***Admin can view messages sent from the sites contact form.***
-For the sake of the learning experience, and in step with the learning objectives of the project, I specificlly chose not to use JavaScript to process and send the contact form messages. I wanted to use Python, and this solution acutally came to me after I created the Flask-WTForms form. I realised how easy it would be to create a MongoDB collection, and to POST the message data to the database. From there it's a simple task of creating the HTML template to display the messages. 
-6. ***Dates are stored in MongoDB in ISODate format.***
-I'll be honest, and say this was a dive into learning something very new for me. The Material Design datepicker enables the date to be chosen, its responsive, and works well. I serves the date in string format however, which I discovered when posting form date to the database collections. I chose to convert the date to ISODate format to store in the database, and its pretty straight forward once you get used to it. 
+5. ***Admin can view messages sent from the site's contact form.***
+For the sake of the learning experience and in step with the project's learning objectives, I specifically chose not to use JavaScript to process and send the contact form messages. I wanted to use Python, and this solution came to me after I created the Flask-WTForms form. I realized how easy it would be to create a MongoDB collection and POST the message data to the database. From there, it's a simple task of building the HTML template to display the messages. 
+6. ***Dates in MongoDB in ISODate format.***
+I'll be honest and say this was a dive into learning something very new for me. The Material Design date picker is responsive and works well. However, it serves the date in string format, which I discovered when posting form dates to the database collections. I chose to convert the date to ISODate format to store in the database, and it's pretty straightforward once you get used to it. 
 
-I decided on the following schema, using collections to group separate groups of data, users, plants, categories (event), garden_events, and messages. 
+I decided on the following schema, using collections to separate group groups of data, users, plants, categories (event), garden_events, and messages. 
 
 #### MongoDB Collections
 
 ***Users***
-The whole site revoles around the users, and garden events.  The ```username``` is what links plants, events and categores. When teh user creates a new item for plants, events, or categories, the  `user_name` is inserted as a reference key `created_by` . I am able to match the session user with the ```username```  key in the collections to retrieve the users data from the database. 
+The Garden Almanac revolves around the users and garden events.  The ```username``` is what links plants, events and categories. When the user creates a new item for plants, events, or categories, the app inserts their  `user_name` as a reference key `created_by`. I can match the session user with the ```username```  key in the collections to retrieve the user's data from the database. 
 ```javascript 
 	users  {
 		_id: 			<ObjectId>
@@ -212,7 +210,7 @@ The whole site revoles around the users, and garden events.  The ```username``` 
 
 
 ***Plants***
-The ```created_by``` key is the ```usename``` of the user and what I use to link the plant entry to the user. The remaining combination of fields are for gathering relevant information to fullfill needs of the user. Some fields are required, so there is a minimum of information so I can populate the pages with something relevant for the user. Other fields are optional, so the user can cater for a variety of plants, ornamental or productive. 
+The ```created_by``` key is the ```usename``` of the user and what I use to link the plant entry to the user. The remaining combination of fields is for gathering relevant information to fulfill the needs of the user. Some fields are required, so there is information to populate the pages with something suitable for the user. Other form fields are optional so that the user can cater to various plants, ornamental or productive. 
 ```javascript 
 	plants  {
 		_id: 			<ObjectId>
@@ -238,7 +236,7 @@ The user has total discretion to group the types of events how they prefer, whic
 	}
 ```
 ***Garden Events***
-The pivot of the whole application concept hinges on relationships to categories and plants.  I used the plant ObjectId as the sudo foreign key to link events with the related plant. The ObjectId is unique to the plant, and immutable, which enables me to maintain the link without complications that would occur if I use a field that can be edited. Spme fields are required, and other optional, similar reasons for the same in the plants collection. I stored dates in ISODate format. I also stored the date in month string format, and included them in the indexing of the database so users can enter month names to filter events by month.  
+The pivot of the whole application concept hinges on relationships to categories and plants.  I used the plant ObjectId as the pseudo foreign key to link events with the related plant. The ObjectId is unique to the plant and immutable, enabling me to maintain the link without complications if I use a field that users can edit. Some fields are required, and other optional, similar reasons for the same in the plant's collection. I stored dates in ISODate format. I also saved the date in month string format and included them in the indexing of the database so users can enter month names to filter events by month.  
 ```javascript 
 	garden_events 	{
 			_id: 			<ObjectId>
@@ -253,7 +251,7 @@ The pivot of the whole application concept hinges on relationships to categories
 	}
 ```
 ***Messages***
-This was not in my initial plan, but was inpired when I was working out what to do with my contact form data. For the sake of the learnign process, I resisted using JS to handle the form and send it via a third party. I used `flask-wtf` forms to build the form and validation. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created a Admin Message Inbox to display the messages. 
+It was not my initial plan, but I was inspired when I worked out what to do with my contact form data. I used `flask-wtf` forms to build the contact form and validation. For the sake of the learning process, I resisted using JS to handle the form and send it via a third party. In a moment of enlightenment, I had the idea to create the collection to store the message data, and I created an Admin Message Inbox to display the messages. 
 ```javascript 
 	messages	{
 			_id: 			<ObjectId>
@@ -265,22 +263,22 @@ This was not in my initial plan, but was inpired when I was working out what to 
 	}
 ```
 #### Database Issues and Notes 
-1. ***Linking garden_events with plants*** As explained, I used the plant ```ObjectId``` and store it as an ```ObjectId``` in the ```garden_event``` collection under the key name ```event_plant_id```. I initially tried using the plant ```name``` field, but encounted complications. I was storing the plant ```name``` in the ```garden_event``` collection, and using it to link the two.  When the plant ```name``` was changed and updated, that method required coding in simultanious changes to the same field in ```garden_event```. It was my first lesson in why to use an immutable field for such linking, and I changed to using the plant ```ObjectId```. 
-It was a little complicated by the fact there is very little information written in simple terms for someone learning. I  used the string format of the ```ObjectId``` in the select option, retrieve that when the form is POST"ed, insert it in ```event_plant_id:ObjectId("string_format")``` and store it as the ```ObjectId``` in the ```garden_events``` collection. This way, it is easy to loop through and compare items from the two collections to find a match for the ```ObjectId```.
-2. ***Time format*** I'm absolutely certain every developer encounters this, and has to learn it.
-Materialize Design datepicker allows you to format the required date however you want to get it, however it creates a string of the date and if you (like me) chose date in the MongoDB field type, it overwrites that and stores a string in the db collection field. When your expecing a date format, and try to display it in your HTML template, you will encounter Jinja errors. 
-In the jQuery function for the datepicker, my chosen format to display the date was ```format: "mmmm dd, yyyy",``` i.e. February 10, 2021. My solution was as follows. 
+1. ***Linking garden_events with plants*** As explained, I used the plant ```ObjectId``` and store it as an ```ObjectId``` in the ```garden_event``` collection under the key name ```event_plant_id```. I initially tried using the plant ```name``` field but encountered complications. I stored the plant ```name``` in the ```garden_event``` collection and used it to link the two.  When the plant ```name``` was changed and updated, that method required simultaneous coding changes to the same field in ```garden_event```. It was the first time I used an immutable field for such linking, and I changed to using the plant ```ObjectId```. 
+It was a little complicated because there is very little information written in simple terms for someone learning. I  used the string format of the ```ObjectId``` in the select option, retrieve that when the form is POST"ed, insert it in ```event_plant_id:ObjectId("string_format")``` and store it as the ```ObjectId``` in the ```garden_events``` collection. This way, it is easy to loop through and compare items from the two collections to find a match for the ```ObjectId```.
+2. ***Time format*** I'm sure every developer encounters this and has to learn it.
+Materialize Design date picker allows you to format the required date however you want to get it. However, it creates a date string, and if you (like me) chose the date field type in MongoDB, it overwrites that and stores a string in the database collection field. You will encounter Jinja errors when you expect a date format and display it in your HTML template.  
+In the jQuery function for the date picker, my chosen format to display the date was ```format: "mmmm dd, yyyy",``` i.e., February 10, 2021. My solution was as follows. 
 -	Step 1. Store string in variable. ```date_string = request.form.get("occurs_at")```
 -	Step 2. Convert string to ISODate ```date_object = pd.to_datetime(date_string)```
-	-	Note that I used Pandas here, for simplicity, as with datetime you need to specify the format of the date string being converted, i.e. ```date_object = datetime.strptime(date_string, '%B %d, %Y')``` . View [Documentation for strptime() Behavior](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)  along with a list of the Format codes.
-- Step 3. Upload the date to mongoDB. The date has been converted from ```"February 10, 2021"``` to ```2021-02-10T00:00:00.000+00:00``
+	-	Note that I used Pandas here, for simplicity, as with datetime, you need to specify the format of the date string you're converting, i.e. ```date_object = datetime.strptime(date_string, '%B %d, %Y')``` . View [Documentation for strptime() Behavior](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)  along with a list of the Format codes.
+- Step 3. Upload the date to MongoDB. I converted the date from ```"February 10, 2021"``` to ```2021-02-10T00:00:00.000+00:00``
 
-	As I worked through the project, I had to use the datetime format codes to display the date as I wanted it to be displayed, so I got used to it and came to enjoy that it is easy to display the date in whatever format you wish. All my dates are stored in ISODate format in the MongoDB, unless I wanted to store it as a string. I have stored the month name in garden_events collection for indexing, so users can search and filter by month name.
+	As I worked through the project, I had to use the datetime format codes to display the date as I wanted to show it, so I got used to it and realized that it is easy to display the date in whatever format you want. I stored all my dates in ISODate format in MongoDB unless I wanted to keep it as a string. I have stored the month name in the garden_events collection for indexing, so users can search and filter by month name.
 
 ### 4. Skeleton
 
 #### Wireframing:
-The wireframes were compelted in Adobe XD, and I kept them simple, to display the layout of the required complonents. I have used Materializecss as the framework, and based my work around a simple free template I found at [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes). 
+I completed the wireframes in Adobe XD, and I kept them simple to display the layout of the required components. I have used Materializecss as the framework and based my work around a simple free template I found at [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes). 
 
 **Home page wireframes**    
 ![Home Page](documentation/images/wireframes/wireframe-homepage.jpg)
@@ -294,11 +292,11 @@ The wireframes were compelted in Adobe XD, and I kept them simple, to display th
 ### 5. Surface
 
 **Visual Design:**
-I selected four stock images, one to represent each season, to display in a carousel slider directly under the navigation. The image carousel is set to automatically change images every 10 seconds, so the user has time to view each image. This feature will be visable on all pages, along with the navbar. 
+I selected four stock images to represent each season and display them in a carousel slider directly under the navigation. The image carousel automatically changes images every 10 seconds, so the user has time to view each image. This feature will be visible on all pages, along with the navbar. 
 
-I have included the contact form at the bottom of the page so the users can easily contact me, and there is a link in the navbar that scrolls the page to the cotnact form. 
+I have included the contact form so the users can quickly contact me, and there is a link in the navbar that scrolls the page to the contact form. 
 
-I inlcuded images of fruit and vegetables to inspire users to make use of the application. Event names and plant names open the corresponding events and plant profiles, which can be easily viewed, updated or deleted. That happens in a modal that when closed returns the user to the same page. The navigation bar is fixed so it's easily accessible and always visible. The site is simple and the styling and functions consistant accross pages. 
+I included images of fruit and vegetables to inspire users to make use of the application. Event names and plant names open the related events and plant profiles, easily viewed, updated, or deleted. It happens in a modal that, when closed, returns the user to the same page. The app has a fixed navigation bar, so it's easily accessible and always visible. The site is simple, and the styling and functions are consistent across pages. 
 
 ## TECHNOLOGIES USED
 
@@ -315,13 +313,13 @@ I inlcuded images of fruit and vegetables to inspire users to make use of the ap
 **Frameworks, Libraries, Programs used**
 
 1. [Material Design Framework](https://materializecss.com/getting-started.html)
-	Responsive framework of choice for this project.
+	The responsive framework of choice for this project.
 2. [Flask Framework](https://flask.palletsprojects.com/en/2.0.x/) 
-     Used to display data from the mongoDB in the front end templates.
+     Used to display data from MongoDB in the front-end templates.
 3. [Heroku](https://www.heroku.com/home)
 	Hosting the project.
 4. [mongoDB](https://www.mongodb.com/)  
-	noSQL database used to store non-relational data of the website.
+	NoSQL database for storing non-relational data of the website.
 6. [Flask-WTForms](https://flask-wtf.readthedocs.io/en/0.15.x/) 
     A simple integration of Flask and WTForms, offering validation and implementation using Jinja. 
 7. [Font Awesome](https://fontawesome.com/)
@@ -331,13 +329,13 @@ I inlcuded images of fruit and vegetables to inspire users to make use of the ap
 9. [Git Version Control](https://git-scm.com/)
 	I used it to commit blocks of work to the GitHub repository and create branches to work on specific changes or testing.
 10. [Gitpod](https://gitpod.io/workspaces)
-	Editor used to work on project.
+	The editor used to work on the project.
 11. [Adobe XD](https://www.adobe.com/products/xd.html) 
 	Used to create wireframes
 12. [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
-	The software used to work on the project images.
+	I  used the software to work on the project images.
 13. [Adobe Illustrator](https://www.adobe.com/de/creativecloud.html?mv=search&mv=search&sdid=MQH8S7GK&ef_id=Cj0KCQjwgtWDBhDZARIsADEKwgPZA7lnHvCbzk4T9-Q7HVENkRXnk1GxIseaWipJrYnWF0LQvFTw21MaAlQ6EALw_wcB:G:s&s_kwcid=AL!3085!3!392740825380!b!!g!!%2badobe!1419110055!55481570853&gclid=Cj0KCQjwgtWDBhDZARIsADEKwgPZA7lnHvCbzk4T9-Q7HVENkRXnk1GxIseaWipJrYnWF0LQvFTw21MaAlQ6EALw_wcB)
-	Used to create my 404, 405 and 500 error images to display if users encounted missing or broken page links.
+	Used to create my 404, 405, and 500 error images to display if users encountered missing or broken page links.
 14. [Squoosh](https://squoosh.app/)
 	I used it to compress images to optimize load performance.
 15. [Quire](https://quire.io/)
@@ -346,7 +344,7 @@ Free project and task planning application used for adding and planning tasks fo
 My source of choice for stock images.
 17. [StackEdit](https://stackedit.io/)
 	It's a free, online note-taking and markdown application. I used it to create the README file for GitHub.
-18. [Webmaker App](https://webmaker.app/app/) It is a free application similar to codepen, used to create and save the work locally. I use it to implement and experiment with using components of different frameowrks that I am using, so I am familiar with how to use them when I come to implementing them in my work. 
+18. [Webmaker App](https://webmaker.app/app/) It is a free application similar to codepen, used to create and save the work locally. I use it to implement and experiment with using components of different frameworks that I am using, so I am familiar with how to use them when I come to implementing them in my work. 
 
 ## TESTING
 [TESTING/Testing Checklist](/documentation/testing.md#testing-checklist-development-deployment)
@@ -355,51 +353,51 @@ My source of choice for stock images.
 [TESTING/Research](/documentation/testing.md/#research)
 
 ---
-Having decided to use Materializecss, I needed to become familiar with the framework, its syntax and the available components. I needed to see what is available to meet my needs so I can implement my design requirements how I need them to be.
-My testing at experimentation is done locally using [Webmaker App](https://webmaker.app/app/), as its free, works really well, and I am able to create codepen examples of what I want to implement with select components. I can save these to an HTML codument to share with clients to view the examples. 
-- ***Grid*** Its pretty straight forward and similar in many ways to bootstrap. Some class names are similar, i.e. ```.row``` and ```.col```. The grid class syntax is also pretty simple to grasp. 
-- ***Collapsible*** The Material Design name for what is better known as an accordion. I needed to reasearch how to implement the accordion, and decide teh best way to display the garden event information. 
-- ***Collection*** Material Design name for a list. I wanted to use it for displaying the list of plants, and also the list of categories. 
+Having decided to use Materializecss, I became familiar with the framework, syntax, and available components. I needed to see what is available to meet my needs to implement my design requirements how I need them to be.
+I test and experiment locally using [Webmaker App](https://webmaker.app/app/), as it's free, works well, and I can create codepen examples of what I want to implement with select components. I can save these to an HTML document to share prototypes with clients or associates. 
+- ***Grid*** It's pretty straightforward and similar in many ways to bootstrap. Some class names are similar, i.e. ```.row``` and ```.col```. The grid class syntax is also pretty simple to grasp. 
+- ***Collapsible*** The Material Design name for what is better known as an accordion. I needed to research how to implement the accordion and decide how to display the garden event information. 
+- ***Collection*** Material Design name for a list. I wanted to use it for displaying the list of plants and also the list of categories. 
 - ***Tabs	(conflict)*** My initial plan was to show the events by month in tabs, but Materializecss uses the image carousel css in the tabs, which created a conflict with the image slider. The tabs automatically scrolled. Furthermore, with limited time to sort the issues, I decided to go an easier route. I didn't use tabs in my project, and overall I'm happy I went the "Collapsible" route.
-- ***Image slider*** I wanted to have this as teh main feature when the user lands on the homepage. One image relating to each season, Spring, Summer, Autumn, Winter. I found my images on Deposit photos, and created the slider images from the stock images.
-- ***Forms*** I needed to look at the form elements, see the implementation proceedure, to know in advance what I was going to implement before I came to it. 
-- ***Modal*** The plan was to use modals, to display plant information, and also for the contact form. I changed the form from HTML to Flask-WTForms in the end, to stay with Python so did away with the form modal. I used modals for the delete confirmation messages.
+- ***Image slider*** One image relating to each season, Spring, Summer, Autumn, Winter. I wanted to have this as the main feature when the user lands on the homepage.  I found my images on Deposit photos and created the slider images from the stock images.
+- ***Forms*** I needed to look at the form elements, see the implementation procedure, to know in advance what I was going to implement before I came to it. 
+- ***Modal*** The plan was to use modals to display plant information and the contact form. I changed the contact form from HTML to Flask-WTForms to stay with Python, so I did away with the form modal. I used modals for the delete confirmation messages.
 
-- ***Material Design Template*** I wanted to use Material Desing framework, so I spent a little time looking at what was online with regard to templates. I came across [Materialize Themes](http://swarnakishore.github.io/MaterializeThemes/#themes), and really found inspiration in what I saw. The theme I chose was using an older version of materializecss, so I needed to go through it from top to bottom as there were some things that needed to be updated to work with the latest release. 
+***Material Design Template*** I wanted to use the Material Design framework, so I spent a little time looking at what was online regarding templates. I came across [Materialize Themes](http://swarnakishore.github.io/MaterializeThemes/#themes) and found inspiration in what I saw. The theme I chose was using an older version of materializecss, so I needed to go through it from top to bottom as some things needed to be updated to work with the latest release. 
 I customized it how I wanted it, kept some things, and started my project. I created the home page locally, customizing the theme and updating it, changing it to suit my needs. I added the image slider, created an HTML form in the bottom sheet modal, and added the menu as I would want.
-- ***Stock images*** [Deposit Photos](https://depositphotos.com/?gclsrc=aw.ds&&utm_source=google&utm_medium=cpc&utm_campaign=DP_EU_EN_Brand_Search&utm_term=depositphotos&gclid=CjwKCAjwuvmHBhAxEiwAWAYj-EVeHDBPdjs594mAT_HDLeFGM_g2IVcGn78NSArH7vXIYqfoO1BuhBoCv_kQAvD_BwE), my first stop for stock images when I need them. I found the images I needed for the image slider, and also for the parallax. 
+- ***Stock images*** [Deposit Photos](https://depositphotos.com/?gclsrc=aw.ds&&utm_source=google&utm_medium=cpc&utm_campaign=DP_EU_EN_Brand_Search&utm_term=depositphotos&gclid=CjwKCAjwuvmHBhAxEiwAWAYj-EVeHDBPdjs594mAT_HDLeFGM_g2IVcGn78NSArH7vXIYqfoO1BuhBoCv_kQAvD_BwE), my first stop for stock images when I need them. I found the pictures I needed for the image slider and also for the parallax. 
 
-- ***Mongo DB Schema design*** With zero experience designing or working with building any database, apart from the Code Institure code along project, I was totally overwhelmed. I read so much information, watched so many youtube videos, I had all the info but it was totally abstract without a reference point of experience to understand it in real terms. I heard it often, that the data base design pretty much depended on the needs of the applications, ... got it... but how to design it? I spent the first week reasearching just this, and in the end, decided to just jump in and learn. For the most part, the finished product is very close to what I planned, apart from a few changes I made to impove things, (to meet the needs of the application). 
+- ***Mongo DB Schema design*** With zero experience creating or building any database, apart from the Code Institute code along project, I was overwhelmed. I read so much information, watched so many youtube videos. I had all the info, but it was abstract without a reference point of experience to understand it in real terms. I often heard that the database design depended on the needs of the applications. I spent the first week researching just this, and with time flying, I decided to jump in and learn in the end. For the most part, the finished product is very close to what I planned, apart from a few changes I made to improve things (to meet the application's needs). 
 
 ### Development
 [TESTING/Development](/documentation/testing.md/#development)
 
 
-#### Create Mongo Data Base
-1. Navigate to mongodb.com, register and create an account. 
+#### Create Mongo DataBase
+1. Navigate to mongodb.com, register, and create an account. 
 2. Create a free shared cluster 
-3. Select a cloud service, I chose AWS.
-4. Select the closest region to you offering a free service , I chose Frankfurt.
+3. Select a cloud service. I chose AWS.
+4. Select the closest region to you offering a free service. I chose Frankfurt.
 5. Choose the cluster tier, M0 Sandbox (free forever)
 6. Scroll down and select Cluster Name, and name your cluster.
 7. Click on the "Create Cluster" button.
 8. Click on Database Access in the menu on the left.
-9. CLick on "Add New Database User"
-10. Create  a user name and password using only a combination of letters and numbers.
+9. Click on "Add New Database User"
+10. Create a user name and password using only a combination of letters and numbers.
 11. Set User Privileges to "Read and write to any database"
 12. Click Add User.
-13. Click on Network Access in the menu on the left hand side.
-14. Click Add IP Address, and here you can click "Add Current IP Address" to limit access to the data base, or click "Allow Access From Anywhere" if you want to access from different locations. 
+13. Click on Network Access in the menu on the left-hand side.
+14. Click Add IP Address, and here you can click "Add Current IP Address" to limit access to the database, or click "Allow Access From Anywhere" if you want to access from different locations. 
 15. Click Clusters in the menu on the left, and click on "Collections".
-16. Click "Add My Own Data", and here you can create your data base, and you can add your first collection name. Click Create. It can take a few minutes. 
-17. Click on "Create Document" to create your first document of key-value pairs. (I created example values to start with) Also select the type of flield. 
+16. Click "Add My Own Data", and here you can create your database and add your first collection name. Click Create. It can take a few minutes. 
+17. Click on "Create Document" to create your first document of key-value pairs. (I created example values to start with) Also, select the type of field. 
 18. Once complete, click "Insert" to insert the document into the collection. 
 
 #### Create Project
 
-- **Create Project Repository** I used the Code Institute [gitpod-full-template](https://github.com/Code-Institute-Org/gitpod-full-template). I clicked on "Use this template", and created my project repository name "mp3-garden-journal". I then opened this in GitPod to start the project. 
+- **Create Project Repository** I used the Code Institute [gitpod-full-template](https://github.com/Code-Institute-Org/gitpod-full-template). I clicked on "Use this template" and created my project repository name "mp3-garden-journal". I then opened this in GitPod to start the project. 
 
--   **Initialise Git**  To begin my project, I started with  `git init`  to initialise git within the project.
+-   **Initialise Git**  To begin my project, I started with  `git init`  to initialize git within the project.
     
 -   **Git Ignore**  I created a  **.gitignore**  file to add files and directories I didn't want to upload to GitHub.
     
@@ -419,15 +417,16 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 		touch templates/base.html templates/home.html
 		```
 		```bash
-		|-- documentation
-		|	|-- images
+		|-- documentation/
+		|	|-- images/
 		|	|	|-- wireframes
 		|-- static
-		|	|-- css
+		|	|-- css/
 		|	|	|-- style.css
-		|	|-- js
+		|	|-- images/
+		|	|-- js/
 		|	|	|-- main.js
-		|-- templates
+		|-- templates/
 		|	|-- base.html
 		|	|-- home.html
 		|--	.gitignore
@@ -459,7 +458,7 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 	 - I tested the app. In the terminal, ```python3 app.py``` then clicked open in the browser. The app was working, and my template was showing.
 
 - **Create login and register page and function**
-**NOTE** The login and register route code is based on the Code Institute Task Manaager project, with minor changes, there wasn't a lot to change to add it to my project as functions and does jsut want I want it to do. See [Credits](/README.md/#credits) at the end of the README.
+**NOTE** I based the login and register route code on the Code Institute Task Manager project. There wasn't a lot to change to use it in my project as it functions and does want I want it to do. I made some minor changes to fit the app's requirements. See [Credits](/README.md/#credits) at the end of the README.
 	- ***Create the HTML template*** to extend the base template for login.
 		-	```touch templates/login.html```
 		-	I added start and end blocks using Jinja.
@@ -481,6 +480,7 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 		- For security I used ***werkzeug.security***  ```generate_password_hash, check_password_hash```
 		- In the registration form, I check the username registered before posting the form data. The app displays Flash error messages or success messages for error or success.
 		- I completed the registration form and tested it to confirm that error and success flash messages worked. The app added a new user to the user's collection.
+		- A session cookie is created for the user when their username and password is validated.
 		- I completed the coding for login, checking flash error and success messages, and the registered user can log in. 
 		
 **Issue:** I added flash messages in the login function that appeared but had no styling. I wanted to add alert message styles to the messages. My solution was to use ***materialert*** and ***flashing with categories***
@@ -503,17 +503,21 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 - ***HTML Template***
 	```html+jinja
 	{% with messages = get_flashed_messages(with_categories=true) %}
-	  {% if messages %}
-	    <ul class=flashes>
-		    {% for category, message in messages %}
-		      <li class="{{ category }}">{{ message }}</li>
-		    {% endfor %}
-	    </ul>
-	  {% endif %}
+	{% if messages %}
+		<div  class="row alert-section">
+		{% for category, message in messages %}
+			<div  class="materialert {{category}}">
+				<span>{{ message }}</span>
+				<button  type="button"  class="close-alert hide-on-small-only">×</button>
+			</div>
+		{% endfor %}
+		</div>
+	{% endif %}
 	{% endwith %}
 	```
 	- I used this method to add materialert class names to the flash messages. 
-	
+	- **Note:** Initially, per the Code Institute Task Manager Project, I contained this block in section tags. When there are no messages, the page had empty `<section></section>` tags, semantically incorrect. Firstly, to have an empty set of tags on the page is wrong, and secondly, when validating the HTML, it returns an error as `<section>` tags should have a `<h1>`-`<h6>` heading inside them. 
+	- My solution was to add the `<div  class="row alert-section"></div>` inside the if statement, with the class name alert-section. This whole block, `<div>` included, is only displayed with an alert message. For readability, the class name indicates what the block is. 
 
 
 - ***MongoDB: Add sample data for testing HTML templates*** 
@@ -530,7 +534,7 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 		 touch templates/plants.html 
 		 touch templates/add_categories.html
 		```
-	NOTE: Categories are displayed in a list below the input for adding categories. 
+	**NOTE**: The app displays categories in a list below the form input for adding event categories. 
 	- I created the HTML to display the sample information I added to the database. I added the collapsible to the journal.html page to show the event information. I added the app routes to ```app.py``` for the pages and links to the navigation. 
 	- It took me a little while to get into Jinja, but I found it relatively straightforward. Once I had the routes added in the base.html nav links and the app routes completed, I tested it.  Again ```python3 app.py``` to see the result in the browser. 
 		If I made a python mistake in my ```app.py ``` file, the development server closed, and the error message showed me where my mistake was.- If I made a mistake in my Jinja, it was shown in the browser, and Jinja informed me of the location of my error.
@@ -665,7 +669,7 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 		3. I wanted to remove the possibility of admin users deleting or changing user data by mistake. 
 	- I created an admin account. 
 	- Within the `app.py` functions for events, plants, and categories, I added an ***if statement that checks if the session user is admin***.
-		- ***If true***, the function then ***gets a list of all items in a collection*** to display in the accounts pages. 
+		- ***If True***, the function then ***gets a list of all items in a collection*** to display in the accounts pages. 
 		- ***If false***, the function ***gets a list of all items for the session user*** to display in the user accounts pages.
 	- I added an if statement in all HTML templates that checks if the user viewing the data is the session user. If it is not the session user, the edit/ delete buttons are not displayed. This code removes the possibility that an admin user could delete user data by mistake.
 	```html+jinja
@@ -704,13 +708,13 @@ I customized it how I wanted it, kept some things, and started my project. I cre
 -   AOC 22E15 21.5-inch Full HD 1920x1080 at 75 Hz
 - 
 #### Git Version Control 
-I incrementally commited my work, and pushed it to the remote repository on GitHub. I endevoured to make my commits self explanitory, and meaningful. 
+I incrementally committed my work and pushed it to the remote repository on GitHub. I endeavored to make my commits self-explanatory and meaningful. 
 **GitPod Problems**
-On a few occasions at the end of the project, I had issues with GitPod crashing and my work was not the same when I gained access to the GitPod workspace. 
-On one occasion, a chuck of code for displaying flash messages had been deleted from my `base.html`. I only discovered it when testing, and noticed that my flash error and success messages were no showing. They were previous to the GitPod crash. When I looked, and saw the code missing, I went to my commits on GitHub, to look back to see the last commit where the code was present. I was able to copy it, anh paste it back into my work. My commit saved me, on more than one occasion. 
-The first time, I lost access to my work space for 30 hours, and when I got it back, it was behond my remote, so GitPod had lost data and restored my workspace from an old back up. It tokk me hald a day sort out the mess, as when I pulled the remote, I had to resolve all the conflicts. Once that was done, there was still quite a bit to work though to sort it out. 
-I leaned, the version control is my backup, and not to put my trust in a third party to the extent that I forget it is normal that there are breakdowns sometimes. 
-I'm very aware now not to forget and leave my work without committing, or closing my workspace. 
+On a few occasions at the end of the project, I had issues with GitPod crashing, and my work was not the same when I gained access to the Gitpod workspace. 
+On one occasion, Gitpod had deleted a chunk of code for displaying flash messages from my `base.html`. I only discovered it when testing and noticed that my flash error and success messages were not showing. They were previous to the GitPod crash. When I looked and saw the code missing, I went to my commits on GitHub to look back to see the last commit where the code was present. I was able to copy it and paste it back into my work. My commits saved me on more than one occasion. 
+The first time, I lost access to my workspace for 30 hours, and when I got it back, it was behind my remote, so GitPod had lost data and restored my workspace from an old backup. It took me half a day to sort out the mess, as when I pulled the remote, I had to resolve all the conflicts. Once I did that, there was still quite a bit to work through to sort it out. 
+I learned that version control is my backup and not to trust a third party to the extent that I sometimes forget to expect breakdowns. 
+I'm very aware now not to forget and leave my work without committing or closing my workspace. 
 
 
 **ERROR Pages**
@@ -751,7 +755,7 @@ Once deployed and ready for production, I move to the testing phase and extensiv
 [TESTING/Testing Checklist](/documentation/testing.md#testing-checklist-development-deployment)
 
 #### Forking or Cloning Garden Almanac
-1. If you're interested in forking the project to experiment with the code, or to propose changes, then navigate to the [Garden Almanac Project](https://github.com/daidensacha/mp3-garden-journal), and click on the fork button.
+1. If you're interested in forking the project to experiment with the code or propose changes, navigate to the [Garden Almanac Project](https://github.com/daidensacha/mp3-garden-journal), and click on the fork button.
 
 ![](/documentation/images/fork-project.png)   
 
@@ -760,12 +764,12 @@ If you go to your GitHub repository of the project, click on the code button abo
 
 ![](/documentation/images/clone-project.png)   
 
-3. To clone using HTTPS, under this heading, click the clipboard icon to copy the link. 
+3. To clone using HTTPS, click the clipboard icon to copy the link under this heading. 
 
 4. Open terminal. Move to the directory where you want to have the project. 
 Type `git clone` and then paste the URL you copied. You should see the following link with your username in the link. 
 `https://github.com/YOUR-USERNAME/mp3-garden-journal.git`
-Press enter, and your clone will be created. 
+Press enter to create your clone. 
 
 5. At this point, you can open up the project and run `git init`. It will initialize the project on your local server. 
 
@@ -789,7 +793,7 @@ In `env.py`, you will need to add sensitive information for connecting to your d
 Add the name of your database and the IP and PORT info to the env.py.
 
 10. You should have a gitignore file, having initiated git. If not, then type `touch .gitignore`.
-Enter env.py with your private information into the gitignore file, and save it so it isn't shared on GitHub. 
+Enter env.py with your private information into the gitignore file, and save it, so you don't share it on GitHub. 
 
 11. Type `pip3 freeze --local > requirements.txt` in terminal. Pip3 will install all the dependencies required to run the project. 
 
@@ -805,33 +809,70 @@ I put my work out for peer code review yesterday, and today when I sat down to w
 
 Richard had some excellent points, and I thought worthy of fixing for submission. 
 - The thought of the min length for names had occurred to me. I changed that, so users require a min of 2 letters in their name. That was the easy one.
-- The second point was great feedback, hitting the heart of UX. In the Navbar, there are links to "events, plants, and categories" under the add dropdown, but Richard missed it and found his way to add an event. New users will potentially find it tricky, as `garden_events` are dependent on plants and categories. Having found their way to the add_event page, a new user will have to navigate to the `add_plants` and `add_categories` pages. It would detract from the experience, and as Richard mentioned, it would be so much more convenient if he could click on an option in the select to `add_plant` or `add_category`. 
-- I added the feature to category and plant selects, but had to use Javascript to do it. 
+- The second point was great feedback, hitting the heart of UX. In the Navbar, there are links to "events, plants, and categories" under the add dropdown, but Richard missed it and found his way to add an event. New users will potentially find it tricky, as `garden_events` are dependent on plants and categories. Having found their way to the add_event page, a new user will then have to navigate to the `add_plants` and `add_categories` pages. It would detract from the experience, and as Richard mentioned, it would be so much more convenient if he could click on an option in the select to `add_plant` or `add_category`. 
+- I added the feature to category and plant selects but had to use Javascript to do it. 
 
 **The HTML**
-	```html+jinja
-	<!-- Add onchange to the select -->
-	<select  id="category"  name="category"  class="validate"  onchange="javascript:handleSelect(this)"  required>
+```html+jinja
+<!-- Add option for user to link directly to the add category page -->
+<option  value="redirect-add"  data-url="{{url_for('add_category')}}">Add Category</option>
 
-	<!-- Add data-url attribute to the select option for the redirect -->
-	<option  value=""  data-url="{{url_for('add_category')}}">Add Category</option>
-	```
-	**The Javascript**
-	```javascript
-		function handleSelect(redirect) {
-			// Assign data-url attribute of selected item to the variable
-			let dataAttr = redirect.options[redirect.selectedIndex].getAttribute('data-url');
-			// lets get the root url for the current page, means it will work on different domains.
+<!-- Add option for user to link directly to the add plant page -->
+<option  value="redirect-add"  data-url="{{url_for('add_plant')}}">Add Plant</option>
+```
+
+**The Javascript**
+```javascript
+// Event listeners for add event selects.
+// Add links for user to add plant and add category.
+if (document.querySelector("#add_event_category")) {
+	const addEventCat = document.querySelector("#add_event_category");
+	addEventCat.addEventListener("change", event => {
+		const selected = event.target.value;
+		if (selected == 'redirect-add') {
+			let dataAttr = addEventCat.options[addEventCat.selectedIndex].getAttribute('data-url');
 			let url = window.location.origin;
-			// check if the data variable returned a value, and add the root url to the redirect
 			if (dataAttr) {
-				window.location.href = url + dataAttr;
-			} else  return;
-	}
-	```
-	**Result**
+			window.location.href = url + dataAttr;
+			}
+		}
+	})
+	const addEventPlant = document.querySelector("#add_event_plant_id");
+	addEventPlant.addEventListener("change", event => {
+		const selected = event.target.value;
+		if (selected == 'redirect-add') {
+			let dataAttr = addEventPlant.options[addEventPlant.selectedIndex].getAttribute('data-url');
+			let url = window.location.origin;
+			if (dataAttr) {
+			window.location.href = url + dataAttr;
+			}
+		}	
+	})
+}
+```
 
-	![](/documentation/images/add_category_plant.png) 
+**NOTE:** 
+My first attempt to achieve the required result used `onchange="javascript:handleSelect(this)"` in the select, but it listened to all the options and was active all the time. It worked but wasn't ideal. 
+I had multiple obstacles. 
+1. Material Design has a dirty secret with their selects, which all developers working with materializecss will learn. It creates a `<ul>` of the options to display, using its class and id with dynamic id naming. I found it challenging to isolate the required element to style and make it do what I needed. Hence, as I have to lodge my project, my first solution was to insert the above onchange event listener in the select directly.
+2. I wanted to redirect the user when they clicked on the Add Category or Add Plant option. I added the data-url attribute, `data-url="{{url_for('add_plant')}}"` and got this with Javascript to redirect the user. Javascript strips the Jinja out of it and returns a string `"/add_category"` or `"/add_plant"`. Ok, so I should be able to add that to the base URL, easy right? Read on. 
+3. In my case, the base URL is not fixed. I am working locally, working on Gitpod, and have the site deployed to Heroku. I needed a solution to get the current base URL to create the redirect URL. I googled and came across the snippet on [codegrepper](https://www.codegrepper.com/code-examples/javascript/javascript+get+base+url).
+4. Finale:
+ `let url = window.location.origin;` gets and assigns the current base url to the variable url.
+ `let dataAttr = addEventPlant.options[addEventPlant.selectedIndex].getAttribute('data-url');` gets and assigns the selected option data attribute value to the variable `dataAttr`
+ `window.location.href = url + dataAttr;` adds the two strings together to and redirects the user to the required page. 
+ 5. That was easy, right? There are three checks in place to ensure:
+	 - `if (document.querySelector("#add_event_category"))` checks the page has the required id to run the event listener. The event listener only works when the add event page is open, necessary; otherwise, it returns an error in the console when on other pages. 
+	 - `if (selected == 'redirect-add')` ensures the next stage of the function only runs if the selected option has the value `'redirect-add'`, which I added to the select options I wanted to redirect. When it is true: 
+		 - It gets and assigns the redirect URL to the variable `dataAttr`. 
+		 - It also gets and assigns the value of the current root URL to the variable `url`.
+	 - `if (dataAttr)` Checks that the returned value for the redirect URL is true, before adding the 	`url` and `dataAttr` to create the redirect url. `window.location.href = url + dataAttr;`.
+	 - 
+It works a charm, only on the required page, only on the selected options with the value `redirect-add`, and only if the value returned for the value `redirect-add` is true. 
+
+**Result**
+
+![](/documentation/images/add_category_plant.png) 
 
 ### Credits
 ***Code Institute*** 
@@ -846,7 +887,8 @@ The ES6 Scroll-to-top button is from a [Codepen by Josh Mason](https://codepen.i
   
 
 ## NOTES
-**To-top button** I removed this from tablets and mobiles because, during testing with all the inputs, I found it an impedance on touch screen devices. From my experience, swiping on a touch screen is just as easy, and I don't have a small to-top button obscuring my view or access to the actual content of the site. For desktops, it's perfect, and I'm really happy to have it on the site. I just wanted to document my measured decision not to have it on touch screen devices. 
+**To-top button** I removed this from tablets and mobiles because I found it an impedance on touch screen devices during testing with all the inputs. From my experience, swiping on a touch screen is just as easy, and I don't have a small to-top button obscuring my view or access to the site's actual content. For desktops, it's perfect, and I'm pleased to have it on the site. 
+I just wanted to document my measured decision not to have the to-top button on touch screen devices. 
 
 ## IMPROVEMENTS/ FUTURE FEATURES
 **Admin**
@@ -856,9 +898,9 @@ With limited time to complete my project, I have had to exclude developing the a
 	I would like to have a page in the admin profile to list all users and monitor their activity. It would also be good to be able to change the group permissions from this page. I plan on changing and adding this to the site. 
 	
 **User Profiles**
-	Had I more time, my next work would be to work on the user profiles. Its the landing page for users when they log in, and I would like it to me more like an administration panel for the user, where they can view how many plants, events and categories they have. I would also have it showing the next months events. There would be direct links from that page to the users events and plants. There is so much that I would like to do there. 
+	Had I had more time, my subsequent work would be on the user profiles. It's the landing page for users when they log in, and I would like it to be more like an administration to view how many plants, events, and categories they have. I would also have it showing the next month's events. There would be direct links from that page to the user's events and plants. There is so much that I would like to do there. 
 **Image Uploads** 
-- I wanted to include this feature in this build, but alas time is the ultimate master and with documentation, and the work I already did, I had enough on my plate. I will be including this feature in a future build of the project.
+I wanted to include this feature in this build, but alas, time is the ultimate master, and with documentation and preparing for submission, I had enough work on my plate. I will include this feature in a future build of the project.
 **Interest Groups** 
 I see potential to develop this into a social platform, where users with similar interests can connect and share their events, plants, and information. It would be invaluable as an almanac, as it depends on experience. The broader the user base of knowledge being input and contributed, the more accurate and helpful the information. 
 
@@ -936,7 +978,7 @@ I didn't like it when users with no plant, category, or events have an empty pag
 		flash("Please enter categories before"
 		      " entering an event", "info")
 	```
-- Here I was presented with another issue I hadn't encountered. PEP8 error, lines were too long. The only way to break the string onto a new line was to break it into two strings. It works and doesn't throw any errors.  
+- Here, I was presented with another issue I hadn't encountered. PEP8 error, lines were too long. The only way to break the string onto a new line was to break it into two strings. It works and doesn't throw any errors.  
 - The conditional statements check and inform the user to add plants and or categories before adding an event if there are none. 
 
 **Issue 4. Adding the URL for user pages would open the pages. - Fix Implemented**
@@ -950,7 +992,7 @@ I discovered that users not logged in could access pages that should only be ava
 		flash("Please log in to view page", "error")
 		return redirect(url_for("login"))
 	```
-See the result of [add_plant](http://mp3-garden-journal.herokuapp.com/get_plants) added to URL. I added this fix to all app route functions that displayed pages restricted for viewing by logged in users. 
+See the result of [add_plant](http://mp3-garden-journal.herokuapp.com/get_plants) added to URL. I added this fix to all app route functions that displayed pages restricted for viewing by logged-in users. 
 
 ![](/documentation/images/redirect-login.png)  
 
@@ -980,3 +1022,12 @@ What do I do with this error?
 - Option 1: I guess I could try to download the SASS files, update and compile the CSS to store in the static CSS file? 
 - Document what I have written above in my readme, and leave it?
 All my HTML templates, CSS, and JS pass apart from this one item.
+
+**Issue 8. Materializecss Bug**
+The last days before submission, a but appear that I had not encountered before. 
+It is limited to the mobile (iPhone tested specifically, with ios Safari and Chrome) and does not appear to affect iPad or Desktops. 
+There are two selects on the Add Plant page, one for categories, the other for plants. Categories and plants created by users populate the selects. When using the selects, the scroll is not working correctly, and selecting the items in the list is almost impossible. From a user experience perspective, it is unworkable. If I were putting this app out for production, I would cancel it until I can resolve the issue. 
+In the console, see the image below; the error is coming from the `materialize.min.js:6 [Violation] Added non-passive event listener to a scroll-blocking 'touchmove' event. ` On one hand, I'm relieved that it's not due to a mistake in my code, but I'm disappointed to present work that is what I would describe as incomplete. I might point out that this only became apparent the day before submitting my project, and I have done everything possible to resolve the issue. It seems it is out of my hands until materializecss fix it.
+That said, it is working perfectly on other devices, and to my current knowledge, there are no other bugs. 
+I am currently using the latest stable materializecss 1.0.0. I tried the two subsequent versions that but both broke the side nav altogether. That is the element that is the route of the issue. 
+I need to submit my work and cannot delay it. I'm looking forward to materalizecss fixing the bug so I can see it working fully on mobiles. 
