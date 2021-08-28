@@ -10,8 +10,7 @@
         <div class="input-field col s12 m6" >
           <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
           <select id="add_event_category" name="add_event_category" class="validate" required>
-            <option value="" disabled selected>Choose Category</option>
-            <!-- Add option for user to link directly to the add category page -->
+            
             
             {% for category in categories %}
             <option value="{{ category.category }}">{{- category.category -}}</option>
@@ -24,8 +23,7 @@
         <div class="input-field col s12 m6">
           <i class="fas fa-leaf prefix teal-text text-darken-2"></i>
           <select id="add_event_plant_id" name="add_event_plant_id" class="validate" required>
-            <option value="" disabled selected>Choose Plant</option>
-            <!-- Add option for user to link directly to the add plant page -->
+            
             
             {% for plant in plants %}
             <!-- Here the plant ObjectId is used in value as pseudo foreign key -->
