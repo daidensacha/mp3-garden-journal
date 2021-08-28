@@ -99,15 +99,44 @@ scrollToTopButton.onclick = function(e) {
   scrollToTop();
 }
 
-// Function adds the links for add_plant and add_category 
-// Very helpful: https://www.codegrepper.com/code-examples/javascript/javascript+get+base+url
-function handleSelect(redirect) {
-  // Assign data-url attribute of selected item to the variable
-  let dataAttr = redirect.options[redirect.selectedIndex].getAttribute('data-url');
-  // lets get the root url for the current page, means it will work on different domains. 
-  let url = window.location.origin;
-  // check if the data variable returned a value, and add the root url to the redirect 
-  if (dataAttr) {
-    window.location.href = url + dataAttr;
-  } else return;
-}
+
+
+  if (document.querySelector("#add_event_category")) {
+
+    const addEventCat = document.querySelector("#add_event_category");
+    addEventCat.addEventListener("change", event => {
+      const selected = event.target.value;
+      console.log(selected)
+      if (selected == 'redirect-add') {
+        // do your redirect here
+        let dataAttr = addEventCat.options[addEventCat.selectedIndex].getAttribute('data-url');
+        let url = window.location.origin;
+        if (dataAttr) {
+          window.location.href = url + dataAttr;
+        }
+      }
+    })
+    
+    const addEventPlant = document.querySelector("#add_event_plant_id");
+    addEventPlant.addEventListener("change", event => {
+      const selected = event.target.value;
+      console.log(selected)
+      if (selected == 'redirect-add') {
+        // do your redirect here
+        let dataAttr = addEventPlant.options[addEventPlant.selectedIndex].getAttribute('data-url');
+        let url = window.location.origin;
+        if (dataAttr) {
+          window.location.href = url + dataAttr;
+        }
+      }
+    })
+    
+  }
+
+ 
+  
+  
+
+
+
+
