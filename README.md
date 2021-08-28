@@ -334,7 +334,7 @@ I included images of fruit and vegetables to inspire users to make use of the ap
 	Used to create wireframes
 12. [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
 	I  used the software to work on the project images.
-13. [Adobe Illustrator](https://www.adobe.com/de/creativecloud.html?mv=search&mv=search&sdid=MQH8S7GK&ef_id=Cj0KCQjwgtWDBhDZARIsADEKwgPZA7lnHvCbzk4T9-Q7HVENkRXnk1GxIseaWipJrYnWF0LQvFTw21MaAlQ6EALw_wcB:G:s&s_kwcid=AL!3085!3!392740825380!b!!g!!%2badobe!1419110055!55481570853&gclid=Cj0KCQjwgtWDBhDZARIsADEKwgPZA7lnHvCbzk4T9-Q7HVENkRXnk1GxIseaWipJrYnWF0LQvFTw21MaAlQ6EALw_wcB)
+13. [Adobe Illustrator]([Adobe Illustrator](https://www.adobe.com/de/products/illustrator.html)
 	Used to create my 404, 405, and 500 error images to display if users encountered missing or broken page links.
 14. [Squoosh](https://squoosh.app/)
 	I used it to compress images to optimize load performance.
@@ -724,7 +724,7 @@ I had created three accounts to test features, my own, an admin, and a third fic
 At one point, I created a custom 404 error page for when users might encounter a broken link, and I experienced a 500 error. I then created a custom 500 error page and threw in a customer 405 error page as well. At that point, I was trying to find ways or scenarios to show me where the code needed to be improved or made more secure. 
 
 I encountered a 404 error when testing what happens when non-session users enter a page URL meant for session users. 
-![404-page-not-found](static/images/404-page-not-found.jpg)    
+![404-page-not-found](/documentation/images/404-page-not-found.jpg)    
 The customer error pages all have links back to the home page. 
 
 ### Deployment
@@ -875,14 +875,18 @@ It works a charm, only on the required page, only on the selected options with t
 ![](/documentation/images/add_category_plant.png) 
 
 ### Credits
-***Code Institute*** 
+
+**Code Institute**
 I learned a lot from the Code Institute code along [Task Manager project](https://github.com/Code-Institute-Solutions/TaskManagerAuth) as a reference. Time and time again, I referred back to examples in the Task Manager project to grasp a concept or find my way through a situation.
 I based much of the code in my app routes on the code from the Task Manager project, and I adapted it to my project's needs. I used parts of the code in this project, like the ***materializecss select js validation code***. I changed what I needed to change, and some things like the login and register forms are not changed much at all as they function perfectly and suit the intended need. It was quite a jump from the front end into the backend, and while I was feeling overwhelmed, it would have been much harder without the Task Manager project.
-***Materializecss***
+
+**Materializecss**
 I used the [materializecss](https://materializecss.com/) framework for the project. The documentation is straightforward, with many examples. I copied and adapted snippets in their documentation to use their components in the application. 
-***Theme inspiration*** 
+
+**Theme inspiration**
 I came across some [materializecss themes](http://swarnakishore.github.io/MaterializeThemes/#themes) and used them to develop my theme template. I had to update the markup for the latest version of marterializecss and customize the theme to my own needs. But analyzing these themes helped me to get a grasp of the structure and function of materializecss elements. 
-***To-top button*** 
+
+**To-top button**
 The ES6 Scroll-to-top button is from a [Codepen by Josh Mason](https://codepen.io/joshuamasen/pen/OYaYbL)
   
 
@@ -1024,7 +1028,7 @@ What do I do with this error?
 All my HTML templates, CSS, and JS pass apart from this one item.
 
 **Issue 8. Materializecss Bug**
-The last days before submission, a but appear that I had not encountered before. 
+The last days before submission, a bug appeared that I had not encountered before. 
 It is limited to the mobile (iPhone tested specifically, with ios Safari and Chrome) and does not appear to affect iPad or Desktops. 
 There are two selects on the Add Plant page, one for categories, the other for plants. Categories and plants created by users populate the selects. When using the selects, the scroll is not working correctly, and selecting the items in the list is almost impossible. From a user experience perspective, it is unworkable. If I were putting this app out for production, I would cancel it until I can resolve the issue. 
 In the console, see the image below; the error is coming from the `materialize.min.js:6 [Violation] Added non-passive event listener to a scroll-blocking 'touchmove' event. ` On one hand, I'm relieved that it's not due to a mistake in my code, but I'm disappointed to present work that is what I would describe as incomplete. I might point out that this only became apparent the day before submitting my project, and I have done everything possible to resolve the issue. It seems it is out of my hands until materializecss fix it.
