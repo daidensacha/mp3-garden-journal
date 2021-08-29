@@ -916,7 +916,7 @@ I see potential to develop this into a social platform, where users with similar
 See also [TESTING/Issues and Fixes](/documentation/testing.md/#issues-and-fixes)
 See also [README/Database Issues and Notes](/README.md/#database-issues-and-notes)
 
-##### ISSUE 1. 
+##### ISSUE: 1 
 **MongoDB Schema - Implemented**
 On the almanac page, I display the events and plant information. Initially, I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, to identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when users changed the plant name, and then my code couldn't match the plant with the stored plant name in the garden event collection. I needed a way to identify the plant with the corresponding event. 
 I had some issues then, which took me a while to work out, like comparing the ObjectId string with the ObjectId. I decided to use the plant ObjectId instead, as it's immutable and unique. In my add/ edit_event routes, I used the Material Design select as follows.
@@ -937,7 +937,7 @@ The ObjectId string is then converted back to the ObjectId for sending to MongoD
  ```"event_plant_id": ObjectId(event_plant_id)```
 Once I converted the string format to its ObjectId format, I looped through the plants to find the matching ObjectId and then display the related plant information alongside the garden event.
 
-##### ISSUE 2. 
+##### ISSUE: 2
 **Edit Categories - Fixed**
 
 I clicked on the edit category, and the app redirected me to the edit category page. The category _id was showing in the browser URL, but the category name displaying in the input was incorrect and always the same. 
@@ -972,7 +972,7 @@ The change has simplified my coding, as I now use the same list name for ```cate
 The bug disappeared, and my code was more straightforward. I repeated these changes in the app.py for plants and events. 
 
 
-##### ISSUE 3. 
+##### ISSUE: 3 
 **Users no plant, category, or events have empty pages - Fix implemented**
 I didn't like it when users with no plant, category, or events have an empty page with no idea where to start.
 - I added code to check if the user has data when opening the plant, event, or category pages. If there is no data, i.e., the user has not added a plant, category, or event, then a blue flash alert informs the user to add items to populate the page. 
@@ -992,7 +992,7 @@ I didn't like it when users with no plant, category, or events have an empty pag
 - Here, I was presented with another issue I hadn't encountered. PEP8 error, lines were too long. The only way to break the string onto a new line was to break it into two strings. It works and doesn't throw any errors.  
 - The conditional statements check and inform the user to add plants and or categories before adding an event if there are none. 
 
-##### ISSUE 4. 
+##### ISSUE: 4 
 **Adding the URL for user pages would open the pages. - Fix Implemented**
 I discovered that users not logged in could access pages that should only be available to session users. 
 - I fixed this by nesting the entire function inside an if statement that checks `if user in session:`, the function runs, `else:` it returns a flash message error alert asking the user to log in to view the page. The function redirects the user to the login page. 
@@ -1008,7 +1008,7 @@ See the result of [add_plant](http://mp3-garden-journal.herokuapp.com/get_plants
 
 ![](/documentation/images/redirect-login.png)  
 
-##### ISSUE 5. 
+##### ISSUE: 5
 **Collapsible displaying white background - Fixed**
 In my meeting with my tutor, he mentioned that the collapsible header was white when he clicked on it. I had not seen this behavior and tested it on multiple computers, systems, locally, and live on Heroku. 
 Yesterday, I saw it, as it appeared when I was working through my testing checklist. 
@@ -1019,12 +1019,12 @@ I found what I thought was the issue, applied a css style to override the materi
 
 ![](/documentation/images/event-normal.png)  
 
-##### ISSUE 6. 
+##### ISSUE: 6
 **No Cancel button in edit profile page**
 I realized that I needed to make it possible for users to cancel updating their profile and return to the profile page without hitting the back button in the browser. Just good UX. 
 I added the cancel button and made some changes to the style and width of the form buttons. There is now a cancel button on the edit profile page.
 
-##### ISSUE 7. 
+##### ISSUE: 7 
 **Materializecss CSS validation error in the materialize.1.0.0 CSS Sheet**
 They have not assigned a value to the `0.4`. I looked it up, downloaded the CSS sheet, and discovered it needs to be 0.4 something, px, em, rem, but leaving it blank is causing the validation error. 
 [Value Error](https://jigsaw.w3.org/css-validator/validator?uri=http://mp3-garden-journal.herokuapp.com/&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
@@ -1038,7 +1038,7 @@ What do I do with this error?
 - Document what I have written above in my readme, and leave it?
 All my HTML templates, CSS, and JS pass apart from this one item.
 
-##### ISSUE 8. 
+##### ISSUE: 8
 **Form Select Bug - Materializecss**
 Before submitting the project, I became aware of a serious bug affecting form selects in the last few days. The bug renders  [new event](http://mp3-garden-journal.herokuapp.com/add_event) and [edit event](http://mp3-garden-journal.herokuapp.com/edit_event) pages on mobile devices dysfunctional. 
 **Issue**
