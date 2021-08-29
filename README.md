@@ -1068,6 +1068,8 @@ It is coming from the `materialize.min.js:6`, and there is not much I can do to 
 
 Checking `main.js:5`, the item in my javascript file that the error is pointing to is ` $('.sidenav').sidenav();`. 
 
+To confirm, I commented out the  `$('.sidenav').sidenav();` in my `main.js` and pushed the code to GitHub to test in Heroku what happens. The sidenav is disabled, but the issue is still there, so the issue is deeper than the sidenav.
+
 The strange thing is that when I use in portrait on my iPad, the sidenav is activated, but the issue is still not showing on the iPad. Furthermore, I have tested these forms, creating events with my iPhone and this issue was not there before. 
 
 I am using materializecss 1.0.0, the latest stable release.
