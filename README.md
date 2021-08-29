@@ -1079,3 +1079,11 @@ The strange thing is that when I use in portrait on my iPad, the sidenav is acti
 I am using materializecss 1.0.0, the latest stable release.
 
 I have my project to submit, so I have to leave this issue as it is, and it seems it is coming from a bug in the materializecss.min.js. I need to wait to see.
+
+##### Issue: 9
+
+I have one last issue that I found deleting categories, and no time left to resolve it. 
+    
+Deleting categories is not working if the same category has been created by another user.
+
+I will fix this, but have no time left before submitting.

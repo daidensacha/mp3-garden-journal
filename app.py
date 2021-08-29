@@ -586,8 +586,9 @@ def delete_category(category_id):
     # get category from categories
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
     # Check if garden events uses this category
-    check_events = mongo.db.garden_events.find_one(
-                        {"category": category["category"]})
+    check_events = list(mongo.db.garden_events.find(
+                        {"category": category["category"]}))
+
     # if variable is empty, run function, otherwise stop deletion.
     if not check_events:
         if "user" in session:
