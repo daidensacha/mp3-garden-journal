@@ -2,7 +2,7 @@ $(function () {
   $(".dropdown-trigger").dropdown({
     hover: true,
   });
-  $('.sidenav').sidenav();
+  // $('.sidenav').sidenav();
   $('.parallax').parallax();
   $('.slider').slider({
     indicators: false,
