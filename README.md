@@ -875,6 +875,7 @@ It works a charm, only on the required page, only on the selected options with t
 ![](/documentation/images/add_category_plant.png) 
 
 **Addendum** At the time of writing and submitting this project, a materializecss bug affects the usability of form selects when using mobiles. 
+
 See BUGS and ISSUES [README/Issue. 8](/README.md/#issue-8)
 
 ### Credits
