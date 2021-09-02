@@ -1080,10 +1080,23 @@ I am using materializecss 1.0.0, the latest stable release.
 
 I have my project to submit, so I have to leave this issue as it is, and it seems it is coming from a bug in the materializecss.min.js. I need to wait to see.
 
-##### Issue: 9
+##### Issue: 9 
+**Deleting Categories**
+I realized there was an issue when users wanted to delete a category.
+I used the category name and the session user name in the event when creating the event. Then when the user wants to delete the category, I only wanted the user to delete the category when there are no related events with the category for the session user. To check this, I searched the `garden_events` collection incorrectly, returning a list of all events with that category. 
 
-I have one last issue that I found deleting categories, and no time left to resolve it. 
-    
-Deleting categories is not working if the same category has been created by another user.
+```
+check_events = list(mongo.db.garden_events.find(
+{"category": category["category"]}))
+```
+My code then checks `if  not check_events:` to see if the query returned a result, which determines if the user can delete the category.
 
-I will fix this, but have no time left before submitting.
+The query returns a result for all users, but it should only check if there are any events with the category for the session user. I changed the search of the `garden_events` collection to filter for `"category": category["category"]` and `"created_by": session["user"]`, using the MongoDB `$and` operator.
+
+```
+check_events = mongo.db.garden_events.find_one(
+	{"$and": [{"category": category["category"]},
+			  {"created_by": session["user"]}]})
+```
+
+This only returns true if there are events with the `category` ***and*** `created_by` values. If the query returns a result, a flash message informs the user they cannot delete categories with related events. If the query doesn't return a result, the user can delete the category.

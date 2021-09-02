@@ -14,7 +14,6 @@ if os.path.exists("env.py"):
 
 
 app = Flask(__name__)
-# app.config.from_object('config.Config')
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
@@ -586,8 +585,11 @@ def delete_category(category_id):
     # get category from categories
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
     # Check if garden events uses this category
-    check_events = list(mongo.db.garden_events.find(
-                        {"category": category["category"]}))
+    # check_events = list(mongo.db.garden_events.find(
+    #                     {"category": category["category"]}))
+    check_events = mongo.db.garden_events.find_one(
+        {"$and": [{"category": category["category"]},
+                {"created_by": session["user"]}]})
 
     # if variable is empty, run function, otherwise stop deletion.
     if not check_events:
