@@ -916,8 +916,9 @@ I see potential to develop this into a social platform, where users with similar
 See also [TESTING/Issues and Fixes](/documentation/testing.md/#issues-and-fixes)
 See also [README/Database Issues and Notes](/README.md/#database-issues-and-notes)
 
-##### ISSUE: 1 
-**MongoDB Schema - Implemented**
+#### ISSUE: 1 
+**MongoDB Schema - Implemented**  
+
 On the almanac page, I display the events and plant information. Initially, I used the plant name in the ```garden_event```  as a key ```plant_id: "plant_name" ```collection, to identify the plant and display the info. When I came to updating plant information, I became aware this was not a good way when users changed the plant name, and then my code couldn't match the plant with the stored plant name in the garden event collection. I needed a way to identify the plant with the corresponding event. 
 I had some issues then, which took me a while to work out, like comparing the ObjectId string with the ObjectId. I decided to use the plant ObjectId instead, as it's immutable and unique. In my add/ edit_event routes, I used the Material Design select as follows.
 ```html+jinja
@@ -937,8 +938,8 @@ The ObjectId string is then converted back to the ObjectId for sending to MongoD
  ```"event_plant_id": ObjectId(event_plant_id)```
 Once I converted the string format to its ObjectId format, I looped through the plants to find the matching ObjectId and then display the related plant information alongside the garden event.
 
-##### ISSUE: 2
-**Edit Categories - Fixed**
+#### ISSUE: 2
+**Edit Categories - Fixed**  
 
 I clicked on the edit category, and the app redirected me to the edit category page. The category _id was showing in the browser URL, but the category name displaying in the input was incorrect and always the same. 
 I created my cursor in the ```app.route``` for categories as follows.
@@ -972,8 +973,9 @@ The change has simplified my coding, as I now use the same list name for ```cate
 The bug disappeared, and my code was more straightforward. I repeated these changes in the app.py for plants and events. 
 
 
-##### ISSUE: 3 
-**Users no plant, category, or events have empty pages - Fix implemented**
+#### ISSUE: 3 
+**Users no plant, category, or events have empty pages - Fix implemented**  
+
 I didn't like it when users with no plant, category, or events have an empty page with no idea where to start.
 - I added code to check if the user has data when opening the plant, event, or category pages. If there is no data, i.e., the user has not added a plant, category, or event, then a blue flash alert informs the user to add items to populate the page. 
 - If the list of items for the session user is empty, as it is for a new user, the function displays an alert informing the user to add data to be displayed in the pages. 
@@ -992,8 +994,9 @@ I didn't like it when users with no plant, category, or events have an empty pag
 - Here, I was presented with another issue I hadn't encountered. PEP8 error, lines were too long. The only way to break the string onto a new line was to break it into two strings. It works and doesn't throw any errors.  
 - The conditional statements check and inform the user to add plants and or categories before adding an event if there are none. 
 
-##### ISSUE: 4 
-**Adding the URL for user pages would open the pages. - Fix Implemented**
+#### ISSUE: 4 
+**Adding the URL for user pages would open the pages. - Fix Implemented**  
+
 I discovered that users not logged in could access pages that should only be available to session users. 
 - I fixed this by nesting the entire function inside an if statement that checks `if user in session:`, the function runs, `else:` it returns a flash message error alert asking the user to log in to view the page. The function redirects the user to the login page. 
 	```python
@@ -1008,8 +1011,9 @@ See the result of [add_plant](http://mp3-garden-journal.herokuapp.com/get_plants
 
 ![](/documentation/images/redirect-login.png)  
 
-##### ISSUE: 5
-**Collapsible displaying white background - Fixed**
+#### ISSUE: 5
+**Collapsible displaying white background - Fixed**  
+
 In my meeting with my tutor, he mentioned that the collapsible header was white when he clicked on it. I had not seen this behavior and tested it on multiple computers, systems, locally, and live on Heroku. 
 Yesterday, I saw it, as it appeared when I was working through my testing checklist. 
 
@@ -1019,13 +1023,15 @@ I found what I thought was the issue, applied a css style to override the materi
 
 ![](/documentation/images/event-normal.png)  
 
-##### ISSUE: 6
-**No Cancel button in edit profile page**
+#### ISSUE: 6
+**No Cancel button in edit profile page**  
+
 I realized that I needed to make it possible for users to cancel updating their profile and return to the profile page without hitting the back button in the browser. Just good UX. 
 I added the cancel button and made some changes to the style and width of the form buttons. There is now a cancel button on the edit profile page.
 
 ##### ISSUE: 7 
-**Materializecss CSS validation error in the materialize.1.0.0 CSS Sheet**
+**Materializecss CSS validation error in the materialize.1.0.0 CSS Sheet**  
+
 They have not assigned a value to the `0.4`. I looked it up, downloaded the CSS sheet, and discovered it needs to be 0.4 something, px, em, rem, but leaving it blank is causing the validation error. 
 [Value Error](https://jigsaw.w3.org/css-validator/validator?uri=http://mp3-garden-journal.herokuapp.com/&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 #### URI :  [https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css](https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css)
@@ -1038,8 +1044,9 @@ What do I do with this error?
 - Document what I have written above in my readme, and leave it?
 All my HTML templates, CSS, and JS pass apart from this one item.
 
-##### ISSUE: 8
-**Form Select Bug - Materializecss**
+#### ISSUE: 8
+**Form Select Bug - Materializecss**  
+
 Before submitting the project, I became aware of a serious bug affecting form selects in the last few days. The bug renders  [new event](http://mp3-garden-journal.herokuapp.com/add_event) and [edit event](http://mp3-garden-journal.herokuapp.com/edit_event) pages on mobile devices dysfunctional. 
 **Issue**
 - I cannot select options in the selects using mobile devices. 
@@ -1050,7 +1057,7 @@ Before submitting the project, I became aware of a serious bug affecting form se
 - The issue does not appear to affect Desktops or tablets. 
 	- Note I have only tested this on Macbook Pro and iPad as I have had limited time. 
 
-**Description**
+**Description**  
 - I click on the select in the form on the `add_event` or `edit_event` pages, and the select opens showing the options populated using Jinja. 
 - I click on an option, and the result is inconsistent and unpredictable. 
 	- Any item can show as selected
@@ -1059,7 +1066,7 @@ Before submitting the project, I became aware of a serious bug affecting form se
 	- Sometimes, the page is redirected to another page of the application.
 	- Scrolling, the select options within the select, is rendered inoperable. It does not work and is unusable. 
 
-**Troubleshooting**
+**Troubleshooting**  
 I spent most of the day I had planned to submit my project ferreting out the issue to see what was causing it and if I could fix it. 
 
 I rewrote my function and method for adding links to two select options in the `add_event` page. Users can select those options to link directly to the `add_plant` and `add_category` pages. It did not resolve the issue but was a better way to do it than my initial implementation. 
@@ -1080,10 +1087,39 @@ I am using materializecss 1.0.0, the latest stable release.
 
 I have my project to submit, so I have to leave this issue as it is, and it seems it is coming from a bug in the materializecss.min.js. I need to wait to see.
 
-##### Issue: 9
+#### Issue: 9 
+**Deleting Categories**  
 
-I have one last issue that I found deleting categories, and no time left to resolve it. 
-    
-Deleting categories is not working if the same category has been created by another user.
+I realized there was an issue when users wanted to delete a category.  
+I used the category name and the session user name in the MongoDB event collection to associate user `garden_event`'s.  
 
-I will fix this, but have no time left before submitting.
+***Expected behaviour:***  
+- If the user tries to delete a `category` with related `garden_events`, the delete category function does not delete the `category`. The app redirects the user back to the `add_category` page with a flash message informing them that they cannot delete categories with related events.  
+- If the user tries to delete a `category` with no related `garden_events`, the delete category function deletes the category. The app redirects the user back to the `add_category` page with a flash message informing them the category has been deleted. 
+
+***Unexpected behaviour:***  
+- The user tries to delete a category with no related events. 
+- The app redirects the user back to the `add_category` page with a flash message informing them that they cannot delete categories with related events.  
+
+***Code error***  
+I made an error in my query of the category collection in the database. My query searched all user `garden_events`  for the `category` instead of checking only `garden_events` for the session user.   
+
+```python
+check_events = list(mongo.db.garden_events.find(
+{"category": category["category"]}))
+```
+My code then checks the cursor `check_events:` to see if the query returned a result.  
+
+The query returns a result for all users and prevents the session user from deleting a category if another user has `garden_events` with the same related category name.  
+
+I changed the query of the `garden_events` collection to filter for `"category": category["category"]` and `"created_by": session["user"]`, using the MongoDB `$and` operator.
+
+```python
+check_events = mongo.db.garden_events.find_one(
+    {"$and": [{"category": category["category"]},
+              {"created_by": session["user"]}]})
+```
+
+The query only returns a result if there are events with the `category` ***and*** `created_by` values for the session user.  
+The new query works, and the result meets expected behaviour.  
+Session users can delete categories that do not have related `garden_events`.
